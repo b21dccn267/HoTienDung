@@ -109,6 +109,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Readme.doc" />
+    <None Include="..\Resources\Packs\Models\Woman1.nfg" />
+    <None Include="..\Resources\Packs\Models\Woman2.nfg" />
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs" />
     <None Include="..\Resources\Shaders\TriangleShaderVS.vs" />
   </ItemGroup>
@@ -119,6 +121,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\Resources\Packs\Textures\Woman1.tga" />
+    <Image Include="..\Resources\Packs\Textures\Woman2.tga" />
     <Image Include="..\Resources\Textures\brick.tga" />
     <Image Include="..\Resources\Textures\rock.tga" />
     <Image Include="..\Resources\Textures\rock1.tga" />

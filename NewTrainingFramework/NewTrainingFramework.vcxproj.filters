@@ -22,6 +22,15 @@
     <Filter Include="Resources\Textures">
       <UniqueIdentifier>{c3579140-ee0a-4756-ab3c-21c907134e5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\Packs">
+      <UniqueIdentifier>{61582610-b2a6-49ad-8739-9df482c4e512}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Packs\Textures">
+      <UniqueIdentifier>{33fdae03-836c-44f5-adb3-d28bb4bee090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Packs\Models">
+      <UniqueIdentifier>{f247de06-fb9f-44ab-bc94-e91057c9c4b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NewTrainingFramework.cpp">
@@ -68,6 +77,12 @@
       <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="..\..\Readme.doc" />
+    <None Include="..\Resources\Packs\Models\Woman2.nfg">
+      <Filter>Resources\Packs\Models</Filter>
+    </None>
+    <None Include="..\Resources\Packs\Models\Woman1.nfg">
+      <Filter>Resources\Packs</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\Textures\rock.tga">
@@ -78,6 +93,12 @@
     </Image>
     <Image Include="..\Resources\Textures\brick.tga">
       <Filter>Resources\Textures</Filter>
+    </Image>
+    <Image Include="..\Resources\Packs\Textures\Woman1.tga">
+      <Filter>Resources\Packs\Textures</Filter>
+    </Image>
+    <Image Include="..\Resources\Packs\Textures\Woman2.tga">
+      <Filter>Resources\Packs\Textures</Filter>
     </Image>
   </ItemGroup>
 </Project>

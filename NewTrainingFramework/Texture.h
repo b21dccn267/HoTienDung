@@ -4,13 +4,12 @@
 class Texture
 {
 public:
-	GLuint textureID;
-	float vertices_pos[1] = {1};
-	float uv_pos[];
+	GLuint textureId;
+	int iWidth, iHeight, iBdp;
+	char* imageData;
 
-
-	//int Init();
-	void Load(char* imageData);
+	int Init(const char* imageData);
+	void SetTextureParameters();
 	~Texture();
 };
 
