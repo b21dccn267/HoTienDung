@@ -10,6 +10,7 @@
 
 
 GLuint vboId, iboId, cboId;
+GLuint textureId;
 Shaders myShaders;
 
 int Init ( ESContext *esContext )
@@ -23,12 +24,34 @@ int Init ( ESContext *esContext )
 	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z =  0.0f;
 	verticesData[2].pos.x =  0.5f;  verticesData[2].pos.y = -0.5f;  verticesData[2].pos.z =  0.0f;
 
-	verticesData[0].color.x = 1.0f; verticesData[0].color.y = 0.0f; verticesData[0].color.z = 0.0f;
+	/*verticesData[0].color.x = 1.0f; verticesData[0].color.y = 0.0f; verticesData[0].color.z = 0.0f;
 	verticesData[1].color.x = 0.0f; verticesData[1].color.y = 1.0f; verticesData[1].color.z = 0.0f;
-	verticesData[2].color.x = 0.0f; verticesData[2].color.y = 0.0f; verticesData[2].color.z = 1.0f;
+	verticesData[2].color.x = 0.0f; verticesData[2].color.y = 0.0f; verticesData[2].color.z = 1.0f;*/
+
+	verticesData[0].uv.x = 0.5f;  verticesData[0].uv.y = 1.0f;
+	verticesData[1].uv.x = 0.0f;  verticesData[1].uv.y = 0.0f;
+	verticesData[2].uv.x = 1.0f;  verticesData[2].uv.y = 0.0f;
 
 	GLuint indicesData[3] = { 0, 1, 2 };
 
+	glGenTextures(1, &textureId);
+	glBindTexture(GL_TEXTURE_2D, textureId);
+	// texture
+	int iWidth, iHeight, iBdp;
+	char* imageData = LoadTGA("../Resources/Textures/brick.tga", &iWidth, &iHeight, &iBdp);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, iWidth, iHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
+	// set texture params (no mipmap)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	// mipmap
+	
+	// setting texture uniform
+	glBindTexture(GL_TEXTURE_2D, textureId);
+	
+	
 	//buffer object
 	glGenBuffers(1, &vboId);
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
@@ -62,11 +85,17 @@ void Draw ( ESContext *esContext )
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 	}
-	{
+	/*{
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (char*)0 +sizeof(Vector3));
+	}*/
+	// texture
+	{
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 	}
-	
+	int iTextureLoc = glGetUniformLocation(myShaders.program, "u_texture");
+	glUniform1i(iTextureLoc, 0);
 	// ibo object
 	{
 		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
