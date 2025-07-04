@@ -6,6 +6,7 @@
 #include "Vertex.h"
 #include "Shaders.h"
 #include "Texture.h"
+#include "Model.h"
 #include "Globals.h"
 #include <conio.h>
 
@@ -17,13 +18,18 @@ GLuint vboId, iboId;
 GLuint textureId;
 Shaders myShaders;
 Texture myTexture;
+Model myModel;
 
 int Init ( ESContext *esContext )
 {
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 
+	// Dynamic vertex and index
+	Vertex* verticesData = nullptr;
+	GLuint* indicesData = nullptr;
+
 	//triangle data (heap)
-	Vertex verticesData[3];
+	/*Vertex verticesData[3];
 
 	verticesData[0].pos.x =  0.0f;  verticesData[0].pos.y =  0.5f;  verticesData[0].pos.z =  0.0f;
 	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z =  0.0f;
@@ -32,25 +38,59 @@ int Init ( ESContext *esContext )
 	verticesData[0].uv.x = 0.5f;  verticesData[0].uv.y = 1.0f;
 	verticesData[1].uv.x = 0.0f;  verticesData[1].uv.y = 0.0f;
 	verticesData[2].uv.x = 1.0f;  verticesData[2].uv.y = 0.0f;
+	*/
+	//GLuint indicesData[3] = { 0, 1, 2 };
 
-	GLuint indicesData[3] = { 0, 1, 2 };
+	// read from nfg file for Vertex and Index 
+	//FILE* f = fopen("../Resources/Packs/Models/Woman1.nfg", "r");
+	//char line[200];
+
+	//fgets(line, sizeof line, f);
+	//size_t total = strtoul(strchr(line, ':') + 1, nullptr, 10);		// string to size_t the locate chars after ':'
+
+	////Vertex* buffer = new Vertex[total];
+	//size_t count = 0;
+	//
+	////temp fix
+	//Vertex verticesData[512];
+
+	//while (count < total && fgets(line, sizeof line, f)) {
+	//	float fX = 0, fY = 0, fZ = 0, fUx = 0, fUy = 0;
+	//	sscanf_s(line, "%*[^p]pos:[%f ,%f ,%f]; %*[^u]uv:[%f ,%f];", &fX, &fY, &fZ, &fUx, &fUy);
+	//	
+	//	verticesData[count].pos.x = fX;
+	//	verticesData[count].pos.y = fY;
+	//	verticesData[count].pos.z = fZ;
+	//	verticesData[count].uv.x = fUx;
+	//	verticesData[count].uv.y = fUy;
+
+	//	count++;
+	//}
+
+	//count = 0;
+	//fgets(line, sizeof line, f);
+	//total = strtoul(strchr(line, ':') + 1, nullptr, 10);
+	//GLuint indicesData[2154];
+	//while (count < total && fgets(line, sizeof line, f)) {
+	//	int iX, iY, iZ;
+	//	sscanf_s(line, "%*d. %d,%d,%d", &iX, &iY, &iZ);
+	//	
+	//	indicesData[count] = iX; count++;
+	//	indicesData[count] = iY; count++;
+	//	indicesData[count] = iZ; count++;
+	//}
+
+	//fclose(f);
+
+
+	// model loading
+	myModel.Init("../Resources/Packs/Models/Woman1.nfg");
+	myModel.SetModelParameters(); // will take verticesData and IndicesData as input, then write to
+	myModel.BindBuffer();
 
 	myTexture.Init("../Resources/Packs/Textures/Woman1.tga");
 	myTexture.SetTextureParameters();
 		
-	//buffer object
-	glGenBuffers(1, &vboId);
-	glBindBuffer(GL_ARRAY_BUFFER, vboId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesData), verticesData, GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-
-	// ibo object
-	glGenBuffers(1, &iboId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indicesData), indicesData, GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	
 
 	//creation of shaders and program 
 	return myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
@@ -63,8 +103,8 @@ void Draw ( ESContext *esContext )
 
 	glUseProgram(myShaders.program);
 	
-	glBindBuffer(GL_ARRAY_BUFFER, vboId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
+	glBindBuffer(GL_ARRAY_BUFFER, myModel.vboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myModel.iboId);
 
 	// take location value from vertex/fragment shader. With Position we have location = 0
 	{
@@ -74,13 +114,15 @@ void Draw ( ESContext *esContext )
 	// texture
 	{
 		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (char*)0 + sizeof(Vector3));
 	}
 	int iTextureLoc = glGetUniformLocation(myShaders.program, "u_texture");
 	glUniform1i(iTextureLoc, 0);
 	// ibo object
 	{
-		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 2154, GL_UNSIGNED_INT, 0);
+		// Dungf elemets instead of
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -132,4 +174,3 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	return 0;
 }
-
