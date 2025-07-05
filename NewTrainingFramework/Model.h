@@ -10,6 +10,7 @@ public:
 	GLuint* indicesData;
 	GLuint vboId, iboId;
 	char* modelData;
+	int vertexCount, indexCount;
 
 	
 	int Init(const char* modelData);

@@ -10,12 +10,12 @@
 #include "Globals.h"
 #include <conio.h>
 
-#include <iostream>
-#include <vector>
+//#include <iostream>
+//#include <vector>
 
 
-GLuint vboId, iboId;
-GLuint textureId;
+//GLuint vboId, iboId;
+//GLuint textureId;
 Shaders myShaders;
 Texture myTexture;
 Model myModel;
@@ -120,9 +120,7 @@ void Draw ( ESContext *esContext )
 	glUniform1i(iTextureLoc, 0);
 	// ibo object
 	{
-		//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-		glDrawElements(GL_TRIANGLES, 2154, GL_UNSIGNED_INT, 0);
-		// Dungf elemets instead of
+		glDrawElements(GL_TRIANGLES, myModel.indexCount, GL_UNSIGNED_INT, 0);
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -143,8 +141,8 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 
 void CleanUp()
 {
-	glDeleteBuffers(1, &vboId);
-	glDeleteBuffers(1, &iboId);
+	glDeleteBuffers(1, &myModel.vboId);
+	glDeleteBuffers(1, &myModel.iboId);
 }
 
 int _tmain(int argc, _TCHAR* argv[])
