@@ -7,18 +7,16 @@
 #include "Shaders.h"
 #include "Texture.h"
 #include "Model.h"
+#include "MVPMatrix.h"
 #include "Globals.h"
 #include <conio.h>
 
-//#include <iostream>
-//#include <vector>
 
-
-//GLuint vboId, iboId;
-//GLuint textureId;
 Shaders myShaders;
 Texture myTexture;
 Model myModel;
+MVPMatrix myMatrix;
+GLfloat mvpLine[16];
 
 int Init ( ESContext *esContext )
 {
@@ -28,61 +26,6 @@ int Init ( ESContext *esContext )
 	Vertex* verticesData = nullptr;
 	GLuint* indicesData = nullptr;
 
-	//triangle data (heap)
-	/*Vertex verticesData[3];
-
-	verticesData[0].pos.x =  0.0f;  verticesData[0].pos.y =  0.5f;  verticesData[0].pos.z =  0.0f;
-	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z =  0.0f;
-	verticesData[2].pos.x =  0.5f;  verticesData[2].pos.y = -0.5f;  verticesData[2].pos.z =  0.0f;
-
-	verticesData[0].uv.x = 0.5f;  verticesData[0].uv.y = 1.0f;
-	verticesData[1].uv.x = 0.0f;  verticesData[1].uv.y = 0.0f;
-	verticesData[2].uv.x = 1.0f;  verticesData[2].uv.y = 0.0f;
-	*/
-	//GLuint indicesData[3] = { 0, 1, 2 };
-
-	// read from nfg file for Vertex and Index 
-	//FILE* f = fopen("../Resources/Packs/Models/Woman1.nfg", "r");
-	//char line[200];
-
-	//fgets(line, sizeof line, f);
-	//size_t total = strtoul(strchr(line, ':') + 1, nullptr, 10);		// string to size_t the locate chars after ':'
-
-	////Vertex* buffer = new Vertex[total];
-	//size_t count = 0;
-	//
-	////temp fix
-	//Vertex verticesData[512];
-
-	//while (count < total && fgets(line, sizeof line, f)) {
-	//	float fX = 0, fY = 0, fZ = 0, fUx = 0, fUy = 0;
-	//	sscanf_s(line, "%*[^p]pos:[%f ,%f ,%f]; %*[^u]uv:[%f ,%f];", &fX, &fY, &fZ, &fUx, &fUy);
-	//	
-	//	verticesData[count].pos.x = fX;
-	//	verticesData[count].pos.y = fY;
-	//	verticesData[count].pos.z = fZ;
-	//	verticesData[count].uv.x = fUx;
-	//	verticesData[count].uv.y = fUy;
-
-	//	count++;
-	//}
-
-	//count = 0;
-	//fgets(line, sizeof line, f);
-	//total = strtoul(strchr(line, ':') + 1, nullptr, 10);
-	//GLuint indicesData[2154];
-	//while (count < total && fgets(line, sizeof line, f)) {
-	//	int iX, iY, iZ;
-	//	sscanf_s(line, "%*d. %d,%d,%d", &iX, &iY, &iZ);
-	//	
-	//	indicesData[count] = iX; count++;
-	//	indicesData[count] = iY; count++;
-	//	indicesData[count] = iZ; count++;
-	//}
-
-	//fclose(f);
-
-
 	// model loading
 	myModel.Init("../Resources/Packs/Models/Woman1.nfg");
 	myModel.SetModelParameters(); // will take verticesData and IndicesData as input, then write to
@@ -90,7 +33,28 @@ int Init ( ESContext *esContext )
 
 	myTexture.Init("../Resources/Packs/Textures/Woman1.tga");
 	myTexture.SetTextureParameters();
-		
+
+	myMatrix.Init();
+	// glUniformMatrix4fv only allows 1d float array listing a matrix in row major order (use GL_TRUE)
+	mvpLine[0] = myMatrix.matrix.m[0][0];
+	mvpLine[1] = myMatrix.matrix.m[0][1];
+	mvpLine[2] = myMatrix.matrix.m[0][2];
+	mvpLine[3] = myMatrix.matrix.m[0][3];
+
+	mvpLine[4] = myMatrix.matrix.m[1][0];
+	mvpLine[5] = myMatrix.matrix.m[1][1];
+	mvpLine[6] = myMatrix.matrix.m[1][2];
+	mvpLine[7] = myMatrix.matrix.m[1][3];
+
+	mvpLine[8] = myMatrix.matrix.m[2][0];
+	mvpLine[9] = myMatrix.matrix.m[2][1];
+	mvpLine[10] = myMatrix.matrix.m[2][2];
+	mvpLine[11] = myMatrix.matrix.m[2][3];
+
+	mvpLine[12] = myMatrix.matrix.m[3][0];
+	mvpLine[13] = myMatrix.matrix.m[3][1];
+	mvpLine[14] = myMatrix.matrix.m[3][2];
+	mvpLine[15] = myMatrix.matrix.m[3][3];
 
 	//creation of shaders and program 
 	return myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
@@ -118,11 +82,14 @@ void Draw ( ESContext *esContext )
 	}
 	int iTextureLoc = glGetUniformLocation(myShaders.program, "u_texture");
 	glUniform1i(iTextureLoc, 0);
+	// mvp matrix
+	int iMatrixLoc = glGetUniformLocation(myShaders.program, "u_mvp");
+	glUniformMatrix4fv(iMatrixLoc, 1, GL_FALSE, mvpLine);
 	// ibo object
 	{
 		glDrawElements(GL_TRIANGLES, myModel.indexCount, GL_UNSIGNED_INT, 0);
 	}
-
+	
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
