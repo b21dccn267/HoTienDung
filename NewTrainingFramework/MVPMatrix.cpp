@@ -6,11 +6,11 @@
 // all values of any matrix like translate scale rotate and the like are flex
 int MVPMatrix::Init()
 {
-	GLfloat fScale = 0.5f;
-	GLfloat rotateAngle = 45.0f;
-	GLfloat translationX = 0;
-	GLfloat translationY = 0;
-	GLfloat translationZ = 0;
+	GLfloat fScale = 1.0f;
+	GLfloat rotateAngle = 0.0f; 
+	GLfloat translationX = 0.0f;
+	GLfloat translationY = 0.0f;
+	GLfloat translationZ = 0.0f;
 
 	Matrix temp;
 	Matrix translationInverse;
@@ -18,41 +18,44 @@ int MVPMatrix::Init()
 
 	Vector3 xAxis, yAxis, zAxis; // 
 	Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
-	Vector3 position = Vector3(0.0f, 0.0f, 0.0f); // the camera
-	Vector3 target = Vector3(3.0f, 3.0f, 3.0f);   // where camera looks at
+	Vector3 position = Vector3(0.0f, 0.0f, -1.0f);	// the camera
+	Vector3 target = Vector3(0.0f, 0.0f, 0.0f);		// where camera looks at
 
 	GLfloat fov = 45.0f;
 	GLfloat aspectRatio = 4.0f / 3.0f;
 	GLfloat nearPlane = 0.01f;
 	GLfloat farPlane = 100.0f;
 
-	// to calculate world, start with identity, then scale, rotate, translate
+
+	// calculate world
 	world.SetIdentity();
-	world.SetScale(fScale);
-	world.SetRotationX(rotateAngle);
-	world.SetTranslation(translationX, translationY, translationZ);
 
-	// to calculate view, find x,y,z and their xyzaxis, or inverse translation * i rotation * i scale
-	view.SetZero();
+	Matrix scale, rotation, translation;
+	scale.SetScale(fScale);
+	rotation.SetRotationX(rotateAngle);
+	translation.SetTranslation(translationX, translationY, translationZ);
+
+	world = scale * rotation * translation;
+
+
+	// calculate view
 	view.SetIdentity();
-	translationInverse.SetIdentity();
-	translationInverse.SetTranslation(-position.x, -position.y, -position.z);
 
-	rotationInverse.SetIdentity();
 	zAxis = (position - target).Normalize();
 	xAxis = (up.Cross(zAxis)).Normalize();
 	yAxis = zAxis.Cross(xAxis).Normalize();
-	rotationInverse.m[0][0] = xAxis.x; rotationInverse.m[0][1] = yAxis.x; rotationInverse.m[0][2] = zAxis.x;
-	rotationInverse.m[1][0] = xAxis.y; rotationInverse.m[1][1] = yAxis.y; rotationInverse.m[1][2] = zAxis.y;
-	rotationInverse.m[2][0] = xAxis.z; rotationInverse.m[2][1] = yAxis.z; rotationInverse.m[2][2] = zAxis.z;
 
-	view = translationInverse * rotationInverse;
+	view.m[0][0] = xAxis.x; view.m[0][1] = yAxis.x; view.m[0][2] = zAxis.x; view.m[0][3] = 0.0f;
+	view.m[1][0] = xAxis.y; view.m[1][1] = yAxis.y; view.m[1][2] = zAxis.y; view.m[1][3] = 0.0f;
+	view.m[2][0] = xAxis.z; view.m[2][1] = yAxis.z; view.m[2][2] = zAxis.z; view.m[2][3] = 0.0f;
+	view.m[3][0] = -position.Dot(xAxis); view.m[3][1] = -position.Dot(yAxis); view.m[3][2] = -position.Dot(zAxis); view.m[3][3] = 1.0f;
 
-	// to calculate proj, use SetPerspective
-	projection.SetZero();
-	projection.SetPerspective(fov, aspectRatio, nearPlane, farPlane); //calc fov, 45 = slide value
 
-	matrix = (world * view) * projection;
+	// calculate projection
+	projection.SetPerspective(fov, aspectRatio, nearPlane, farPlane);
+	//projection = projection.Transpose();
+
+	matrix = world * view * projection;
 
 	return 0;
 }

@@ -22,6 +22,11 @@ int Init ( ESContext *esContext )
 {
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 
+	// enable depth test
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+	glDepthMask(GL_TRUE);
+
 	// Dynamic vertex and index
 	Vertex* verticesData = nullptr;
 	GLuint* indicesData = nullptr;
@@ -63,7 +68,8 @@ int Init ( ESContext *esContext )
 
 void Draw ( ESContext *esContext )
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glDepthMask(GL_TRUE);
 
 	glUseProgram(myShaders.program);
 	
@@ -84,7 +90,7 @@ void Draw ( ESContext *esContext )
 	glUniform1i(iTextureLoc, 0);
 	// mvp matrix
 	int iMatrixLoc = glGetUniformLocation(myShaders.program, "u_mvp");
-	glUniformMatrix4fv(iMatrixLoc, 1, GL_FALSE, mvpLine);
+	glUniformMatrix4fv(iMatrixLoc, 1, GL_TRUE, mvpLine);
 	// ibo object
 	{
 		glDrawElements(GL_TRIANGLES, myModel.indexCount, GL_UNSIGNED_INT, 0);
