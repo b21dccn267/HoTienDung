@@ -13,7 +13,7 @@ public:
 	int vertexCount, indexCount;
 
 	
-	int Init(const char* modelData);
+	int Init(const char* fileName);
 	void BindBuffer();
 	void SetModelParameters();
 	~Model();

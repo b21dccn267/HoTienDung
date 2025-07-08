@@ -26,11 +26,7 @@ void Model::SetModelParameters()
 
 	sscanf_s(line, "NrVertices: %d", &vertexCount);
 	
-
-	
-	//verticesData = new Vertex[512];
 	verticesData = new Vertex[vertexCount];
-	//indicesData = new GLuint[2154];
 
 	while (count < total && fgets(line, sizeof line, f)) {
 		float fX = 0, fY = 0, fZ = 0, fUx = 0, fUy = 0;
@@ -59,9 +55,7 @@ void Model::SetModelParameters()
 		indicesData[count] = iX; count++;
 		indicesData[count] = iY; count++;
 		indicesData[count] = iZ; count++;
-
 	}
-
 
 	fclose(f);
 }
@@ -73,7 +67,6 @@ void Model::BindBuffer()
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)*vertexCount, verticesData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
 
 	// ibo object
 	glGenBuffers(1, &iboId);

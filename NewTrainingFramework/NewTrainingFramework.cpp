@@ -8,15 +8,13 @@
 #include "Texture.h"
 #include "Model.h"
 #include "MVPMatrix.h"
+#include "Object.h"
+#include "SceneManager.h"
 #include "Globals.h"
 #include <conio.h>
 
 
-Shaders myShaders;
-Texture myTexture;
-Model myModel;
-MVPMatrix myMatrix;
-//GLfloat mvpLine[16];
+SceneManager* sceneManager = SceneManager::getInstance();
 
 int Init ( ESContext *esContext )
 {
@@ -27,59 +25,15 @@ int Init ( ESContext *esContext )
 	glDepthFunc(GL_LESS);
 	glDepthMask(GL_TRUE);
 
-	// Dynamic vertex and index
-	Vertex* verticesData = nullptr;
-	GLuint* indicesData = nullptr;
+	sceneManager->LoadFile();
+	sceneManager->LoadObject();
 
-	// model loading
-	myModel.Init("../Resources/Packs/Models/Woman1.nfg");
-	myModel.SetModelParameters(); // will take verticesData and IndicesData as input, then write to
-	myModel.BindBuffer();
-
-	myTexture.Init("../Resources/Packs/Textures/Woman1.tga");
-	myTexture.SetTextureParameters();
-
-	myMatrix.Init();
-	myMatrix.MatrixToArray();
-
-
-	//creation of shaders and program 
-	return myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
-
+	return 0;
 }
 
 void Draw ( ESContext *esContext )
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glDepthMask(GL_TRUE);
-
-	glUseProgram(myShaders.program);
-	
-	glBindBuffer(GL_ARRAY_BUFFER, myModel.vboId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myModel.iboId);
-
-	// take location value from vertex/fragment shader. With Position we have location = 0
-	{
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	}
-	// texture
-	{
-		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (char*)0 + sizeof(Vector3));
-	}
-	int iTextureLoc = glGetUniformLocation(myShaders.program, "u_texture");
-	glUniform1i(iTextureLoc, 0);
-	// mvp matrix
-	int iMatrixLoc = glGetUniformLocation(myShaders.program, "u_mvp");
-	glUniformMatrix4fv(iMatrixLoc, 1, GL_TRUE, myMatrix.mvpLine);
-	// ibo object
-	{
-		glDrawElements(GL_TRIANGLES, myModel.indexCount, GL_UNSIGNED_INT, 0);
-	}
-	
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	sceneManager->Draw();
 
 	eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );
 }
@@ -96,8 +50,8 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 
 void CleanUp()
 {
-	glDeleteBuffers(1, &myModel.vboId);
-	glDeleteBuffers(1, &myModel.iboId);
+	glDeleteBuffers(1, &sceneManager->m_objects->model->vboId);
+	glDeleteBuffers(1, &sceneManager->m_objects->model->iboId);
 }
 
 int _tmain(int argc, _TCHAR* argv[])
