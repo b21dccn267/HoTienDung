@@ -18,7 +18,7 @@ public:
 	Object* m_objects = new Object;
 	//Model m_cameras;
 
-	int LoadFile();
+	int LoadFileSM();
 	int LoadObject();
 	//int LoadCamera();
 	

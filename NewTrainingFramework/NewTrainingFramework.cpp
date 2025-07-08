@@ -3,13 +3,8 @@
 
 #include "stdafx.h"
 #include "../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
-#include "Vertex.h"
-#include "Shaders.h"
-#include "Texture.h"
-#include "Model.h"
-#include "MVPMatrix.h"
-#include "Object.h"
 #include "SceneManager.h"
+#include "ResourceManager.h"
 #include "Globals.h"
 #include <conio.h>
 
@@ -25,7 +20,9 @@ int Init ( ESContext *esContext )
 	glDepthFunc(GL_LESS);
 	glDepthMask(GL_TRUE);
 
-	sceneManager->LoadFile();
+
+
+	sceneManager->LoadFileSM();
 	sceneManager->LoadObject();
 
 	return 0;

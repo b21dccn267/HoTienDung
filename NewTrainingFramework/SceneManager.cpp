@@ -6,7 +6,7 @@ SceneManager::SceneManager()
 
 }
 
-int SceneManager::LoadFile()
+int SceneManager::LoadFileSM()
 {
 	m_objects->modelFileName = "../Resources/Packs/Models/Woman1.nfg";
 	m_objects->textureFileName = "../Resources/Packs/Textures/Woman1.tga";
