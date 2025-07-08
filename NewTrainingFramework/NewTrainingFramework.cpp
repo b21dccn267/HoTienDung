@@ -16,7 +16,7 @@ Shaders myShaders;
 Texture myTexture;
 Model myModel;
 MVPMatrix myMatrix;
-GLfloat mvpLine[16];
+//GLfloat mvpLine[16];
 
 int Init ( ESContext *esContext )
 {
@@ -40,26 +40,8 @@ int Init ( ESContext *esContext )
 	myTexture.SetTextureParameters();
 
 	myMatrix.Init();
-	// glUniformMatrix4fv only allows 1d float array listing a matrix in row major order (use GL_TRUE)
-	mvpLine[0] = myMatrix.matrix.m[0][0];
-	mvpLine[1] = myMatrix.matrix.m[0][1];
-	mvpLine[2] = myMatrix.matrix.m[0][2];
-	mvpLine[3] = myMatrix.matrix.m[0][3];
+	myMatrix.MatrixToArray();
 
-	mvpLine[4] = myMatrix.matrix.m[1][0];
-	mvpLine[5] = myMatrix.matrix.m[1][1];
-	mvpLine[6] = myMatrix.matrix.m[1][2];
-	mvpLine[7] = myMatrix.matrix.m[1][3];
-
-	mvpLine[8] = myMatrix.matrix.m[2][0];
-	mvpLine[9] = myMatrix.matrix.m[2][1];
-	mvpLine[10] = myMatrix.matrix.m[2][2];
-	mvpLine[11] = myMatrix.matrix.m[2][3];
-
-	mvpLine[12] = myMatrix.matrix.m[3][0];
-	mvpLine[13] = myMatrix.matrix.m[3][1];
-	mvpLine[14] = myMatrix.matrix.m[3][2];
-	mvpLine[15] = myMatrix.matrix.m[3][3];
 
 	//creation of shaders and program 
 	return myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
@@ -90,7 +72,7 @@ void Draw ( ESContext *esContext )
 	glUniform1i(iTextureLoc, 0);
 	// mvp matrix
 	int iMatrixLoc = glGetUniformLocation(myShaders.program, "u_mvp");
-	glUniformMatrix4fv(iMatrixLoc, 1, GL_TRUE, mvpLine);
+	glUniformMatrix4fv(iMatrixLoc, 1, GL_TRUE, myMatrix.mvpLine);
 	// ibo object
 	{
 		glDrawElements(GL_TRIANGLES, myModel.indexCount, GL_UNSIGNED_INT, 0);

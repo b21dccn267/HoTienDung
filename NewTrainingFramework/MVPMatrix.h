@@ -11,5 +11,9 @@ public:
 	Matrix view;
 	Matrix projection;
 
+	GLfloat mvpLine[16]; // transform mvp matrix into 1d array for feeding
+
 	int Init();
+	void MatrixToArray();
+
 };
