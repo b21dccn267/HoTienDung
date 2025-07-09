@@ -10,18 +10,20 @@
 class Object
 {
 public:
-	const char* modelFileName = "";
-	const char* textureFileName = "";
-	char* vertexShaderFileName = "";
-	char* fragmentShaderFileName = "";
+	
+	//const char* modelFileName = "";
+	//const char* textureFileName = "";
+	//char* vertexShaderFileName = "";
+	//char* fragmentShaderFileName = "";
 
-	Model* model = new Model;
-	Texture* texture = new Texture;
-	Shaders* shader = new Shaders;
-	MVPMatrix* matrix = new MVPMatrix;
+	Model* model;
+	Texture* texture;
+	Shaders* shader;
+	MVPMatrix* matrix;
 
-
+	Object(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix);
 	int Init(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix);
 	void Draw();
+	void Update();
 };
 

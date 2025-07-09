@@ -10,6 +10,7 @@
 
 
 SceneManager* sceneManager = SceneManager::getInstance();
+//ResourceManager* resourceManager = ResourceManager::getInstance();
 
 int Init ( ESContext *esContext )
 {
@@ -20,9 +21,9 @@ int Init ( ESContext *esContext )
 	glDepthFunc(GL_LESS);
 	glDepthMask(GL_TRUE);
 
+	//resourceManager->LoadFileRM("../Resources/Config/ResourceManager.txt");
 
-
-	sceneManager->LoadFileSM();
+	sceneManager->LoadFileSM("../Resources/Config/SceneManager.txt");
 	sceneManager->LoadObject();
 
 	return 0;
@@ -47,8 +48,8 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 
 void CleanUp()
 {
-	glDeleteBuffers(1, &sceneManager->m_objects->model->vboId);
-	glDeleteBuffers(1, &sceneManager->m_objects->model->iboId);
+	//glDeleteBuffers(1, &sceneManager->m_objects->model->vboId);
+	//glDeleteBuffers(1, &sceneManager->m_objects->model->iboId);
 }
 
 int _tmain(int argc, _TCHAR* argv[])

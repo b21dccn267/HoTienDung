@@ -7,19 +7,33 @@
 #include "Model.h"
 #include "MVPMatrix.h"
 
+Object::Object(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix)
+{
+	//model->Init(modelFileName);
+	//model->SetModelParameters();
+	//model->BindBuffer();
+
+	//texture->Init(textureFileName);
+	//texture->SetTextureParameters();
+
+	//shader->Init(vertexShaderFileName, fragmentShaderFileName);
+
+	//matrix->Init();
+	//matrix->MatrixToArray();
+}
 int Object::Init(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix)
 {
-	model->Init(modelFileName);
-	model->SetModelParameters();
-	model->BindBuffer();
+	//model->Init(modelFileName);
+	//model->SetModelParameters();
+	//model->BindBuffer();
 
-	texture->Init(textureFileName);
-	texture->SetTextureParameters();
+	//texture->Init(textureFileName);
+	//texture->SetTextureParameters();
 
-	shader->Init(vertexShaderFileName, fragmentShaderFileName);
+	//shader->Init(vertexShaderFileName, fragmentShaderFileName);
 
-	matrix->Init();
-	matrix->MatrixToArray();
+	//matrix->Init();
+	//matrix->MatrixToArray();
 
 	return 0;
 }
@@ -56,4 +70,9 @@ void Object::Draw()
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+void Object::Update()
+{
+
 }

@@ -9,21 +9,22 @@ class SceneManager
 {
 public:
 	SceneManager(const SceneManager& instance) = delete; // no constructor for instance
-
+	static SceneManager* instance;
 	static SceneManager* getInstance() { // assign instance to variable
 		static SceneManager* instance = new SceneManager();
 		return instance;
 	}
 
-	Object* m_objects = new Object;
+	Object* m_objects ;
 	//Model m_cameras;
 
-	int LoadFileSM();
+	int LoadFileSM(const char* fileName);
 	int LoadObject();
 	//int LoadCamera();
 	
 	void Draw();	// calls objects' Draw()
 	void Update();	// this one is left empty for now
+	void Cleanup();
 private:
 	SceneManager(); // private constructor
 };

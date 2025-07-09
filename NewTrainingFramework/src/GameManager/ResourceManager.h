@@ -12,22 +12,28 @@
 class ResourceManager
 {
 public:
-	ResourceManager(const ResourceManager& instance) = delete; // no constructor for instance
-
-	static ResourceManager* getInstance() { // assign instance to variable
-		static ResourceManager* instance = new ResourceManager();
-		return instance;
-	}
+	//ResourceManager(const ResourceManager& instance) = delete; // no constructor for instance
+	//static ResourceManager* instance; // provided singleton version
+	//static ResourceManager* getInstance() { // assign instance to variable
+	//	if (!instance)
+	//	{
+	//		instance = new ResourceManager();
+	//	}
+	//	return instance;
+	//}
 
 	std::vector<Model*> m_models;
 	std::vector<Texture*> m_textures;
 	std::vector<Shaders*> m_shaders;
 
+	//std::vector<char*> m_models;
+	//std::vector<char**> m_textures;
+	//std::vector<char*> m_shaders;
 
 	void LoadFileRM(const char* fileName);
-	int GetModel(int Id);
-	int GetTexture(int Id);
-	int GetShader(int Id);
+	Model* GetModel(int Id);
+	Texture* GetTexture(int Id);
+	Shaders* GetShader(int Id);
 
 private:
 	ResourceManager();
