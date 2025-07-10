@@ -21,8 +21,7 @@ int Init ( ESContext *esContext )
 	glDepthFunc(GL_LESS);
 	glDepthMask(GL_TRUE);
 
-	//resourceManager->LoadFileRM("../Resources/Config/ResourceManager.txt");
-	ResourceManager::getInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
+	//ResourceManager::getInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
 
 	SceneManager::getInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
 	SceneManager::getInstance()->LoadObject();

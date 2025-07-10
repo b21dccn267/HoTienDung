@@ -26,10 +26,6 @@ public:
 	std::vector<Texture*> m_textures;
 	std::vector<Shaders*> m_shaders;
 
-	//std::vector<char*> m_models;
-	//std::vector<char**> m_textures;
-	//std::vector<char*> m_shaders;
-
 	void LoadFileRM(const char* fileName);
 	Model* GetModel(int Id);
 	Texture* GetTexture(int Id);

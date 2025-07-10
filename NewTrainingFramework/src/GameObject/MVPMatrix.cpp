@@ -2,37 +2,76 @@
 #include "MVPMatrix.h"
 #include "../Utilities/Math.h"
 
-// this function calculates all matrices
-// all values of any matrix like translate scale rotate and the like are flex
-int MVPMatrix::Init()
+// pos rotation and scale are taken as input
+int MVPMatrix::Init(Vector3 pos, Vector3 rotation, Vector3 scale)
 {
-	GLfloat fScale = 1.0f;
-	GLfloat rotateAngle = 0.0f; 
-	GLfloat translationX = 0.0f;
-	GLfloat translationY = 0.0f;
-	GLfloat translationZ = 0.0f;
+	xScale = scale.x;
+	yScale = scale.y;
+	zScale = scale.z;
 
-	Matrix temp;
-	Matrix translationInverse;
-	Matrix rotationInverse;
+	rotateAngleX = rotation.x;
+	rotateAngleY = rotation.y;
+	rotateAngleZ = rotation.z;
+	
+	translationX = 0.0f;
+	translationY = 0.0f;
+	translationZ = 0.0f;
 
-	Vector3 xAxis, yAxis, zAxis; // 
-	Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
-	Vector3 position = Vector3(0.0f, 0.0f, -1.0f);	// the camera
-	Vector3 target = Vector3(0.0f, 0.0f, 0.0f);		// where camera looks at
+	xAxis, yAxis, zAxis;
+	up = Vector3(0.0f, 1.0f, 0.0f);
+	position = pos;				
+	target = Vector3(0.0f, 0.0f, 0.0f);		
 
-	GLfloat fov = 45.0f;
-	GLfloat aspectRatio = 4.0f / 3.0f;
-	GLfloat nearPlane = 0.01f;
-	GLfloat farPlane = 100.0f;
+	fov = 45.0f;
+	aspectRatio = 4.0f / 3.0f;
+	nearPlane = 0.01f;
+	farPlane = 100.0f;
+
+	return 0;
+}
+
+int MVPMatrix::Calculate()
+{
+	//GLfloat fScale = 1.0f;
+	////GLfloat rotateAngle = 0.0f; 
+	//// additional rotations
+	//GLfloat rotateAngleX = 0.0f;
+	//GLfloat rotateAngleY = 0.0f;
+	//GLfloat rotateAngleZ = 0.0f;
+	//// unused but keep
+	//GLfloat translationX = 0.0f;
+	//GLfloat translationY = 0.0f;
+	//GLfloat translationZ = 0.0f;
+
+	////Matrix temp;
+	////Matrix translationInverse;
+	////Matrix rotationInverse;
+
+	////Vector3 xAxis, yAxis, zAxis;
+	//Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
+	//Vector3 position = Vector3(0.0f, 0.0f, -1.0f);	// the camera
+	//Vector3 target = Vector3(0.0f, 0.0f, 0.0f);		// where camera looks at
+
+	//GLfloat fov = 45.0f;
+	//GLfloat aspectRatio = 4.0f / 3.0f;
+	//GLfloat nearPlane = 0.01f;
+	//GLfloat farPlane = 100.0f;
 
 
 	// calculate world
 	world.SetIdentity();
 
 	Matrix scale, rotation, translation;
-	scale.SetScale(fScale);
-	rotation.SetRotationX(rotateAngle);
+	//scale.SetScale(fScale);
+	// use 3 value scale version
+	scale.SetScale(xScale, yScale, zScale);
+	//rotation.SetRotationX(rotateAngle);
+	// add x y z rotations
+	Matrix rotateX, rotateY, rotateZ;
+	rotateX.SetRotationX(rotateAngleX);
+	rotateY.SetRotationY(rotateAngleY);
+	rotateZ.SetRotationZ(rotateAngleZ);
+	rotation = rotateX * rotateY * rotateZ;
 	translation.SetTranslation(translationX, translationY, translationZ);
 
 	world = scale * rotation * translation;
@@ -41,6 +80,7 @@ int MVPMatrix::Init()
 	// calculate view
 	view.SetIdentity();
 
+	Vector3 xAxis, yAxis, zAxis;
 	zAxis = (position - target).Normalize();
 	xAxis = (up.Cross(zAxis)).Normalize();
 	yAxis = zAxis.Cross(xAxis).Normalize();

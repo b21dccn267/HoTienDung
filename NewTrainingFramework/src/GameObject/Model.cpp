@@ -6,7 +6,7 @@
 // this function reads data
 int Model::Init(const char* fileName) 
 {
-	f = fopen(fileName, "r");
+	this->f = fopen(fileName, "r");
 	
 	if (!f) {
 		return -1;
