@@ -8,9 +8,9 @@
 #include "Globals.h"
 #include <conio.h>
 
-
-SceneManager* sceneManager = SceneManager::getInstance();
-//ResourceManager* resourceManager = ResourceManager::getInstance();
+// definition/initialization in cpp file of class
+//SceneManager* sceneManager;
+//ResourceManager* resourceManager;
 
 int Init ( ESContext *esContext )
 {
@@ -22,16 +22,17 @@ int Init ( ESContext *esContext )
 	glDepthMask(GL_TRUE);
 
 	//resourceManager->LoadFileRM("../Resources/Config/ResourceManager.txt");
+	ResourceManager::getInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
 
-	sceneManager->LoadFileSM("../Resources/Config/SceneManager.txt");
-	sceneManager->LoadObject();
+	SceneManager::getInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
+	SceneManager::getInstance()->LoadObject();
 
 	return 0;
 }
 
 void Draw ( ESContext *esContext )
 {
-	sceneManager->Draw();
+	SceneManager::getInstance()->Draw();
 
 	eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );
 }

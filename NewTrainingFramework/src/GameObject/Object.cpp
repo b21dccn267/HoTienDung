@@ -7,6 +7,7 @@
 #include "Model.h"
 #include "MVPMatrix.h"
 
+
 Object::Object(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix)
 {
 	//model->Init(modelFileName);
@@ -20,22 +21,10 @@ Object::Object(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matri
 
 	//matrix->Init();
 	//matrix->MatrixToArray();
-}
-int Object::Init(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix)
-{
-	//model->Init(modelFileName);
-	//model->SetModelParameters();
-	//model->BindBuffer();
-
-	//texture->Init(textureFileName);
-	//texture->SetTextureParameters();
-
-	//shader->Init(vertexShaderFileName, fragmentShaderFileName);
-
-	//matrix->Init();
-	//matrix->MatrixToArray();
-
-	return 0;
+	this->model = model;
+	this->texture = texture;
+	this->shader = shader;
+	this->matrix = matrix;
 }
 
 void Object::Draw()

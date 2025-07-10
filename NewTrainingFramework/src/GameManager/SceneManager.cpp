@@ -1,10 +1,8 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
-SceneManager::SceneManager()
-{
 
-}
+SceneManager* SceneManager::instance = nullptr;
 
 int SceneManager::LoadFileSM(const char* fileName)
 {
@@ -19,14 +17,13 @@ int SceneManager::LoadFileSM(const char* fileName)
 	// load assets with said id from resman
 	// assign to own
 
-	int ModelID, TextureID, ShaderID, MatrixID;
-	// culprit of erroe: either bad simpleton establishment or smth else
-	/*Model* model = ResourceManager::getInstance()->GetModel(ModelID);
+	int ModelID = 1, TextureID = 1, ShaderID = 1, MatrixID = 1; //temp fix
+	Model* model = ResourceManager::getInstance()->GetModel(ModelID);
 	Texture* texture = ResourceManager::getInstance()->GetTexture(TextureID);
-	Shaders* shader = ResourceManager::getInstance()->GetShader(ShaderID);*/
+	Shaders* shader = ResourceManager::getInstance()->GetShader(ShaderID);
 	//MVPMatrix* matrix = ResourceManager::getInstance()->GetModel(MatrixID); // fix this
 	MVPMatrix* matrix = new MVPMatrix;
-	//m_objects = new Object(model, texture, shader, matrix);
+	m_objects = new Object(model, texture, shader, matrix);
 	return 0;
 }
 

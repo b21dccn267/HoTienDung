@@ -8,14 +8,17 @@
 class SceneManager
 {
 public:
-	SceneManager(const SceneManager& instance) = delete; // no constructor for instance
+	SceneManager(const SceneManager& instance) = delete;
 	static SceneManager* instance;
-	static SceneManager* getInstance() { // assign instance to variable
-		static SceneManager* instance = new SceneManager();
+	static SceneManager* getInstance() {
+		if (!instance)
+		{
+			instance = new SceneManager();
+		}
 		return instance;
 	}
 
-	Object* m_objects ;
+	Object* m_objects;
 	//Model m_cameras;
 
 	int LoadFileSM(const char* fileName);
@@ -26,6 +29,6 @@ public:
 	void Update();	// this one is left empty for now
 	void Cleanup();
 private:
-	SceneManager(); // private constructor
+	SceneManager() {}; // private constructor
 };
 

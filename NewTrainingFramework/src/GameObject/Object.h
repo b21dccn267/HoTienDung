@@ -21,8 +21,7 @@ public:
 	Shaders* shader;
 	MVPMatrix* matrix;
 
-	Object(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix);
-	int Init(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix);
+	Object(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix); // this is init
 	void Draw();
 	void Update();
 };
