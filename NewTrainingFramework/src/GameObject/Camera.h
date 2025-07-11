@@ -8,6 +8,8 @@ public:
 	GLfloat aspectRatio;
 	GLfloat nearPlane;
 	GLfloat farPlane;
+	GLfloat moveSpeed;
+	GLfloat rotateSpeed;
 
 	Vector3 pos;
 	Vector3 target;
@@ -19,8 +21,9 @@ public:
 	Matrix lookAtCamera;
 
 
-
 	int Init();
-	void Calculate();
+	void CalculateWorldCameraMatrix();
+	void CalculateWiewMatrix();
+	void GetPerspectiveMatrix();
 };
 

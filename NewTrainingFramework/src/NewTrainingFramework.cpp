@@ -34,12 +34,12 @@ void Draw ( ESContext *esContext )
 
 void Update ( ESContext *esContext, float deltaTime )
 {
-
+	SceneManager::getInstance()->Update();
 }
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
-
+	SceneManager::getInstance()->HandleKeyEvent();
 }
 
 void CleanUp()

@@ -32,32 +32,6 @@ int MVPMatrix::Init(Vector3 pos, Vector3 rotation, Vector3 scale)
 
 int MVPMatrix::Calculate()
 {
-	//GLfloat fScale = 1.0f;
-	////GLfloat rotateAngle = 0.0f; 
-	//// additional rotations
-	//GLfloat rotateAngleX = 0.0f;
-	//GLfloat rotateAngleY = 0.0f;
-	//GLfloat rotateAngleZ = 0.0f;
-	//// unused but keep
-	//GLfloat translationX = 0.0f;
-	//GLfloat translationY = 0.0f;
-	//GLfloat translationZ = 0.0f;
-
-	////Matrix temp;
-	////Matrix translationInverse;
-	////Matrix rotationInverse;
-
-	////Vector3 xAxis, yAxis, zAxis;
-	//Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
-	//Vector3 position = Vector3(0.0f, 0.0f, -1.0f);	// the camera
-	//Vector3 target = Vector3(0.0f, 0.0f, 0.0f);		// where camera looks at
-
-	//GLfloat fov = 45.0f;
-	//GLfloat aspectRatio = 4.0f / 3.0f;
-	//GLfloat nearPlane = 0.01f;
-	//GLfloat farPlane = 100.0f;
-
-
 	// calculate world
 	world.SetIdentity();
 

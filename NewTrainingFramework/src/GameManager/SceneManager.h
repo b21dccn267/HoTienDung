@@ -22,7 +22,7 @@ public:
 
 	//Object* m_objects;
 	std::vector<Object*> m_objects;
-	//Model m_cameras;
+	Camera* camera;
 
 	int LoadFileSM(const char* fileName);
 	int LoadObject();
@@ -31,6 +31,7 @@ public:
 	void Draw();	// calls objects' Draw()
 	void Update();	// this one is left empty for now
 	void Cleanup();
+	void HandleKeyEvent();
 private:
 	SceneManager() {}; // private constructor
 };

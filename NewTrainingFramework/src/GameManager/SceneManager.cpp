@@ -99,7 +99,14 @@ void SceneManager::Draw()
 
 void SceneManager::Update()
 {
-	m_objects[0]->Update();
+	//m_objects[0]->Update();
+	// put camera here
+
+}
+
+void SceneManager::HandleKeyEvent()
+{
+
 }
 
 void SceneManager::Cleanup()
