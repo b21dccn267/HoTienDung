@@ -90,6 +90,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\Camera.cpp" />
     <ClCompile Include="src\GameObject\Model.cpp" />
     <ClCompile Include="src\GameObject\MVPMatrix.cpp" />
     <ClCompile Include="src\NewTrainingFramework.cpp" />
@@ -104,6 +105,7 @@
     <ClCompile Include="src\GameObject\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\Camera.h" />
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="src\GameObject\Model.h" />
     <ClInclude Include="src\GameObject\MVPMatrix.h" />

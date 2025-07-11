@@ -2,6 +2,7 @@
 #include "../Utilities/Math.h"
 
 // this struct calculates MVPMatrix as World * View * Projection
+// this struct should be merged into Object
 class MVPMatrix
 {
 public:

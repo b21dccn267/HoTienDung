@@ -1,10 +1,12 @@
 #pragma once
 #include "Model.h"
 #include "Object.h"
+#include "Camera.h"
+#include <vector>
 
 // this class manages all objects of scene
 // this class along with ResourceManager are singleton class:
-// private constructor + getInstance class to access obj
+// private constructor + getInstance() to access obj
 class SceneManager
 {
 public:
@@ -18,7 +20,8 @@ public:
 		return instance;
 	}
 
-	Object* m_objects;
+	//Object* m_objects;
+	std::vector<Object*> m_objects;
 	//Model m_cameras;
 
 	int LoadFileSM(const char* fileName);

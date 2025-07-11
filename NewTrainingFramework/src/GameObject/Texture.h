@@ -10,6 +10,7 @@ public:
 
 	int Init(const char* imageData);
 	void SetTextureParameters();
+	void SetTextureParameters(int param);
 	~Texture();
 };
 

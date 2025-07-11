@@ -8,20 +8,16 @@
 #include "Globals.h"
 #include <conio.h>
 
-// definition/initialization in cpp file of class
-//SceneManager* sceneManager;
-//ResourceManager* resourceManager;
 
 int Init ( ESContext *esContext )
 {
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 
-	// enable depth test
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glDepthMask(GL_TRUE);
 
-	//ResourceManager::getInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
+	ResourceManager::getInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
 
 	SceneManager::getInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
 	SceneManager::getInstance()->LoadObject();
@@ -50,6 +46,7 @@ void CleanUp()
 {
 	//glDeleteBuffers(1, &sceneManager->m_objects->model->vboId);
 	//glDeleteBuffers(1, &sceneManager->m_objects->model->iboId);
+	SceneManager::getInstance()->Cleanup();
 }
 
 int _tmain(int argc, _TCHAR* argv[])

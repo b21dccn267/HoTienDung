@@ -8,27 +8,24 @@
 #include "MVPMatrix.h"
 
 
-Object::Object(Model* model, Texture* texture, Shaders* shader, MVPMatrix* matrix)
+Object::Object(Model* model, Texture* texture, Shaders* shader, Vector3 pos, Vector3 rotation, Vector3 scale)
 {
-	//model->Init(modelFileName);
-	//model->SetModelParameters();
-	//model->BindBuffer();
-
-	//texture->Init(textureFileName);
-	//texture->SetTextureParameters();
-
-	//shader->Init(vertexShaderFileName, fragmentShaderFileName);
-
-	//matrix->Init();
-	//matrix->MatrixToArray();
 	this->model = model;
 	this->texture = texture;
 	this->shader = shader;
-	this->matrix = matrix;
+	
+	this->pos = pos;
+	this->rotation = rotation;
+	this->scale = scale;
 }
 
 void Object::Draw()
 {
+	MVPMatrix matrix;
+	matrix.Init(pos, rotation, scale);
+	matrix.Calculate();
+	matrix.MatrixToArray();
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glDepthMask(GL_TRUE);
 
@@ -51,7 +48,7 @@ void Object::Draw()
 	glUniform1i(iTextureLoc, 0);
 	// mvp matrix
 	int iMatrixLoc = glGetUniformLocation(shader->program, "u_mvp");
-	glUniformMatrix4fv(iMatrixLoc, 1, GL_TRUE, matrix->mvpLine);
+	glUniformMatrix4fv(iMatrixLoc, 1, GL_TRUE, matrix.mvpLine);
 	// ibo object
 	{
 		glDrawElements(GL_TRIANGLES, model->indexCount, GL_UNSIGNED_INT, 0);

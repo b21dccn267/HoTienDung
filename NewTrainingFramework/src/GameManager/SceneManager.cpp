@@ -1,50 +1,87 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
+#include <string>
+#include <sstream>
+#include <fstream>
 
 SceneManager* SceneManager::instance = nullptr;
 
 int SceneManager::LoadFileSM(const char* fileName)
 {
-	// what do:
-	// read txt
-	// get id from txt
-	// load assets with said id from resman
-	// assign
+	int ModelID = -1, TextureID = -1, ShaderID = -1, MatrixID = -1;
+	Vector3 pos, rotation, scale;
 
+	int i_objCount = -1;
+	std::ifstream file(fileName);
+	if (!file) { 
+		return -1; 
+	}
 
-	int ModelID = 1, TextureID = 1, ShaderID = 1, MatrixID = 1; //temp fix
+	std::string line;
+	std::getline(file, line);
 
-	// hardcode to refactor matrix
-	Model* model = new Model;
-	Texture* texture = new Texture;
-	Shaders* shader = new Shaders;
-	MVPMatrix* matrix = new MVPMatrix;
+	std::istringstream filter;
+	filter.str(line);
+	std::string trash;
+	filter >> trash >> i_objCount;
 
-	model->Init("../Resources/Packs/Models/Woman1.nfg");
-	model->SetModelParameters();
-	model->BindBuffer();
+	m_objects.reserve(i_objCount);
 
-	texture->Init("../Resources/Packs/Textures/Woman1.tga");
-	texture->SetTextureParameters();
+	for (int i = 0; i < i_objCount; i++) {
+		std::getline(file, line); // empty line
+		std::getline(file, line); // skip id
 
-	shader->Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
+		std::getline(file, line);
+		filter.clear();
+		filter.str(line);
+		filter >> trash >> ModelID;
 
-	matrix->Init(Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f));
-	matrix->Calculate();
-	matrix->MatrixToArray();
+		std::getline(file, line);
+		filter.clear();
+		filter.str(line);
+		filter >> trash >> TextureID;
 
-	FILE* f = fopen(fileName, "r");
+		std::getline(file, line);
+		filter.clear();
+		filter.str(line);
+		filter >> trash >> ShaderID;
 
+		std::getline(file, line);
+		filter.clear();
+		filter.str(line);
+		filter >> trash >> pos.x >> pos.y >> pos.z;
 
+		std::getline(file, line);
+		filter.clear();
+		filter.str(line);
+		filter >> trash >> rotation.x >> rotation.y >> rotation.z;
 
-	
-	//Model* model = ResourceManager::getInstance()->GetModel(ModelID);
-	//Texture* texture = ResourceManager::getInstance()->GetTexture(TextureID);
-	//Shaders* shader = ResourceManager::getInstance()->GetShader(ShaderID);
-	////MVPMatrix* matrix = ResourceManager::getInstance()->GetModel(MatrixID); // fix this
-	//MVPMatrix* matrix = new MVPMatrix;
-	m_objects = new Object(model, texture, shader, matrix);
+		std::getline(file, line);
+		filter.clear();
+		filter.str(line);
+		filter >> trash >> scale.x >> scale.y >> scale.z;
+
+		
+		//MVPMatrix matrix;
+		//matrix.Init(pos, rotation, scale);
+		//matrix.Calculate();
+		//matrix.MatrixToArray();
+		
+
+		m_objects.emplace_back(new Object(
+			ResourceManager::getInstance()->GetModel(ModelID),
+			ResourceManager::getInstance()->GetTexture(TextureID),
+			ResourceManager::getInstance()->GetShader(ShaderID),
+			pos, rotation, scale
+		));
+	}
+
+	//cleanup
+	//delete model;
+	//delete texture;
+	//delete shader;
+	//delete matrix;
 	return 0;
 }
 
@@ -56,15 +93,16 @@ int SceneManager::LoadObject()
 
 void SceneManager::Draw()
 {
-	m_objects->Draw();
+	//m_objects->Draw();
+	m_objects[0]->Draw();
 }
 
 void SceneManager::Update()
 {
-	m_objects->Update();
+	m_objects[0]->Update();
 }
 
 void SceneManager::Cleanup()
 {
-
+	delete instance;
 }
