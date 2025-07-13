@@ -1,21 +1,15 @@
-#pragma once
+	#pragma once
 #include "../Utilities/utilities.h"
 #include "Vertex.h"
 
 class Model
 {
 public:	
-	FILE* f;
-	Vertex* verticesData;
-	GLuint* indicesData;
 	GLuint vboId, iboId;
-	char* modelData;
-	int vertexCount, indexCount;
+	int numberOfIndex;
 
-	
-	int Init(const char* fileName);
-	void BindBuffer();
-	void SetModelParameters();
+	// merge all functions into this
+	Model(const char* fileName);
 	~Model();
 };
 

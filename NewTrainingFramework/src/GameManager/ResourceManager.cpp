@@ -42,10 +42,11 @@ void ResourceManager::LoadFileRM(const char* fileName)
 		s_path = s_path.substr(1, s_path.size() - 2);
 		const char* modelFileName = s_path.c_str();
 
-		Model* tempModel = new Model;
-		tempModel->Init(modelFileName);
-		tempModel->SetModelParameters();
-		tempModel->BindBuffer();
+		Model* tempModel = new Model(modelFileName);
+		//Model* tempModel = new Model;
+		//tempModel->Init(modelFileName);
+		//tempModel->SetModelParameters();
+		//tempModel->BindBuffer();
 		m_models.emplace_back(tempModel);
 	}
 
@@ -80,10 +81,10 @@ void ResourceManager::LoadFileRM(const char* fileName)
 		if (param == "CLAMP") {
 			i_param = 1;
 		}
-
-		Texture* tempTexture = new Texture;
-		tempTexture->Init(textureFileName);
-		tempTexture->SetTextureParameters(i_param);
+		Texture* tempTexture = new Texture(textureFileName, i_param);
+		//Texture* tempTexture = new Texture;
+		//tempTexture->Init(textureFileName);
+		//tempTexture->SetTextureParameters(i_param);
 		m_textures.emplace_back(tempTexture);
 	}
 

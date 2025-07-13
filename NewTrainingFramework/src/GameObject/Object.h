@@ -10,12 +10,6 @@
 class Object
 {
 public:
-	
-	//const char* modelFileName = "";
-	//const char* textureFileName = "";
-	//char* vertexShaderFileName = "";
-	//char* fragmentShaderFileName = "";
-
 	Model* model;
 	Texture* texture;
 	Shaders* shader;

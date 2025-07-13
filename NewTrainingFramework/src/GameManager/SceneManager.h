@@ -5,8 +5,7 @@
 #include <vector>
 
 // this class manages all objects of scene
-// this class along with ResourceManager are singleton class:
-// private constructor + getInstance() to access obj
+// Camera obj == MVPMatrix for now
 class SceneManager
 {
 public:
@@ -20,13 +19,11 @@ public:
 		return instance;
 	}
 
-	//Object* m_objects;
 	std::vector<Object*> m_objects;
-	Camera* camera;
+	MVPMatrix camera;
 
 	int LoadFileSM(const char* fileName);
 	int LoadObject();
-	//int LoadCamera();
 	
 	void Draw();	// calls objects' Draw()
 	void Update();	// this one is left empty for now

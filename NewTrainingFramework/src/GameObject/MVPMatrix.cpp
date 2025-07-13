@@ -67,7 +67,6 @@ int MVPMatrix::Calculate()
 
 	// calculate projection
 	projection.SetPerspective(fov, aspectRatio, nearPlane, farPlane);
-	//projection = projection.Transpose();
 
 	matrix = world * view * projection;
 

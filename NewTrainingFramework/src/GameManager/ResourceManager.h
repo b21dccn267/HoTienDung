@@ -1,6 +1,5 @@
 #pragma once
 #include "Model.h"
-#include "Object.h"
 #include "../Utilities/utilities.h"
 #include "Vertex.h"
 #include "Shaders.h"

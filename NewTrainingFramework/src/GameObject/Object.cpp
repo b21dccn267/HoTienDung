@@ -51,7 +51,7 @@ void Object::Draw()
 	glUniformMatrix4fv(iMatrixLoc, 1, GL_TRUE, matrix.mvpLine);
 	// ibo object
 	{
-		glDrawElements(GL_TRIANGLES, model->indexCount, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, model->numberOfIndex, GL_UNSIGNED_INT, 0);
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

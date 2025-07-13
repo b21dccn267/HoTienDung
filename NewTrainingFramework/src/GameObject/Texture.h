@@ -5,12 +5,9 @@ class Texture
 {
 public:
 	GLuint textureId;
-	int iWidth, iHeight, iBdp;
-	char* imageData;
 
-	int Init(const char* imageData);
-	void SetTextureParameters();
-	void SetTextureParameters(int param);
+	// merge all texture func
+	Texture(const char* fileName, int param);
 	~Texture();
 };
 

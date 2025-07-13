@@ -1,6 +1,14 @@
 #pragma once
 #include "../Utilities/utilities.h"
 
+// this class represents View in MVP Matrix
+// for convenience Camera will output View * Projection
+// Camera will be multiplied with WorldMatrix, then with vertexData
+// Key event handling will involve:
+//		- Check for key presses
+//		- Bind key to function calls
+//		- Function changes camera class member values
+//		- MVP is calculated each frame, so changes are reflected in realtime
 class Camera
 {
 public:
@@ -8,6 +16,7 @@ public:
 	GLfloat aspectRatio;
 	GLfloat nearPlane;
 	GLfloat farPlane;
+
 	GLfloat moveSpeed;
 	GLfloat rotateSpeed;
 
