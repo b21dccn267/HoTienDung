@@ -39,7 +39,7 @@ void Update ( ESContext *esContext, float deltaTime )
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
-	SceneManager::getInstance()->HandleKeyEvent();
+	SceneManager::getInstance()->HandleKeyEvent(key);
 }
 
 void CleanUp()

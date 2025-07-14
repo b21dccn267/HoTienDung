@@ -167,5 +167,8 @@
     <Text Include="..\Resources\Config\SceneManager.txt">
       <Filter>Resources\Config</Filter>
     </Text>
+    <Text Include="..\Resources\Config\FreeAssets.txt">
+      <Filter>Resources</Filter>
+    </Text>
   </ItemGroup>
 </Project>

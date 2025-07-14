@@ -20,7 +20,7 @@ public:
 	}
 
 	std::vector<Object*> m_objects;
-	MVPMatrix camera;
+	Camera* camera;
 
 	int LoadFileSM(const char* fileName);
 	int LoadObject();
@@ -28,7 +28,7 @@ public:
 	void Draw();	// calls objects' Draw()
 	void Update();	// this one is left empty for now
 	void Cleanup();
-	void HandleKeyEvent();
+	void HandleKeyEvent(unsigned char key);
 private:
 	SceneManager() {}; // private constructor
 };

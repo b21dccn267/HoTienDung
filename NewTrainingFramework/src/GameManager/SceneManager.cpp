@@ -63,12 +63,6 @@ int SceneManager::LoadFileSM(const char* fileName)
 		filter >> trash >> scale.x >> scale.y >> scale.z;
 
 		
-		//MVPMatrix matrix;
-		//matrix.Init(pos, rotation, scale);
-		//matrix.Calculate();
-		//matrix.MatrixToArray();
-		
-
 		m_objects.emplace_back(new Object(
 			ResourceManager::getInstance()->GetModel(ModelID),
 			ResourceManager::getInstance()->GetTexture(TextureID),
@@ -77,11 +71,11 @@ int SceneManager::LoadFileSM(const char* fileName)
 		));
 	}
 
-	//cleanup
-	//delete model;
-	//delete texture;
-	//delete shader;
-	//delete matrix;
+	//instance->camera = new Camera;
+	camera = new Camera();
+	camera->pos = pos;
+	camera->target = Vector3(0.0f, 0.0f, 0.0f);
+
 	return 0;
 }
 
@@ -93,20 +87,24 @@ int SceneManager::LoadObject()
 
 void SceneManager::Draw()
 {
-	//m_objects->Draw();
-	m_objects[0]->Draw();
+	camera->CalculateWiewMatrix();
+	camera->GetPerspectiveMatrix();
+
+	m_objects[0]->Draw(SceneManager::getInstance()->camera);
 }
 
 void SceneManager::Update()
 {
 	//m_objects[0]->Update();
 	// put camera here
-
 }
 
-void SceneManager::HandleKeyEvent()
+void SceneManager::HandleKeyEvent(unsigned char key)
 {
-
+	switch (key) {
+	case 0x31: // 1
+		SceneManager::getInstance()->camera;
+	}
 }
 
 void SceneManager::Cleanup()

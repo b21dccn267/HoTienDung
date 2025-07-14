@@ -4,7 +4,6 @@
 #include "Vertex.h"
 #include "Shaders.h"
 #include "Texture.h"
-#include "MVPMatrix.h"
 #include <vector>
 
 // this class manages all game resources
@@ -21,6 +20,7 @@ public:
 		return instance;
 	}
 
+	// fix this by switching over to unique ptrs
 	std::vector<Model*> m_models;
 	std::vector<Texture*> m_textures;
 	std::vector<Shaders*> m_shaders;

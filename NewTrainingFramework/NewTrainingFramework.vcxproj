@@ -144,6 +144,7 @@
     <ResourceCompile Include="NewTrainingFramework.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\Resources\Config\FreeAssets.txt" />
     <Text Include="..\Resources\Config\ResourceManager.txt" />
     <Text Include="..\Resources\Config\SceneManager.txt" />
   </ItemGroup>

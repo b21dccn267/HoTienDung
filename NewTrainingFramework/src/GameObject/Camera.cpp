@@ -3,27 +3,28 @@
 #include "../Utilities/utilities.h"
 
 
-int Camera::Init()
-{
-	return 0;
-}
-// equals rotation * translation
+// equals rotation * translation, this is the model matrix of camera (no scale)
+// quite useless rn
 void Camera::CalculateWorldCameraMatrix()
 {
-	GLfloat rotateAngleX = 0.0f;
-	GLfloat rotateAngleY = 0.0f;
-	GLfloat rotateAngleZ = 0.0f;
+	//GLfloat rotateAngleX = 0.0f;
+	//GLfloat rotateAngleY = 0.0f;
+	//GLfloat rotateAngleZ = 0.0f;
 
-	Matrix rotation, translation;
+	Matrix rotation;
 	Matrix rotateX, rotateY, rotateZ;
-	rotateX.SetRotationX(rotateAngleX);
-	rotateY.SetRotationY(rotateAngleY);
-	rotateZ.SetRotationZ(rotateAngleZ);
-	
+	rotateX.SetRotationX(0.0f);
+	rotateY.SetRotationY(0.0f);
+	rotateZ.SetRotationZ(0.0f);
 	rotation = rotateX * rotateY * rotateZ;
+
+	Matrix translation;
 	translation.SetTranslation(0.0f, 0.0f, 0.0f);
+
+	this->worldCamera = rotation * translation;
 }
 
+// normal view
 void Camera::CalculateWiewMatrix()
 {
 	Vector3 xAxis, yAxis, zAxis;
@@ -37,7 +38,8 @@ void Camera::CalculateWiewMatrix()
 	view.m[3][0] = -pos.Dot(xAxis); view.m[3][1] = -pos.Dot(yAxis); view.m[3][2] = -pos.Dot(zAxis); view.m[3][3] = 1.0f;
 }
 
+// normal projection
 void Camera::GetPerspectiveMatrix()
 {
-	perspective.SetPerspective(fov, aspectRatio, nearPlane, farPlane);
+	perspectiveMatrix.SetPerspective(fov, aspectRatio, nearPlane, farPlane);
 }

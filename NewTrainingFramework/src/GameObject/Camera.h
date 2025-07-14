@@ -1,9 +1,8 @@
 #pragma once
 #include "../Utilities/utilities.h"
 
-// this class represents View in MVP Matrix
-// for convenience Camera will output View * Projection
-// Camera will be multiplied with WorldMatrix, then with vertexData
+// this class calculates view and projection (part of mvp)
+// WorldCamera is not used yet, but still
 // Key event handling will involve:
 //		- Check for key presses
 //		- Bind key to function calls
@@ -12,25 +11,24 @@
 class Camera
 {
 public:
-	GLfloat fov;
-	GLfloat aspectRatio;
-	GLfloat nearPlane;
-	GLfloat farPlane;
+	GLfloat fov = 45.0f;
+	GLfloat aspectRatio = 4.0f / 3.0f;
+	GLfloat nearPlane = 0.01f;
+	GLfloat farPlane = 100.0f;
 
-	GLfloat moveSpeed;
+	GLfloat moveSpeed = 0.3f;
 	GLfloat rotateSpeed;
 
-	Vector3 pos;
-	Vector3 target;
+	Vector3 pos = Vector3(0.0f, 1.0f, 0.0f);
+	Vector3 target = Vector3(0.0f, 1.0f, 0.0f);
 	Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
-
+;
 	Matrix view;
-	Matrix perspective;
+	Matrix perspectiveMatrix;
 	Matrix worldCamera;
-	Matrix lookAtCamera;
+	Matrix lookAtCamera; //view*projection, and what should be multiplied to object world/model matrix
 
 
-	int Init();
 	void CalculateWorldCameraMatrix();
 	void CalculateWiewMatrix();
 	void GetPerspectiveMatrix();
