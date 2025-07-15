@@ -28,7 +28,7 @@ public:
 	void Draw();	// calls objects' Draw()
 	void Update();	// this one is left empty for now
 	void Cleanup();
-	void HandleKeyEvent(unsigned char key);
+	void HandleKeyEvent(unsigned char key, bool isPressed);
 private:
 	SceneManager() {}; // private constructor
 };

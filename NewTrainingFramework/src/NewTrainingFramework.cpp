@@ -7,15 +7,22 @@
 #include "ResourceManager.h"
 #include "Globals.h"
 #include <conio.h>
+#include "GameStateMachine.h"
+#include "GameStateBase.h"
+#include "GSIntro.h"
+#include <memory>
 
 
 int Init ( ESContext *esContext )
 {
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-	glDepthMask(GL_TRUE);
+	//glEnable(GL_DEPTH_TEST);
+	//glDepthFunc(GL_LESS);
+	//glDepthMask(GL_TRUE);
+
+	std::unique_ptr<GameStateBase> intro = std::make_unique<GSIntro>();
+	GameStateMachine::GetInstance()->PushState(std::move(intro));
 
 	ResourceManager::getInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
 
@@ -39,7 +46,7 @@ void Update ( ESContext *esContext, float deltaTime )
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
-	SceneManager::getInstance()->HandleKeyEvent(key);
+	SceneManager::getInstance()->HandleKeyEvent(key, bIsPressed);
 }
 
 void CleanUp()

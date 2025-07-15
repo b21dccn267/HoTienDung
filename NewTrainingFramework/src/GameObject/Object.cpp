@@ -7,7 +7,7 @@
 #include "Model.h"
 #include "MVPMatrix.h"
 #include "Camera.h"
-//#include "SceneManager.h"
+#include "SceneManager.h"
 
 
 Object::Object(Model* model, Texture* texture, Shaders* shader, Vector3 pos, Vector3 rotation, Vector3 scale)
@@ -77,8 +77,9 @@ void Object::Draw(Camera* camera)
 	matrixLine[14] = matrix.m[3][2];
 	matrixLine[15] = matrix.m[3][3];
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glDepthMask(GL_TRUE);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
+	//glDepthMask(GL_TRUE);
 
 	glUseProgram(shader->program);
 
@@ -111,5 +112,8 @@ void Object::Draw(Camera* camera)
 
 void Object::Update()
 {
+	GLfloat deltaTime = 0.1f;
+	Vector3 deltaMove = -(pos - Vector3(0.0f, 0.0f, 0.0f)).Normalize() * deltaTime * SceneManager::getInstance()->camera->moveSpeed;
 
+	pos += deltaMove;	
 }

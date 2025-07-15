@@ -1,9 +1,29 @@
+===requirements===
+- must be 2d pixel top down
+- must include env, character, items
+- must include ui, font
+- must include sfx
+- include bgm (optional)
+
+
+
+
+
+
 https://backterria.itch.io/the-mystery random
 
 https://game-endeavor.itch.io/mystic-woods 2d top down rpg
+https://backterria.itch.io/the-roguelike different scenery texture pack
 https://clockworkraven.itch.io/raven-fantasy-icons main charater loadout items
+https://toffeecraft.itch.io/forest-nature-pack tree pack
+https://otterisk.itch.io/hana-caraka-base-character character pack (simple fighting, picking up items...)
+https://arcadeisland.itch.io/guns-asset-pack-v1 gun pack
+https://didigameboy.itch.io/jambo-jungle-free-sprites-asset-pack contra pack (mainly for the explosions)
 
 https://dillonbecker.itch.io/sdap sound pack
 
 https://cnc-comm.com/command-and-conquer/downloads/modding-tools/XCC-utilities assets rip tool
 
+https://toffeecraft.itch.io/ui-user-interface-mega-pack ui pack
+
+https://poppyworks.itch.io/silver font pack

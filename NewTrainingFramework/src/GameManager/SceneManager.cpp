@@ -95,15 +95,17 @@ void SceneManager::Draw()
 
 void SceneManager::Update()
 {
-	//m_objects[0]->Update();
+	m_objects[0]->Update();
 	// put camera here
 }
 
-void SceneManager::HandleKeyEvent(unsigned char key)
+void SceneManager::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 	switch (key) {
 	case 0x31: // 1
-		SceneManager::getInstance()->camera;
+		break;
+	case VK_F1:
+		break;
 	}
 }
 
