@@ -21,9 +21,10 @@ Object::Object(Model* model, Texture* texture, Shaders* shader, Vector3 pos, Vec
 	this->scale = scale;
 }
 
-void Object::WorldMatrix(Matrix world)
+Matrix Object::WorldMatrix()
 {
-	world.SetIdentity();
+	Matrix world;
+	//world.SetIdentity();
 
 	Matrix scaleMatrix, rotationMatrix, translation;
 
@@ -38,6 +39,8 @@ void Object::WorldMatrix(Matrix world)
 	translation.SetTranslation(0.0f, 0.0f, 0.0f);
 
 	world = scaleMatrix * rotationMatrix * translation;
+
+	return world;
 }
 
 Matrix Object::CalculateWVP(Matrix modelMatrix, Matrix ViewPerspectiveMatrix)
@@ -48,10 +51,10 @@ Matrix Object::CalculateWVP(Matrix modelMatrix, Matrix ViewPerspectiveMatrix)
 void Object::Draw(Camera* camera)
 {
 	
-	Matrix matrix;
-	WorldMatrix(matrix);
-	matrix = CalculateWVP(matrix, camera->view * camera->perspectiveMatrix);
-
+	Matrix matrix = WorldMatrix();
+	//WorldMatrix(matrix);
+	//matrix = CalculateWVP(matrix, camera->view * camera->perspectiveMatrix);
+	matrix = CalculateWVP(matrix, camera->LookAt());
 	GLfloat matrixLine[16];
 
 	matrixLine[0] = matrix.m[0][0];

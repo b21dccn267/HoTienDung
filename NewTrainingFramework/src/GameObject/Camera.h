@@ -32,5 +32,6 @@ public:
 	void CalculateWorldCameraMatrix();
 	void CalculateWiewMatrix();
 	void GetPerspectiveMatrix();
+	Matrix LookAt();
 };
 

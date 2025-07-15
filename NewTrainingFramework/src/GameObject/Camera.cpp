@@ -43,3 +43,8 @@ void Camera::GetPerspectiveMatrix()
 {
 	perspectiveMatrix.SetPerspective(fov, aspectRatio, nearPlane, farPlane);
 }
+
+Matrix Camera::LookAt()
+{
+	return view * perspectiveMatrix;
+}

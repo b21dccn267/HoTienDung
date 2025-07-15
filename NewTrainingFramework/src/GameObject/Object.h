@@ -19,7 +19,7 @@ public:
 	Vector3 scale;
 
 	Object(Model* model, Texture* texture, Shaders* shader, Vector3 pos, Vector3 rotation, Vector3 scale);
-	void WorldMatrix(Matrix world); // model matrix of object
+	Matrix WorldMatrix(); // model matrix of object
 	Matrix CalculateWVP(Matrix modelMatrix, Matrix ViewPerspectiveMatrix); // multiply model matrix with camera matrix
 	void Draw(Camera* camera);
 	void Update();
