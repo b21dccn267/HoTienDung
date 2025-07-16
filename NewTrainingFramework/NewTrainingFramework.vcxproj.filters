@@ -75,22 +75,25 @@
     <ClCompile Include="src\GameManager\SceneManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStateBase.cpp">
+    <ClCompile Include="src\GameObject\GameStateBase.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\GameObject\GameStateMachine.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\Camera.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameObject\GSIntro.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\GameObject\GSMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\GameObject\GSPlay.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\GameObject\GSPlay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

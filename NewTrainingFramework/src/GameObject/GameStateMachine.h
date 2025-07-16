@@ -28,8 +28,7 @@ public:
 	void PushState(std::unique_ptr<GameStateBase> state);
 	//void PushState();
 	void PopState();
-	void PerformStateChange();
-	void CurrentState();
+	void PerformStateChange(std::unique_ptr<GameStateBase> state);
 private:
 	GameStateMachine();
 };

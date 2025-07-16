@@ -10,6 +10,10 @@
 #include "SceneManager.h"
 
 
+Object::Object()
+{
+}
+
 Object::Object(Model* model, Texture* texture, Shaders* shader, Vector3 pos, Vector3 rotation, Vector3 scale)
 {
 	this->model = model;
@@ -18,7 +22,7 @@ Object::Object(Model* model, Texture* texture, Shaders* shader, Vector3 pos, Vec
 	
 	this->pos = pos;
 	this->rotation = rotation;
-	this->scale = scale;
+	this->m_scale = scale;
 }
 
 Matrix Object::WorldMatrix()
@@ -28,7 +32,7 @@ Matrix Object::WorldMatrix()
 
 	Matrix scaleMatrix, rotationMatrix, translation;
 
-	scaleMatrix.SetScale(scale.x, scale.y, scale.z);
+	scaleMatrix.SetScale(m_scale.x, m_scale.y, m_scale.z);
 
 	Matrix rotateX, rotateY, rotateZ;
 	rotateX.SetRotationX(rotation.x);
@@ -46,6 +50,20 @@ Matrix Object::WorldMatrix()
 Matrix Object::CalculateWVP(Matrix modelMatrix, Matrix ViewPerspectiveMatrix)
 {
 	return modelMatrix * ViewPerspectiveMatrix;
+}
+
+void Object::SetSize(GLint width, GLint height)
+{
+	m_iWidth = width;
+	m_iHeight = height;
+	m_scale = Vector3((GLfloat)m_iWidth, (GLfloat)m_iHeight, 1.0f);
+	WorldMatrix();
+}
+
+void Object::Set2DPosition(Vector2 position)
+{
+	m_position = Vector3(position.x, position.y, 0.0f);
+	WorldMatrix();
 }
 
 void Object::Draw(Camera* camera)

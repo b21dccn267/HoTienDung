@@ -43,10 +43,6 @@ void ResourceManager::LoadFileRM(const char* fileName)
 		const char* modelFileName = s_path.c_str();
 
 		Model* tempModel = new Model(modelFileName);
-		//Model* tempModel = new Model;
-		//tempModel->Init(modelFileName);
-		//tempModel->SetModelParameters();
-		//tempModel->BindBuffer();
 		m_models.emplace_back(tempModel);
 	}
 

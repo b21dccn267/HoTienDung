@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Globals.h"
 #include "Camera.h"
 #include "../Utilities/utilities.h"
 
@@ -41,7 +42,9 @@ void Camera::CalculateWiewMatrix()
 // normal projection
 void Camera::GetPerspectiveMatrix()
 {
-	perspectiveMatrix.SetPerspective(fov, aspectRatio, nearPlane, farPlane);
+	//perspectiveMatrix.SetPerspective(fov, aspectRatio, nearPlane, farPlane);
+	// now uses ortho
+	perspectiveMatrix.SetOrtho(0.0f, Globals::screenWidth, Globals::screenHeight, 0.0f, -1.0f, 1.0f);
 }
 
 Matrix Camera::LookAt()

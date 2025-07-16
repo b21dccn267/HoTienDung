@@ -90,7 +90,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameStateBase.cpp" />
+    <ClCompile Include="GameButton.cpp" />
+    <ClCompile Include="src\GameObject\GameStateBase.cpp" />
     <ClCompile Include="src\GameObject\GameStateMachine.cpp" />
     <ClCompile Include="src\GameObject\GSIntro.cpp" />
     <ClCompile Include="src\GameObject\GSMenu.cpp" />
@@ -110,6 +111,7 @@
     <ClCompile Include="src\GameObject\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameButton.h" />
     <ClInclude Include="src\GameObject\GameStateBase.h" />
     <ClInclude Include="src\GameObject\GameStateMachine.h" />
     <ClInclude Include="src\GameObject\GSIntro.h" />
