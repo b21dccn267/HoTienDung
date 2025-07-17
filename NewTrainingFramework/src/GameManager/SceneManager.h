@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "Camera.h"
 #include <vector>
+#include <memory>
 
 // this class manages all objects of scene
 // Camera obj == MVPMatrix for now
@@ -19,13 +20,13 @@ public:
 		return instance;
 	}
 
-	std::vector<Object*> m_objects;
+	std::vector<std::shared_ptr<Object>> m_objects;
 	Camera* camera;
 
 	int LoadFileSM(const char* fileName);
-	int LoadObject();
 	
-	void Draw();	// calls objects' Draw()
+	void Draw(std::shared_ptr<Object> object);
+	void Draw();
 	void Update();	// this one is left empty for now
 	void Cleanup();
 	void HandleKeyEvent(unsigned char key, bool isPressed);

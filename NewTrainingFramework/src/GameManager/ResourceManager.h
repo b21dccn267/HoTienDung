@@ -5,6 +5,7 @@
 #include "Shaders.h"
 #include "Texture.h"
 #include <vector>
+#include <memory>
 
 // this class manages all game resources
 class ResourceManager
@@ -20,15 +21,21 @@ public:
 		return instance;
 	}
 
-	// fix this by switching over to unique ptrs
-	std::vector<Model*> m_models;
-	std::vector<Texture*> m_textures;
-	std::vector<Shaders*> m_shaders;
+	//std::vector<Model*> m_models;
+	//std::vector<Texture*> m_textures;
+	//std::vector<Shaders*> m_shaders;
+	std::vector<std::shared_ptr<Model>>		m_models;
+	std::vector<std::shared_ptr<Texture>>	m_textures;
+	std::vector<std::shared_ptr<Shaders>>	m_shaders;
 
 	void LoadFileRM(const char* fileName);
-	Model* GetModel(int Id);
-	Texture* GetTexture(int Id);
-	Shaders* GetShader(int Id);
+	//Model* GetModel(int Id);
+	//Texture* GetTexture(int Id);
+	//Shaders* GetShader(int Id);
+
+	std::shared_ptr<Model>   GetModel(int Id);
+	std::shared_ptr<Texture> GetTexture(int Id);
+	std::shared_ptr<Shaders> GetShader(int Id);
 
 private:
 	ResourceManager() {};

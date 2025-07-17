@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "GSMenu.h"
+#include "SceneManager.h"
 
-GSMenu::GSMenu(int id)
+void GSMenu::Init()
 {
-	m_stateId = id;
+	m_object = SceneManager::getInstance()->m_objects[1];
+	printf("menu init\n");
 }
 
 void GSMenu::Pause()
@@ -16,9 +18,8 @@ void GSMenu::Exit()
 
 void GSMenu::Resume()
 {
+	//SceneManager::getInstance()->Draw(m_object);
 }
-
-
 
 void GSMenu::CreateState()
 {

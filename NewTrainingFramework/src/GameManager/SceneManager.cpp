@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include "GameStateBase.h"
 
 SceneManager* SceneManager::instance = nullptr;
 
@@ -79,37 +80,37 @@ int SceneManager::LoadFileSM(const char* fileName)
 	return 0;
 }
 
-int SceneManager::LoadObject()
-{
-	//m_objects->Init(m_objects->model, m_objects->texture, m_objects->shader, m_objects->matrix);
-	return 0;
-}
+//void SceneManager::Draw(std::shared_ptr<Object> object)
+//{
+//	camera->CalculateWiewMatrix();
+//	camera->GetPerspectiveMatrix();
+//
+//	object->Draw(SceneManager::getInstance()->camera);
+//}
 
-void SceneManager::Draw()
-{
-	camera->CalculateWiewMatrix();
-	camera->GetPerspectiveMatrix();
+//void SceneManager::Draw()
+//{
+//	Draw(m_objects[0]);
+//}
 
-	m_objects[0]->Draw(SceneManager::getInstance()->camera);
-}
 
-void SceneManager::Update()
-{
-	m_objects[0]->Update();
-	// put camera here
-}
 
-void SceneManager::HandleKeyEvent(unsigned char key, bool bIsPressed)
-{
-	switch (key) {
-	case 0x31: // 1
-		break;
-	case VK_F1:
-		break;
-	}
-}
+//void SceneManager::Update()
+//{
+//	m_objects[0]->Update();
+//}
 
-void SceneManager::Cleanup()
-{
-	delete instance;
-}
+//void SceneManager::HandleKeyEvent(unsigned char key, bool bIsPressed)
+//{
+//	//switch (key) {
+//	//case 0x31: // 1
+//	//	break;
+//	//case VK_F1:
+//	//	break;
+//	//}
+//}
+
+//void SceneManager::Cleanup()
+//{
+//	delete instance;
+//}

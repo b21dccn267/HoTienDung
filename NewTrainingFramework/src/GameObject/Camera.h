@@ -22,7 +22,7 @@ public:
 	Vector3 pos = Vector3(0.0f, 1.0f, 0.0f);
 	Vector3 target = Vector3(0.0f, 1.0f, 0.0f);
 	Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
-;
+
 	Matrix view;
 	Matrix perspectiveMatrix;
 	Matrix worldCamera;

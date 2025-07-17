@@ -10,38 +10,29 @@
 #include "GameStateMachine.h"
 #include "GameStateBase.h"
 #include "GSIntro.h"
+#include "StateType.h"
 #include <memory>
 
-// init first state
-// push into gs machine
-// state inits objects and load
-// 
-//
-// how to deal with sceneman:
-//		- turn it into a state, have the other two modeled the same
-//		- nuke sceneman, and now have all states doing the object init, calling resman by id directly
-//		+ keep sceneman, and have states calling sm to load assets 
-//
-// to use 3rd option, have stack and init done after resman and sceneman calls
-// game states will get its objects from sm based on id
-// sm will no longer make draw update etc calls, that belongs to (current) game state
+// sceneman now only bundles assets into objects for gs to copy
+// and do camera/matrix calc (by giving camera obj function access via singleton calls)
+// gsm stack must be strict lifo
+// how to do stack ops:
+//		- no more init in main, have init calls based on enum
+//		- gsm class members will store init stuff to be put in
 
 int Init ( ESContext *esContext )
 {
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 
-	//glEnable(GL_DEPTH_TEST);
-	//glDepthFunc(GL_LESS);
-	//glDepthMask(GL_TRUE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	ResourceManager::getInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
 
 	SceneManager::getInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
-	SceneManager::getInstance()->LoadObject();
 
-	std::unique_ptr<GameStateBase> intro = std::make_unique<GSIntro>(2);
+	std::unique_ptr<GameStateBase> intro = std::make_unique<GSIntro>(StateType::STATE_INTRO);
+	intro->Init();
 	GameStateMachine::GetInstance()->PushState(std::move(intro));
 
 	//GameStateMachine::GetInstance()->CurrentState()
@@ -58,6 +49,7 @@ void Draw ( ESContext *esContext )
 
 void Update ( ESContext *esContext, float deltaTime )
 {
+	///PerformStateChange()
 	//SceneManager::getInstance()->Update();
 	GameStateMachine::GetInstance()->m_stack.back()->Update();
 }
@@ -66,6 +58,16 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
 	//SceneManager::getInstance()->HandleKeyEvent(key, bIsPressed);
 	GameStateMachine::GetInstance()->m_stack.back()->HandleKeyEvent();
+}
+
+void MouseClick(ESContext* esContext, GLint x, GLint y, bool bIsPressed)
+{
+	printf("MouseClick\n");
+}
+
+void OnMouseMove(ESContext* esContext, GLint x, GLint y)
+{
+	printf("MouseMove\n");
 }
 
 void CleanUp()
@@ -90,6 +92,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	esRegisterDrawFunc ( &esContext, Draw );
 	esRegisterUpdateFunc ( &esContext, Update );
 	esRegisterKeyFunc ( &esContext, Key);
+	esRegisterMouseFunc(&esContext, MouseClick);
+	esRegisterMouseMoveFunc(&esContext, OnMouseMove);
 
 	esMainLoop ( &esContext );
 	printf("GL_VERSION: %s\n", glGetString(GL_VERSION));

@@ -14,18 +14,23 @@ Object::Object()
 {
 }
 
-Object::Object(Model* model, Texture* texture, Shaders* shader, Vector3 pos, Vector3 rotation, Vector3 scale)
+Object::Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader)
+{
+	Object::Object(model, texture, shader, Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+}
+
+Object::Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader, Vector3 pos, Vector3 rotation, Vector3 scale)
 {
 	this->model = model;
 	this->texture = texture;
 	this->shader = shader;
 	
-	this->pos = pos;
+	this->m_position = pos;
 	this->rotation = rotation;
 	this->m_scale = scale;
 }
 
-Matrix Object::WorldMatrix()
+Matrix Object::CalculateWorldMatrix()
 {
 	Matrix world;
 	//world.SetIdentity();
@@ -57,19 +62,19 @@ void Object::SetSize(GLint width, GLint height)
 	m_iWidth = width;
 	m_iHeight = height;
 	m_scale = Vector3((GLfloat)m_iWidth, (GLfloat)m_iHeight, 1.0f);
-	WorldMatrix();
+	CalculateWorldMatrix();
 }
 
 void Object::Set2DPosition(Vector2 position)
 {
 	m_position = Vector3(position.x, position.y, 0.0f);
-	WorldMatrix();
+	CalculateWorldMatrix();
 }
 
 void Object::Draw(Camera* camera)
 {
 	
-	Matrix matrix = WorldMatrix();
+	Matrix matrix = CalculateWorldMatrix();
 	//WorldMatrix(matrix);
 	//matrix = CalculateWVP(matrix, camera->view * camera->perspectiveMatrix);
 	matrix = CalculateWVP(matrix, camera->LookAt());
@@ -131,7 +136,7 @@ void Object::Draw(Camera* camera)
 void Object::Update()
 {
 	GLfloat deltaTime = 0.1f;
-	Vector3 deltaMove = -(pos - Vector3(0.0f, 0.0f, 0.0f)).Normalize() * deltaTime * SceneManager::getInstance()->camera->moveSpeed;
+	Vector3 deltaMove = -(m_position - Vector3(0.0f, 0.0f, 0.0f)).Normalize() * deltaTime * SceneManager::getInstance()->camera->moveSpeed;
 
-	pos += deltaMove;	
+	m_position += deltaMove;
 }

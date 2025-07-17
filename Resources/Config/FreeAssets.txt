@@ -5,7 +5,7 @@
 - must include sfx
 - include bgm (optional)
 
-
+- go to itchio to find game ideas (find out what works)
 
 
 

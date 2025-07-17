@@ -1,8 +1,11 @@
 #include "stdafx.h"
 #include "GSPlay.h"
+#include "SceneManager.h"
 
-GSPlay::GSPlay(int id)
+void GSPlay::Init()
 {
+	m_object = SceneManager::getInstance()->m_objects[3];
+	printf("play init\n");
 }
 
 void GSPlay::Pause()

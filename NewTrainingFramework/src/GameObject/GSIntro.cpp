@@ -4,13 +4,20 @@
 #include "Texture.h"
 #include "Model.h"
 #include "Object.h"
+#include "StateType.h"
+#include "GameStateMachine.h"
+#include "GameStateBase.h"
+#include "GSMenu.h"
+#include "SceneManager.h"
 #include <memory>
+#include <Windows.h>
 
-GSIntro::GSIntro(int id)
+void GSIntro::Init()
 {
-	m_stateId = id;
+	//m_object = std::make_shared<Object> (SceneManager::getInstance()->m_objects[0]);
+	m_object = SceneManager::getInstance()->m_objects[0];
+	printf("intro init\n");
 }
-
 
 void GSIntro::Pause()
 {
@@ -20,8 +27,16 @@ void GSIntro::Exit()
 {
 }
 
+// init menu state then push
 void GSIntro::Resume()
 {
+	//SceneManager::getInstance()->Draw(m_object);
+	//printf("Sleeping\n");
+	//Sleep(2000);
+	//printf("Slept for 2s\n");
+	//
+	//menu->Init();
+
 }
 
 
@@ -31,10 +46,15 @@ void GSIntro::CreateState()
 
 void GSIntro::Update()
 {
+	//SceneManager::getInstance()->Update();
+	//m_object->Update();
 }
 
 void GSIntro::HandleKeyEvent()
 {
+	printf("gsIntroKeyPresed\n");
+
+	//switch
 }
 
 void GSIntro::HandleMouseEvent()

@@ -109,6 +109,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\GameObject\Texture.cpp" />
+    <ClCompile Include="src\GameObject\StateType.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameButton.h" />
@@ -131,6 +132,7 @@
     <ClInclude Include="src\targetver.h" />
     <ClInclude Include="src\GameObject\Texture.h" />
     <ClInclude Include="src\Vertex.h" />
+    <ClInclude Include="src\GameObject\StateType.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Readme.doc" />

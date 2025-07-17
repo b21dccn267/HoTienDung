@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <memory>
 
 ResourceManager* ResourceManager::instance = nullptr;
 
@@ -119,17 +120,17 @@ void ResourceManager::LoadFileRM(const char* fileName)
 	}
 }
 
-Model* ResourceManager::GetModel(int Id)
+std::shared_ptr<Model> ResourceManager::GetModel(int Id)
 {
 	return m_models[Id];
 }
 
-Texture* ResourceManager::GetTexture(int Id)
+std::shared_ptr<Texture> ResourceManager::GetTexture(int Id)
 {
 	return m_textures[Id];
 }
 
-Shaders* ResourceManager::GetShader(int Id)
+std::shared_ptr<Shaders> ResourceManager::GetShader(int Id)
 {
 	return m_shaders[Id];
 }
