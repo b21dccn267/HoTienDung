@@ -92,7 +92,6 @@
   <ItemGroup>
     <ClCompile Include="src\GameObject\Camera.cpp" />
     <ClCompile Include="src\GameObject\Model.cpp" />
-    <ClCompile Include="src\GameObject\MVPMatrix.cpp" />
     <ClCompile Include="src\GameState\GameButton.cpp" />
     <ClCompile Include="src\GameState\GameStateBase.cpp" />
     <ClCompile Include="src\GameState\GameStateMachine.cpp" />
@@ -120,7 +119,6 @@
     <ClInclude Include="src\GameState\GSPlay.h" />
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="src\GameObject\Model.h" />
-    <ClInclude Include="src\GameObject\MVPMatrix.h" />
     <ClInclude Include="src\GameObject\Object.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />

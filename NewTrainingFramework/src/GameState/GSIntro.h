@@ -1,6 +1,5 @@
 #pragma once
 #include "GameStateBase.h"
-#include "StateType.h"
 #include "Object.h"
 #include <memory>
 
@@ -11,17 +10,17 @@ class GSIntro : public GameStateBase
 public:
 	std::shared_ptr<Object> m_object;
 
-	using GameStateBase::GameStateBase;
+	//using GameStateBase::GameStateBase;
+	GSIntro() : GameStateBase(StateType::STATE_INTRO) {}
 	void Init() override;
 	void Pause() override;
 	void Exit() override;
 	void Resume() override;
-	//virtual void CreateState() override;
-	virtual void Draw() override;
-	virtual void Update(float deltaTime) override;
-	virtual void HandleKeyEvent() override;
-	virtual void HandleMouseEvent() override;
-	virtual void Cleanup() override;
+	void Draw() override;
+	void Update(float deltaTime) override;
+	void HandleKeyEvent(bool bIsPressed) override;
+	void HandleMouseEvent() override;
+	void Cleanup() override;
 
 	~GSIntro() override;
 };

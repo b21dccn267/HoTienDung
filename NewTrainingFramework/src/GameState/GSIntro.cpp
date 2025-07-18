@@ -4,7 +4,6 @@
 #include "Texture.h"
 #include "Model.h"
 #include "Object.h"
-#include "StateType.h"
 #include "GameStateMachine.h"
 #include "GameStateBase.h"
 #include "GSMenu.h"
@@ -14,8 +13,8 @@
 
 void GSIntro::Init()
 {
-	//m_object = std::make_shared<Object> (SceneManager::getInstance()->m_objects[0]);
-	m_object = SceneManager::getInstance()->m_objects[0];
+	m_object = SceneManager::GetInstance()->m_objects[0];
+	m_object->Set2DPosition(Vector2(100.0f, 100.0f));
 	printf("intro init\n");
 }
 
@@ -31,28 +30,32 @@ void GSIntro::Exit()
 void GSIntro::Resume()
 {
 	//SceneManager::getInstance()->Draw(m_object);
-	//printf("Sleeping\n");
-	//Sleep(2000);
-	//printf("Slept for 2s\n");
-	//
-	//menu->Init();
-
+	printf("Sleeping\n");
+	Sleep(2000);
+	printf("Slept for 2s\n");
 }
 
-
-void GSIntro::CreateState()
+void GSIntro::Draw()
 {
+	//SceneManager::GetInstance()->camera->CalculateWiewMatrix();
+	//SceneManager::GetInstance()->camera->GetPerspectiveMatrix();
+
+	m_object->Draw();
 }
 
-void GSIntro::Update()
+void GSIntro::Update(float deltaTime)
 {
-	//SceneManager::getInstance()->Update();
-	//m_object->Update();
+	m_object->Update();
 }
 
-void GSIntro::HandleKeyEvent()
+void GSIntro::HandleKeyEvent(bool bIsPressed)
 {
 	printf("gsIntroKeyPresed\n");
+	switch (bIsPressed) {
+	case 0x09 :
+		printf("up pressed\n");
+		break;
+	}
 
 	//switch
 }

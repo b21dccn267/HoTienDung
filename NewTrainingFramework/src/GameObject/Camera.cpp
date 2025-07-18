@@ -4,6 +4,12 @@
 #include "../Utilities/utilities.h"
 
 
+Camera::Camera()
+{
+	CalculateWiewMatrix();
+	GetPerspectiveMatrix();
+}
+
 // equals rotation * translation, this is the model matrix of camera (no scale)
 // quite useless rn
 void Camera::CalculateWorldCameraMatrix()
@@ -28,7 +34,7 @@ void Camera::CalculateWorldCameraMatrix()
 // normal view
 void Camera::CalculateWiewMatrix()
 {
-	Vector3 xAxis, yAxis, zAxis;
+	
 	zAxis = (pos - target).Normalize();
 	xAxis = (up.Cross(zAxis)).Normalize();
 	yAxis = zAxis.Cross(xAxis).Normalize();

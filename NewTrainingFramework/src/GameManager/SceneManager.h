@@ -12,7 +12,7 @@ class SceneManager
 public:
 	SceneManager(const SceneManager& instance) = delete;
 	static SceneManager* instance;
-	static SceneManager* getInstance() {
+	static SceneManager* GetInstance() {
 		if (!instance)
 		{
 			instance = new SceneManager();

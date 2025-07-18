@@ -75,8 +75,8 @@ int SceneManager::LoadFileSM(const char* fileName)
 
 	// init Camera for global access
 	camera = new Camera();
-	camera->pos = pos;
-	camera->target = Vector3(0.0f, 0.0f, 0.0f);
+	camera->pos = Vector3(0.0f, 0.0f, 0.0f);
+	camera->target = Vector3(0.0f, 0.0f, -1.0f);
 
 	return 0;
 }

@@ -11,6 +11,8 @@
 class Camera
 {
 public:
+	Vector3 xAxis, yAxis, zAxis;
+	Camera();
 	GLfloat fov = 45.0f;
 	GLfloat aspectRatio = 4.0f / 3.0f;
 	GLfloat nearPlane = 0.01f;
@@ -19,8 +21,8 @@ public:
 	GLfloat moveSpeed = 0.3f;
 	GLfloat rotateSpeed;
 
-	Vector3 pos = Vector3(0.0f, 1.0f, 0.0f);
-	Vector3 target = Vector3(0.0f, 1.0f, 0.0f);
+	Vector3 pos = Vector3(0.0f, 0.0f, 0.0f);
+	Vector3 target = Vector3(0.0f, 0.0f, -1.0f);
 	Vector3 up = Vector3(0.0f, 1.0f, 0.0f);
 
 	Matrix view;

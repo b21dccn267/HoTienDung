@@ -20,7 +20,7 @@ int Init ( ESContext *esContext )
 
 	ResourceManager::getInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
 
-	SceneManager::getInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
+	SceneManager::GetInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
 
 	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
 
@@ -36,12 +36,12 @@ void Draw ( ESContext *esContext )
 
 void Update ( ESContext *esContext, float deltaTime )
 {
-	GameStateMachine::GetInstance()->m_stack.top()->Update();
+	GameStateMachine::GetInstance()->m_stack.top()->Update(deltaTime);
 }
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
-	GameStateMachine::GetInstance()->m_stack.top()->HandleKeyEvent();
+	GameStateMachine::GetInstance()->m_stack.top()->HandleKeyEvent(bIsPressed);
 }
 
 void MouseClick(ESContext* esContext, GLint x, GLint y, bool bIsPressed)

@@ -7,6 +7,7 @@
 #include "Model.h"
 #include "MVPMatrix.h"
 #include "Camera.h"
+#include "SceneManager.h"
 
 
 Object::Object()
@@ -27,11 +28,12 @@ Object::Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, s
 	this->m_position = pos;
 	this->rotation = rotation;
 	this->m_scale = scale;
+	CalculateWorldMatrix();
 }
 
 Matrix Object::CalculateWorldMatrix()
 {
-	Matrix world;
+	
 	//world.SetIdentity();
 
 	Matrix scaleMatrix, rotationMatrix, translation;
@@ -42,9 +44,9 @@ Matrix Object::CalculateWorldMatrix()
 	rotateX.SetRotationX(rotation.x);
 	rotateY.SetRotationY(rotation.y);
 	rotateZ.SetRotationZ(rotation.z);
-	rotationMatrix = rotateX * rotateY * rotateZ;
+	rotationMatrix = rotateZ * rotateX * rotateY;
 
-	translation.SetTranslation(0.0f, 0.0f, 0.0f);
+	translation.SetTranslation(m_position.x, m_position.y, m_position.z);
 
 	world = scaleMatrix * rotationMatrix * translation;
 
@@ -70,34 +72,13 @@ void Object::Set2DPosition(Vector2 position)
 	CalculateWorldMatrix();
 }
 
-void Object::Draw(Camera* camera)
+void Object::Draw()
 {
 	
-	Matrix matrix = CalculateWorldMatrix();
+//	Matrix matrix = CalculateWorldMatrix();
 	//WorldMatrix(matrix);
 	//matrix = CalculateWVP(matrix, camera->view * camera->perspectiveMatrix);
-	matrix = CalculateWVP(matrix, camera->LookAt());
-	GLfloat matrixLine[16];
-
-	matrixLine[0] = matrix.m[0][0];
-	matrixLine[1] = matrix.m[0][1];
-	matrixLine[2] = matrix.m[0][2];
-	matrixLine[3] = matrix.m[0][3];
-
-	matrixLine[4] = matrix.m[1][0];
-	matrixLine[5] = matrix.m[1][1];
-	matrixLine[6] = matrix.m[1][2];
-	matrixLine[7] = matrix.m[1][3];
-
-	matrixLine[8] = matrix.m[2][0];
-	matrixLine[9] = matrix.m[2][1];
-	matrixLine[10] = matrix.m[2][2];
-	matrixLine[11] = matrix.m[2][3];
-
-	matrixLine[12] = matrix.m[3][0];
-	matrixLine[13] = matrix.m[3][1];
-	matrixLine[14] = matrix.m[3][2];
-	matrixLine[15] = matrix.m[3][3];
+	Matrix mvpMatrix = world * SceneManager::GetInstance()->camera->LookAt();
 
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -122,7 +103,7 @@ void Object::Draw(Camera* camera)
 	glUniform1i(iTextureLoc, 0);
 	// mvp matrix
 	int iMatrixLoc = glGetUniformLocation(shader->program, "u_mvp");
-	glUniformMatrix4fv(iMatrixLoc, 1, GL_TRUE, matrixLine);
+	glUniformMatrix4fv(iMatrixLoc, 1, GL_FALSE, &mvpMatrix.m[0][0]);
 	// ibo object
 	{
 		glDrawElements(GL_TRIANGLES, model->numberOfIndex, GL_UNSIGNED_INT, 0);
@@ -135,7 +116,7 @@ void Object::Draw(Camera* camera)
 void Object::Update()
 {
 	GLfloat deltaTime = 0.1f;
-	Vector3 deltaMove = -(m_position - Vector3(0.0f, 0.0f, 0.0f)).Normalize() * deltaTime * SceneManager::getInstance()->camera->moveSpeed;
+	Vector3 deltaMove = -(m_position - Vector3(0.0f, 0.0f, 0.0f)).Normalize() * deltaTime * SceneManager::GetInstance()->camera->moveSpeed; 
 
 	m_position += deltaMove;
 }

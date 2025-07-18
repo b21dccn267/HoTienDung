@@ -16,9 +16,12 @@ void GameStateMachine::PushState(StateType state)
 	m_pNextState = GameStateBase::CreateState(state);
 	///m_pActiveState = state->m_type;
 	//Pause laij active 
+	m_pNextState->Init();
+	if (!m_stack.empty()) {
+		m_stack.top()->Pause();
+	}
 
-
-	m_stack.push(std::move(m_pActiveState));
+	m_stack.push(m_pNextState);
 
 }
 void GameStateMachine::PopState()
@@ -33,7 +36,7 @@ void GameStateMachine::PopState()
 	}
 }
 
-void GameStateMachine::PerformStateChange(std::unique_ptr<GameStateBase> state)
+void GameStateMachine::PerformStateChange(StateType state)
 {
 	PopState();
 	PushState(std::move(state));

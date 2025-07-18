@@ -19,15 +19,15 @@ public:
 		return instance;
 	}
 
-	std::stack<std::unique_ptr<GameStateBase>> m_stack;
+	std::stack<GameStateBase*> m_stack;
 
-	std::unique_ptr<GameStateBase> m_pActiveState;
-	std::unique_ptr<GameStateBase> m_pNextState;
+	GameStateBase* m_pActiveState;
+	GameStateBase* m_pNextState;
 
 	
 	void PushState(StateType state);
 	void PopState();
-	void PerformStateChange(std::unique_ptr<GameStateBase> state);
+	void PerformStateChange(StateType state);
 private:
 	GameStateMachine();
 };

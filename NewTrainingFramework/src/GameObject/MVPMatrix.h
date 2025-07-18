@@ -29,7 +29,7 @@ public:
 	GLfloat farPlane;
 
 
-	Matrix matrix;
+	Matrix mvpMatrix;
 
 	Matrix world;
 	Matrix view;

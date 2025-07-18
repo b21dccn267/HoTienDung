@@ -14,14 +14,15 @@ public:
 	StateType m_type;
 
 	GameStateBase(StateType type);
+	static GameStateBase* CreateState(StateType type);
+
 	virtual void Init() = 0;
 	virtual void Pause() = 0;
 	virtual void Exit() = 0;
 	virtual void Resume() = 0;
 	virtual void Draw() = 0;
-	std::unique_ptr<GameStateBase> CreateState(StateType type);
 	virtual void Update(float deltaTime) = 0;
-	virtual void HandleKeyEvent() = 0;
+	virtual void HandleKeyEvent(bool bIsPressed) = 0;
 	virtual void HandleMouseEvent() = 0;
 	virtual void Cleanup() = 0;
 	virtual ~GameStateBase() = 0;
