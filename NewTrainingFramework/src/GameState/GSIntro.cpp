@@ -10,11 +10,41 @@
 #include "SceneManager.h"
 #include <memory>
 #include <Windows.h>
+#include "GameButton.h"
 
 void GSIntro::Init()
 {
-	m_object = SceneManager::GetInstance()->m_objects[0];
-	m_object->Set2DPosition(Vector2(100.0f, 100.0f));
+	m_gsIntroObjects.reserve(3);
+	/*m_gsIntroObjects.resize(3);
+
+	m_gsIntroObjects.emplace_back(SceneManager::GetInstance()->m_objects[0]);
+	m_gsIntroObjects[0]->Set2DPosition(Vector2(100.0f, 100.0f));
+	m_gsIntroObjects[0]->SetSize(200.0f, 200.0f);*/
+
+	//m_gsIntroObjects[1] = SceneManager::GetInstance()->m_objects[1];
+	//m_gsIntroObjects[1]->Set2DPosition(Vector2(150.0f, 150.0f));
+	//m_gsIntroObjects[1]->SetSize(200.0f, 200.0f);
+
+	//m_gsIntroObjects = SceneManager::GetInstance()->m_objects[0];
+	std::shared_ptr<GameButton> button = std::make_shared<GameButton>(
+		SceneManager::GetInstance()->m_objects[0]->model,
+		SceneManager::GetInstance()->m_objects[0]->texture,
+		SceneManager::GetInstance()->m_objects[0]->shader
+	);
+	button->Set2DPosition(Vector2(100.0f, 100.0f));
+	button->SetSize(150.0f, 150.0f);
+	button->SetOnClick([]() {
+		GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_INTRO);
+		});
+	//button->Draw(); //fix
+
+
+	m_gsIntroObjects.emplace_back(SceneManager::GetInstance()->m_objects[1]); //bug
+	m_gsIntroObjects[1]->Set2DPosition(Vector2(100.0f, 100.0f));
+	m_gsIntroObjects[1]->SetSize(200.0f, 200.0f);
+	/*m_gsIntroObjects->SetOnClick([]() {
+		GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_INTRO);
+		});*/
 	printf("intro init\n");
 }
 
@@ -29,7 +59,7 @@ void GSIntro::Exit()
 // init menu state then push
 void GSIntro::Resume()
 {
-	//SceneManager::getInstance()->Draw(m_object);
+	//SceneManager::getInstance()->Draw(m_gsIntroObjects);
 	printf("Sleeping\n");
 	Sleep(2000);
 	printf("Slept for 2s\n");
@@ -37,15 +67,18 @@ void GSIntro::Resume()
 
 void GSIntro::Draw()
 {
-	//SceneManager::GetInstance()->camera->CalculateWiewMatrix();
-	//SceneManager::GetInstance()->camera->GetPerspectiveMatrix();
-
-	m_object->Draw();
+	for (auto& x : m_gsIntroObjects) {
+		x->Draw();
+	}
+	//m_gsIntroObjects->Draw();
 }
 
 void GSIntro::Update(float deltaTime)
 {
-	m_object->Update();
+	for (auto& x : m_gsIntroObjects) {
+		x->Update();
+	}
+	//m_gsIntroObjects->Update();
 }
 
 void GSIntro::HandleKeyEvent(bool bIsPressed)

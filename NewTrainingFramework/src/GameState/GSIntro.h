@@ -2,15 +2,16 @@
 #include "GameStateBase.h"
 #include "Object.h"
 #include <memory>
+#include <vector>
 
 // this class should load a 2d asset
 // by having an Object class member
 class GSIntro : public GameStateBase
 {
 public:
-	std::shared_ptr<Object> m_object;
+	//std::shared_ptr<Object> m_gsIntroObjects;
+	std::vector<std::shared_ptr<Object>> m_gsIntroObjects;
 
-	//using GameStateBase::GameStateBase;
 	GSIntro() : GameStateBase(StateType::STATE_INTRO) {}
 	void Init() override;
 	void Pause() override;
@@ -22,6 +23,6 @@ public:
 	void HandleMouseEvent() override;
 	void Cleanup() override;
 
-	~GSIntro() override;
+	~GSIntro() override;	
 };
 

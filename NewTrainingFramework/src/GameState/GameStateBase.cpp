@@ -20,10 +20,10 @@ GameStateBase* GameStateBase::CreateState(StateType type)
 {
 	switch (type) {
 	case StateType::STATE_INTRO:
-		return  new GSIntro();
-	//case StateType::STATE_MENU:
-	//	return std::make_unique<GSMenu>();
-	//case StateType::STATE_PLAY:
-	//	return std::make_unique<GSPlay>();
+		return new GSIntro();
+	case StateType::STATE_MENU:
+		return new GSMenu();
+	case StateType::STATE_PLAY:
+		return new GSPlay();
 	}
 }

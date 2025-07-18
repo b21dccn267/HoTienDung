@@ -6,19 +6,20 @@
 class GSPlay : public GameStateBase
 {
 public:
-	//std::shared_ptr<Object> m_object;
+	std::shared_ptr<Object> m_object;
 
 	//using GameStateBase::GameStateBase;
-	//void Init() override;
-	//void Pause() override;
-	//void Exit() override;
-	//void Resume() override;
-	//virtual void CreateState() override;
-	//virtual void Update() override;
-	//virtual void HandleKeyEvent() override;
-	//virtual void HandleMouseEvent() override;
-	//virtual void Cleanup() override;
+	GSPlay() : GameStateBase(StateType::STATE_MENU) {}
+	void Init() override;
+	void Pause() override;
+	void Exit() override;
+	void Resume() override;
+	void Draw() override;
+	void Update(float deltaTime) override;
+	void HandleKeyEvent(bool bIsPressed) override;
+	void HandleMouseEvent() override;
+	void Cleanup() override;
 
-	//~GSPlay() override;
+	~GSPlay() override;
 };
 
