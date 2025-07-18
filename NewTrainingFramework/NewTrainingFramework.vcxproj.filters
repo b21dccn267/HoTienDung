@@ -46,6 +46,12 @@
     <Filter Include="Resources\Config">
       <UniqueIdentifier>{34692dbc-6723-4fbc-b0a0-63862342e220}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{f8e7cc81-8326-419a-a3b3-978399788963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{dd5534df-3b01-471c-8273-949ebdd10ea7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\NewTrainingFramework.cpp">
@@ -75,29 +81,26 @@
     <ClCompile Include="src\GameManager\SceneManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\GameStateBase.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\GameStateMachine.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameObject\Camera.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\GSIntro.cpp">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="src\GameState\GameButton.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\GSMenu.cpp">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="src\GameState\GameStateBase.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\GSPlay.cpp">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="src\GameState\GameStateMachine.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="GameButton.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\GameState\GSIntro.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\StateType.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\GameState\GSMenu.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameState\GSPlay.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,26 +146,23 @@
     <ClInclude Include="src\GameObject\Camera.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\GameStateBase.h">
-      <Filter>Header Files\Objects</Filter>
+    <ClInclude Include="src\GameState\GameButton.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\GameStateMachine.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\GameState\GameStateBase.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\GSIntro.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\GameState\GameStateMachine.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\GSMenu.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\GameState\GSIntro.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\GSPlay.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\GameState\GSMenu.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="GameButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\StateType.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\GameState\GSPlay.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

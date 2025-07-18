@@ -1,6 +1,5 @@
 #pragma once
 #include "GameStateBase.h"
-#include "StateType.h"
 #include <vector>
 #include <memory>
 #include <stack>
@@ -20,15 +19,13 @@ public:
 		return instance;
 	}
 
-	std::vector<std::unique_ptr<GameStateBase>> m_stack;
+	std::stack<std::unique_ptr<GameStateBase>> m_stack;
 
-	GameStateBase* m_pActiveState;
-	GameStateBase* m_pNextState;
-	std::stack m_StateStack; // must use explicit lifo 
+	std::unique_ptr<GameStateBase> m_pActiveState;
+	std::unique_ptr<GameStateBase> m_pNextState;
 
 	
 	void PushState(StateType state);
-	//void PushState();
 	void PopState();
 	void PerformStateChange(std::unique_ptr<GameStateBase> state);
 private:

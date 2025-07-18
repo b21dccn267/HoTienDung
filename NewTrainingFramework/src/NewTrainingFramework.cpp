@@ -6,19 +6,10 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "Globals.h"
-#include <conio.h>
 #include "GameStateMachine.h"
 #include "GameStateBase.h"
-#include "GSIntro.h"
-#include "StateType.h"
+#include <conio.h>
 #include <memory>
-
-// sceneman now only bundles assets into objects for gs to copy
-// and do camera/matrix calc (by giving camera obj function access via singleton calls)
-// gsm stack must be strict lifo
-// how to do stack ops:
-//		- no more init in main, have init calls based on enum
-//		- gsm class members will store init stuff to be put in
 
 int Init ( ESContext *esContext )
 {
@@ -31,33 +22,26 @@ int Init ( ESContext *esContext )
 
 	SceneManager::getInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
 
-	std::unique_ptr<GameStateBase> intro = std::make_unique<GSIntro>(StateType::STATE_INTRO);
-	intro->Init();
-	GameStateMachine::GetInstance()->PushState(std::move(intro));
+	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
 
-	//GameStateMachine::GetInstance()->CurrentState()
 	return 0;
 }
 
 void Draw ( ESContext *esContext )
 {
-	//SceneManager::getInstance()->Draw();
-	GameStateMachine::GetInstance()->m_stack.back()->Resume();
+	GameStateMachine::GetInstance()->m_stack.top()->Draw();
 
 	eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );
 }
 
 void Update ( ESContext *esContext, float deltaTime )
 {
-	///PerformStateChange()
-	//SceneManager::getInstance()->Update();
-	GameStateMachine::GetInstance()->m_stack.back()->Update();
+	GameStateMachine::GetInstance()->m_stack.top()->Update();
 }
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
-	//SceneManager::getInstance()->HandleKeyEvent(key, bIsPressed);
-	GameStateMachine::GetInstance()->m_stack.back()->HandleKeyEvent();
+	GameStateMachine::GetInstance()->m_stack.top()->HandleKeyEvent();
 }
 
 void MouseClick(ESContext* esContext, GLint x, GLint y, bool bIsPressed)
@@ -72,10 +56,7 @@ void OnMouseMove(ESContext* esContext, GLint x, GLint y)
 
 void CleanUp()
 {
-	//glDeleteBuffers(1, &sceneManager->m_objects->model->vboId);
-	//glDeleteBuffers(1, &sceneManager->m_objects->model->iboId);
-	//SceneManager::getInstance()->Cleanup();
-	GameStateMachine::GetInstance()->m_stack.back()->Cleanup();
+	GameStateMachine::GetInstance()->m_stack.top()->Cleanup();
 }
 
 int _tmain(int argc, _TCHAR* argv[])

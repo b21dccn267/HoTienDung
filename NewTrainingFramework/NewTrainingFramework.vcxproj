@@ -53,7 +53,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Include;$(ProjectDir)src\GameManager;$(ProjectDir)src\GameObject;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Include;$(ProjectDir)src\GameManager;$(ProjectDir)src\GameObject;$(ProjectDir)src;$(ProjectDir)src\GameState;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -90,15 +90,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameButton.cpp" />
-    <ClCompile Include="src\GameObject\GameStateBase.cpp" />
-    <ClCompile Include="src\GameObject\GameStateMachine.cpp" />
-    <ClCompile Include="src\GameObject\GSIntro.cpp" />
-    <ClCompile Include="src\GameObject\GSMenu.cpp" />
-    <ClCompile Include="src\GameObject\GSPlay.cpp" />
     <ClCompile Include="src\GameObject\Camera.cpp" />
     <ClCompile Include="src\GameObject\Model.cpp" />
     <ClCompile Include="src\GameObject\MVPMatrix.cpp" />
+    <ClCompile Include="src\GameState\GameButton.cpp" />
+    <ClCompile Include="src\GameState\GameStateBase.cpp" />
+    <ClCompile Include="src\GameState\GameStateMachine.cpp" />
+    <ClCompile Include="src\GameState\GSIntro.cpp" />
+    <ClCompile Include="src\GameState\GSMenu.cpp" />
+    <ClCompile Include="src\GameState\GSPlay.cpp" />
     <ClCompile Include="src\NewTrainingFramework.cpp" />
     <ClCompile Include="src\GameObject\Object.cpp" />
     <ClCompile Include="src\GameManager\ResourceManager.cpp" />
@@ -109,16 +109,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\GameObject\Texture.cpp" />
-    <ClCompile Include="src\GameObject\StateType.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameButton.h" />
-    <ClInclude Include="src\GameObject\GameStateBase.h" />
-    <ClInclude Include="src\GameObject\GameStateMachine.h" />
-    <ClInclude Include="src\GameObject\GSIntro.h" />
-    <ClInclude Include="src\GameObject\GSMenu.h" />
-    <ClInclude Include="src\GameObject\GSPlay.h" />
     <ClInclude Include="src\GameObject\Camera.h" />
+    <ClInclude Include="src\GameState\GameButton.h" />
+    <ClInclude Include="src\GameState\GameStateBase.h" />
+    <ClInclude Include="src\GameState\GameStateMachine.h" />
+    <ClInclude Include="src\GameState\GSIntro.h" />
+    <ClInclude Include="src\GameState\GSMenu.h" />
+    <ClInclude Include="src\GameState\GSPlay.h" />
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="src\GameObject\Model.h" />
     <ClInclude Include="src\GameObject\MVPMatrix.h" />
@@ -132,7 +131,6 @@
     <ClInclude Include="src\targetver.h" />
     <ClInclude Include="src\GameObject\Texture.h" />
     <ClInclude Include="src\Vertex.h" />
-    <ClInclude Include="src\GameObject\StateType.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Readme.doc" />

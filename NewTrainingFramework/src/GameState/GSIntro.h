@@ -16,7 +16,7 @@ public:
 	void Pause() override;
 	void Exit() override;
 	void Resume() override;
-	virtual void CreateState() override;
+	//virtual void CreateState() override;
 	virtual void Draw() override;
 	virtual void Update(float deltaTime) override;
 	virtual void HandleKeyEvent() override;

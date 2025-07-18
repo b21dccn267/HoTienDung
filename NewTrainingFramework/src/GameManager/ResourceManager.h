@@ -7,13 +7,13 @@
 #include <vector>
 #include <memory>
 
-// this class manages all game resources
+// this class loads all game assets
 class ResourceManager
 {
 public:
-	ResourceManager(const ResourceManager& instance) = delete; // no constructor for instance
-	static ResourceManager* instance; // provided singleton version
-	static ResourceManager* getInstance() { // assign instance to variable
+	ResourceManager(const ResourceManager& instance) = delete;
+	static ResourceManager* instance;
+	static ResourceManager* getInstance() {
 		if (!instance)
 		{
 			instance = new ResourceManager();
@@ -21,17 +21,11 @@ public:
 		return instance;
 	}
 
-	//std::vector<Model*> m_models;
-	//std::vector<Texture*> m_textures;
-	//std::vector<Shaders*> m_shaders;
 	std::vector<std::shared_ptr<Model>>		m_models;
 	std::vector<std::shared_ptr<Texture>>	m_textures;
 	std::vector<std::shared_ptr<Shaders>>	m_shaders;
 
 	void LoadFileRM(const char* fileName);
-	//Model* GetModel(int Id);
-	//Texture* GetTexture(int Id);
-	//Shaders* GetShader(int Id);
 
 	std::shared_ptr<Model>   GetModel(int Id);
 	std::shared_ptr<Texture> GetTexture(int Id);

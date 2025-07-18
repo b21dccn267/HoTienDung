@@ -10,6 +10,7 @@ SceneManager* SceneManager::instance = nullptr;
 
 int SceneManager::LoadFileSM(const char* fileName)
 {
+	// bundle assets into Objects for game states to query
 	int ModelID = -1, TextureID = -1, ShaderID = -1, MatrixID = -1;
 	Vector3 pos, rotation, scale;
 
@@ -72,7 +73,7 @@ int SceneManager::LoadFileSM(const char* fileName)
 		));
 	}
 
-	//instance->camera = new Camera;
+	// init Camera for global access
 	camera = new Camera();
 	camera->pos = pos;
 	camera->target = Vector3(0.0f, 0.0f, 0.0f);
@@ -80,37 +81,7 @@ int SceneManager::LoadFileSM(const char* fileName)
 	return 0;
 }
 
-//void SceneManager::Draw(std::shared_ptr<Object> object)
-//{
-//	camera->CalculateWiewMatrix();
-//	camera->GetPerspectiveMatrix();
-//
-//	object->Draw(SceneManager::getInstance()->camera);
-//}
-
-//void SceneManager::Draw()
-//{
-//	Draw(m_objects[0]);
-//}
-
-
-
-//void SceneManager::Update()
-//{
-//	m_objects[0]->Update();
-//}
-
-//void SceneManager::HandleKeyEvent(unsigned char key, bool bIsPressed)
-//{
-//	//switch (key) {
-//	//case 0x31: // 1
-//	//	break;
-//	//case VK_F1:
-//	//	break;
-//	//}
-//}
-
-//void SceneManager::Cleanup()
-//{
-//	delete instance;
-//}
+void SceneManager::Cleanup()
+{
+	// add ptr deletion here
+}

@@ -5,8 +5,8 @@
 #include <vector>
 #include <memory>
 
-// this class manages all objects of scene
-// Camera obj == MVPMatrix for now
+// this class bundles assets into objects for game states
+// as well as enabling Camera access for gs draw
 class SceneManager
 {
 public:
@@ -21,15 +21,10 @@ public:
 	}
 
 	std::vector<std::shared_ptr<Object>> m_objects;
-	Camera* camera;
+	Camera* camera; // made public please
 
 	int LoadFileSM(const char* fileName);
-	
-	void Draw(std::shared_ptr<Object> object);
-	void Draw();
-	void Update();	// this one is left empty for now
 	void Cleanup();
-	void HandleKeyEvent(unsigned char key, bool isPressed);
 private:
 	SceneManager() {}; // private constructor
 };

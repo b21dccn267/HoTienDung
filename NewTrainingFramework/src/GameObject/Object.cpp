@@ -7,7 +7,6 @@
 #include "Model.h"
 #include "MVPMatrix.h"
 #include "Camera.h"
-#include "SceneManager.h"
 
 
 Object::Object()

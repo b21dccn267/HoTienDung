@@ -7,7 +7,7 @@
 
 ResourceManager* ResourceManager::instance = nullptr;
 
-// this function read the txt file
+// this function reads RM txt file
 void ResourceManager::LoadFileRM(const char* fileName)
 {
 	std::ifstream file(fileName);
@@ -79,9 +79,6 @@ void ResourceManager::LoadFileRM(const char* fileName)
 			i_param = 1;
 		}
 		Texture* tempTexture = new Texture(textureFileName, i_param);
-		//Texture* tempTexture = new Texture;
-		//tempTexture->Init(textureFileName);
-		//tempTexture->SetTextureParameters(i_param);
 		m_textures.emplace_back(tempTexture);
 	}
 
@@ -120,18 +117,18 @@ void ResourceManager::LoadFileRM(const char* fileName)
 	}
 }
 
-std::shared_ptr<Model> ResourceManager::GetModel(int Id)
+std::shared_ptr<Model> ResourceManager::GetModel(int id)
 {
-	return m_models[Id];
+	return m_models[id];
 }
 
-std::shared_ptr<Texture> ResourceManager::GetTexture(int Id)
+std::shared_ptr<Texture> ResourceManager::GetTexture(int id)
 {
-	return m_textures[Id];
+	return m_textures[id];
 }
 
-std::shared_ptr<Shaders> ResourceManager::GetShader(int Id)
+std::shared_ptr<Shaders> ResourceManager::GetShader(int id)
 {
-	return m_shaders[Id];
+	return m_shaders[id];
 }
 

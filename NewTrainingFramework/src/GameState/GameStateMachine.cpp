@@ -6,6 +6,7 @@ GameStateMachine* GameStateMachine::instance = nullptr;
 
 // game state loop
 // pop old, push new, call stateChange()
+// when push, next state
 GameStateMachine::GameStateMachine()
 {
 }
@@ -16,19 +17,19 @@ void GameStateMachine::PushState(StateType state)
 	///m_pActiveState = state->m_type;
 	//Pause laij active 
 
-	//m_stack.emplace_back(std::move(state));
+
+	m_stack.push(std::move(m_pActiveState));
 
 }
 void GameStateMachine::PopState()
 {
-	//checkechek
 	if (m_stack.empty()) {
 		return;
 	}
-	m_stack.back()->Exit();
-	m_stack.pop_back();
+	m_stack.top()->Exit();
+	m_stack.pop();
 	if (!m_stack.empty()) {
-		m_stack.back()->Resume(); //assume init
+		m_stack.top()->Resume();
 	}
 }
 
