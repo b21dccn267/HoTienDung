@@ -77,8 +77,11 @@ void Object::Draw()
 	
 //	Matrix matrix = CalculateWorldMatrix();
 	//WorldMatrix(matrix);
-	//matrix = CalculateWVP(matrix, camera->view * camera->perspectiveMatrix);
-	Matrix mvpMatrix = world * SceneManager::GetInstance()->camera->LookAt();
+	//matrix = CalculateWVP(matrix, camera->view * camera->m_perspectiveMatrix);
+	//Matrix mvpMatrix = world * SceneManager::GetInstance()->camera->LookAt();
+	Matrix mvpMatrix =  world * 
+						SceneManager::GetInstance()->camera->m_viewMatrix * 
+						SceneManager::GetInstance()->camera->m_perspectiveMatrix;
 
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClear(GL_COLOR_BUFFER_BIT);

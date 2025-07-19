@@ -15,33 +15,33 @@
 void GSIntro::Init()
 {
 	m_gsIntroObjects.reserve(3);
-	/*m_gsIntroObjects.resize(3);
+	//m_gsIntroObjects.resize(3);
 
 	m_gsIntroObjects.emplace_back(SceneManager::GetInstance()->m_objects[0]);
 	m_gsIntroObjects[0]->Set2DPosition(Vector2(100.0f, 100.0f));
-	m_gsIntroObjects[0]->SetSize(200.0f, 200.0f);*/
+	m_gsIntroObjects[0]->SetSize(200.0f, 200.0f);
 
 	//m_gsIntroObjects[1] = SceneManager::GetInstance()->m_objects[1];
 	//m_gsIntroObjects[1]->Set2DPosition(Vector2(150.0f, 150.0f));
 	//m_gsIntroObjects[1]->SetSize(200.0f, 200.0f);
 
 	//m_gsIntroObjects = SceneManager::GetInstance()->m_objects[0];
-	std::shared_ptr<GameButton> button = std::make_shared<GameButton>(
-		SceneManager::GetInstance()->m_objects[0]->model,
-		SceneManager::GetInstance()->m_objects[0]->texture,
-		SceneManager::GetInstance()->m_objects[0]->shader
-	);
-	button->Set2DPosition(Vector2(100.0f, 100.0f));
-	button->SetSize(150.0f, 150.0f);
-	button->SetOnClick([]() {
-		GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_INTRO);
-		});
+	//std::shared_ptr<GameButton> button = std::make_shared<GameButton>(
+	//	SceneManager::GetInstance()->m_objects[0]->model,
+	//	SceneManager::GetInstance()->m_objects[0]->texture,
+	//	SceneManager::GetInstance()->m_objects[0]->shader
+	//);
+	//button->Set2DPosition(Vector2(100.0f, 100.0f));
+	//button->SetSize(150.0f, 150.0f);
+	//button->SetOnClick([]() {
+	//	GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_INTRO);
+	//	});
 	//button->Draw(); //fix
 
 
-	m_gsIntroObjects.emplace_back(SceneManager::GetInstance()->m_objects[1]); //bug
-	m_gsIntroObjects[1]->Set2DPosition(Vector2(100.0f, 100.0f));
-	m_gsIntroObjects[1]->SetSize(200.0f, 200.0f);
+	//m_gsIntroObjects.emplace_back(SceneManager::GetInstance()->m_objects[1]); //bug
+	//m_gsIntroObjects[1]->Set2DPosition(Vector2(100.0f, 100.0f));
+	//m_gsIntroObjects[1]->SetSize(200.0f, 200.0f);
 	/*m_gsIntroObjects->SetOnClick([]() {
 		GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_INTRO);
 		});*/
