@@ -12,6 +12,7 @@ Camera::Camera()
 
 // equals rotation * translation, this is the model matrix of camera (no scale)
 // quite useless rn
+// below code is wrong
 void Camera::CalculateWorldCameraMatrix()
 {
 	Matrix rotation;
@@ -41,9 +42,8 @@ void Camera::CalculateWiewMatrix()
 	m_viewMatrix.m[3][0] = -m_cameraPos.Dot(xAxis); m_viewMatrix.m[3][1] = -m_cameraPos.Dot(yAxis); m_viewMatrix.m[3][2] = -m_cameraPos.Dot(zAxis); m_viewMatrix.m[3][3] = 1.0f;
 }
 
-// normal projection
+// now uses ortho
 void Camera::CalculatePerspectiveMatrix()
 {
-	// now uses ortho
 	m_perspectiveMatrix.SetOrtho(0.0f, Globals::screenWidth, Globals::screenHeight, 0.0f, -1.0f, 1.0f);
 }

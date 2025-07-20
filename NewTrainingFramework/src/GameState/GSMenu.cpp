@@ -4,7 +4,11 @@
 
 void GSMenu::Init()
 {
-	m_object = SceneManager::GetInstance()->m_objects[1];
+	m_gsMenuObjects.reserve(3);
+
+	m_gsMenuObjects.emplace_back(SceneManager::GetInstance()->m_objects[0]);
+	m_gsMenuObjects.emplace_back(SceneManager::GetInstance()->m_objects[1]);
+	m_gsMenuObjects.emplace_back(SceneManager::GetInstance()->m_objects[2]);
 	printf("menu init\n");
 }
 

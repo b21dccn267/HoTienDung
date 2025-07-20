@@ -33,9 +33,6 @@ Object::Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, s
 
 Matrix Object::CalculateWorldMatrix()
 {
-	
-	//world.SetIdentity();
-
 	Matrix scaleMatrix, rotationMatrix, translation;
 
 	scaleMatrix.SetScale(m_scale.x, m_scale.y, m_scale.z);
@@ -74,18 +71,11 @@ void Object::Set2DPosition(Vector2 position)
 
 void Object::Draw()
 {
-	
-//	Matrix matrix = CalculateWorldMatrix();
-	//WorldMatrix(matrix);
-	//matrix = CalculateWVP(matrix, camera->view * camera->m_perspectiveMatrix);
-	//Matrix mvpMatrix = world * SceneManager::GetInstance()->camera->LookAt();
 	Matrix mvpMatrix =  world * 
 						SceneManager::GetInstance()->camera->m_viewMatrix * 
 						SceneManager::GetInstance()->camera->m_perspectiveMatrix;
-
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClear(GL_COLOR_BUFFER_BIT);
-	//glDepthMask(GL_TRUE);
+	// this line will be called by the current game state
+	//glClear(GL_COLOR_BUFFER_BIT);
 
 	glUseProgram(shader->program);
 

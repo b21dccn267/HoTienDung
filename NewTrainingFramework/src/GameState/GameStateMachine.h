@@ -19,6 +19,11 @@ public:
 		return instance;
 	}
 
+	static void DestroyInstance() {
+		delete instance;
+		instance = nullptr;
+	}
+
 	std::stack<GameStateBase*> m_stack;
 
 	GameStateBase* m_pActiveState;

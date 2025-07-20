@@ -4,12 +4,10 @@
 #include <memory>
 #include <vector>
 
-// this class should load a 2d asset
-// by having an Object class member
+
 class GSIntro : public GameStateBase
 {
 public:
-	//std::shared_ptr<Object> m_gsIntroObjects;
 	std::vector<std::shared_ptr<Object>> m_gsIntroObjects;
 
 	GSIntro() : GameStateBase(StateType::STATE_INTRO) {}

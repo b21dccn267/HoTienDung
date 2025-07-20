@@ -1,15 +1,15 @@
 #pragma once
-#include <memory>
 #include "Object.h"
 #include "GameStateBase.h"
+#include <memory>
+#include <vector>
 
 
 class GSMenu : public GameStateBase
 {
 public:
-	std::shared_ptr<Object> m_object;
+	std::vector<std::shared_ptr<Object>> m_gsMenuObjects;
 
-	//using GameStateBase::GameStateBase;
 	GSMenu() : GameStateBase(StateType::STATE_MENU) {}
 	void Init() override;
 	void Pause() override;

@@ -58,7 +58,8 @@ void CleanUp()
 {
 	ResourceManager::GetInstance()->DestroyInstance();
 	SceneManager::GetInstance()->DestroyInstance();
-	GameStateMachine::GetInstance()->m_stack.top()->Cleanup();
+	//GameStateMachine::GetInstance()->m_stack.top()->Cleanup();
+	GameStateMachine::GetInstance()->DestroyInstance();
 }
 
 int _tmain(int argc, _TCHAR* argv[])

@@ -24,6 +24,8 @@ Model::Model(const char* fileName)
 	Vertex* verticesData = new Vertex[vertexCount];
 	//std::shared_ptr<Vertex[]> verticesData = std::make_shared<Vertex[]>(vertexCount);
 
+
+
 	while (count < total && fgets(line, sizeof line, f)) {
 		float fX = 0, fY = 0, fZ = 0, fUx = 0, fUy = 0;
 		sscanf_s(line, "%*[^p]pos:[%f ,%f ,%f]; %*[^u]uv:[%f ,%f];", &fX, &fY, &fZ, &fUx, &fUy);
