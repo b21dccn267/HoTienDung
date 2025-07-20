@@ -20,12 +20,18 @@ public:
 		return instance;
 	}
 
+	static void DestroyInstance() {
+		delete instance;
+		instance = nullptr;
+	}
+
 	std::vector<std::shared_ptr<Object>> m_objects;
-	Camera* camera; // made public please
+	//Camera* camera;
+	std::shared_ptr<Camera> camera;
 
 	int LoadFileSM(const char* fileName);
 	void Cleanup();
 private:
-	SceneManager() {}; // private constructor
+	SceneManager() {};
 };
 

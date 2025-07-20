@@ -43,7 +43,7 @@ void ResourceManager::LoadFileRM(const char* fileName)
 		s_path = s_path.substr(1, s_path.size() - 2);
 		const char* modelFileName = s_path.c_str();
 
-		Model* tempModel = new Model(modelFileName);
+		std::shared_ptr<Model> tempModel = std::make_shared<Model>(modelFileName);
 		m_models.emplace_back(tempModel);
 	}
 
@@ -78,7 +78,7 @@ void ResourceManager::LoadFileRM(const char* fileName)
 		if (param == "CLAMP") {
 			i_param = 1;
 		}
-		Texture* tempTexture = new Texture(textureFileName, i_param);
+		std::shared_ptr<Texture> tempTexture = std::make_shared<Texture>(textureFileName, i_param);
 		m_textures.emplace_back(tempTexture);
 	}
 
@@ -111,7 +111,7 @@ void ResourceManager::LoadFileRM(const char* fileName)
 		s_path1 = s_path1.substr(1, s_path1.size() - 2);
 		char* fragmentShaderFileName = &s_path1[0];
 
-		Shaders* tempShader = new Shaders;
+		std::shared_ptr<Shaders> tempShader = std::make_shared<Shaders>();
 		tempShader->Init(vertexShaderFileName, fragmentShaderFileName);
 		m_shaders.emplace_back(tempShader);
 	}

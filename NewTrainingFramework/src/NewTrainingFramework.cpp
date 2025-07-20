@@ -18,7 +18,7 @@ int Init ( ESContext *esContext )
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	ResourceManager::getInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
+	ResourceManager::GetInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
 
 	SceneManager::GetInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
 
@@ -56,6 +56,8 @@ void OnMouseMove(ESContext* esContext, GLint x, GLint y)
 
 void CleanUp()
 {
+	ResourceManager::GetInstance()->DestroyInstance();
+	SceneManager::GetInstance()->DestroyInstance();
 	GameStateMachine::GetInstance()->m_stack.top()->Cleanup();
 }
 

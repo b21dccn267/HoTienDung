@@ -13,12 +13,16 @@ class ResourceManager
 public:
 	ResourceManager(const ResourceManager& instance) = delete;
 	static ResourceManager* instance;
-	static ResourceManager* getInstance() {
+	static ResourceManager* GetInstance() {
 		if (!instance)
 		{
 			instance = new ResourceManager();
 		}
 		return instance;
+	}
+	static void DestroyInstance() {
+		delete instance;
+		instance = nullptr;
 	}
 
 	std::vector<std::shared_ptr<Model>>		m_models;

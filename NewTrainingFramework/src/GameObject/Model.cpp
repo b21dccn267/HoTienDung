@@ -2,6 +2,7 @@
 #include "Model.h"
 #include <iostream>
 #include "Vertex.h"
+#include <memory>
 
 Model::Model(const char* fileName)
 {
@@ -21,6 +22,7 @@ Model::Model(const char* fileName)
 	sscanf_s(line, "NrVertices: %d", &vertexCount);
 
 	Vertex* verticesData = new Vertex[vertexCount];
+	//std::shared_ptr<Vertex[]> verticesData = std::make_shared<Vertex[]>(vertexCount);
 
 	while (count < total && fgets(line, sizeof line, f)) {
 		float fX = 0, fY = 0, fZ = 0, fUx = 0, fUy = 0;

@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include "GameStateBase.h"
+#include <memory>
 
 SceneManager* SceneManager::instance = nullptr;
 
@@ -65,16 +66,17 @@ int SceneManager::LoadFileSM(const char* fileName)
 		filter >> trash >> scale.x >> scale.y >> scale.z;
 
 		
-		m_objects.emplace_back(new Object(
-			ResourceManager::getInstance()->GetModel(ModelID),
-			ResourceManager::getInstance()->GetTexture(TextureID),
-			ResourceManager::getInstance()->GetShader(ShaderID),
+		m_objects.emplace_back(std::make_shared<Object>(
+			ResourceManager::GetInstance()->GetModel(ModelID),
+			ResourceManager::GetInstance()->GetTexture(TextureID),
+			ResourceManager::GetInstance()->GetShader(ShaderID),
 			pos, rotation, scale
 		));
 	}
 
 	// init Camera for global access
-	camera = new Camera();
+	//camera = new Camera();
+	camera = std::make_shared<Camera>();
 	camera->m_cameraPos = Vector3(0.0f, 0.0f, 0.0f);
 	camera->m_cameraTarget = Vector3(0.0f, 0.0f, -1.0f);
 
