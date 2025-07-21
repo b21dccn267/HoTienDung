@@ -16,7 +16,15 @@ Object::Object()
 
 Object::Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader)
 {
-	Object::Object(model, texture, shader, Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+	this->model = model;
+	this->texture = texture;
+	this->shader = shader;
+
+	this->m_position = Vector3(0.0f, 0.0f, 0.0f);
+	this->rotation = Vector3(0.0f, 0.0f, 0.0f);
+	this->m_scale = Vector3(0.0f, 0.0f, 0.0f);
+	CalculateWorldMatrix();
+
 }
 
 Object::Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader, Vector3 pos, Vector3 rotation, Vector3 scale)
@@ -75,6 +83,7 @@ void Object::Draw()
 						SceneManager::GetInstance()->camera->m_viewMatrix * 
 						SceneManager::GetInstance()->camera->m_perspectiveMatrix;
 	// this line will be called by the current game state
+	// to prevent subsequent obj draws from removing last draws
 	//glClear(GL_COLOR_BUFFER_BIT);
 
 	glUseProgram(shader->program);

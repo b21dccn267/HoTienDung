@@ -17,7 +17,7 @@ public:
 	void Draw() override;
 	void Update(float deltaTime) override;
 	void HandleKeyEvent(bool bIsPressed) override;
-	void HandleMouseEvent() override;
+	void HandleMouseEvent(GLint x, GLint y, bool bIsPressed) override;
 	void Cleanup() override;
 
 	~GSPlay() override;

@@ -10,7 +10,7 @@ GameButton::GameButton(std::shared_ptr<Model> model, std::shared_ptr<Texture> te
 GameButton::~GameButton()
 {
 }
-
+// allows lambda binding
 void GameButton::SetOnClick(void(*pBtnClickFun)())
 {
 	m_pBtnClick = pBtnClickFun;

@@ -32,8 +32,9 @@ void GSPlay::HandleKeyEvent(bool bIsPressed)
 {
 }
 
-void GSPlay::HandleMouseEvent()
+void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
+	x = 0;
 }
 
 void GSPlay::Cleanup()

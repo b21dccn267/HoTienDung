@@ -1,4 +1,5 @@
 #pragma once
+#include "../Utilities/utilities.h"
 #include <memory>
 
 enum class StateType
@@ -23,7 +24,7 @@ public:
 	virtual void Draw() = 0;
 	virtual void Update(float deltaTime) = 0;
 	virtual void HandleKeyEvent(bool bIsPressed) = 0;
-	virtual void HandleMouseEvent() = 0;
+	virtual void HandleMouseEvent(GLint x, GLint y, bool bIsPressed) = 0;
 	virtual void Cleanup() = 0;
 	virtual ~GameStateBase() = 0;
 };
