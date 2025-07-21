@@ -23,7 +23,7 @@ int Init ( ESContext *esContext )
 	SceneManager::GetInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
 
 	// start with StateType::STATE_INTRO
-	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
+	GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY);
 
 	return 0;
 }

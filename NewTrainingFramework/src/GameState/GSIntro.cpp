@@ -12,8 +12,6 @@
 #include <memory>
 #include <Windows.h>
 #include "GameButton.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
 
 
 void GSIntro::Init()

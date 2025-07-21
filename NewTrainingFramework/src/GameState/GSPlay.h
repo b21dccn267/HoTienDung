@@ -2,13 +2,14 @@
 #include "GameStateBase.h"
 #include "Object.h"
 #include <memory>
+#include <vector>
+
 
 class GSPlay : public GameStateBase
 {
 public:
-	std::shared_ptr<Object> m_object;
+	std::vector<std::shared_ptr<Object>> m_gsPlayObjects;
 
-	//using GameStateBase::GameStateBase;
 	GSPlay() : GameStateBase(StateType::STATE_MENU) {}
 	void Init() override;
 	void Pause() override;

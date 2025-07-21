@@ -24,8 +24,8 @@ public:
 	GLint m_iHeight;
 	
 	Object();
-	Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader);
 	Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader, Vector3 pos, Vector3 rotation, Vector3 scale);
+	Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader);
 	Matrix CalculateWorldMatrix();
 	Matrix CalculateWVP(Matrix modelMatrix, Matrix ViewPerspectiveMatrix);
 	void SetSize(GLint width, GLint height);
