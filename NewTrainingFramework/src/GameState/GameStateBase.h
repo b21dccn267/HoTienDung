@@ -23,7 +23,7 @@ public:
 	virtual void Resume() = 0;
 	virtual void Draw() = 0;
 	virtual void Update(float deltaTime) = 0;
-	virtual void HandleKeyEvent(bool bIsPressed) = 0;
+	virtual void HandleKeyEvent(unsigned char key, bool bIsPressed) = 0;
 	virtual void HandleMouseEvent(GLint x, GLint y, bool bIsPressed) = 0;
 	virtual void Cleanup() = 0;
 	virtual ~GameStateBase() = 0;

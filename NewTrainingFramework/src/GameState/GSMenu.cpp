@@ -46,7 +46,7 @@ void GSMenu::Update(float deltaTime)
 {
 }
 
-void GSMenu::HandleKeyEvent(bool bIsPressed)
+void GSMenu::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 }
 

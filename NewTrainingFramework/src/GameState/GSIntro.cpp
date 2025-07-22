@@ -93,18 +93,19 @@ void GSIntro::Update(float deltaTime)
 	}
 }
 
-void GSIntro::HandleKeyEvent(bool bIsPressed)
+void GSIntro::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-	printf("gsIntroKeyPresed\n");
+	printf("gsIntroKeyPresed: %c\n", key);
 	switch (bIsPressed) {
-	case 0x09 :
-		printf("up pressed\n");
+	case 1: // 1 pressed
+		printf("1 pressed\n");
 		break;
 	}
 }
 
 void GSIntro::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
+	printf("gsIntroMouseEvent\n");
 	m_gsIntroGameButtons[0]->HandleTouchEvents(x, y, bIsPressed);
 	//for (auto& x : m_gsIntroObjects) {}
 	//for (auto& x : m_gsIntroGameButtons) {

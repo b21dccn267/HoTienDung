@@ -39,7 +39,7 @@ void GSPlay::Update(float deltaTime)
 {
 }
 
-void GSPlay::HandleKeyEvent(bool bIsPressed)
+void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 }
 

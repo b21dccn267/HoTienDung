@@ -23,7 +23,7 @@ int Init ( ESContext *esContext )
 	SceneManager::GetInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
 
 	// start with StateType::STATE_INTRO
-	GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY);
+	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
 
 	return 0;
 }
@@ -42,12 +42,12 @@ void Update ( ESContext *esContext, float deltaTime )
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
-	GameStateMachine::GetInstance()->m_stack.top()->HandleKeyEvent(bIsPressed);
+	GameStateMachine::GetInstance()->m_stack.top()->HandleKeyEvent(key, bIsPressed);
 }
 
 void MouseClick(ESContext* esContext, GLint x, GLint y, bool bIsPressed)
 {
-	printf("MouseClick\n");
+	//printf("MouseClick\n");
 	GameStateMachine::GetInstance()->m_stack.top()->HandleMouseEvent(x, y, bIsPressed);
 }
 
