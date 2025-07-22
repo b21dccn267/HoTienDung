@@ -86,9 +86,6 @@ void Object::Draw()
 	// to prevent subsequent obj draws from removing last draws
 	//glClear(GL_COLOR_BUFFER_BIT);
 
-	// rebind texture
-	//glActiveTexture(GL_TEXTURE0 + texture->textureId);
-
 	glUseProgram(shader->program);
 
 	glBindBuffer(GL_ARRAY_BUFFER, model->vboId);
@@ -100,12 +97,15 @@ void Object::Draw()
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 	}
 	// texture
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture->textureId);
+	int iTextureLoc = glGetUniformLocation(shader->program, "u_texture");
+	glUniform1i(iTextureLoc, 0);
 	{
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (char*)0 + sizeof(Vector3));
 	}
-	int iTextureLoc = glGetUniformLocation(shader->program, "u_texture");
-	glUniform1i(iTextureLoc, 0);
+
 	// mvp matrix
 	int iMatrixLoc = glGetUniformLocation(shader->program, "u_mvp");
 	glUniformMatrix4fv(iMatrixLoc, 1, GL_FALSE, &mvpMatrix.m[0][0]);

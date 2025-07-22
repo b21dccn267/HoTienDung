@@ -26,11 +26,10 @@ public:
 	}
 
 	std::vector<std::shared_ptr<Object>> m_objects;
-	//Camera* camera;
 	std::shared_ptr<Camera> camera;
 
 	int LoadFileSM(const char* fileName);
-	void Cleanup();
+
 private:
 	SceneManager() {};
 };

@@ -6,7 +6,8 @@ enum class StateType
 {
 	STATE_INTRO,
 	STATE_MENU,
-	STATE_PLAY
+	STATE_PLAY,
+	STATE_DEBUG
 };
 
 class GameStateBase

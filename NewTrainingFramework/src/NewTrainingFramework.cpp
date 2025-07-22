@@ -11,6 +11,7 @@
 #include <conio.h>
 #include <memory>
 
+
 int Init ( ESContext *esContext )
 {
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );

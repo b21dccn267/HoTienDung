@@ -7,7 +7,10 @@
 
 - go to itchio to find game ideas (find out what works)
 
-
+what do: add
+	- text
+	- animations
+	- sound
 
 
 https://backterria.itch.io/the-mystery random

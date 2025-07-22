@@ -4,7 +4,6 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include "GameStateBase.h"
 #include <memory>
 
 SceneManager* SceneManager::instance = nullptr;
@@ -75,15 +74,9 @@ int SceneManager::LoadFileSM(const char* fileName)
 	}
 
 	// init Camera for global access
-	//camera = new Camera();
 	camera = std::make_shared<Camera>();
 	camera->m_cameraPos = Vector3(0.0f, 0.0f, 0.0f);
 	camera->m_cameraTarget = Vector3(0.0f, 0.0f, -1.0f);
 
 	return 0;
-}
-
-void SceneManager::Cleanup()
-{
-	// add ptr deletion here
 }

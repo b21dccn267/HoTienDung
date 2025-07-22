@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameState\GSDebug.cpp" />
     <ClCompile Include="src\GameObject\Camera.cpp" />
     <ClCompile Include="src\GameObject\Model.cpp" />
     <ClCompile Include="src\GameState\GameButton.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="src\GameObject\TextRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameState\GSDebug.h" />
     <ClInclude Include="src\GameObject\Camera.h" />
     <ClInclude Include="src\GameState\GameButton.h" />
     <ClInclude Include="src\GameState\GameStateBase.h" />
@@ -217,7 +219,6 @@
   <ItemGroup>
     <Image Include="..\Resources\Packs\Textures\Woman1.tga" />
     <Image Include="..\Resources\Packs\Textures\Woman2.tga" />
-    <Image Include="..\Resources\Textures\brick.tga" />
     <Image Include="..\Resources\Textures\rock.tga" />
     <Image Include="..\Resources\Textures\rock1.tga" />
   </ItemGroup>

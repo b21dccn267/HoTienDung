@@ -3,6 +3,7 @@
 #include "GSIntro.h"
 #include "GSMenu.h"
 #include "GSPlay.h"
+#include "GSDebug.h"
 #include <memory>
 
 
@@ -25,5 +26,7 @@ GameStateBase* GameStateBase::CreateState(StateType type)
 		return new GSMenu();
 	case StateType::STATE_PLAY:
 		return new GSPlay();
+	case StateType::STATE_DEBUG:
+		return new GSDebug();
 	}
 }
