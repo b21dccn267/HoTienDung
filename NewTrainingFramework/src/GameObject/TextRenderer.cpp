@@ -4,6 +4,36 @@
 #include <SDL2/SDL_ttf.h>
 #include "../Utilities/utilities.h"
 
+SDL_Surface* TextRenderer::FlipVertical(SDL_Surface* surface)
+{
+	if (!surface || surface->format->BitsPerPixel != 32) {
+		return nullptr;
+	}
+
+	SDL_Surface* result = SDL_CreateRGBSurfaceWithFormat(
+		0,
+		surface->w,
+		surface->h,
+		surface->format->BitsPerPixel,
+		surface->format->format
+	);
+	if (!result) {
+		return nullptr;
+	}
+
+	SDL_Rect sRect = { 0, 0, surface->w, 1 };
+	SDL_Rect rRect = { 0, 0, result->w, 1 };
+
+	for (int y = 0; y < surface->h; y++) {
+		sRect.y = y;
+		rRect.y = surface->h - 1 - y;
+		SDL_BlitSurface(surface, &sRect, result, &rRect);
+	}
+
+	SDL_FreeSurface(surface);
+	return result;
+}
+
 // suggested changes:
 // make this class a CC of Object minus texture
 // chosen changes:
@@ -27,43 +57,13 @@ SDL_Surface* TextRenderer::RenderText(const char* text)
 		printf("thing broke\n");
 	}
 
-	// debug vars
-	//SDL_PixelFormatEnum fmt = surface->format->format;
-	int bpp = surface->format->BytesPerPixel;
-	Uint32 Rmask = surface->format->Rmask;
-	Uint32 Gmask = surface->format->Gmask;
-	Uint32 Bmask = surface->format->Bmask;
-	Uint32 Amask = surface->format->Amask;
-	/// convert surface vowis format RGBA
-
 	SDL_Surface* result = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA8888, 0);
 	SDL_FreeSurface(surface);
+	SDL_Surface* flippedResult = FlipVertical(result);
+	SDL_FreeSurface(result);
 
-	// no need
-	//SDL_Renderer* renderer;
-	//SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-	//SDL_FreeSurface(surface);
-	//if (!texture) {
-	//	return;
-	//}
 
-	// try to convert this to Texture
-	// or do it right here
-
-	//glGenTextures(1, &textureId);
-	//glBindTexture(GL_TEXTURE_2D, textureId);
-
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
-
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	//return surface;
-	return result;
+	//return result;
+	//return FlipVertical(result);
+	return flippedResult;
 }
-//void TextRenderer::Draw()
-//{
-//	//trucj Y nguocj
-//}

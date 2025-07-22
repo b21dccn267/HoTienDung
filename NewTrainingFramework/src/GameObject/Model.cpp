@@ -67,6 +67,9 @@ Model::Model(const char* fileName)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * numberOfIndex, indicesData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	delete[]verticesData;
+	delete[]indicesData;
 }
 
 
