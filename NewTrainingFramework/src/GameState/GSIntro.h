@@ -10,7 +10,6 @@ class GSIntro : public GameStateBase
 {
 public:
 	std::vector<std::shared_ptr<Object>> m_gsIntroObjects;
-	std::vector<std::shared_ptr<GameButton>> m_gsIntroGameButtons;
 
 	GSIntro() : GameStateBase(StateType::STATE_INTRO) {}
 	void Init() override;

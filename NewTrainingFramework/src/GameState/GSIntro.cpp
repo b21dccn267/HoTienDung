@@ -16,43 +16,11 @@
 
 void GSIntro::Init()
 {
-	m_gsIntroObjects.reserve(3);
-	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(3);
-	auto shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> gameButton = std::make_shared<GameButton>(model, texture, shader);
-	gameButton->Set2DPosition(Vector2(100.0f, 100.0f));
-	gameButton->SetSize(200.0f, 200.0f);
-	gameButton->SetOnClick([]() {
-		GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_MENU);
-		});
+	m_gsIntroObjects.reserve(1);
+	m_gsIntroObjects.emplace_back(SceneManager::GetInstance()->m_objects[4]);
 
-	m_gsIntroGameButtons.push_back(gameButton);
-	 
-	//m_gsIntroObjects.emplace_back(SceneManager::GetInstance()->m_objects[0]);
-
-	//m_gsIntroObjects[0]->Set2DPosition(Vector2(100.0f, 100.0f));
-	//m_gsIntroObjects[0]->SetSize(200.0f, 200.0f);
-
-	//TTF_Font* font = TTF_OpenFont("../Resources/Fonts/Roboto-VariableFont_wdth,wght.ttf", 24);
-	//if (!font) {
-	//	return;
-	//}
-
-	//const char* message = "something meaningful";
-	//SDL_Color white = { 255, 255, 255, 255 };
-
-	//SDL_Surface* surface = TTF_RenderUTF8_Blended(font, message, white);
-	//if (!surface) {
-	//	return;
-	//}
-	//SDL_Renderer* renderer = nullptr;
-	//SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, surface);
-	//SDL_FreeSurface(surface);
-	//if (!textTexture) {
-	//	return;
-	//}
-
+	m_gsIntroObjects[0]->Set2DPosition(Vector2(0.0f, 0.0f));
+	m_gsIntroObjects[0]->SetSize(600.0f, 600.0f);
 	printf("intro init\n");
 }
 
@@ -69,7 +37,8 @@ void GSIntro::Resume()
 {
 	printf("Sleeping\n");
 	Sleep(2000);
-	printf("Slept for 2s\n");
+	printf("Slept for 2s, loading menu...\n");
+	GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_MENU);
 }
 
 void GSIntro::Draw()
@@ -78,9 +47,7 @@ void GSIntro::Draw()
 	for (auto& x : m_gsIntroObjects) {
 		x->Draw();
 	}
-	for (auto& x : m_gsIntroGameButtons) {
-		x->Draw();
-	}
+	Resume();
 }
 
 void GSIntro::Update(float deltaTime)
@@ -88,51 +55,21 @@ void GSIntro::Update(float deltaTime)
 	for (auto& x : m_gsIntroObjects) {
 		x->Update();
 	}
-	for (auto& x : m_gsIntroGameButtons) {
-		x->Update();
-	}
 }
 
 void GSIntro::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-	printf("gsIntroKeyPresed: %c\n", key);
-	switch (bIsPressed) {
-	case 1: // 1 pressed
-		printf("1 pressed\n");
-		break;
-	}
+	printf("gsIntroKeyEvent\n");
 }
 
 void GSIntro::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
 	printf("gsIntroMouseEvent\n");
-	m_gsIntroGameButtons[0]->HandleTouchEvents(x, y, bIsPressed);
-	//for (auto& x : m_gsIntroObjects) {}
-	//for (auto& x : m_gsIntroGameButtons) {
-	//	x->HandleTouchEvents(x, y, bIsPressed);
-	//}
 }
 
 void GSIntro::Cleanup()
 {
 }
-
-// state contains assets
-// state should be able to control these assets
-// game state vs sceneman
-// state are modular, holds certain assets, is linked to other states and call them on the stack of gsm
-// sceneman manages asset loading(constructing objects) as well as displaying, updating...
-// 
-// new form: 
-// resman does asset loading and store them based on type
-// sceneman bundles them into objects
-// state pick these objects
-//GameStateBase GSIntro::CreateState()
-//{
-//	//std::unique_ptr<Model> model = std::make_unique<Model>(new Model(modelFileName));
-//	return GameStateBase();
-//	//std::unique_ptr<Object> object = std::make_unique<Object>(new Object(model, texture, shader, pos, rotation, scale);
-//}
 
 GSIntro::~GSIntro()
 {

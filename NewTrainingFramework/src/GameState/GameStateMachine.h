@@ -34,6 +34,6 @@ public:
 	void PopState();
 	void PerformStateChange(StateType state);
 private:
-	GameStateMachine();
+	GameStateMachine() {};
 };
 

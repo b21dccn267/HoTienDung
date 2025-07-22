@@ -47,7 +47,6 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 
 void MouseClick(ESContext* esContext, GLint x, GLint y, bool bIsPressed)
 {
-	//printf("MouseClick\n");
 	GameStateMachine::GetInstance()->m_stack.top()->HandleMouseEvent(x, y, bIsPressed);
 }
 
@@ -60,7 +59,6 @@ void CleanUp()
 {
 	ResourceManager::GetInstance()->DestroyInstance();
 	SceneManager::GetInstance()->DestroyInstance();
-	//GameStateMachine::GetInstance()->m_stack.top()->Cleanup();
 	GameStateMachine::GetInstance()->DestroyInstance();
 }
 

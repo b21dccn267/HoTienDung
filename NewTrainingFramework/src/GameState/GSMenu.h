@@ -1,6 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "GameStateBase.h"
+#include "GameButton.h"
 #include <memory>
 #include <vector>
 
@@ -9,6 +10,7 @@ class GSMenu : public GameStateBase
 {
 public:
 	std::vector<std::shared_ptr<Object>> m_gsMenuObjects;
+	std::vector<std::shared_ptr<GameButton>> m_gsMenuGameButtons;
 
 	GSMenu() : GameStateBase(StateType::STATE_MENU) {}
 	void Init() override;

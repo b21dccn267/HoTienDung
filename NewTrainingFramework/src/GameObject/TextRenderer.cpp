@@ -36,7 +36,8 @@ SDL_Surface* TextRenderer::RenderText(const char* text)
 	Uint32 Amask = surface->format->Amask;
 	/// convert surface vowis format RGBA
 
-
+	SDL_Surface* result = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA8888, 0);
+	SDL_FreeSurface(surface);
 
 	// no need
 	//SDL_Renderer* renderer;
@@ -59,7 +60,8 @@ SDL_Surface* TextRenderer::RenderText(const char* text)
 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	return surface;
+	//return surface;
+	return result;
 }
 //void TextRenderer::Draw()
 //{

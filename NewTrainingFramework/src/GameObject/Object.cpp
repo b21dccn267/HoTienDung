@@ -86,6 +86,9 @@ void Object::Draw()
 	// to prevent subsequent obj draws from removing last draws
 	//glClear(GL_COLOR_BUFFER_BIT);
 
+	// rebind texture
+	//glActiveTexture(GL_TEXTURE0 + texture->textureId);
+
 	glUseProgram(shader->program);
 
 	glBindBuffer(GL_ARRAY_BUFFER, model->vboId);

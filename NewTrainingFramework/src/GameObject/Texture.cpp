@@ -33,8 +33,6 @@ Texture::Texture(const char* fileName, int param)
 
 Texture::Texture(SDL_Surface* surface)
 {
-	//GLuint textureId;
-
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
 
