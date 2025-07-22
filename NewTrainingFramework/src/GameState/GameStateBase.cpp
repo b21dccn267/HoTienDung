@@ -17,16 +17,16 @@ GameStateBase::~GameStateBase()
 
 }
 
-GameStateBase* GameStateBase::CreateState(StateType type)
+std::shared_ptr<GameStateBase> GameStateBase::CreateState(StateType type)
 {
 	switch (type) {
 	case StateType::STATE_INTRO:
-		return new GSIntro();
+		return std::make_shared<GSIntro>();
 	case StateType::STATE_MENU:
-		return new GSMenu();
+		return std::make_shared<GSMenu>();
 	case StateType::STATE_PLAY:
-		return new GSPlay();
+		return std::make_shared<GSPlay>();
 	case StateType::STATE_DEBUG:
-		return new GSDebug();
+		return std::make_shared<GSDebug>();
 	}
 }

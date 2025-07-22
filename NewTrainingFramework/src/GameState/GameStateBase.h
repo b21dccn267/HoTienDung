@@ -16,7 +16,7 @@ public:
 	StateType m_type;
 
 	GameStateBase(StateType type);
-	static GameStateBase* CreateState(StateType type);
+	static std::shared_ptr<GameStateBase> CreateState(StateType type);
 
 	virtual void Init() = 0;
 	virtual void Pause() = 0;

@@ -30,7 +30,7 @@ void GSPlay::Init()
 	std::shared_ptr<Object> text = std::make_shared<Object>(model, texture, shader);
 
 	m_gsPlayObjects.emplace_back(text);
-	m_gsPlayObjects[3]->Set2DPosition(Vector2(100.0f, 400.0f));
+	m_gsPlayObjects[3]->Set2DPosition(Vector2(300.0f, 400.0f));
 	m_gsPlayObjects[3]->SetSize(600.0f, 100.0f);
 
 

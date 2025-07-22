@@ -24,10 +24,10 @@ public:
 		instance = nullptr;
 	}
 
-	std::stack<GameStateBase*> m_stack;
+	std::stack<std::shared_ptr<GameStateBase>> m_stack;
 
 	GameStateBase* m_pActiveState;
-	GameStateBase* m_pNextState;
+	std::shared_ptr<GameStateBase> m_pNextState;
 
 	
 	void PushState(StateType state);

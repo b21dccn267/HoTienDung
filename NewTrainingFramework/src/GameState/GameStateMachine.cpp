@@ -8,14 +8,14 @@ GameStateMachine* GameStateMachine::instance = nullptr;
 void GameStateMachine::PushState(StateType state)
 {
 	m_pNextState = GameStateBase::CreateState(state);
-	///m_pActiveState = state->m_type;
+
 	//Pause laij active 
 	m_pNextState->Init();
 	if (!m_stack.empty()) {
-		m_stack.top()->Pause();
+		//m_stack.top()->Pause();
 	}
-
 	m_stack.push(m_pNextState);
+
 
 }
 void GameStateMachine::PopState()
