@@ -23,4 +23,4 @@ VS "../Resources/Shaders/TriangleShaderVS.vs"
 FS "../Resources/Shaders/TriangleShaderFS.fs"
 ID 1
 VS "../Resources/Shaders/AnimationShaderVS.vs"
-FS "../Resources/Shaders/TriangleShaderFS.fs"
+FS "../Resources/Shaders/AnimationShaderFS.fs"

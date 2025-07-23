@@ -209,6 +209,7 @@
     <None Include="..\..\Readme.doc" />
     <None Include="..\Resources\Packs\Models\Woman1.nfg" />
     <None Include="..\Resources\Packs\Models\Woman2.nfg" />
+    <None Include="..\Resources\Shaders\AnimationShaderFS.fs" />
     <None Include="..\Resources\Shaders\AnimationShaderVS.vs" />
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs" />
     <None Include="..\Resources\Shaders\TriangleShaderVS.vs" />

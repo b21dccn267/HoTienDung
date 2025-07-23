@@ -16,6 +16,9 @@ void main()
 {
 	gl_Position = u_mvp * vec4(a_posL, 1.0);
 	
-	v_uv = vec2 (a_uv.x*(1.0/u_numActions)+ u_currentAction/u_numActions, a_uv.y*(1.0/u_numFrames)+ u_currentFrame/u_numFrames);
+	// column anim
+	//v_uv = vec2 (a_uv.x*(1.0/u_numActions)+ u_currentAction/u_numActions, a_uv.y*(1.0/u_numFrames)+ u_currentFrame/u_numFrames);
+
+	// row anim
+	v_uv = vec2(a_uv.x * (1.0 / u_numFrames)+ u_currentFrame / u_numFrames, a_uv.y * (1.0 / u_numActions)+ u_currentAction / u_numActions);
 }
-   

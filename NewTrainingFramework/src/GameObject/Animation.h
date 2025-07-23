@@ -7,9 +7,9 @@ class Animation : public Object
 {
 public:
 	//Texture* m_pTexture;// might wanna replace with object texture
-
-	int m_numFrames = 3;		// row
-	int m_numActions = 4;		// column
+	// flip both two values when changing format in shader
+	int m_numFrames = 4;		// row
+	int m_numActions = 3;		// column
 	float m_frameTime;
 	int m_currentFrame;
 	int m_currentAction;

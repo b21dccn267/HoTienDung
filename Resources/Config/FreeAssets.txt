@@ -21,13 +21,22 @@ https://backterria.itch.io/the-roguelike different scenery texture pack
 https://clockworkraven.itch.io/raven-fantasy-icons main charater loadout items
 https://toffeecraft.itch.io/forest-nature-pack tree pack
 https://otterisk.itch.io/hana-caraka-base-character character pack (simple fighting, picking up items...)
+https://axulart.itch.io/small-8-direction-characters character pack thats better than above
+https://rgsdev.itch.io/hand-drawn-square-characters-animated-8-directions-top-down-free-cc0 char pack, good to use as baseball bases
+https://lyaseek.itch.io/minifhumans medieval character pack
+https://essssam.itch.io/rocky-roads animals pack
 https://arcadeisland.itch.io/guns-asset-pack-v1 gun pack
 https://didigameboy.itch.io/jambo-jungle-free-sprites-asset-pack contra pack (mainly for the explosions)
+https://bdragon1727.itch.io/fire-pixel-bullet-16x16 effects pack (bullets, explosions etc)
 
 https://dillonbecker.itch.io/sdap sound pack
 
 https://cnc-comm.com/command-and-conquer/downloads/modding-tools/XCC-utilities assets rip tool
 
 https://toffeecraft.itch.io/ui-user-interface-mega-pack ui pack
+https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar ui pack
 
 https://poppyworks.itch.io/silver font pack
+
+https://dreammix.itch.io/keyboard-keys-for-ui keyboard pack
+https://sungraphica.itch.io/450-game-icon-ultimate-pack kb and icon pack

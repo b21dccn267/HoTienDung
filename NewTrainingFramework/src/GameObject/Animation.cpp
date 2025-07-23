@@ -28,6 +28,18 @@ Animation::Animation(std::shared_ptr<Model> model,
 
 void Animation::Draw()
 {
+	Matrix mvpMatrix = world *
+		SceneManager::GetInstance()->camera->m_viewMatrix *
+		SceneManager::GetInstance()->camera->m_perspectiveMatrix;
+	// this line will be called by the current game state
+	// to prevent subsequent obj draws from removing last draws
+	//glClear(GL_COLOR_BUFFER_BIT);
+
+	glUseProgram(m_pShader->program);
+
+	glBindBuffer(GL_ARRAY_BUFFER, m_pModel->vboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_pModel->iboId);
+
 	GLint iTempShaderVariableGLID = -1;
 	iTempShaderVariableGLID = glGetUniformLocation(m_pShader->program, "u_numFrames");
 	if (iTempShaderVariableGLID != -1) {
@@ -49,28 +61,16 @@ void Animation::Draw()
 		glUniform1f(iTempShaderVariableGLID, m_currentAction);
 	}
 
-	Matrix mvpMatrix = world *
-		SceneManager::GetInstance()->camera->m_viewMatrix *
-		SceneManager::GetInstance()->camera->m_perspectiveMatrix;
-	// this line will be called by the current game state
-	// to prevent subsequent obj draws from removing last draws
-	//glClear(GL_COLOR_BUFFER_BIT);
-
-	glUseProgram(m_pShader->program);
-
-	glBindBuffer(GL_ARRAY_BUFFER, m_pModel->vboId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_pModel->iboId);
-
 	// take location value from vertex/fragment shader. With Position we have location = 0
 	{
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 	}
 	// texture
-	glActiveTexture(GL_TEXTURE0);
+	glActiveTexture(GL_TEXTURE0+ m_pTexture->textureId);
 	glBindTexture(GL_TEXTURE_2D, m_pTexture->textureId);
 	int iTextureLoc = glGetUniformLocation(m_pShader->program, "u_texture");
-	glUniform1i(iTextureLoc, 0);
+	glUniform1i(iTextureLoc, 0+ m_pTexture->textureId);
 	{
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (char*)0 + sizeof(Vector3));

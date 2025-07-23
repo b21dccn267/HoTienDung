@@ -14,9 +14,9 @@ void GSPlay::Init()
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(4);
 	auto shader = ResourceManager::GetInstance()->GetShader(1);
-	auto anim = std::make_shared<Animation>(model, texture, shader, 0.2f, 0);
+	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 0);
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	anim->SetSize(100, 100);
+	anim->SetSize(1000, 1000);
 	m_gsPlayAnimations.push_back(anim);
 	//anim->Set2DPosition()
 
@@ -34,12 +34,11 @@ void GSPlay::Init()
 	m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[2]); // help
 	m_gsPlayObjects.emplace_back(text); // text 
 
+
+
 	m_gsPlayObjects[0]->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-
 	m_gsPlayObjects[0]->SetSize(1000.0f, 1000.0f);
-
 	// conrollable object
-
 	m_gsPlayObjects[1]->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	m_gsPlayObjects[1]->SetSize(500.0f, 500.0f);
 	//
@@ -48,7 +47,7 @@ void GSPlay::Init()
 	m_gsPlayObjects[3]->Set2DPosition(Vector2(600.0f, 100.0f));
 	m_gsPlayObjects[3]->SetSize(200.0f, 200.0f);
 	// text
-	m_gsPlayObjects[4]->Set2DPosition(Vector2(300.0f, 400.0f));
+	m_gsPlayObjects[4]->Set2DPosition(Vector2(300.0f, 500.0f));
 	m_gsPlayObjects[4]->SetSize(600.0f, 100.0f);
 
 	//m_gsPlayAnimations.reserve(1);
@@ -100,19 +99,19 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 		switch (key) {
 		case 0x57: 
 			//printf("W pressed\n");
-			m_gsPlayObjects[1]->m_position.y += 1.0f;
+			//m_gsPlayObjects[1]->m_position.y += 1.0f;
 			break;
 		case 0x41:
 			//printf("A pressed\n");
-			m_gsPlayObjects[1]->m_position.x -= 1.0f;
+			//m_gsPlayObjects[1]->m_position.x -= 1.0f;
 			break;
 		case 0x53:
 			//printf("S pressed\n");
-			m_gsPlayObjects[1]->m_position.y -= 1.0f;
+			//m_gsPlayObjects[1]->m_position.y -= 1.0f;
 			break;
 		case 0x44:
 			//printf("D pressed\n");
-			m_gsPlayObjects[1]->m_position.x += 1.0f;
+			//m_gsPlayObjects[1]->m_position.x += 1.0f;s
 			break;
 		}
 	}
