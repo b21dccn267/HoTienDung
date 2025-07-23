@@ -16,9 +16,9 @@ Object::Object()
 
 Object::Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader)
 {
-	this->model = model;
-	this->texture = texture;
-	this->shader = shader;
+	this->m_pModel = model;
+	this->m_pTexture = texture;
+	this->m_pShader = shader;
 
 	this->m_position = Vector3(0.0f, 0.0f, 0.0f);
 	this->rotation = Vector3(0.0f, 0.0f, 0.0f);
@@ -29,9 +29,9 @@ Object::Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, s
 
 Object::Object(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader, Vector3 pos, Vector3 rotation, Vector3 scale)
 {
-	this->model = model;
-	this->texture = texture;
-	this->shader = shader;
+	this->m_pModel = model;
+	this->m_pTexture = texture;
+	this->m_pShader = shader;
 	
 	this->m_position = pos;
 	this->rotation = rotation;
@@ -86,10 +86,10 @@ void Object::Draw()
 	// to prevent subsequent obj draws from removing last draws
 	//glClear(GL_COLOR_BUFFER_BIT);
 
-	glUseProgram(shader->program);
+	glUseProgram(m_pShader->program);
 
-	glBindBuffer(GL_ARRAY_BUFFER, model->vboId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->iboId);
+	glBindBuffer(GL_ARRAY_BUFFER, m_pModel->vboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_pModel->iboId);
 
 	// take location value from vertex/fragment shader. With Position we have location = 0
 	{
@@ -98,20 +98,20 @@ void Object::Draw()
 	}
 	// texture
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture->textureId);
-	int iTextureLoc = glGetUniformLocation(shader->program, "u_texture");
-	glUniform1i(iTextureLoc, 0);
+	glBindTexture(GL_TEXTURE_2D, m_pTexture->textureId);
+	int iTextureLoc = glGetUniformLocation(m_pShader->program, "u_texture");
+	glUniform1i(iTextureLoc, 0 );
 	{
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (char*)0 + sizeof(Vector3));
 	}
 
 	// mvp matrix
-	int iMatrixLoc = glGetUniformLocation(shader->program, "u_mvp");
+	int iMatrixLoc = glGetUniformLocation(m_pShader->program, "u_mvp");
 	glUniformMatrix4fv(iMatrixLoc, 1, GL_FALSE, &mvpMatrix.m[0][0]);
 	// ibo object
 	{
-		glDrawElements(GL_TRIANGLES, model->numberOfIndex, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, m_pModel->numberOfIndex, GL_UNSIGNED_INT, 0);
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -124,4 +124,10 @@ void Object::Update()
 	Vector3 deltaMove = -(m_position - Vector3(0.0f, 0.0f, 0.0f)).Normalize() * deltaTime * SceneManager::GetInstance()->camera->moveSpeed; 
 
 	m_position += deltaMove;
+}
+
+void Object::Update(GLfloat deltaTime)
+{
+	//deltaTime = 0.1f;
+	m_position;
 }

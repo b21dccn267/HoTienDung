@@ -19,7 +19,7 @@ void GameButton::SetOnClick(void(*pBtnClickFun)())
 bool GameButton::HandleTouchEvents(GLint x, GLint y, bool bIsPressed)
 {
 	bool isHandled = false;
-	if (!bIsPressed)
+	if (bIsPressed)
 	{
 		if ((x > m_position.x - m_iWidth / 2) && (x < m_position.x + m_iWidth / 2)
 			&& (y > m_position.y - m_iHeight / 2) && (y < m_position.y + m_iHeight / 2))

@@ -51,10 +51,10 @@ void GSMenu::Draw()
 void GSMenu::Update(float deltaTime)
 {
 	for (auto& x : m_gsMenuObjects) {
-		x->Update();
+		x->Update(deltaTime);
 	}
 	for (auto& x : m_gsMenuGameButtons) {
-		x->Update();
+		x->Update(deltaTime);
 	}
 }
 
@@ -68,12 +68,11 @@ void GSMenu::HandleKeyEvent(unsigned char key, bool bIsPressed)
 			break;
 		}
 	}
-
 }
 
 void GSMenu::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
-	printf("gsMenuMouseEvent\n");
+	
 	for (auto& btn : m_gsMenuGameButtons) {
 		btn->HandleTouchEvents(x, y, bIsPressed);
 	}

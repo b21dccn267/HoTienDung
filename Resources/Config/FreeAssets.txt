@@ -8,10 +8,11 @@
 - go to itchio to find game ideas (find out what works)
 
 what do: add
-	- text
+	- text done
 	- animations
 	- sound
 
+WARNING some links below are paid only, limited free sample assets
 
 https://backterria.itch.io/the-mystery random
 

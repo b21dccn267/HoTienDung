@@ -35,10 +35,8 @@ void GSIntro::Exit()
 // init menu state then push
 void GSIntro::Resume()
 {
-	printf("Sleeping\n");
-	Sleep(2000);
-	printf("Slept for 2s, loading menu...\n");
-	GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_MENU);
+	//printf("Sleeping\n");
+	
 }
 
 void GSIntro::Draw()
@@ -47,11 +45,14 @@ void GSIntro::Draw()
 	for (auto& x : m_gsIntroObjects) {
 		x->Draw();
 	}
-	Resume();
+	//Resume();
 }
 
 void GSIntro::Update(float deltaTime)
 {
+	Sleep(1000);
+	printf("Slept for 1s, loading menu...\n");
+	GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_MENU);
 	for (auto& x : m_gsIntroObjects) {
 		x->Update();
 	}

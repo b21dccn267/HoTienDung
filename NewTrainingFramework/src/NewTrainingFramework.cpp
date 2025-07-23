@@ -32,7 +32,6 @@ int Init ( ESContext *esContext )
 void Draw ( ESContext *esContext )
 {
 	GameStateMachine::GetInstance()->m_stack.top()->Draw();
-
 	eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );
 }
 

@@ -44,6 +44,9 @@ SDL_Surface* TextRenderer::RenderText(const char* text)
 	if (TTF_Init() != 0) {
 		printf("thing broke\n");
 	}
+	// font options:
+	// "../Resources/Fonts/Roboto-VariableFont_wdth,wght.ttf"
+	// "../Resources/Fonts/Silver.ttf" is broken rn
 	TTF_Font* font = TTF_OpenFont("../Resources/Fonts/Roboto-VariableFont_wdth,wght.ttf", 24);
 	if (!font) {
 		printf("thing broke\n");
