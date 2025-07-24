@@ -2,6 +2,7 @@
 #include "GameStateBase.h"
 #include "Object.h"
 #include "Animation.h"
+#include "SoundManager.h"
 #include <memory>
 #include <vector>
 
@@ -11,6 +12,8 @@ class GSPlay : public GameStateBase
 public:
 	std::vector<std::shared_ptr<Object>> m_gsPlayObjects;
 	std::vector<std::shared_ptr<Animation>> m_gsPlayAnimations;
+
+	//SoundManager m_soundManager;
 
 	GSPlay() : GameStateBase(StateType::STATE_MENU) {}
 	void Init() override;

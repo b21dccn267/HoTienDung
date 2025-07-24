@@ -157,7 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="src\GameManager\SoundManager.cpp" />
     <ClCompile Include="src\GameObject\Animation.cpp" />
     <ClCompile Include="src\GameState\GSDebug.cpp" />
     <ClCompile Include="src\GameObject\Camera.cpp" />
@@ -183,7 +183,7 @@
     <ClCompile Include="src\GameObject\TextRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="src\GameManager\SoundManager.h" />
     <ClInclude Include="src\GameObject\Animation.h" />
     <ClInclude Include="src\GameState\GSDebug.h" />
     <ClInclude Include="src\GameObject\Camera.h" />

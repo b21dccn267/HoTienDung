@@ -6,16 +6,20 @@
 #include "ResourceManager.h"
 #include "TextRenderer.h"
 #include "Animation.h"
+#include "SoundManager.h"
 #include <SDL2/SDL_mixer.h>
 
 void GSPlay::Init()
 {
 	// sound test
-	SDL_Init(SDL_INIT_AUDIO);
-	Mix_OpenAudio(44100, AUDIO_S16SYS, 1, 100);
-	Mix_AllocateChannels(1);
+	//SDL_Init(SDL_INIT_AUDIO);
+	//Mix_OpenAudio(44100, AUDIO_S16SYS, 1, 100);
+	//Mix_AllocateChannels(1);
 
 	//Mix_Chunk* fx = Mix_LoadWAV();
+
+	//m_soundManager = SoundManager();
+	//SoundManager::GetInstance()->PlaySfx("../Resources/Sfx/vine-boom.wav");
 
 	m_gsPlayObjects.reserve(4);
 
@@ -110,6 +114,7 @@ void GSPlay::Update(float deltaTime)
 void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 	printf("gsPlayKeyPresed: %c\n", key);
+	SoundManager::PlaySfx("../Resources/Sfx/vine-boom.wav");
 	if (bIsPressed) {
 		switch (key) {
 		case 0x57: 

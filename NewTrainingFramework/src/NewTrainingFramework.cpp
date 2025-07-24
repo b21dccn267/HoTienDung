@@ -8,6 +8,7 @@
 #include "Globals.h"
 #include "GameStateMachine.h"
 #include "GameStateBase.h"
+#include "SoundManager.h"
 #include <conio.h>
 #include <memory>
 
@@ -24,6 +25,7 @@ int Init ( ESContext *esContext )
 	SceneManager::GetInstance()->InitCamera();
 
 	// soundmanager init
+	SoundManager::GetInstance()->Init();
 
 	// start with StateType::STATE_INTRO
 	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
