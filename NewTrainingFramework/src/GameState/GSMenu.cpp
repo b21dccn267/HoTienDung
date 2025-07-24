@@ -61,13 +61,13 @@ void GSMenu::Update(float deltaTime)
 void GSMenu::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 	printf("gsMenuKeyPresed: %c\n", key);
-	if (bIsPressed) {
-		switch (key) {
-		case 0x31: // 1 pressed
-			printf("1 pressed\n");
-			break;
-		}
-	}
+	//if (bIsPressed) {
+	//	switch (key) {
+	//	case 0x31: // 1 pressed
+	//		printf("1 pressed\n");
+	//		break;
+	//	}
+	//}
 }
 
 void GSMenu::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)

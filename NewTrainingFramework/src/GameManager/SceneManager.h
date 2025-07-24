@@ -25,10 +25,8 @@ public:
 		instance = nullptr;
 	}
 
-	std::vector<std::shared_ptr<Object>> m_objects;
 	std::shared_ptr<Camera> camera;
 
-	int LoadFileSM(const char* fileName);
 	void InitCamera();
 
 private:

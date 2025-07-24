@@ -16,6 +16,9 @@ what to refine
 	- handle key event done
 	- clean code
 
+books
+https://gameprogrammingpatterns.com/
+
 WARNING some links below are paid only, limited free sample assets
 
 https://backterria.itch.io/the-mystery random

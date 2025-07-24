@@ -23,6 +23,8 @@ int Init ( ESContext *esContext )
 
 	SceneManager::GetInstance()->InitCamera();
 
+	// soundmanager init
+
 	// start with StateType::STATE_INTRO
 	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
 

@@ -34,11 +34,7 @@ SDL_Surface* TextRenderer::FlipVertical(SDL_Surface* surface)
 	return result;
 }
 
-// suggested changes:
-// make this class a CC of Object minus texture
-// chosen changes:
-// have this class only poops out SDL_Surface
-// then add a new Texture ctor for it
+
 SDL_Surface* TextRenderer::RenderText(const char* text)
 {
 	if (TTF_Init() != 0) {
@@ -66,7 +62,5 @@ SDL_Surface* TextRenderer::RenderText(const char* text)
 	SDL_FreeSurface(result);
 
 
-	//return result;
-	//return FlipVertical(result);
 	return flippedResult;
 }

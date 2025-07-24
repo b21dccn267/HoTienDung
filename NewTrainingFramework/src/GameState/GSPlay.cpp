@@ -10,6 +10,7 @@
 
 void GSPlay::Init()
 {
+	// sound test
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(44100, AUDIO_S16SYS, 1, 100);
 	Mix_AllocateChannels(1);
@@ -18,64 +19,56 @@ void GSPlay::Init()
 
 	m_gsPlayObjects.reserve(4);
 
+	// character
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(4);
 	auto shader = ResourceManager::GetInstance()->GetShader(1);
-	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 0);
+	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 1);
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	anim->SetSize(1000, 1000);
-	m_gsPlayAnimations.push_back(anim);
+	
 
-
-
-
-	//m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[0]); // background
+	// background
 	model = ResourceManager::GetInstance()->GetModel(0);
 	texture = ResourceManager::GetInstance()->GetTexture(0);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto background = std::make_shared<Object>(model, texture, shader);
-	m_gsPlayObjects.emplace_back(background);
+	background->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
+	background->SetSize(1000.0f, 1000.0f);
+	
 
-	//m_gsPlayObjects.emplace_back(anim); // character
-
-	//m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[1]); // close
+	// close
 	model = ResourceManager::GetInstance()->GetModel(0);
 	texture = ResourceManager::GetInstance()->GetTexture(1);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnClose = std::make_shared<Object>(model, texture, shader);
-	m_gsPlayObjects.emplace_back(btnClose);
+	btnClose->Set2DPosition(Vector2(300.0f, 100.0f));
+	btnClose->SetSize(200.0f, 200.0f);
+	
 
-	//m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[2]); // help
+	// help
 	model = ResourceManager::GetInstance()->GetModel(0);
 	texture = ResourceManager::GetInstance()->GetTexture(2);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnHelp = std::make_shared<Object>(model, texture, shader);
-	m_gsPlayObjects.emplace_back(btnHelp);
+	btnHelp->Set2DPosition(Vector2(600.0f, 100.0f));
+	btnHelp->SetSize(200.0f, 200.0f);
+	
 
 	// text
 	auto model1 = ResourceManager::GetInstance()->GetModel(0);
 	auto texture1 = std::make_shared<Texture>(TextRenderer::RenderText("something meaningful"));
 	auto shader1 = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<Object> text = std::make_shared<Object>(model1, texture1, shader1);
+	auto text = std::make_shared<Object>(model1, texture1, shader1);
+	text->Set2DPosition(Vector2(300.0f, 500.0f));
+	text->SetSize(600.0f, 100.0f);
+	
+
+	m_gsPlayAnimations.push_back(anim);
+	m_gsPlayObjects.emplace_back(background);
+	m_gsPlayObjects.emplace_back(btnClose);
+	m_gsPlayObjects.emplace_back(btnHelp);
 	m_gsPlayObjects.emplace_back(text);
-
-
-	// background
-	m_gsPlayObjects[0]->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	m_gsPlayObjects[0]->SetSize(1000.0f, 1000.0f);
-	// conrollable object
-	//m_gsPlayObjects[1]->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	//m_gsPlayObjects[1]->SetSize(500.0f, 500.0f);
-	//
-	// close
-	m_gsPlayObjects[1]->Set2DPosition(Vector2(300.0f, 100.0f));
-	m_gsPlayObjects[1]->SetSize(200.0f, 200.0f);
-	// help
-	m_gsPlayObjects[2]->Set2DPosition(Vector2(600.0f, 100.0f));
-	m_gsPlayObjects[2]->SetSize(200.0f, 200.0f);
-	// text
-	m_gsPlayObjects[3]->Set2DPosition(Vector2(300.0f, 500.0f));
-	m_gsPlayObjects[3]->SetSize(600.0f, 100.0f);
 
 	printf("play init\n");
 }
@@ -134,8 +127,6 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 		case 0x44:
 			//printf("D pressed\n");
 			m_gsPlayAnimations[0]->m_position.x += 10.0f;
-			//m_gsPlayAnimations[0]->SetSize(m_gsPlayAnimations[0]->m_position.x, m_gsPlayAnimations[0]->m_position.y);
-
 			break;
 		}
 	}
