@@ -6,9 +6,16 @@
 #include "ResourceManager.h"
 #include "TextRenderer.h"
 #include "Animation.h"
+#include <SDL2/SDL_mixer.h>
 
 void GSPlay::Init()
 {
+	SDL_Init(SDL_INIT_AUDIO);
+	Mix_OpenAudio(44100, AUDIO_S16SYS, 1, 100);
+	Mix_AllocateChannels(1);
+
+	//Mix_Chunk* fx = Mix_LoadWAV();
+
 	m_gsPlayObjects.reserve(4);
 
 	auto model = ResourceManager::GetInstance()->GetModel(0);
@@ -103,6 +110,7 @@ void GSPlay::Update(float deltaTime)
 	}
 	for (auto& x : m_gsPlayAnimations) {
 		x->Update(deltaTime);
+		x->Set2DPosition(Vector2(x->m_position.x, x->m_position.y));
 	}
 }
 
@@ -113,19 +121,21 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 		switch (key) {
 		case 0x57: 
 			//printf("W pressed\n");
-			//m_gsPlayObjects[1]->m_position.y += 1.0f;
+			m_gsPlayAnimations[0]->m_position.y -= 10.0f;
 			break;
 		case 0x41:
 			//printf("A pressed\n");
-			//m_gsPlayObjects[1]->m_position.x -= 1.0f;
+			m_gsPlayAnimations[0]->m_position.x -= 10.0f;
 			break;
 		case 0x53:
 			//printf("S pressed\n");
-			//m_gsPlayObjects[1]->m_position.y -= 1.0f;
+			m_gsPlayAnimations[0]->m_position.y += 10.0f;
 			break;
 		case 0x44:
 			//printf("D pressed\n");
-			//m_gsPlayObjects[1]->m_position.x += 1.0f;s
+			m_gsPlayAnimations[0]->m_position.x += 10.0f;
+			//m_gsPlayAnimations[0]->SetSize(m_gsPlayAnimations[0]->m_position.x, m_gsPlayAnimations[0]->m_position.y);
+
 			break;
 		}
 	}

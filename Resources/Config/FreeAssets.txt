@@ -10,7 +10,11 @@
 what do: add
 	- text done
 	- animations done
-	- sound
+	- sound done ish 
+what to refine
+	- fix mem leak done
+	- handle key event done
+	- clean code
 
 WARNING some links below are paid only, limited free sample assets
 
