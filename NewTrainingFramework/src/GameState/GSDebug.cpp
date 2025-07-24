@@ -8,19 +8,19 @@ void GSDebug::Init()
 {
 	m_gsDebugObjects.reserve(1);
 
-	m_gsDebugObjects.emplace_back(SceneManager::GetInstance()->m_objects[3]);
-	m_gsDebugObjects[0]->Set2DPosition(Vector2(100.0f, 100.0f));
-	m_gsDebugObjects[0]->SetSize(200.0f, 200.0f);
+	//m_gsDebugObjects.emplace_back(SceneManager::GetInstance()->m_objects[3]);
+	//m_gsDebugObjects[0]->Set2DPosition(Vector2(100.0f, 100.0f));
+	//m_gsDebugObjects[0]->SetSize(200.0f, 200.0f);
 
 	printf("debug init\n");
 }
 
 void GSDebug::SwapObject(int id)
 {
-	m_gsDebugObjects.clear();
-	m_gsDebugObjects.emplace_back(SceneManager::GetInstance()->m_objects[id]);
-	m_gsDebugObjects[0]->Set2DPosition(Vector2(100.0f, 100.0f));
-	m_gsDebugObjects[0]->SetSize(200.0f, 200.0f);
+	//m_gsDebugObjects.clear();
+	//m_gsDebugObjects.emplace_back(SceneManager::GetInstance()->m_objects[id]);
+	//m_gsDebugObjects[0]->Set2DPosition(Vector2(100.0f, 100.0f));
+	//m_gsDebugObjects[0]->SetSize(200.0f, 200.0f);
  
 	//std::shared_ptr<Texture> texture = std::make_shared<Texture>("../Resources/2d/Textures/bg_play1.tga", 1);
 	//m_gsDebugObjects[0]->texture = ResourceManager::GetInstance()->GetTexture(id);

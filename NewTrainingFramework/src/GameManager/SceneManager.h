@@ -29,6 +29,7 @@ public:
 	std::shared_ptr<Camera> camera;
 
 	int LoadFileSM(const char* fileName);
+	void InitCamera();
 
 private:
 	SceneManager() {};

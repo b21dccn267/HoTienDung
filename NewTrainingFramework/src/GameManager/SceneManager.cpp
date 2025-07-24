@@ -80,3 +80,10 @@ int SceneManager::LoadFileSM(const char* fileName)
 
 	return 0;
 }
+
+void SceneManager::InitCamera()
+{
+	camera = std::make_shared<Camera>();
+	camera->m_cameraPos = Vector3(0.0f, 0.0f, 0.0f);
+	camera->m_cameraTarget = Vector3(0.0f, 0.0f, -1.0f);
+}

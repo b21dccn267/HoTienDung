@@ -11,7 +11,7 @@ Animation::Animation(std::shared_ptr<Model> model,
 					 int frameTime,
 					 int currentAction
 	)
-	: Object(model, texture, shader), m_currentFrame(1), m_currentTime(0.0f), m_currentAction(0), m_frameTime(0.0f)
+	: Object(model, texture, shader), m_currentFrame(1), m_currentTime(0.0f), m_currentAction(1), m_frameTime(0.0f)
 {
 	//m_pTexture = texture;
 	//m_numFrames = numFrames;

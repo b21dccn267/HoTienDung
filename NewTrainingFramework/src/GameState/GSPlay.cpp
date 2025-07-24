@@ -18,43 +18,57 @@ void GSPlay::Init()
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	anim->SetSize(1000, 1000);
 	m_gsPlayAnimations.push_back(anim);
-	//anim->Set2DPosition()
 
+
+
+
+	//m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[0]); // background
+	model = ResourceManager::GetInstance()->GetModel(0);
+	texture = ResourceManager::GetInstance()->GetTexture(0);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	auto background = std::make_shared<Object>(model, texture, shader);
+	m_gsPlayObjects.emplace_back(background);
+
+	//m_gsPlayObjects.emplace_back(anim); // character
+
+	//m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[1]); // close
+	model = ResourceManager::GetInstance()->GetModel(0);
+	texture = ResourceManager::GetInstance()->GetTexture(1);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	auto btnClose = std::make_shared<Object>(model, texture, shader);
+	m_gsPlayObjects.emplace_back(btnClose);
+
+	//m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[2]); // help
+	model = ResourceManager::GetInstance()->GetModel(0);
+	texture = ResourceManager::GetInstance()->GetTexture(2);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	auto btnHelp = std::make_shared<Object>(model, texture, shader);
+	m_gsPlayObjects.emplace_back(btnHelp);
+
+	// text
 	auto model1 = ResourceManager::GetInstance()->GetModel(0);
 	auto texture1 = std::make_shared<Texture>(TextRenderer::RenderText("something meaningful"));
 	auto shader1 = ResourceManager::GetInstance()->GetShader(0);
-
 	std::shared_ptr<Object> text = std::make_shared<Object>(model1, texture1, shader1);
-
-	m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[0]); // background
-	//m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[4]); // character
-
-	m_gsPlayObjects.emplace_back(anim); // character
-	m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[1]); // close
-	m_gsPlayObjects.emplace_back(SceneManager::GetInstance()->m_objects[2]); // help
-	m_gsPlayObjects.emplace_back(text); // text 
+	m_gsPlayObjects.emplace_back(text);
 
 
-
+	// background
 	m_gsPlayObjects[0]->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	m_gsPlayObjects[0]->SetSize(1000.0f, 1000.0f);
 	// conrollable object
-	m_gsPlayObjects[1]->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	m_gsPlayObjects[1]->SetSize(500.0f, 500.0f);
+	//m_gsPlayObjects[1]->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
+	//m_gsPlayObjects[1]->SetSize(500.0f, 500.0f);
 	//
-	m_gsPlayObjects[2]->Set2DPosition(Vector2(300.0f, 100.0f));
+	// close
+	m_gsPlayObjects[1]->Set2DPosition(Vector2(300.0f, 100.0f));
+	m_gsPlayObjects[1]->SetSize(200.0f, 200.0f);
+	// help
+	m_gsPlayObjects[2]->Set2DPosition(Vector2(600.0f, 100.0f));
 	m_gsPlayObjects[2]->SetSize(200.0f, 200.0f);
-	m_gsPlayObjects[3]->Set2DPosition(Vector2(600.0f, 100.0f));
-	m_gsPlayObjects[3]->SetSize(200.0f, 200.0f);
 	// text
-	m_gsPlayObjects[4]->Set2DPosition(Vector2(300.0f, 500.0f));
-	m_gsPlayObjects[4]->SetSize(600.0f, 100.0f);
-
-	//m_gsPlayAnimations.reserve(1);
-	//std::shared_ptr<Animation> animPure = std::make_shared<Animation>(model, texture, shader, 1, 0);
-	//m_gsPlayAnimations.emplace_back(animPure);
-	//m_gsPlayAnimations[0]->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	//m_gsPlayAnimations[0]->SetSize(500.0f, 500.0f);
+	m_gsPlayObjects[3]->Set2DPosition(Vector2(300.0f, 500.0f));
+	m_gsPlayObjects[3]->SetSize(600.0f, 100.0f);
 
 	printf("play init\n");
 }

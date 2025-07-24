@@ -21,7 +21,7 @@ int Init ( ESContext *esContext )
 
 	ResourceManager::GetInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
 
-	SceneManager::GetInstance()->LoadFileSM("../Resources/Config/SceneManager.txt");
+	SceneManager::GetInstance()->InitCamera();
 
 	// start with StateType::STATE_INTRO
 	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
@@ -29,7 +29,7 @@ int Init ( ESContext *esContext )
 	return 0;
 }
 
-void Draw ( ESContext *esContext )
+void Draw ( ESContext *esContext ) 
 {
 	GameStateMachine::GetInstance()->m_stack.top()->Draw();
 	eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );

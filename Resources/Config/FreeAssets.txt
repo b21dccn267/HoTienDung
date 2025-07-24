@@ -9,7 +9,7 @@
 
 what do: add
 	- text done
-	- animations
+	- animations done
 	- sound
 
 WARNING some links below are paid only, limited free sample assets
@@ -40,3 +40,5 @@ https://poppyworks.itch.io/silver font pack
 
 https://dreammix.itch.io/keyboard-keys-for-ui keyboard pack
 https://sungraphica.itch.io/450-game-icon-ultimate-pack kb and icon pack
+
+
