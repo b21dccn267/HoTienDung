@@ -1,3 +1,5 @@
+remember to write your ideas on readme file
+
 ===requirements===
 - must be 2d pixel top down
 - must include env, character, items
@@ -7,21 +9,28 @@
 
 - go to itchio to find game ideas (find out what works)
 
+!!! note: you can add pretty assets later, core game comes first
+
 what do: add
 	- text done
 	- animations done
-	- sound done ish 
+	- sound done
 what to refine
 	- fix mem leak done
 	- handle key event done
-	- clean code
+	- clean code 
 
 books
 https://gameprogrammingpatterns.com/
 
 WARNING some links below are paid only, limited free sample assets
 
+non itchio:
+https://www.spriters-resource.com/ 
+
+itch io:
 https://itch.io/c/4733391/the-freest-mans-collection the thing
+	https://itch.io/queue/c/4733391/the-freest-mans-collection?game_id=2957469 use this for some autochess trait, would be pretty rad
 https://backterria.itch.io/the-mystery random
 
 https://game-endeavor.itch.io/mystic-woods 2d top down rpg
@@ -49,4 +58,45 @@ https://poppyworks.itch.io/silver font pack
 https://dreammix.itch.io/keyboard-keys-for-ui keyboard pack
 https://sungraphica.itch.io/450-game-icon-ultimate-pack kb and icon pack
 
+
+shattered pd anal
+- ask ai to analyze commit 52389cd778be6a2487d6e847d21091c01f25f3a4 v3.1.0: updated version, changelog, and translations for v3.1 release!
+- ask it:
+	how does the game laod assets
+	use of enums, interfaces
+	how they transfer to cpp, is it always good to organize code and compromise performance
+	how to transition from either (you want ease of code first, then optimize and remove abstractions)
+
+how to make vamp sur (core of coop turn ffa)
+	https://blog.terresquall.com/2022/11/creating-a-rogue-like-vampire-survivors-part-1/
+	https://github.com/stasiandr/open-unity-survivor-game
+
+remember to write your ideas on readme file
+
+game idea feasibility:
+vamp sur game: coop, then later ffa:
+	-single flow, single map, one player, hordes of mobs
+	-gain xp from kills, level up and get upgrades
+	-add two players, add manual combat (only on ffa mode)
+	-add ffa centric items
+	+ideas taken from vamp sur, ffa idea is unique
+
+tower defense game
+	-single map. one player, 4 towers (basic, dmg carry, aoe, support), one type of mob
+	-tower upgrades, more mobs
+	-turn into base building, have core base, towers, goal is to destroy enemy spawn hubs by expanding there and lay siege
+	+ideas taken from thronefall, but attack again is unique
+	+mob spawn reusable with vamp sur game
+
+autochess game + mini baseball + match 3/alchemy puzzle
+	-single map, 2 players hotseat, 3 character shards(legs and arms)
+		many legs = runner
+		many arms = pitcher
+	-game phases (prepping phase, battle phase), economy
+	-build options: traits, items... to allow deranged strats
+
+
+3 looks too bad
+1 is safe bet but can use the work of 2
+2 is sweet spot but base building came too late
 
