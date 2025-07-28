@@ -31,9 +31,6 @@
     <Filter Include="Resources\Packs\Models">
       <UniqueIdentifier>{f247de06-fb9f-44ab-bc94-e91057c9c4b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Objects">
-      <UniqueIdentifier>{f375ffbb-0ac2-40a1-a3e7-fdb6f5c46a99}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Managers">
       <UniqueIdentifier>{0fce9d08-16af-48da-aaf6-1cb07d863eb8}</UniqueIdentifier>
     </Filter>
@@ -52,6 +49,21 @@
     <Filter Include="Source Files\States">
       <UniqueIdentifier>{dd5534df-3b01-471c-8273-949ebdd10ea7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Objects\Core">
+      <UniqueIdentifier>{1816990a-c357-4326-9726-4dc86a1d43ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\Actors">
+      <UniqueIdentifier>{468cb113-fdbc-4ba9-8442-8c0827edc663}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{39931db8-9f9d-4373-ae4d-bfd1ce7555e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Actors">
+      <UniqueIdentifier>{da483bd5-fb48-4bd3-a8f1-f289dda2a80d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Core">
+      <UniqueIdentifier>{a9c70b4e-a615-4091-a60f-eef5a97495e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\NewTrainingFramework.cpp">
@@ -60,26 +72,11 @@
     <ClCompile Include="src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\Model.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Object.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Shaders.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Texture.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameManager\ResourceManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
     <ClCompile Include="src\GameManager\SceneManager.cpp">
       <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Camera.cpp">
-      <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\GameState\GameButton.cpp">
       <Filter>Source Files\States</Filter>
@@ -99,17 +96,32 @@
     <ClCompile Include="src\GameState\GSPlay.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\TextRenderer.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Animation.cpp">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="src\GameManager\SoundManager.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
     <ClCompile Include="src\GameState\GSDebug.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameManager\SoundManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+    <ClCompile Include="src\GameObject\core\Animation.cpp">
+      <Filter>Source Files\Objects\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\core\Camera.cpp">
+      <Filter>Source Files\Objects\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\core\Model.cpp">
+      <Filter>Source Files\Objects\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\core\Object.cpp">
+      <Filter>Source Files\Objects\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\core\Shaders.cpp">
+      <Filter>Source Files\Objects\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\core\TextRenderer.cpp">
+      <Filter>Source Files\Objects\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\core\Texture.cpp">
+      <Filter>Source Files\Objects\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,19 +134,7 @@
     <ClInclude Include="src\Globals.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Model.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Object.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Shaders.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="src\targetver.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Texture.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="src\Vertex.h">
@@ -148,9 +148,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Camera.h">
-      <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="src\GameState\GameButton.h">
       <Filter>Header Files\States</Filter>
@@ -170,17 +167,32 @@
     <ClInclude Include="src\GameState\GSPlay.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\TextRenderer.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Animation.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameState\GSDebug.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
     <ClInclude Include="src\GameManager\SoundManager.h">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\core\Animation.h">
+      <Filter>Header Files\Objects\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\core\Camera.h">
+      <Filter>Header Files\Objects\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\core\Model.h">
+      <Filter>Header Files\Objects\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\core\Object.h">
+      <Filter>Header Files\Objects\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\core\Shaders.h">
+      <Filter>Header Files\Objects\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\core\TextRenderer.h">
+      <Filter>Header Files\Objects\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\core\Texture.h">
+      <Filter>Header Files\Objects\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,12 +203,6 @@
       <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="..\..\Readme.doc" />
-    <None Include="..\Resources\Packs\Models\Woman2.nfg">
-      <Filter>Resources\Packs\Models</Filter>
-    </None>
-    <None Include="..\Resources\Packs\Models\Woman1.nfg">
-      <Filter>Resources\Packs\Models</Filter>
-    </None>
     <None Include="..\Resources\Shaders\AnimationShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
@@ -210,12 +216,6 @@
     </Image>
     <Image Include="..\Resources\Textures\rock1.tga">
       <Filter>Resources\Textures</Filter>
-    </Image>
-    <Image Include="..\Resources\Packs\Textures\Woman1.tga">
-      <Filter>Resources\Packs\Textures</Filter>
-    </Image>
-    <Image Include="..\Resources\Packs\Textures\Woman2.tga">
-      <Filter>Resources\Packs\Textures</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

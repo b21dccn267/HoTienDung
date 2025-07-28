@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "GSMenu.h"
-#include "SceneManager.h"
-#include "ResourceManager.h"
+#include "../GameObject/core/Object.h"
+#include "../GameManager/SceneManager.h"
+#include "../GameManager/ResourceManager.h"
 #include "GameStateMachine.h"
+#include "GameButton.h"
 
 void GSMenu::Init()
 {

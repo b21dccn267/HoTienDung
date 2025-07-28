@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
+#include "../GameObject/core/Camera.h"
 #include <string>
 #include <sstream>
 #include <fstream>

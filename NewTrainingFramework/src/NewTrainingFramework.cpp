@@ -3,12 +3,12 @@
 
 #include "stdafx.h"
 #include "../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
-#include "SceneManager.h"
-#include "ResourceManager.h"
+#include "GameManager/SceneManager.h"
+#include "GameManager/ResourceManager.h"
 #include "Globals.h"
-#include "GameStateMachine.h"
-#include "GameStateBase.h"
-#include "SoundManager.h"
+#include "GameState/GameStateMachine.h"
+#include "GameState/GameStateBase.h"
+#include "GameManager/SoundManager.h"
 #include <conio.h>
 #include <memory>
 

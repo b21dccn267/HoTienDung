@@ -1,8 +1,8 @@
 #pragma once
 #include "GameStateBase.h"
-#include "Object.h"
-#include "Animation.h"
-#include "SoundManager.h"
+#include "../GameObject/core/Object.h"
+#include "../GameObject/core/Animation.h"
+#include "../GameManager/SoundManager.h"
 #include <memory>
 #include <vector>
 

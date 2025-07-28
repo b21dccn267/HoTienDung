@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "SoundManager.h"
+#include "GameManager/SoundManager.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 

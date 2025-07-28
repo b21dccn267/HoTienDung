@@ -1,6 +1,6 @@
 #pragma once
 #include "GameStateBase.h"
-#include "Object.h"
+#include "../GameObject/core/Object.h"
 #include <memory>
 #include <vector>
 

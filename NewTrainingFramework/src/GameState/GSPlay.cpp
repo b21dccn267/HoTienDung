@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "GSPlay.h"
-#include "Texture.h"
+#include "../GameObject/core/Texture.h"
 #include "Globals.h"
-#include "SceneManager.h"
-#include "ResourceManager.h"
-#include "TextRenderer.h"
-#include "Animation.h"
-#include "SoundManager.h"
+#include "../GameManager/SceneManager.h"
+#include "../GameManager/ResourceManager.h"
+#include "../GameObject/core/TextRenderer.h"
+#include "../GameObject/core/Animation.h"
+#include "../GameManager/SoundManager.h"
 #include <SDL2/SDL_mixer.h>
 
 void GSPlay::Init()
@@ -25,11 +25,11 @@ void GSPlay::Init()
 
 	// character
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(4);
+	auto texture = ResourceManager::GetInstance()->GetTexture(5);
 	auto shader = ResourceManager::GetInstance()->GetShader(1);
 	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 1);
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	anim->SetSize(1000, 1000);
+	anim->SetSize(100, 100);
 	
 
 	// background

@@ -84,7 +84,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Include;$(ProjectDir)src\GameManager;$(ProjectDir)src\GameObject;$(ProjectDir)src;$(ProjectDir)src\GameState;$(SolutionDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Include;$(ProjectDir)src;$(SolutionDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -158,35 +158,40 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\GameManager\SoundManager.cpp" />
-    <ClCompile Include="src\GameObject\Animation.cpp" />
-    <ClCompile Include="src\GameState\GSDebug.cpp" />
-    <ClCompile Include="src\GameObject\Camera.cpp" />
-    <ClCompile Include="src\GameObject\Model.cpp" />
+    <ClCompile Include="src\GameObject\core\Animation.cpp" />
+    <ClCompile Include="src\GameObject\core\Camera.cpp" />
+    <ClCompile Include="src\GameObject\core\Model.cpp" />
+    <ClCompile Include="src\GameObject\core\Object.cpp" />
+    <ClCompile Include="src\GameObject\core\Shaders.cpp" />
+    <ClCompile Include="src\GameObject\core\TextRenderer.cpp" />
+    <ClCompile Include="src\GameObject\core\Texture.cpp" />
     <ClCompile Include="src\GameState\GameButton.cpp" />
     <ClCompile Include="src\GameState\GameStateBase.cpp" />
     <ClCompile Include="src\GameState\GameStateMachine.cpp" />
+    <ClCompile Include="src\GameState\GSDebug.cpp" />
     <ClCompile Include="src\GameState\GSIntro.cpp" />
     <ClCompile Include="src\GameState\GSMenu.cpp" />
     <ClCompile Include="src\GameState\GSPlay.cpp" />
     <ClCompile Include="src\NewTrainingFramework.cpp" />
-    <ClCompile Include="src\GameObject\Object.cpp" />
     <ClCompile Include="src\GameManager\ResourceManager.cpp" />
     <ClCompile Include="src\GameManager\SceneManager.cpp" />
-    <ClCompile Include="src\GameObject\Shaders.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\GameObject\Texture.cpp" />
-    <ClCompile Include="src\GameObject\TextRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameManager\SoundManager.h" />
-    <ClInclude Include="src\GameObject\Animation.h" />
+    <ClInclude Include="src\GameObject\core\Animation.h" />
+    <ClInclude Include="src\GameObject\core\Camera.h" />
+    <ClInclude Include="src\GameObject\core\Model.h" />
+    <ClInclude Include="src\GameObject\core\Object.h" />
+    <ClInclude Include="src\GameObject\core\Shaders.h" />
+    <ClInclude Include="src\GameObject\core\TextRenderer.h" />
+    <ClInclude Include="src\GameObject\core\Texture.h" />
     <ClInclude Include="src\GameState\GSDebug.h" />
-    <ClInclude Include="src\GameObject\Camera.h" />
     <ClInclude Include="src\GameState\GameButton.h" />
     <ClInclude Include="src\GameState\GameStateBase.h" />
     <ClInclude Include="src\GameState\GameStateMachine.h" />
@@ -194,23 +199,16 @@
     <ClInclude Include="src\GameState\GSMenu.h" />
     <ClInclude Include="src\GameState\GSPlay.h" />
     <ClInclude Include="src\Globals.h" />
-    <ClInclude Include="src\GameObject\Model.h" />
-    <ClInclude Include="src\GameObject\Object.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="src\GameManager\ResourceManager.h" />
     <ClInclude Include="src\GameManager\SceneManager.h" />
-    <ClInclude Include="src\GameObject\Shaders.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\targetver.h" />
-    <ClInclude Include="src\GameObject\Texture.h" />
     <ClInclude Include="src\Vertex.h" />
-    <ClInclude Include="src\GameObject\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Readme.doc" />
-    <None Include="..\Resources\Packs\Models\Woman1.nfg" />
-    <None Include="..\Resources\Packs\Models\Woman2.nfg" />
     <None Include="..\Resources\Shaders\AnimationShaderFS.fs" />
     <None Include="..\Resources\Shaders\AnimationShaderVS.vs" />
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs" />
@@ -223,8 +221,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Resources\Packs\Textures\Woman1.tga" />
-    <Image Include="..\Resources\Packs\Textures\Woman2.tga" />
     <Image Include="..\Resources\Textures\rock.tga" />
     <Image Include="..\Resources\Textures\rock1.tga" />
   </ItemGroup>
