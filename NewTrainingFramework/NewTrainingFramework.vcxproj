@@ -157,6 +157,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\actors\Creature.cpp" />
+    <ClCompile Include="src\GameObject\actors\Hero.cpp" />
+    <ClCompile Include="src\GameState\GSGame.cpp" />
     <ClCompile Include="src\GameManager\SoundManager.cpp" />
     <ClCompile Include="src\GameObject\core\Animation.cpp" />
     <ClCompile Include="src\GameObject\core\Camera.cpp" />
@@ -183,6 +186,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\actors\Creature.h" />
+    <ClInclude Include="src\GameObject\actors\Hero.h" />
+    <ClInclude Include="src\GameState\GSGame.h" />
     <ClInclude Include="src\GameManager\SoundManager.h" />
     <ClInclude Include="src\GameObject\core\Animation.h" />
     <ClInclude Include="src\GameObject\core\Camera.h" />

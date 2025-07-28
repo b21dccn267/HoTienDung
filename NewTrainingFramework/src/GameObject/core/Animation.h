@@ -3,10 +3,10 @@
 #include "Texture.h"
 #include "../Utilities/utilities.h"
 
+// need custom sprite order function, as many free spritesheets have funny ordering
 class Animation : public Object
 {
 public:
-	//Texture* m_pTexture;// might wanna replace with object texture
 	// flip both two values when changing format in shader
 	int m_numFrames = 9;		// row
 	int m_numActions = 7;		// column
