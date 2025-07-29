@@ -29,8 +29,7 @@ void GSPlay::Init()
 	auto shader = ResourceManager::GetInstance()->GetShader(1);
 	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 1);
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	anim->SetSize(100, 100);
-	
+	anim->SetSize(100, 100);	
 
 	// background
 	model = ResourceManager::GetInstance()->GetModel(0);
@@ -40,7 +39,6 @@ void GSPlay::Init()
 	background->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	background->SetSize(1000.0f, 1000.0f);
 	
-
 	// close
 	model = ResourceManager::GetInstance()->GetModel(0);
 	texture = ResourceManager::GetInstance()->GetTexture(1);
@@ -48,16 +46,6 @@ void GSPlay::Init()
 	auto btnClose = std::make_shared<Object>(model, texture, shader);
 	btnClose->Set2DPosition(Vector2(300.0f, 100.0f));
 	btnClose->SetSize(200.0f, 200.0f);
-	
-
-	// help
-	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(2);
-	shader = ResourceManager::GetInstance()->GetShader(0);
-	auto btnHelp = std::make_shared<Object>(model, texture, shader);
-	btnHelp->Set2DPosition(Vector2(600.0f, 100.0f));
-	btnHelp->SetSize(200.0f, 200.0f);
-	
 
 	// text
 	auto model1 = ResourceManager::GetInstance()->GetModel(0);
@@ -71,7 +59,6 @@ void GSPlay::Init()
 	m_gsPlayAnimations.push_back(anim);
 	m_gsPlayObjects.emplace_back(background);
 	m_gsPlayObjects.emplace_back(btnClose);
-	m_gsPlayObjects.emplace_back(btnHelp);
 	m_gsPlayObjects.emplace_back(text);
 
 	printf("play init\n");

@@ -32,6 +32,5 @@ void GameStateMachine::PopState()
 
 void GameStateMachine::PerformStateChange(StateType state)
 {
-	PopState();
-	PushState(state);
+///
 }
