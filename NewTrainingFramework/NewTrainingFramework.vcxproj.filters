@@ -64,6 +64,18 @@
     <Filter Include="Source Files\Objects\Core">
       <UniqueIdentifier>{a9c70b4e-a615-4091-a60f-eef5a97495e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Items">
+      <UniqueIdentifier>{6a5d6b18-eec8-420b-ba21-d649551b8750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Items\Weapons">
+      <UniqueIdentifier>{5d4e0bfd-eb0e-4551-9b38-21f3b0ce696a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\Items">
+      <UniqueIdentifier>{74b5319b-6842-4474-81ce-d0312f42b930}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\Items\Weapons">
+      <UniqueIdentifier>{3b39027d-222f-4d8c-86bf-3cae6a17e1e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\NewTrainingFramework.cpp">
@@ -130,6 +142,12 @@
       <Filter>Source Files\Objects\Actors</Filter>
     </ClCompile>
     <ClCompile Include="src\GameObject\actors\Creature.cpp">
+      <Filter>Source Files\Objects\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\items\weapons\Gun.cpp">
+      <Filter>Source Files\Objects\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\actors\Projectile.cpp">
       <Filter>Source Files\Objects\Actors</Filter>
     </ClCompile>
   </ItemGroup>
@@ -210,6 +228,12 @@
       <Filter>Header Files\Objects\Actors</Filter>
     </ClInclude>
     <ClInclude Include="src\GameObject\actors\Creature.h">
+      <Filter>Header Files\Objects\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\items\weapons\Gun.h">
+      <Filter>Header Files\Objects\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\actors\Projectile.h">
       <Filter>Header Files\Objects\Actors</Filter>
     </ClInclude>
   </ItemGroup>

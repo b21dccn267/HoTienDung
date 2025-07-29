@@ -3,7 +3,7 @@
 #include "Globals.h"
 #include "../../GameManager/ResourceManager.h"
 
-void Hero::Init()
+Hero::Hero()
 {
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(5);
@@ -22,4 +22,9 @@ void Hero::Draw()
 void Hero::Update(GLfloat deltaTime)
 {
 	m_anim->Update(deltaTime);
+}
+
+void Hero::Update2DPosition()
+{
+	m_anim->Set2DPosition(Vector2(m_anim->m_position.x, m_anim->m_position.y));
 }

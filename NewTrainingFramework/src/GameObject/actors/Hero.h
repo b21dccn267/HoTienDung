@@ -7,9 +7,9 @@ class Hero
 public:
 	std::shared_ptr<Animation> m_anim;
 
-	//Hero();
-	void Init();
+	Hero();
 	void Draw();
 	void Update(GLfloat deltaTime);
+	void Update2DPosition();
 };
 

@@ -7,9 +7,9 @@ class Creature
 public:
 	std::shared_ptr<Animation> m_anim;
 
-	//Creature();
-	void Init();
+	Creature();
 	void Draw();
 	void Update(GLfloat deltaTime);
+	void Update2DPosition();
 };
 

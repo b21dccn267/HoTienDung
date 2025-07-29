@@ -10,16 +10,9 @@
 
 void GSGame::Init()
 {
-	//auto model = ResourceManager::GetInstance()->GetModel(0);
-	//auto texture = ResourceManager::GetInstance()->GetTexture(5);
-	//auto shader = ResourceManager::GetInstance()->GetShader(1);
-	//auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 3);
-	//anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	//anim->SetSize(100, 100);
-
-	//m_gsGameObject = anim;
-	m_hero->Init();
-	m_creature->Init();
+	// should have actor postioning here instead of in class
+	m_hero = std::make_shared<Hero>();
+	m_creature = std::make_shared<Creature>();
 	printf("game init\n");
 }
 
@@ -50,31 +43,42 @@ void GSGame::Update(float deltaTime)
 {
 	//m_gsGameObject->Update(deltaTime);
 	m_hero->Update(deltaTime);
+	m_hero->Update2DPosition();
 	m_creature->Update(deltaTime);
+	m_creature->Update2DPosition();
 }
 
 void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-	printf("gsgameKeyPresed: %c\n", key);
+	printf("gsgameKeyPresed: 0x%02X\n", key);
 	//SoundManager::PlaySfx("../Resources/Sfx/vine-boom.wav");
 	if (bIsPressed) {
 		switch (key) {
 		case 0x57:
-			//printf("W pressed\n");
-			//m_gsPlayAnimations[0]->m_position.y -= 10.0f;
+			m_hero->m_anim->m_position.y -= 10.0f;
 			break;
 		case 0x41:
-			//printf("A pressed\n");
-			//m_gsPlayAnimations[0]->m_position.x -= 10.0f;
+			m_hero->m_anim->m_position.x -= 10.0f;
 			break;
 		case 0x53:
-			//printf("S pressed\n");
-			//m_gsPlayAnimations[0]->m_position.y += 10.0f;
+			m_hero->m_anim->m_position.y += 10.0f;
 			break;
 		case 0x44:
-			//printf("D pressed\n");
-			//m_gsPlayAnimations[0]->m_position.x += 10.0f;
+			m_hero->m_anim->m_position.x += 10.0f;
 			break;
+		// arrow keys
+		//case 0x26:
+		//	m_creature->m_anim->m_position.y -= 10.0f;
+		//	break;
+		//case 0x25:
+		//	m_creature->m_anim->m_position.x -= 10.0f;
+		//	break;
+		//case 0x28:
+		//	m_creature->m_anim->m_position.y += 10.0f;
+		//	break;
+		//case 0x27:
+		//	m_creature->m_anim->m_position.x += 10.0f;
+		//	break;
 		}
 	}
 }

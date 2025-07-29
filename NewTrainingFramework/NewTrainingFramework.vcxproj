@@ -157,6 +157,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\items\weapons\Gun.cpp" />
+    <ClCompile Include="src\GameObject\actors\Projectile.cpp" />
     <ClCompile Include="src\GameObject\actors\Creature.cpp" />
     <ClCompile Include="src\GameObject\actors\Hero.cpp" />
     <ClCompile Include="src\GameState\GSGame.cpp" />
@@ -186,6 +188,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\items\weapons\Gun.h" />
+    <ClInclude Include="src\GameObject\actors\Projectile.h" />
     <ClInclude Include="src\GameObject\actors\Creature.h" />
     <ClInclude Include="src\GameObject\actors\Hero.h" />
     <ClInclude Include="src\GameState\GSGame.h" />
