@@ -27,6 +27,6 @@ Additonal mechanics/features may include:
 	+ Players can spend earned resouces on either upgrading own stats, or to expand the base
 	+ Win condition: survive all enemy waves with base core intact
 
-Note
+## Note
 - Only one additional feature will be chosen
 - Core game should be finished in 2 weeks

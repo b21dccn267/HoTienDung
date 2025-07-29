@@ -85,6 +85,11 @@ void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 
 void GSGame::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
+	printf("gsGameMouseEvent\n");
+	if (bIsPressed) {
+		//m_hero->m_gun->Fire();
+		m_hero->FireGun();
+	}
 }
 
 void GSGame::Cleanup()
