@@ -2,6 +2,7 @@
 #include "GameStateBase.h"
 #include "GSIntro.h"
 #include "GSMenu.h"
+#include "GSPause.h"
 #include "GSPlay.h"
 #include "GSGame.h"
 #include "GSDebug.h"
@@ -29,6 +30,8 @@ std::shared_ptr<GameStateBase> GameStateBase::CreateState(StateType type)
 		return std::make_shared<GSPlay>();
 	case StateType::STATE_GAME:
 		return std::make_shared<GSGame>();
+	case StateType::STATE_PAUSE: 
+		return std::make_shared<GSPause>();
 	case StateType::STATE_DEBUG:
 		return std::make_shared<GSDebug>();
 	}

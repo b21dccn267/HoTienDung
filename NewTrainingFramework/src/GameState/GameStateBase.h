@@ -8,6 +8,7 @@ enum class StateType
 	STATE_MENU,
 	STATE_PLAY,
 	STATE_GAME,
+	STATE_PAUSE, 
 	STATE_DEBUG
 };
 

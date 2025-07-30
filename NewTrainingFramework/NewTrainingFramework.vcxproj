@@ -177,6 +177,7 @@
     <ClCompile Include="src\GameState\GSDebug.cpp" />
     <ClCompile Include="src\GameState\GSIntro.cpp" />
     <ClCompile Include="src\GameState\GSMenu.cpp" />
+    <ClCompile Include="src\GameState\GSPause.cpp" />
     <ClCompile Include="src\GameState\GSPlay.cpp" />
     <ClCompile Include="src\NewTrainingFramework.cpp" />
     <ClCompile Include="src\GameManager\ResourceManager.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="src\GameState\GameStateMachine.h" />
     <ClInclude Include="src\GameState\GSIntro.h" />
     <ClInclude Include="src\GameState\GSMenu.h" />
+    <ClInclude Include="src\GameState\GSPause.h" />
     <ClInclude Include="src\GameState\GSPlay.h" />
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="resource.h" />

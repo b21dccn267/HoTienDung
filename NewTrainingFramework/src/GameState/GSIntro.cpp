@@ -59,7 +59,7 @@ void GSIntro::Update(float deltaTime)
 {
 	Sleep(1000);
 	printf("Slept for 1s, loading menu...\n");
-	GameStateMachine::GetInstance()->PerformStateChange(StateType::STATE_MENU);
+	GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU);
 	for (auto& x : m_gsIntroObjects) {
 		x->Update();
 	}
