@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GSPause.cpp" />
     <ClCompile Include="src\GameManager\SoundManager.cpp" />
     <ClCompile Include="src\GameObject\core\Animation.cpp" />
     <ClCompile Include="src\GameObject\core\Camera.cpp" />
@@ -183,6 +184,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GSPause.h" />
     <ClInclude Include="src\GameManager\SoundManager.h" />
     <ClInclude Include="src\GameObject\core\Animation.h" />
     <ClInclude Include="src\GameObject\core\Camera.h" />

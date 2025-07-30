@@ -6,13 +6,13 @@ ID 0
 FILE "../Resources/2d/Textures/bg_play1.tga"
 TILING GL_REPEAT
 ID 1
-FILE "../Resources/2d/Textures/btn_close.tga"
+FILE "../Resources/2d/Textures/Exit_2x.tga"
 TILING GL_REPEAT
 ID 2
-FILE "../Resources/2d/Textures/btn_help.tga"
+FILE "../Resources/2d/Textures/Gear_2x.tga"
 TILING GL_REPEAT
 ID 3
-FILE "../Resources/2d/Textures/btn_menu.tga"
+FILE "../Resources/2d/Textures/Play_2x.tga"
 TILING GL_REPEAT
 ID 4
 FILE "../Resources/2d/Textures/idle.tga"

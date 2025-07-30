@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "GSPlay.h"
 #include "../GameObject/core/Texture.h"
 #include "Globals.h"
@@ -23,43 +23,43 @@ void GSPlay::Init()
 
 	m_gsPlayObjects.reserve(4);
 
-	// character
-	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(5);
-	auto shader = ResourceManager::GetInstance()->GetShader(1);
-	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 1);
-	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	anim->SetSize(100, 100);	
+	//// character
+	//auto model = ResourceManager::GetInstance()->GetModel(0);
+	//auto texture = ResourceManager::GetInstance()->GetTexture(5);
+	//auto shader = ResourceManager::GetInstance()->GetShader(1);
+	//auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 1);
+	//anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
+	//anim->SetSize(100, 100);	
 
 	// background
-	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(0);
-	shader = ResourceManager::GetInstance()->GetShader(0);
+	auto model = ResourceManager::GetInstance()->GetModel(0);
+	auto texture = ResourceManager::GetInstance()->GetTexture(0);
+	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	auto background = std::make_shared<Object>(model, texture, shader);
 	background->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	background->SetSize(1000.0f, 1000.0f);
 	
-	// close
+	// pause
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(1);
+	texture = ResourceManager::GetInstance()->GetTexture(2);
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	auto btnClose = std::make_shared<Object>(model, texture, shader);
-	btnClose->Set2DPosition(Vector2(300.0f, 100.0f));
-	btnClose->SetSize(200.0f, 200.0f);
+	auto btnPause = std::make_shared<Object>(model, texture, shader);
+	btnPause->Set2DPosition(Vector2(Globals::screenWidth -100, 100.0f));
+	btnPause->SetSize(100.0f, 100.0f);
 
 	// text
-	auto model1 = ResourceManager::GetInstance()->GetModel(0);
-	auto texture1 = std::make_shared<Texture>(TextRenderer::RenderText("something meaningful"));
-	auto shader1 = ResourceManager::GetInstance()->GetShader(0);
-	auto text = std::make_shared<Object>(model1, texture1, shader1);
-	text->Set2DPosition(Vector2(300.0f, 500.0f));
-	text->SetSize(600.0f, 100.0f);
+	//auto model1 = ResourceManager::GetInstance()->GetModel(0);
+	//auto texture1 = std::make_shared<Texture>(TextRenderer::RenderText("something meaningful"));
+	//auto shader1 = ResourceManager::GetInstance()->GetShader(0);
+	//auto text = std::make_shared<Object>(model1, texture1, shader1);
+	//text->Set2DPosition(Vector2(300.0f, 500.0f));
+	//text->SetSize(600.0f, 100.0f);
 	
 
-	m_gsPlayAnimations.push_back(anim);
+	//m_gsPlayAnimations.push_back(anim);
 	m_gsPlayObjects.emplace_back(background);
-	m_gsPlayObjects.emplace_back(btnClose);
-	m_gsPlayObjects.emplace_back(text);
+	m_gsPlayObjects.emplace_back(btnPause);
+	//m_gsPlayObjects.emplace_back(text);
 
 	printf("play init\n");
 }

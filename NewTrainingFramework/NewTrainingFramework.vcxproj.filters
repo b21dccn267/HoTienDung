@@ -123,6 +123,9 @@
     <ClCompile Include="src\GameObject\core\Texture.cpp">
       <Filter>Source Files\Objects\Core</Filter>
     </ClCompile>
+    <ClCompile Include="GSPause.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameManager\ResourceManager.h">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\core\Texture.h">
       <Filter>Header Files\Objects\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GSPause.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
