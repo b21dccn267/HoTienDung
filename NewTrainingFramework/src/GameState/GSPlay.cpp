@@ -43,7 +43,7 @@ void GSPlay::Init()
 	
 	// pause
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(13);
+	texture = ResourceManager::GetInstance()->GetTexture(17);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnPause = std::make_shared<GameButton>(model, texture, shader);
 	btnPause->Set2DPosition(Vector2(Globals::screenWidth -100, 100.0f));

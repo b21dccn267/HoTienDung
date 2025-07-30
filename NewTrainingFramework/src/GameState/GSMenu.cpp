@@ -23,7 +23,7 @@ void GSMenu::Init()
 
 	// play button
 	 model = ResourceManager::GetInstance()->GetModel(0);
-	 texture = ResourceManager::GetInstance()->GetTexture(3);
+	 texture = ResourceManager::GetInstance()->GetTexture(15);
 	 shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<GameButton> menuButton = std::make_shared<GameButton>(model, texture, shader);
 	menuButton->Set2DPosition(Vector2(Globals::screenWidth/2, 500.0f));
@@ -35,7 +35,7 @@ void GSMenu::Init()
 
 	// close button
 	 model = ResourceManager::GetInstance()->GetModel(0);
-	 texture = ResourceManager::GetInstance()->GetTexture(1);
+	 texture = ResourceManager::GetInstance()->GetTexture(13);
 	 shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<GameButton> closeButton = std::make_shared<GameButton>(model, texture, shader);
 	closeButton->Set2DPosition(Vector2(250.0f, 500.0f));
@@ -47,7 +47,7 @@ void GSMenu::Init()
 	
 	// settings button
 	 model = ResourceManager::GetInstance()->GetModel(0);
-	 texture = ResourceManager::GetInstance()->GetTexture(2);
+	 texture = ResourceManager::GetInstance()->GetTexture(14);
 	 shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<GameButton> settingsButton = std::make_shared<GameButton>(model, texture, shader);
 	settingsButton->Set2DPosition(Vector2(700.0f, 500.0f));

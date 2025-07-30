@@ -19,7 +19,7 @@ void GSIntro::Init()
 	m_gsIntroObjects.reserve(1);
 	//m_gsIntroObjects.emplace_back(SceneManager::GetInstance()->m_objects[4]);
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(4);
+	auto texture = ResourceManager::GetInstance()->GetTexture(16);
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	auto introObject = std::make_shared<Object>(model, texture, shader);
 	introObject->Set2DPosition(Vector2(0.0f, 0.0f));
