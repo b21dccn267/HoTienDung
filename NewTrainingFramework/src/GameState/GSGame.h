@@ -3,7 +3,7 @@
 #include "../GameObject/core/Object.h"
 #include "../GameObject/core/Animation.h"
 #include "../GameManager/SoundManager.h"
-#include "../GameObject/actors/Hero.h"
+#include "../GameObject/actors/hero/Hero.h"
 #include "../GameObject/actors/Creature.h"
 #include "../GameObject/actors/Projectile.h"
 #include <memory>

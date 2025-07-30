@@ -21,4 +21,3 @@ public:
 	void Update(GLfloat deltaTime);	
 	//void Update2DPosition();
 };
-

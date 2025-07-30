@@ -157,10 +157,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\actors\hero\Belongings.cpp" />
     <ClCompile Include="src\GameObject\items\weapons\Gun.cpp" />
     <ClCompile Include="src\GameObject\actors\Projectile.cpp" />
     <ClCompile Include="src\GameObject\actors\Creature.cpp" />
-    <ClCompile Include="src\GameObject\actors\Hero.cpp" />
+    <ClCompile Include="src\GameObject\actors\hero\Hero.cpp" />
     <ClCompile Include="src\GameState\GSGame.cpp" />
     <ClCompile Include="src\GameManager\SoundManager.cpp" />
     <ClCompile Include="src\GameObject\core\Animation.cpp" />
@@ -188,10 +189,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\actors\hero\Belongings.h" />
     <ClInclude Include="src\GameObject\items\weapons\Gun.h" />
     <ClInclude Include="src\GameObject\actors\Projectile.h" />
     <ClInclude Include="src\GameObject\actors\Creature.h" />
-    <ClInclude Include="src\GameObject\actors\Hero.h" />
+    <ClInclude Include="src\GameObject\actors\hero\Hero.h" />
     <ClInclude Include="src\GameState\GSGame.h" />
     <ClInclude Include="src\GameManager\SoundManager.h" />
     <ClInclude Include="src\GameObject\core\Animation.h" />
@@ -221,6 +223,7 @@
     <None Include="..\..\Readme.doc" />
     <None Include="..\Resources\Shaders\AnimationShaderFS.fs" />
     <None Include="..\Resources\Shaders\AnimationShaderVS.vs" />
+    <None Include="..\Resources\Shaders\FlexAnimShaderVS.vs" />
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs" />
     <None Include="..\Resources\Shaders\TriangleShaderVS.vs" />
   </ItemGroup>

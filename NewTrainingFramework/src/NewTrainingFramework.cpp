@@ -3,12 +3,12 @@
 
 #include "stdafx.h"
 #include "../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
-#include "GameManager/SceneManager.h"
 #include "GameManager/ResourceManager.h"
-#include "Globals.h"
-#include "GameState/GameStateMachine.h"
-#include "GameState/GameStateBase.h"
+#include "GameManager/SceneManager.h"
 #include "GameManager/SoundManager.h"
+#include "GameState/GameStateBase.h"
+#include "GameState/GameStateMachine.h"
+#include "Globals.h"
 #include <conio.h>
 #include <memory>
 
@@ -63,6 +63,7 @@ void CleanUp()
 {
 	ResourceManager::GetInstance()->DestroyInstance();
 	SceneManager::GetInstance()->DestroyInstance();
+	SoundManager::GetInstance()->DestroyInstance();
 	GameStateMachine::GetInstance()->DestroyInstance();
 }
 
