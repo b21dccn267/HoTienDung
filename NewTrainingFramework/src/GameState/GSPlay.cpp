@@ -2,6 +2,7 @@
 #include "GSPlay.h"
 #include "../GameObject/core/Texture.h"
 #include "Globals.h"
+#include "GameStateMachine.h"
 #include "../GameManager/SceneManager.h"
 #include "../GameManager/ResourceManager.h"
 #include "../GameObject/core/TextRenderer.h"
@@ -21,7 +22,8 @@ void GSPlay::Init()
 	//m_soundManager = SoundManager();
 	//SoundManager::GetInstance()->PlaySfx("../Resources/Sfx/vine-boom.wav");
 
-	m_gsPlayObjects.reserve(4);
+	m_gsPlayObjects.reserve(1);
+	m_gsPlayButtons.reserve(1);
 
 	//// character
 	//auto model = ResourceManager::GetInstance()->GetModel(0);
@@ -41,11 +43,14 @@ void GSPlay::Init()
 	
 	// pause
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(2);
+	texture = ResourceManager::GetInstance()->GetTexture(13);
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	auto btnPause = std::make_shared<Object>(model, texture, shader);
+	auto btnPause = std::make_shared<GameButton>(model, texture, shader);
 	btnPause->Set2DPosition(Vector2(Globals::screenWidth -100, 100.0f));
 	btnPause->SetSize(100.0f, 100.0f);
+	btnPause->SetOnClick([]() {
+		GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE);
+		});
 
 	// text
 	//auto model1 = ResourceManager::GetInstance()->GetModel(0);
@@ -58,7 +63,7 @@ void GSPlay::Init()
 
 	//m_gsPlayAnimations.push_back(anim);
 	m_gsPlayObjects.emplace_back(background);
-	m_gsPlayObjects.emplace_back(btnPause);
+	m_gsPlayButtons.emplace_back(btnPause);
 	//m_gsPlayObjects.emplace_back(text);
 
 	printf("play init\n");
@@ -82,6 +87,9 @@ void GSPlay::Draw()
 	for (auto& x : m_gsPlayObjects) {
 		x->Draw();
 	}
+	for (auto& x : m_gsPlayButtons) {  
+		x->Draw();
+	}
 	for (auto& x : m_gsPlayAnimations) {
 		x->Draw();
 	}
@@ -90,6 +98,9 @@ void GSPlay::Draw()
 void GSPlay::Update(float deltaTime)
 {
 	for (auto& x : m_gsPlayObjects) {
+		x->Update(deltaTime);
+	}
+	for (auto& x : m_gsPlayButtons) {  
 		x->Update(deltaTime);
 	}
 	for (auto& x : m_gsPlayAnimations) {
@@ -127,6 +138,12 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
 	printf("gsPlayMouseEvent\n");
+
+	for (auto& btn : m_gsPlayButtons) {
+		if (btn->HandleTouchEvents(x, y, bIsPressed)) {
+			return;
+		}
+	}
 }
 
 void GSPlay::Cleanup()

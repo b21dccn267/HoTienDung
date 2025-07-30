@@ -123,7 +123,7 @@
     <ClCompile Include="src\GameObject\core\Texture.cpp">
       <Filter>Source Files\Objects\Core</Filter>
     </ClCompile>
-    <ClCompile Include="GSPause.cpp">
+    <ClCompile Include="src\GameState\GSPause.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
   </ItemGroup>
@@ -197,7 +197,7 @@
     <ClInclude Include="src\GameObject\core\Texture.h">
       <Filter>Header Files\Objects\Core</Filter>
     </ClInclude>
-    <ClInclude Include="GSPause.h">
+    <ClInclude Include="src\GameState\GSPause.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
   </ItemGroup>

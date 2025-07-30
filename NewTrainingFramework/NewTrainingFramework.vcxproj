@@ -157,7 +157,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GSPause.cpp" />
     <ClCompile Include="src\GameManager\SoundManager.cpp" />
     <ClCompile Include="src\GameObject\core\Animation.cpp" />
     <ClCompile Include="src\GameObject\core\Camera.cpp" />
@@ -172,6 +171,7 @@
     <ClCompile Include="src\GameState\GSDebug.cpp" />
     <ClCompile Include="src\GameState\GSIntro.cpp" />
     <ClCompile Include="src\GameState\GSMenu.cpp" />
+    <ClCompile Include="src\GameState\GSPause.cpp" />
     <ClCompile Include="src\GameState\GSPlay.cpp" />
     <ClCompile Include="src\NewTrainingFramework.cpp" />
     <ClCompile Include="src\GameManager\ResourceManager.cpp" />
@@ -184,7 +184,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GSPause.h" />
     <ClInclude Include="src\GameManager\SoundManager.h" />
     <ClInclude Include="src\GameObject\core\Animation.h" />
     <ClInclude Include="src\GameObject\core\Camera.h" />
@@ -199,6 +198,7 @@
     <ClInclude Include="src\GameState\GameStateMachine.h" />
     <ClInclude Include="src\GameState\GSIntro.h" />
     <ClInclude Include="src\GameState\GSMenu.h" />
+    <ClInclude Include="src\GameState\GSPause.h" />
     <ClInclude Include="src\GameState\GSPlay.h" />
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="resource.h" />
