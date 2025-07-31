@@ -14,7 +14,7 @@ void GSGame::Init()
 	m_hero = std::make_shared<Hero>();
 	m_creature = std::make_shared<Creature>();
 
-	m_hero->Idle();
+	m_hero->LookBottomRight();
 	//m_hero->Jump();
 	printf("game init\n");
 }

@@ -14,6 +14,7 @@ Hero::Hero()
 	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 0);
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2 - 100, Globals::screenHeight / 2));
 	anim->SetSize(100, 100);
+	//anim->SetRotation(Vector3(0,3.14, 0));
 	//anim->SetCustomFrames(std::vector<int>{9, 10, 11, 12});
 
 	m_anim = anim;
@@ -65,6 +66,7 @@ void Hero::LookRight()
 void Hero::LookBottomRight()
 {
 	m_anim->SetCustomFrames(std::vector<int>{4, 5, 6, 7});
+	m_anim->SetRotation(Vector3(0, 180 *(3.14/180), 0));
 	m_anim->m_frameTime = 0.12f;
 	m_anim->m_isFlipX = false;
 	m_anim->m_isFlipY = false;

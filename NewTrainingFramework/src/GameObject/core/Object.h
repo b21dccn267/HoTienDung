@@ -30,6 +30,7 @@ public:
 	Matrix CalculateWorldMatrix();
 	Matrix CalculateWVP(Matrix modelMatrix, Matrix ViewPerspectiveMatrix);
 	void SetSize(GLint width, GLint height);
+	void SetRotation(Vector3 rotate);
 	void Set2DPosition(Vector2 position);
 	void Draw();
 	void Update();

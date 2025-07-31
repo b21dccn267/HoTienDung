@@ -70,6 +70,12 @@ void Object::SetSize(GLint width, GLint height)
 	CalculateWorldMatrix();
 }
 
+void Object::SetRotation(Vector3 rotate)
+{
+	rotation = rotate;
+	CalculateWorldMatrix();
+}
+
 void Object::Set2DPosition(Vector2 position)
 {
 	m_position = Vector3(position.x, position.y, 0.0f);

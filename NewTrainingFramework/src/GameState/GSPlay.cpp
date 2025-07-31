@@ -112,7 +112,7 @@ void GSPlay::Update(float deltaTime)
 void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 	printf("gsPlayKeyPresed: %c\n", key);
-	SoundManager::PlaySfx("../Resources/Sfx/vine-boom.wav");
+	//SoundManager::PlaySfx("../Resources/Sfx/vine-boom.wav");
 	if (bIsPressed) {
 		switch (key) {
 		case 0x57: 
