@@ -6,11 +6,12 @@
 Creature::Creature()
 {
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(5);
+	auto texture = ResourceManager::GetInstance()->GetTexture(20);
 	auto shader = ResourceManager::GetInstance()->GetShader(1);
 	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 1);
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	anim->SetSize(100, 100);
+	anim->SetCustomFrames(std::vector<int>{20, 21, 22, 23});
 	m_anim = anim;
 }
 

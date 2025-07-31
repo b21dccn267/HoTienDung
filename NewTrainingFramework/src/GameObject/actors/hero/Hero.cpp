@@ -9,15 +9,97 @@
 Hero::Hero()
 {
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(13);	// default 5
+	auto texture = ResourceManager::GetInstance()->GetTexture(20);
 	auto shader = ResourceManager::GetInstance()->GetShader(2);
 	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 0);
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2 - 100, Globals::screenHeight / 2));
 	anim->SetSize(100, 100);
-	anim->SetCustomFrames(std::vector<int>{9, 10, 11, 12});
+	//anim->SetCustomFrames(std::vector<int>{9, 10, 11, 12});
+
 	m_anim = anim;
 
 	m_gun = std::make_shared<Gun>();
+}
+
+void Hero::Idle()
+{
+	m_anim->SetCustomFrames(std::vector<int>{0, 1, 2, 3});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
+}
+
+void Hero::Jump()
+{
+	m_anim->SetCustomFrames(std::vector<int>{20, 21, 22, 23, 24, 25, 26, 27});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
+}
+
+void Hero::LookUp()
+{
+	m_anim->SetCustomFrames(std::vector<int>{12, 13, 14, 15});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
+}
+
+void Hero::LookTopRight()
+{
+	m_anim->SetCustomFrames(std::vector<int>{16, 17, 18, 19});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
+}
+
+void Hero::LookRight()
+{
+	m_anim->SetCustomFrames(std::vector<int>{8, 9, 10, 11});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
+}
+
+void Hero::LookBottomRight()
+{
+	m_anim->SetCustomFrames(std::vector<int>{4, 5, 6, 7});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
+}
+
+void Hero::LookDown() // same as idle, fix this
+{
+	m_anim->SetCustomFrames(std::vector<int>{0, 1, 2, 3});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
+}
+
+void Hero::LookBottomLeft()
+{
+	m_anim->SetCustomFrames(std::vector<int>{});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
+}
+
+void Hero::LookLeft()
+{
+	m_anim->SetCustomFrames(std::vector<int>{8, 9, 10, 11});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
+}
+
+void Hero::LookTopLeft()
+{
+	m_anim->SetCustomFrames(std::vector<int>{});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->m_isFlipX = false;
+	m_anim->m_isFlipY = false;
 }
 
 void Hero::Draw()

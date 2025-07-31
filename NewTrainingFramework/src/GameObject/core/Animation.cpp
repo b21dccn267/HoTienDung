@@ -37,11 +37,23 @@ void Animation::FrameNumberToCoord(int number)
 		number -= m_numFrames;
 		m_frameY++;
 	}
-	m_frameY = m_numActions - m_frameY;
+	m_frameY = m_numActions - m_frameY - 1;
 	m_frameX = number;
 }
 
+void Animation::FrameAt(int number)
+{
+	FrameNumberToCoord(m_frameOrder[number]);
+}
+
 void Animation::SetCustomFrames(std::vector<int> order)
+{
+	m_frameOrder = order;
+	m_frameCount = 0;
+	FrameNumberToCoord(m_frameOrder[m_frameCount]);
+}
+
+void Animation::SetCustomFrames(std::vector<int> order, bool isLooped)
 {
 	m_frameOrder = order;
 	m_frameCount = 0;
@@ -56,9 +68,10 @@ void Animation::CustomUpdate(GLfloat deltaTime)
 		if (m_frameCount >= m_frameOrder.size()) {
 			m_frameCount = 0;
 		}
-		FrameNumberToCoord(m_frameOrder[m_frameCount]);
+		//FrameNumberToCoord(m_frameOrder[m_frameCount]);
 		m_currentTime -= m_frameTime;
 	}
+	FrameNumberToCoord(m_frameOrder[m_frameCount]);
 }
 
 void Animation::CustomDraw()
@@ -95,7 +108,16 @@ void Animation::CustomDraw()
 	if (iTempShaderVariableGLID != -1) {
 		glUniform1f(iTempShaderVariableGLID, m_frameY);
 	}
-
+	iTempShaderVariableGLID = -1;
+	iTempShaderVariableGLID = glGetUniformLocation(m_pShader->program, "u_isFlipX");
+	if (iTempShaderVariableGLID != -1) {
+		glUniform1i(iTempShaderVariableGLID, m_isFlipX);
+	}
+	iTempShaderVariableGLID = -1;
+	iTempShaderVariableGLID = glGetUniformLocation(m_pShader->program, "u_isFlipY");
+	if (iTempShaderVariableGLID != -1) {
+		glUniform1i(iTempShaderVariableGLID, m_isFlipY);
+	}
 	// take location value from vertex/fragment shader. With Position we have location = 0
 	{
 		glEnableVertexAttribArray(0);

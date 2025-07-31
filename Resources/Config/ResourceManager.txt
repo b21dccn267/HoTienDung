@@ -1,7 +1,7 @@
 #Model 1
 ID 0
 FILE "../Resources/2d/Models/Sprite2D.nfg"
-#2DTexture 20
+#2DTexture 21
 ID 0
 FILE "../Resources/2d/Textures/bg_play1.tga"
 TILING GL_REPEAT
@@ -61,6 +61,9 @@ FILE "../Resources/2d/Textures/gui/Sound-None.tga"
 TILING GL_REPEAT
 ID 19
 FILE "../Resources/2d/Textures/gui/Home.tga"
+TILING GL_REPEAT
+ID 20
+FILE "../Resources/2d/Textures/game/base_character_debug.tga"
 TILING GL_REPEAT
 #Shader 3
 ID 0

@@ -160,7 +160,7 @@
       <Filter>Source Files\Objects\Actors\Hero</Filter>
     </ClCompile>
     <ClCompile Include="src\GameObject\actors\hero\Belongings.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects\Actors\Hero</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +232,27 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\core\Texture.h">
       <Filter>Header Files\Objects\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\actors\hero\Hero.h">
+      <Filter>Header Files\Objects\Actors\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\actors\hero\Belongings.h">
+      <Filter>Header Files\Objects\Actors\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\actors\Creature.h">
+      <Filter>Header Files\Objects\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\items\weapons\Gun.h">
+      <Filter>Header Files\Objects\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameState\GSGame.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameState\GSPause.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\actors\Projectile.h">
+      <Filter>Header Files\Objects\Actors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

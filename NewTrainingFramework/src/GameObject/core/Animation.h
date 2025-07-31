@@ -23,12 +23,16 @@ public:
 	int m_frameX;	// row
 	int m_frameY;	// column
 	std::vector<int> m_frameOrder;
+	bool m_isFlipX;
+	bool m_isFlipY;
 	
 	Animation() : Object(), m_currentFrame(0), m_currentTime(0.0f), m_currentAction(0), m_frameTime(0.0f) {};
 	Animation(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader, int frameTime, int currentAction);
 	//	: Object(model, texture, shader) {};
 	void FrameNumberToCoord(int number);
+	void FrameAt(int number);
 	void SetCustomFrames(std::vector<int> order);
+	void SetCustomFrames(std::vector<int> order, bool isLooped);
 	void CustomUpdate(GLfloat deltaTime);
 	void CustomDraw();
 	void Draw();
