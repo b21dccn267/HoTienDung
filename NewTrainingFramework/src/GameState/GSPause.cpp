@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "GSPause.h"
 #include "../GameObject/core/Texture.h"
 #include "Globals.h"
@@ -17,7 +17,7 @@ void GSPause::Init()
 	auto texture = ResourceManager::GetInstance()->GetTexture(0);
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	auto overlay = std::make_shared<Object>(model, texture, shader);
-	overlay->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
+	overlay->Set2DPosition(Vector2(Globals::screenWidth /2, Globals::screenHeight /2));
 	overlay->SetSize(Globals::screenWidth, Globals::screenHeight);
 
 	// Pause menu background
