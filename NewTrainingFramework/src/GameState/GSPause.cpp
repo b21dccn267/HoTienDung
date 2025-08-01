@@ -1,4 +1,4 @@
-
+﻿
 #include "GSPause.h"
 #include "../GameObject/core/Texture.h"
 #include "../Globals.h"
@@ -9,15 +9,15 @@
 
 void GSPause::Init()
 {
-	m_gsPauseObjects.reserve(3);
-	m_gsPauseButtons.reserve(2);
+	m_gsPauseObjects.reserve(6);
+	m_gsPauseButtons.reserve(3);
 
 	// background
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(0); 
+	auto texture = ResourceManager::GetInstance()->GetTexture(0);
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	auto overlay = std::make_shared<Object>(model, texture, shader);
-	overlay->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
+	overlay->Set2DPosition(Vector2(Globals::screenWidth /2, Globals::screenHeight /2));
 	overlay->SetSize(Globals::screenWidth, Globals::screenHeight);
 
 	// Pause menu background
@@ -25,40 +25,82 @@ void GSPause::Init()
 	texture = ResourceManager::GetInstance()->GetTexture(16);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto pauseBg = std::make_shared<Object>(model, texture, shader);
-	pauseBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	pauseBg->SetSize(400.0f, 400.0f);
+	pauseBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 + 50));
+	pauseBg->SetSize(300.0f, 500.0f);
 
 	// Resume button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(15); 
+	texture = ResourceManager::GetInstance()->GetTexture(15);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnResume = std::make_shared<GameButton>(model, texture, shader);
-	btnResume->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 - 50));
-	btnResume->SetSize(200.0f, 60.0f);
+	btnResume->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 - 50));
+	btnResume->SetSize(60.0f, 60.0f);
 	btnResume->SetOnClick(OnResumeButtonClick);
 
 	// Main Menu button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(19); 
+	texture = ResourceManager::GetInstance()->GetTexture(19);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnMainMenu = std::make_shared<GameButton>(model, texture, shader);
-	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 + 50));
-	btnMainMenu->SetSize(200.0f, 60.0f);
+	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 + 20));
+	btnMainMenu->SetSize(60.0f, 60.0f);
 	btnMainMenu->SetOnClick(OnMainMenuButtonClick);
 
-	// text
-	auto model1 = ResourceManager::GetInstance()->GetModel(0);
-	auto texture1 = std::make_shared<Texture>(TextRenderer::RenderText("Game Paused"));
-	auto shader1 = ResourceManager::GetInstance()->GetShader(0);
-	auto text = std::make_shared<Object>(model1, texture1, shader1);
-	text->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 8));
-	text->SetSize(600.0f, 100.0f);
+	//sound button
+	model = ResourceManager::GetInstance()->GetModel(0);
+	texture = ResourceManager::GetInstance()->GetTexture(18);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	auto btnSound = std::make_shared<GameButton>(model, texture, shader);
+	btnSound->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 + 90));
+	btnSound->SetSize(60.0f, 60.0f);
+
+	// text - paused
+	auto textPaused = std::make_shared<Object>(
+		ResourceManager::GetInstance()->GetModel(0),
+		std::make_shared<Texture>(TextRenderer::RenderText("Game Paused")),
+		ResourceManager::GetInstance()->GetShader(0)
+	);
+	textPaused->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 8));
+	textPaused->SetSize(600.0f, 100.0f);
+
+	// text - continue
+	auto textContinue = std::make_shared<Object>(
+		ResourceManager::GetInstance()->GetModel(0),
+		std::make_shared<Texture>(TextRenderer::RenderText("Continue")),
+		ResourceManager::GetInstance()->GetShader(0)
+	);
+	textContinue->Set2DPosition(Vector2(Globals::screenWidth / 2 + 20, Globals::screenHeight / 2 - 50));
+	textContinue->SetSize(100.0f, 20.0f);
+
+	// text - home
+	auto textHome = std::make_shared<Object>(
+		ResourceManager::GetInstance()->GetModel(0),
+		std::make_shared<Texture>(TextRenderer::RenderText("Home")),
+		ResourceManager::GetInstance()->GetShader(0)
+	);
+	textHome->Set2DPosition(Vector2(Globals::screenWidth / 2 + 20, Globals::screenHeight / 2 + 20));
+	textHome->SetSize(100.0f, 20.0f);
+
+	// text - sound 
+	auto textSound = std::make_shared<Object>(
+		ResourceManager::GetInstance()->GetModel(0),
+		std::make_shared<Texture>(TextRenderer::RenderText("Sound ON/OFF")),
+		ResourceManager::GetInstance()->GetShader(0)
+	);
+	textSound->Set2DPosition(Vector2(Globals::screenWidth / 2 + 20, Globals::screenHeight / 2 + 90));
+	textSound->SetSize(100.0f, 20.0f);
 
 	m_gsPauseObjects.emplace_back(overlay);
 	m_gsPauseObjects.emplace_back(pauseBg);
+
+	m_gsPauseObjects.emplace_back(textPaused);
+	m_gsPauseObjects.emplace_back(textContinue);
+	m_gsPauseObjects.emplace_back(textHome);
+	m_gsPauseObjects.emplace_back(textSound);
+
 	m_gsPauseButtons.emplace_back(btnResume);
 	m_gsPauseButtons.emplace_back(btnMainMenu);
-	m_gsPauseObjects.emplace_back(text);
+	m_gsPauseButtons.emplace_back(btnSound);
 
 	printf("pause init\n");
 }

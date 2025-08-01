@@ -1,4 +1,4 @@
-#include "TextRenderer.h"
+﻿#include "TextRenderer.h"
 #include "../../../Include/SDL2/SDL.h"
 #include "../../../Include/SDL2/SDL_ttf.h"
 #include "../../../../Utilities/utilities.h"
@@ -65,7 +65,7 @@ SDL_Surface* TextRenderer::RenderText(const char* text)
 	}
 
 	SDL_Surface* flippedResult = FlipVertical(result);
-	SDL_FreeSurface(result);
+	//SDL_FreeSurface(result);
 
 	TTF_CloseFont(font);
 	return flippedResult;

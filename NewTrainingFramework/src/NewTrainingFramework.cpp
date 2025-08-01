@@ -22,7 +22,6 @@ int Init ( ESContext *esContext )
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	ResourceManager::GetInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
-
 	SceneManager::GetInstance()->InitCamera();
 
 	// soundmanager init

@@ -9,7 +9,7 @@
 
 void GSMenu::Init()
 {
-	m_gsMenuObjects.reserve(3);
+	m_gsMenuObjects.reserve(4);
 	m_gsMenuGameButtons.reserve(5);
 	
 	// background
@@ -21,37 +21,52 @@ void GSMenu::Init()
 	background->SetSize(Globals::screenWidth, Globals::screenHeight);
 	m_gsMenuObjects.emplace_back(background);
 
+	// menu background
+	model = ResourceManager::GetInstance()->GetModel(0);
+	texture = ResourceManager::GetInstance()->GetTexture(20);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	std::shared_ptr<Object> MenuBg = std::make_shared<Object>(model, texture, shader);
+	MenuBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 - 50));
+	MenuBg->SetSize(321.0f, 404.0f);
+	m_gsMenuObjects.emplace_back(MenuBg);
+
 	// play button
-	 model = ResourceManager::GetInstance()->GetModel(0);
-	 texture = ResourceManager::GetInstance()->GetTexture(15);
-	 shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> menuButton = std::make_shared<GameButton>(model, texture, shader);
-	menuButton->Set2DPosition(Vector2(Globals::screenWidth/2, 500.0f));
-	menuButton->SetSize(100.0f, 100.0f);
+	auto CreateEmptyTexture = []() {
+		SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, 1, 1, 32, SDL_PIXELFORMAT_RGBA8888);
+		SDL_FillRect(surface, nullptr, SDL_MapRGBA(surface->format, 0, 0, 0, 0));
+		return std::make_shared<Texture>(surface);
+		};
+
+	model = ResourceManager::GetInstance()->GetModel(0);
+	auto emptyTexture = CreateEmptyTexture();
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	std::shared_ptr<GameButton> menuButton = std::make_shared<GameButton>(model, emptyTexture, shader);
+	menuButton->Set2DPosition(Vector2(Globals::screenWidth/2 + 5, 255.0f));
+	menuButton->SetSize(150.0f, 45.0f);
 	menuButton->SetOnClick([]() {
 		GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY);
 		});
 	m_gsMenuGameButtons.emplace_back(menuButton);
 
 	// close button
-	 model = ResourceManager::GetInstance()->GetModel(0);
-	 texture = ResourceManager::GetInstance()->GetTexture(13);
-	 shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> closeButton = std::make_shared<GameButton>(model, texture, shader);
-	closeButton->Set2DPosition(Vector2(250.0f, 500.0f));
-	closeButton->SetSize(100.0f, 100.0f);
+	model = ResourceManager::GetInstance()->GetModel(0);
+	emptyTexture = CreateEmptyTexture();
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	std::shared_ptr<GameButton> closeButton = std::make_shared<GameButton>(model, emptyTexture, shader);
+	closeButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 386.0f));
+	closeButton->SetSize(150.0f, 45.0f);
 	closeButton->SetOnClick([]() {
 		exit(0);
 		});
 	m_gsMenuGameButtons.emplace_back(closeButton);
 	
 	// settings button
-	 model = ResourceManager::GetInstance()->GetModel(0);
-	 texture = ResourceManager::GetInstance()->GetTexture(14);
-	 shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> settingsButton = std::make_shared<GameButton>(model, texture, shader);
-	settingsButton->Set2DPosition(Vector2(700.0f, 500.0f));
-	settingsButton->SetSize(100.0f, 100.0f);
+	model = ResourceManager::GetInstance()->GetModel(0);
+	emptyTexture = CreateEmptyTexture();
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	std::shared_ptr<GameButton> settingsButton = std::make_shared<GameButton>(model, emptyTexture, shader);
+	settingsButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 320.0f));
+	settingsButton->SetSize(150.0f, 45.0f);
 	settingsButton->SetOnClick([]() {
 		printf("oke");
 		});
