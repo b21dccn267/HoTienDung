@@ -2,6 +2,7 @@
 //
 
 #include "../../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
+#include "GameManager/InputManager.h"
 #include "GameManager/ResourceManager.h"
 #include "GameManager/SceneManager.h"
 #include "GameManager/SoundManager.h"
@@ -46,6 +47,8 @@ void Update ( ESContext *esContext, float deltaTime )
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
+	InputManager::GetInstance()->keys[key] = bIsPressed;
+
 	GameStateMachine::GetInstance()->m_stack.top()->HandleKeyEvent(key, bIsPressed);
 }
 
@@ -61,6 +64,7 @@ void OnMouseMove(ESContext* esContext, GLint x, GLint y)
 
 void CleanUp()
 {
+	InputManager::GetInstance()->DestroyInstance();
 	ResourceManager::GetInstance()->DestroyInstance();
 	SceneManager::GetInstance()->DestroyInstance();
 	SoundManager::GetInstance()->DestroyInstance();

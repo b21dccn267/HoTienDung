@@ -5,6 +5,7 @@
 #include "../GameManager/SoundManager.h"
 #include "../GameObject/actors/hero/Hero.h"
 #include "../GameObject/actors/Creature.h"
+#include "../GameObject/actors/CreatureSpawner.h"
 #include "../GameObject/actors/Projectile.h"
 #include <memory>
 #include <vector>
@@ -16,6 +17,7 @@ public:
 	//std::shared_ptr<Animation> m_gsGameObject;
 	std::shared_ptr<Hero> m_hero;
 	std::shared_ptr<Creature> m_creature;
+	std::shared_ptr<CreatureSpawner> m_creatureSpawner;
 
 	// test
 	std::shared_ptr<Projectile> m_proj;

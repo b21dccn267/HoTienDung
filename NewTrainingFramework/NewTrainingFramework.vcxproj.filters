@@ -159,6 +159,15 @@
     <ClCompile Include="src\GameObject\actors\hero\Belongings.cpp">
       <Filter>Source Files\Objects\Actors\Hero</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\actors\CreatureSpawner.cpp">
+      <Filter>Source Files\Objects\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\actors\Skeleton.cpp">
+      <Filter>Source Files\Objects\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameManager\InputManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameManager\ResourceManager.h">
@@ -247,6 +256,15 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\core\Vertex.h">
       <Filter>Header Files\Objects\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\actors\CreatureSpawner.h">
+      <Filter>Header Files\Objects\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\actors\Skeleton.h">
+      <Filter>Header Files\Objects\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameManager\InputManager.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

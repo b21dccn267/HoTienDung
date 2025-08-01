@@ -50,8 +50,8 @@ public:
    void (ESCALLBACK *drawFunc) ( ESContext * );
    void (ESCALLBACK *keyFunc) ( ESContext *, unsigned char, bool );
    void (ESCALLBACK *updateFunc) ( ESContext *, float deltaTime );
-   void (ESCALLBACK* mouseFunc) (ESContext*, int, int, bool);
-   void (ESCALLBACK* mouseMoveFunc) (ESContext*, int, int);
+   void (ESCALLBACK *mouseFunc) (ESContext*, int, int, bool);
+   void (ESCALLBACK *mouseMoveFunc) (ESContext*, int, int);
 };
 
 
