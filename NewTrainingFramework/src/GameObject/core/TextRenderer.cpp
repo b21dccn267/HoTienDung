@@ -66,7 +66,7 @@ SDL_Surface* TextRenderer::RenderText(const char* text)
 	}
 
 	SDL_Surface* flippedResult = FlipVertical(result);
-	SDL_FreeSurface(result);
+	//SDL_FreeSurface(result);
 
 	TTF_CloseFont(font);
 	return flippedResult;
