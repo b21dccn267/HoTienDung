@@ -1,7 +1,6 @@
-#include "stdafx.h"
-#include "Globals.h"
+#include "../../Globals.h"
+#include "../../../Utilities/utilities.h"
 #include "Camera.h"
-#include "../Utilities/utilities.h"
 
 
 Camera::Camera()

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "Gun.h"
 #include "../../../GameManager/ResourceManager.h"
 

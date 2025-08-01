@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "GSDebug.h"
 #include "../GameManager/SceneManager.h"
 #include "../GameManager/ResourceManager.h"

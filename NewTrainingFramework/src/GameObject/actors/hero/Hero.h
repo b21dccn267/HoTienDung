@@ -16,16 +16,16 @@ public:
 
 	//animation functions
 	void Idle();
-	void Jump(); // unused, exists as a demo
+	void Jump(); // unused, exists as a demo; if used, there should be jump anims for all directions
 	void LookUp();
-	void LookTopRight();
-	void LookRight();
-	void LookBottomRight();
 	void LookDown();
-	void LookBottomLeft();
-	void LookLeft();
+	void LookTopRight();
 	void LookTopLeft();
-
+	void LookRight();
+	void LookLeft();
+	void LookBottomRight();
+	void LookBottomLeft();
+	
 	void Draw();
 	void Update(GLfloat deltaTime);
 	void Update2DPosition();

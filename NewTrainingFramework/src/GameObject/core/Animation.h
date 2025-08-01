@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "Texture.h"
-#include "../Utilities/utilities.h"
+#include "../../../../Utilities/utilities.h"
 #include <vector>
 
 // need custom sprite order function, as many free spritesheets have funny ordering

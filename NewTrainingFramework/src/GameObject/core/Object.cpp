@@ -1,7 +1,7 @@
-#include "stdafx.h"
+
 #include "Object.h"
-#include "../Utilities/utilities.h"
-#include "Vertex.h"
+#include "../../../Utilities/utilities.h"
+#include "../core/Vertex.h"
 #include "Shaders.h"
 #include "Texture.h"
 #include "Model.h"

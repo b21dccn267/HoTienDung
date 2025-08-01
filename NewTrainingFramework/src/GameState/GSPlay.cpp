@@ -1,14 +1,14 @@
-﻿#include "stdafx.h"
+﻿
 #include "GSPlay.h"
 #include "../GameObject/core/Texture.h"
-#include "Globals.h"
+#include "../Globals.h"
 #include "GameStateMachine.h"
 #include "../GameManager/SceneManager.h"
 #include "../GameManager/ResourceManager.h"
 #include "../GameObject/core/TextRenderer.h"
 #include "../GameObject/core/Animation.h"
 #include "../GameManager/SoundManager.h"
-#include <SDL2/SDL_mixer.h>
+#include "../../../Include/SDL2/SDL_mixer.h"
 
 void GSPlay::Init()
 {

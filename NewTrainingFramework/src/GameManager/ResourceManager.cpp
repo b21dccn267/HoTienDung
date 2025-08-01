@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "ResourceManager.h"
 #include "../GameObject/core/Model.h"
 #include "../GameObject/core/Texture.h"

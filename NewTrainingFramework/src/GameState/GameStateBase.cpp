@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "GameStateBase.h"
 #include "GSIntro.h"
 #include "GSMenu.h"

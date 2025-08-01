@@ -1,9 +1,9 @@
-#include "stdafx.h"
+
 #include "GSMenu.h"
 #include "../GameObject/core/Object.h"
 #include "../GameManager/SceneManager.h"
 #include "../GameManager/ResourceManager.h"
-#include "Globals.h"
+#include "../Globals.h"
 #include "GameStateMachine.h"
 #include "GameButton.h"
 

@@ -87,9 +87,6 @@
     <ClCompile Include="src\NewTrainingFramework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameManager\ResourceManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
@@ -176,12 +173,6 @@
     <ClInclude Include="src\targetver.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="src\Vertex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -253,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\actors\Projectile.h">
       <Filter>Header Files\Objects\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\core\Vertex.h">
+      <Filter>Header Files\Objects\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "Model.h"
 #include <iostream>
-#include "Vertex.h"
+#include "../core/Vertex.h"
 #include <memory>
 
 Model::Model(const char* fileName)

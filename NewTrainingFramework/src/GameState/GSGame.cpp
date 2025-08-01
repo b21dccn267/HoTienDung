@@ -1,6 +1,5 @@
-#include "stdafx.h"
 #include "GSGame.h"
-#include "Globals.h"
+#include "../Globals.h"
 #include "../GameManager/SceneManager.h"
 #include "../GameManager/ResourceManager.h"
 #include "../GameManager/SoundManager.h"
@@ -12,9 +11,12 @@ void GSGame::Init()
 {
 	// should have actor postioning here instead of in class
 	m_hero = std::make_shared<Hero>();
-	m_creature = std::make_shared<Creature>();
-
 	m_hero->LookBottomRight();
+
+	m_creature = std::make_shared<Creature>();
+	m_creature->LookLeft();
+
+	
 	//m_hero->Jump();
 	printf("game init\n");
 }
@@ -74,18 +76,22 @@ void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 			m_hero->LookRight();
 			break;
 		// arrow keys
-		//case 0x26:
-		//	m_creature->m_anim->m_position.y -= 10.0f;
-		//	break;
-		//case 0x25:
-		//	m_creature->m_anim->m_position.x -= 10.0f;
-		//	break;
-		//case 0x28:
-		//	m_creature->m_anim->m_position.y += 10.0f;
-		//	break;
-		//case 0x27:
-		//	m_creature->m_anim->m_position.x += 10.0f;
-		//	break;
+		case 0x26:
+			m_creature->m_anim->m_position.y -= 10.0f;
+			m_creature->LookUp();
+			break;
+		case 0x25:
+			m_creature->m_anim->m_position.x -= 10.0f;
+			m_creature->LookLeft();
+			break;
+		case 0x28:
+			m_creature->m_anim->m_position.y += 10.0f;
+			m_creature->LookDown();
+			break;
+		case 0x27:
+			m_creature->m_anim->m_position.x += 10.0f;
+			m_creature->LookRight();
+			break;
 		// number keys
 		//case 0x31:
 		//	m_hero->m_anim->FrameAt(14);

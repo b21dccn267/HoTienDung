@@ -1,7 +1,8 @@
-#include "stdafx.h"
-#include "GameManager/SoundManager.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_mixer.h>
+#include "SoundManager.h"
+#include "../../../Include/SDL2/SDL.h"
+#include "../../../Include/SDL2/SDL_mixer.h"
+#include <cstdio>
+
 
 SoundManager* SoundManager::instance = nullptr;
 

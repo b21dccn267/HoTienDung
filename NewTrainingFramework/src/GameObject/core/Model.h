@@ -1,6 +1,6 @@
-	#pragma once
-#include "../Utilities/utilities.h"
-#include "Vertex.h"
+#pragma once
+#include "../../../../Utilities/utilities.h"
+#include "../core/Vertex.h"
 
 class Model
 {

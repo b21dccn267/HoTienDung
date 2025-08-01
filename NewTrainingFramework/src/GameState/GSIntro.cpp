@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "GSIntro.h"
 #include "../GameObject/core/Model.h"
 #include "../GameObject/core/Texture.h"

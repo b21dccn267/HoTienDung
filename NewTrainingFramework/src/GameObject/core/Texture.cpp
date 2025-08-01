@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "Texture.h"
 
 Texture::Texture(const char* fileName, int param)

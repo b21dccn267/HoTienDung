@@ -1,6 +1,8 @@
 #pragma once
-#include <GLES3/gl3.h>
-#include <EGL/egl.h>
+#include "../Include/GLES3/gl3.h"
+#include "../Include/EGL/egl.h"
+//#include <GLES3/gl3.h>
+//#include <EGL/egl.h>
 
 //  Macros
 

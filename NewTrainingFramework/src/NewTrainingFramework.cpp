@@ -1,14 +1,14 @@
 // NewTrainingFramework.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
-#include "../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
+#include "../../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
 #include "GameManager/ResourceManager.h"
 #include "GameManager/SceneManager.h"
 #include "GameManager/SoundManager.h"
 #include "GameState/GameStateBase.h"
 #include "GameState/GameStateMachine.h"
 #include "Globals.h"
+#include <tchar.h>
 #include <conio.h>
 #include <memory>
 

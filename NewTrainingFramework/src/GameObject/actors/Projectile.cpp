@@ -1,6 +1,5 @@
-#include "stdafx.h"
 #include "Projectile.h"
-#include "Globals.h"
+#include "../../Globals.h"
 #include "../../GameManager/ResourceManager.h"
 
 

@@ -1,0 +1,108 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(523,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(524,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  Belongings.cpp
+  Gun.cpp
+  Projectile.cpp
+  Creature.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244: 'argument': conversion from '_Ty' to 'int', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244:             _Ty=float
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244:         ]
+  (compiling source file 'src/GameObject/actors/Creature.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82):
+      the template instantiation context (the oldest one first) is
+          C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\actors\Creature.cpp(10,19):
+          see reference to function template instantiation 'std::shared_ptr<Animation> std::make_shared<Animation,std::shared_ptr<Model>&,std::shared_ptr<Texture>&,std::shared_ptr<Shaders>&,float,int>(std::shared_ptr<Model> &,std::shared_ptr<Texture> &,std::shared_ptr<Shaders> &,float &&,int &&)' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(2913,46):
+          see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<std::shared_ptr<Model>&,std::shared_ptr<Texture>&,std::shared_ptr<Shaders>&,float,int>(std::shared_ptr<Model> &,std::shared_ptr<Texture> &,std::shared_ptr<Shaders> &,float &&,int &&)' being compiled
+          with
+          [
+              _Ty=Animation
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(2100,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,std::shared_ptr<Model>&,std::shared_ptr<Texture>&,std::shared_ptr<Shaders>&,float,int>(_Ty &,std::shared_ptr<Model> &,std::shared_ptr<Texture> &,std::shared_ptr<Shaders> &,float &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Animation
+          ]
+  
+  Hero.cpp
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\actors\hero\Hero.cpp(69,37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244: 'argument': conversion from '_Ty' to 'int', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244:             _Ty=float
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82): warning C4244:         ]
+  (compiling source file 'src/GameObject/actors/hero/Hero.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(476,82):
+      the template instantiation context (the oldest one first) is
+          C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\actors\hero\Hero.cpp(14,19):
+          see reference to function template instantiation 'std::shared_ptr<Animation> std::make_shared<Animation,std::shared_ptr<Model>&,std::shared_ptr<Texture>&,std::shared_ptr<Shaders>&,float,int>(std::shared_ptr<Model> &,std::shared_ptr<Texture> &,std::shared_ptr<Shaders> &,float &&,int &&)' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(2913,46):
+          see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<std::shared_ptr<Model>&,std::shared_ptr<Texture>&,std::shared_ptr<Shaders>&,float,int>(std::shared_ptr<Model> &,std::shared_ptr<Texture> &,std::shared_ptr<Shaders> &,float &&,int &&)' being compiled
+          with
+          [
+              _Ty=Animation
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(2100,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,std::shared_ptr<Model>&,std::shared_ptr<Texture>&,std::shared_ptr<Shaders>&,float,int>(_Ty &,std::shared_ptr<Model> &,std::shared_ptr<Texture> &,std::shared_ptr<Shaders> &,float &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Animation
+          ]
+  
+  GSGame.cpp
+  SoundManager.cpp
+  Animation.cpp
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(18,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(67,20): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(93,40): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(98,40): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(103,40): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(108,40): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(164,40): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(169,40): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(174,40): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Animation.cpp(179,40): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+  Camera.cpp
+  Model.cpp
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameObject\core\Model.cpp(8,12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Object.cpp
+  Shaders.cpp
+  TextRenderer.cpp
+  Texture.cpp
+  GameButton.cpp
+  GameStateBase.cpp
+  GameStateMachine.cpp
+  GSDebug.cpp
+  GSIntro.cpp
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSIntro.cpp(26,31): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSIntro.cpp(26,23): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+  GSMenu.cpp
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSMenu.cpp(30,30): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSMenu.cpp(30,22): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSMenu.cpp(42,31): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSMenu.cpp(42,23): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSMenu.cpp(54,34): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSMenu.cpp(54,26): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+  Compiling...
+  GSPause.cpp
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPause.cpp(29,27): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPause.cpp(29,19): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPause.cpp(37,29): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPause.cpp(37,21): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPause.cpp(46,31): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPause.cpp(46,23): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPause.cpp(55,24): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPause.cpp(55,16): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+  GSPlay.cpp
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPlay.cpp(42,31): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPlay.cpp(42,22): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPlay.cpp(50,28): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\me\Desktop\projects\big-thing\HoTienDung\NewTrainingFramework\src\GameState\GSPlay.cpp(50,20): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+  NewTrainingFramework.cpp
+  ResourceManager.cpp
+  SceneManager.cpp
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+LINK : fatal error LNK1181: cannot open input file 'C:\Users\me\Desktop\projects\big-thing\HoTienDung\Release\Utilities.lib'

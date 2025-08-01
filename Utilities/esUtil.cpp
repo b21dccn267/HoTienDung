@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <GLES3/gl3.h>
-#include <EGL/egl.h>
+//#include <GLES3/gl3.h>
+//#include <EGL/egl.h>
+#include "../Include/GLES3/gl3.h"
+#include "../Include/EGL/egl.h"
 #include "esUtil_win.h"
 
 
