@@ -12,8 +12,6 @@ public:
 	int m_numFrames = 9;		// row
 	int m_numActions = 7;		// column
 	float m_frameTime;
-	int m_currentFrame;
-	int m_currentAction;
 	float m_currentTime;
 
 	// custom frame anim variables
@@ -23,10 +21,8 @@ public:
 	int m_frameX;	// row
 	int m_frameY;	// column
 	std::vector<int> m_frameOrder;
-	bool m_isFlipX;
-	bool m_isFlipY;
 	
-	Animation() : Object(), m_currentFrame(0), m_currentTime(0.0f), m_currentAction(0), m_frameTime(0.0f) {};
+	Animation() : Object(), m_currentTime(0.0f), m_frameTime(0.0f) {};
 	Animation(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader, int frameTime, int currentAction);
 	//	: Object(model, texture, shader) {};
 	void FrameNumberToCoord(int number);
@@ -35,7 +31,5 @@ public:
 	void SetCustomFrames(std::vector<int> order, bool isLooped);
 	void CustomUpdate(GLfloat deltaTime);
 	void CustomDraw();
-	void Draw();
-	void Update(GLfloat deltaTime);
 };
 

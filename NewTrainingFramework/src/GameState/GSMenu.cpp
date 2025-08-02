@@ -1,4 +1,3 @@
-
 #include "GSMenu.h"
 #include "../GameObject/core/Object.h"
 #include "../GameManager/SceneManager.h"

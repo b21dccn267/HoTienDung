@@ -100,3 +100,24 @@ autochess game + mini baseball + match 3/alchemy puzzle
 1 is safe bet but can use the work of 2
 2 is sweet spot but base building came too late
 
+random tips
+	z-sorting: what gets drawn of top. default by order of drawing, can be sorted (use for game ui) (ask chat)
+		chat says spd does z-ordering by assign a z value
+		is int, can be negative, higher = on top
+		game engine sort it out
+
+
+current core game:
+	-main character move wasd, shoot closest/mouse1
+	-enemies spawn around, in waves
+whats missing:
+	-all direction gun
+	-enemies react to gunshots
+	-gain xp on kills (maybe later as this is tied to leveling up buffs)
+what to add:
+	-fix gun
+	-add enemy die function, die anims(2 anims in one)
+		die anims can be done by: 
+			+have current object possess its own death anims
+			+have boom effect owned by game state
+	-add hero die logic (touched too much? collision? hp?)	

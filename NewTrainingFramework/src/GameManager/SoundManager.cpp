@@ -20,9 +20,9 @@ void SoundManager::Init()
 
 	Mix_AllocateChannels(16);
 
-	Mix_Chunk* test = Mix_LoadWAV("../Resources/Sfx/vine-boom.wav");
+	//Mix_Chunk* test = Mix_LoadWAV("../Resources/Sfx/vine-boom.wav");
 
-	Mix_PlayChannel(-1, test, -1);
+	//Mix_PlayChannel(-1, test, -1);
 }
 
 // should use channel 1, play on loop

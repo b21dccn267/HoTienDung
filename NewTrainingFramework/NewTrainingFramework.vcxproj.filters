@@ -82,6 +82,12 @@
     <Filter Include="Source Files\Objects\Actors\Hero">
       <UniqueIdentifier>{75f209cb-4f8b-46b2-bdb1-768754f85bcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{53175571-361f-48a6-8797-08cebd57a1a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{48b4d510-8e7b-4d4f-bba6-653156526735}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\NewTrainingFramework.cpp">
@@ -167,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="src\GameManager\InputManager.cpp">
       <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\utils\CreatureController.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="src\GameManager\InputManager.h">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\utils\CreatureController.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

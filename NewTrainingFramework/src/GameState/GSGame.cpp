@@ -66,6 +66,7 @@ void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 	printf("gsgameKeyPresed: 0x%02X\n", key);
 	//SoundManager::PlaySfx("../Resources/Sfx/vine-boom.wav");
 
+	// wasd
 	if (InputManager::GetInstance()->keys[0x57]) {
 		m_hero->m_anim->m_position.y -= 10.0f;
 		m_hero->LookUp();
@@ -82,7 +83,6 @@ void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 		m_hero->m_anim->m_position.x += 10.0f;
 		m_hero->LookRight();
 	}
-
 	if (InputManager::GetInstance()->keys[0x41] && 
 		InputManager::GetInstance()->keys[0x57]) {
 		m_hero->LookTopLeft();
@@ -99,62 +99,24 @@ void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 		InputManager::GetInstance()->keys[0x53]) {
 		m_hero->LookBottomRight();
 	}
+	// arrows
+	if (InputManager::GetInstance()->keys[0x26]) {
+		m_creature->m_anim->m_position.y -= 10.0f;
+		m_creature->LookUp();
+	}
+	if (InputManager::GetInstance()->keys[0x25]) {
+		m_creature->m_anim->m_position.x -= 10.0f;
+		m_creature->LookLeft();
+	}
+	if (InputManager::GetInstance()->keys[0x28]) {
+		m_creature->m_anim->m_position.y += 10.0f;
+		m_creature->LookDown();
+	}
+	if (InputManager::GetInstance()->keys[0x27]) {
+		m_creature->m_anim->m_position.x += 10.0f;
+		m_creature->LookRight();
+	}
 
-	//if (bIsPressed) {
-	//switch (key) {
-	//	case 0x57:
-	//		m_hero->m_anim->m_position.y -= 10.0f;
-	//		m_hero->LookUp();
-	//		break;
-	//	case 0x41:
-	//		m_hero->m_anim->m_position.x -= 10.0f;
-	//		m_hero->LookLeft();
-	//		break;
-	//	case 0x53:
-	//		m_hero->m_anim->m_position.y += 10.0f;
-	//		m_hero->LookDown();
-	//		break;
-	//	case 0x44:
-	//		m_hero->m_anim->m_position.x += 10.0f;
-	//		m_hero->LookRight();
-	//		break;
-	//	}
-	//}
-	//if (bIsPressed) {
-	//	switch (key) {
-	//	case 0x57:
-	//		m_hero->m_anim->m_position.y -= 10.0f;
-	//		m_hero->LookUp();
-	//		break;
-	//	case 0x41:
-	//		m_hero->m_anim->m_position.x -= 10.0f;
-	//		m_hero->LookLeft();
-	//		break;
-	//	case 0x53:
-	//		m_hero->m_anim->m_position.y += 10.0f;
-	//		m_hero->LookDown();
-	//		break;
-	//	case 0x44:
-	//		m_hero->m_anim->m_position.x += 10.0f;
-	//		m_hero->LookRight();
-	//		break;
-	//	// arrow keys
-	//	case 0x26:
-	//		m_creature->m_anim->m_position.y -= 10.0f;
-	//		m_creature->LookUp();
-	//		break;
-	//	case 0x25:
-	//		m_creature->m_anim->m_position.x -= 10.0f;
-	//		m_creature->LookLeft();
-	//		break;
-	//	case 0x28:
-	//		m_creature->m_anim->m_position.y += 10.0f;
-	//		m_creature->LookDown();
-	//		break;
-	//	case 0x27:
-	//		m_creature->m_anim->m_position.x += 10.0f;
-	//		m_creature->LookRight();
-	//		break;
 	//	// number keys
 	//	//case 0x31:
 	//	//	m_hero->m_anim->FrameAt(14);
@@ -176,7 +138,6 @@ void GSGame::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
 	printf("gsGameMouseEvent\n");
 	if (bIsPressed) {
-		//m_hero->m_gun->Fire();
 		m_hero->FireGun();
 	}
 }

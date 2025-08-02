@@ -6,5 +6,6 @@ class Skeleton : public Creature
 {
 public:
 	Skeleton();
+	void Die();
 };
 
