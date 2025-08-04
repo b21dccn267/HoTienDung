@@ -5,7 +5,7 @@
 
 CreatureSpawner::CreatureSpawner()
 {
-	m_creatures.reserve(10);
+	m_creatures.reserve(50);
 }
 
 void CreatureSpawner::SpawnCreature()

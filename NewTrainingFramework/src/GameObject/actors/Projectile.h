@@ -11,17 +11,12 @@
 class Projectile : public Object
 {
 public:
-	//Projectile() : 
-	//	Object(
-	//		ResourceManager::GetInstance()->GetModel(0),
-	//		ResourceManager::GetInstance()->GetTexture(6),
-	//		ResourceManager::GetInstance()->GetShader(0)
-	//		),
-	//	m_fTimePassed(0.0f) {};
+	
 	Projectile();
 	~Projectile() {};
 	void Destroy();
-
+	// have projectile fly autonomously, but uses flyValue and isActive for texture display
+	void SetProjectile();
 	void Update(GLfloat deltaTime);
 	float m_fTimePassed;
 	bool m_isActive;

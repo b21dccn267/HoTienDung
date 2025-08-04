@@ -25,8 +25,16 @@ void Projectile::Destroy()
 //	m_isFired = true;
 //}
 
+void Projectile::SetProjectile()
+{
+	// set pos to m_hero.position
+	// set dest to mouse/creature pos
+	// set velocity (a multiplier)
+}
+
 void Projectile::Update(GLfloat deltaTime)
 {
+	// make this update only pos, by += dest coord * multiplier
 	printf("flying...\n");
 	m_fTimePassed += deltaTime;
 	if (m_fTimePassed >= 2.0f) {

@@ -3,7 +3,7 @@
 #include <../Include/GLES3/gl3.h>
 class Gun;
 class Animation;
-class Hero
+class Hero : public std::enable_shared_from_this<Hero>
 {
 public:
 	std::shared_ptr<Animation> m_anim;

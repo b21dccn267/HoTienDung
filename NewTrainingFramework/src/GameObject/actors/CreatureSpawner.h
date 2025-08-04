@@ -2,6 +2,7 @@
 #include "Creature.h"
 #include <memory>
 
+// use object pooling for this
 class CreatureSpawner
 {
 public:

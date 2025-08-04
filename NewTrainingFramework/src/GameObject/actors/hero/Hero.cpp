@@ -19,7 +19,9 @@ Hero::Hero()
 
 	m_anim = anim;
 
-	m_gun = std::make_shared<Gun>();
+	//m_gun = std::make_shared<Gun>();
+	//m_gun = std::make_shared<Gun>(shared_from_this());
+	m_gun = std::make_shared<Gun>(weak_from_this());
 }
 
 void Hero::Idle()
