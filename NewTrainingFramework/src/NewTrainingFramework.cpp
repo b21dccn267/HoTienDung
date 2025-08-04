@@ -46,8 +46,6 @@ void Update ( ESContext *esContext, float deltaTime )
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
-	InputManager::GetInstance()->keys[key] = bIsPressed;
-
 	GameStateMachine::GetInstance()->m_stack.top()->HandleKeyEvent(key, bIsPressed);
 }
 

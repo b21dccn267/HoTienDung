@@ -21,9 +21,9 @@ public:
 	Projectile();
 	~Projectile() {};
 	void Destroy();
-	//void Fire(); //is in gun
+
 	void Update(GLfloat deltaTime);
 	float m_fTimePassed;
-	//bool m_isActive;
+	bool m_isActive;
 };
 

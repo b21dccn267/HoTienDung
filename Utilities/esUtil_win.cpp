@@ -155,13 +155,15 @@ void WinLoop ( ESContext *esContext )
    MSG msg = { 0 };
    int done = 0;
    DWORD lastTime = GetTickCount();
+
+   const DWORD FRAMECAP = DWORD(1000.0f / 60.0f);
    
    while (!done)
    {
       int gotMsg = (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0);
       DWORD curTime = GetTickCount();
       float deltaTime = (float)( curTime - lastTime ) / 1000.0f;
-      lastTime = curTime;
+      //lastTime = curTime;
 
       if ( gotMsg )
       {
@@ -178,8 +180,18 @@ void WinLoop ( ESContext *esContext )
       else
          SendMessage( esContext->hWnd, WM_PAINT, 0, 0 );
 
+      // Start counting frame update time
+      //DWORD frameStart = GetTickCount(); // use curTime
+
       // Call update function if registered
       if ( esContext->updateFunc != NULL )
          esContext->updateFunc ( esContext, deltaTime );
+
+      DWORD postFrameTime = DWORD(GetTickCount() - curTime);
+      // cause freezes
+      //if (postFrameTime < FRAMECAP)
+      //    Sleep(FRAMECAP - postFrameTime);
+
+      lastTime = curTime;
    }
 }

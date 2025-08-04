@@ -6,7 +6,7 @@
 // functions include item management, as well as delegate functions
 class Belongings
 {
-	std::shared_ptr<Gun> m_gun;
+	//std::shared_ptr<Gun> m_gun;
 
 	void SetToActive();		// set a weapon in possession of hero as active (can only fire 1 weapon for now)
 	void UseActiveWeapon();

@@ -1,16 +1,15 @@
 #pragma once
-#include "../../core/Animation.h"
-#include "../../items/weapons/Gun.h"
-#include "Belongings.h"
 #include <memory>
-
+#include <../Include/GLES3/gl3.h>
+class Gun;
+class Animation;
 class Hero
 {
 public:
 	std::shared_ptr<Animation> m_anim;
 	std::shared_ptr<Gun> m_gun;
 
-	std::shared_ptr<Belongings> m_belongings;
+	//std::shared_ptr<Belongings> m_belongings;
 
 	Hero();
 

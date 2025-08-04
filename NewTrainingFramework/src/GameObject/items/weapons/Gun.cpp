@@ -1,6 +1,6 @@
 
 #include "Gun.h"
-#include "../../../GameManager/ResourceManager.h"
+#include "GameManager/ResourceManager.h"
 
 Gun::Gun()
 {

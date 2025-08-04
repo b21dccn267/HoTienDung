@@ -1,11 +1,11 @@
 #include "GSGame.h"
-#include "../Globals.h"
-#include "../GameManager/InputManager.h"
-#include "../GameManager/SceneManager.h"
-#include "../GameManager/ResourceManager.h"
-#include "../GameManager/SoundManager.h"
-#include "../GameObject/core/TextRenderer.h"
-#include "../GameObject/core/Animation.h"
+#include "Globals.h"
+#include "GameManager/InputManager.h"
+#include "GameManager/SceneManager.h"
+#include "GameManager/ResourceManager.h"
+#include "GameManager/SoundManager.h"
+#include "GameObject/core/TextRenderer.h"
+#include "GameObject/core/Animation.h"
 
 
 void GSGame::Init()
@@ -38,10 +38,7 @@ void GSGame::Resume()
 void GSGame::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	//for (auto& x : m_gsGameObject) {
-	//	x->Draw();
-	//}
-	//m_gsGameObject->Draw();
+
 	m_hero->Draw();
 	m_creature->Draw();
 	for (auto& x : m_creatureSpawner->m_creatures) {
@@ -51,39 +48,24 @@ void GSGame::Draw()
 
 void GSGame::Update(float deltaTime)
 {
-	//m_gsGameObject->Update(deltaTime);
-	m_hero->Update(deltaTime);
-	m_hero->Update2DPosition();
-	m_creature->Update(deltaTime);
-	m_creature->Update2DPosition();
-	for (auto& x : m_creatureSpawner->m_creatures) {
-		x->Update(deltaTime);
-	}
-}
-
-void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
-{
-	printf("gsgameKeyPresed: 0x%02X\n", key);
-	//SoundManager::PlaySfx("../Resources/Sfx/vine-boom.wav");
-
 	// wasd
 	if (InputManager::GetInstance()->keys[0x57]) {
-		m_hero->m_anim->m_position.y -= 10.0f;
+		m_hero->m_anim->m_position.y -= 130.0f * deltaTime;
 		m_hero->LookUp();
 	}
 	if (InputManager::GetInstance()->keys[0x41]) {
-		m_hero->m_anim->m_position.x -= 10.0f;
+		m_hero->m_anim->m_position.x -= 130.0f * deltaTime;
 		m_hero->LookLeft();
 	}
 	if (InputManager::GetInstance()->keys[0x53]) {
-		m_hero->m_anim->m_position.y += 10.0f;
+		m_hero->m_anim->m_position.y += 130.0f * deltaTime;
 		m_hero->LookDown();
 	}
 	if (InputManager::GetInstance()->keys[0x44]) {
-		m_hero->m_anim->m_position.x += 10.0f;
+		m_hero->m_anim->m_position.x += 130.0f * deltaTime;
 		m_hero->LookRight();
 	}
-	if (InputManager::GetInstance()->keys[0x41] && 
+	if (InputManager::GetInstance()->keys[0x41] &&
 		InputManager::GetInstance()->keys[0x57]) {
 		m_hero->LookTopLeft();
 	}
@@ -101,37 +83,34 @@ void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 	}
 	// arrows
 	if (InputManager::GetInstance()->keys[0x26]) {
-		m_creature->m_anim->m_position.y -= 10.0f;
+		m_creature->m_anim->m_position.y -= 130.0f * deltaTime;
 		m_creature->LookUp();
 	}
 	if (InputManager::GetInstance()->keys[0x25]) {
-		m_creature->m_anim->m_position.x -= 10.0f;
+		m_creature->m_anim->m_position.x -= 130.0f * deltaTime;
 		m_creature->LookLeft();
 	}
 	if (InputManager::GetInstance()->keys[0x28]) {
-		m_creature->m_anim->m_position.y += 10.0f;
+		m_creature->m_anim->m_position.y += 130.0f * deltaTime;
 		m_creature->LookDown();
 	}
 	if (InputManager::GetInstance()->keys[0x27]) {
-		m_creature->m_anim->m_position.x += 10.0f;
+		m_creature->m_anim->m_position.x += 130.0f * deltaTime;
 		m_creature->LookRight();
 	}
 
-	//	// number keys
-	//	//case 0x31:
-	//	//	m_hero->m_anim->FrameAt(14);
-	//	//	break;
-	//	//case 0x32:
-	//	//	m_hero->m_anim->FrameAt(15);
-	//	//	break;
-	//	//case 0x33:
-	//	//	m_hero->m_anim->FrameAt(16);
-	//	//	break;
-	//	//case 0x34:
-	//	//	m_hero->m_anim->FrameAt(17);
-	//	//	break;
-	//	}
-	//}
+	m_hero->Update(deltaTime);
+	m_hero->Update2DPosition();
+	m_creature->Update(deltaTime);
+	m_creature->Update2DPosition();
+	for (auto& x : m_creatureSpawner->m_creatures) {
+		x->Update(deltaTime);
+	}
+}
+
+void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
+{
+	InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 
 void GSGame::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)

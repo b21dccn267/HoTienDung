@@ -1,7 +1,8 @@
 #pragma once
-#include "../../core/Animation.h"
-#include "../../core/Object.h"
+#include "GameObject/core/Animation.h"
+#include "GameObject/core/Object.h"
 #include "../../actors/Projectile.h"
+#include "../../actors/hero/Hero.h"
 #include <memory>
 
 // exists inside Hero as an item
@@ -10,6 +11,8 @@
 class Gun
 {
 public:
+
+
 	//std::shared_ptr<Animation> m_anim;
 	std::shared_ptr<Object> m_self;
 	std::shared_ptr<Projectile> m_projectile;
