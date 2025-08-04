@@ -1,4 +1,4 @@
-#include "GSMenu.h"
+﻿#include "GSMenu.h"
 #include "../GameObject/core/Object.h"
 #include "../GameManager/SceneManager.h"
 #include "../GameManager/ResourceManager.h"
@@ -10,8 +10,8 @@ void GSMenu::Init()
 {
 	m_gsMenuObjects.reserve(4);
 	m_gsMenuGameButtons.reserve(5);
-	
-	// background
+
+// background
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(0);
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
@@ -20,7 +20,7 @@ void GSMenu::Init()
 	background->SetSize(Globals::screenWidth, Globals::screenHeight);
 	m_gsMenuObjects.emplace_back(background);
 
-	// menu background
+// menu background
 	model = ResourceManager::GetInstance()->GetModel(0);
 	texture = ResourceManager::GetInstance()->GetTexture(20);
 	shader = ResourceManager::GetInstance()->GetShader(0);
@@ -29,49 +29,48 @@ void GSMenu::Init()
 	MenuBg->SetSize(321.0f, 404.0f);
 	m_gsMenuObjects.emplace_back(MenuBg);
 
-	// play button
-	auto CreateEmptyTexture = []() {
-		SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, 1, 1, 32, SDL_PIXELFORMAT_RGBA8888);
-		SDL_FillRect(surface, nullptr, SDL_MapRGBA(surface->format, 0, 0, 0, 0));
-		return std::make_shared<Texture>(surface);
-		};
-
+// play button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto emptyTexture = CreateEmptyTexture();
+	auto normalTexture = ResourceManager::GetInstance()->GetTexture(23);   // Texture cho play button nổi
+	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(22);  // Texture cho play button chìm 
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> menuButton = std::make_shared<GameButton>(model, emptyTexture, shader);
-	menuButton->Set2DPosition(Vector2(Globals::screenWidth/2 + 5, 255.0f));
+	std::shared_ptr<GameButton> menuButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
+	menuButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 255.0f));
 	menuButton->SetSize(150.0f, 45.0f);
 	menuButton->SetOnClick([]() {
 		GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY);
 		});
 	m_gsMenuGameButtons.emplace_back(menuButton);
 
-	// close button
+// settings button
+    model = ResourceManager::GetInstance()->GetModel(0);
+    normalTexture = ResourceManager::GetInstance()->GetTexture(26);   // Texture cho settings button nổi
+    pressedTexture = ResourceManager::GetInstance()->GetTexture(27);  // Texture cho settings button chìm
+    shader = ResourceManager::GetInstance()->GetShader(0);
+    std::shared_ptr<GameButton> settingsButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
+    settingsButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 320.0f));
+    settingsButton->SetSize(150.0f, 45.0f);
+    settingsButton->SetOnClick([]() {
+    	printf("oke");
+	});
+    m_gsMenuGameButtons.emplace_back(settingsButton);
+
+// quit button  
 	model = ResourceManager::GetInstance()->GetModel(0);
-	emptyTexture = CreateEmptyTexture();
+	normalTexture = ResourceManager::GetInstance()->GetTexture(24);   // Texture cho close button nổi
+	pressedTexture = ResourceManager::GetInstance()->GetTexture(25);  // Texture cho close button chìm
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> closeButton = std::make_shared<GameButton>(model, emptyTexture, shader);
+	std::shared_ptr<GameButton> closeButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
 	closeButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 386.0f));
 	closeButton->SetSize(150.0f, 45.0f);
 	closeButton->SetOnClick([]() {
 		exit(0);
 		});
 	m_gsMenuGameButtons.emplace_back(closeButton);
-	
-	// settings button
-	model = ResourceManager::GetInstance()->GetModel(0);
-	emptyTexture = CreateEmptyTexture();
-	shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> settingsButton = std::make_shared<GameButton>(model, emptyTexture, shader);
-	settingsButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 320.0f));
-	settingsButton->SetSize(150.0f, 45.0f);
-	settingsButton->SetOnClick([]() {
-		printf("oke");
-		});
-	m_gsMenuGameButtons.emplace_back(settingsButton);
 
-	printf("menu init\n");
+
+
+	//printf("menu init\n");
 }
 
 void GSMenu::Pause()
@@ -111,24 +110,13 @@ void GSMenu::Update(float deltaTime)
 void GSMenu::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 	printf("gsMenuKeyPresed: %c\n", key);
-	//if (bIsPressed) {
-	//	switch (key) {
-	//	case 0x31: // 1 pressed
-	//		printf("1 pressed\n");
-	//		break;
-	//	}
-	//}
 }
 
 void GSMenu::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
-	
 	for (auto& btn : m_gsMenuGameButtons) {
 		btn->HandleTouchEvents(x, y, bIsPressed);
 	}
-	//m_gsMenuGameButtons[0]->HandleTouchEvents(x, y, bIsPressed);
-	//m_gsMenuGameButtons[1]->HandleTouchEvents(x, y, bIsPressed);
-	//m_gsMenuGameButtons[2]->HandleTouchEvents(x, y, bIsPressed);
 }
 
 void GSMenu::Cleanup()
