@@ -1,21 +1,29 @@
-#pragma once
+﻿#pragma once
 #include "../GameObject/core/Object.h"
 #include <memory>
-
 
 class GameButton : public Object
 {
 public:
-	GameButton() : Object(), m_pBtnClick(nullptr), m_isHolding(false) {};
-	GameButton(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader);
-	~GameButton();
-	void SetOnClick(void (*pBtnClick)());
-	bool HandleTouchEvents(GLint x, GLint y, bool bIsPressed);
-	bool IsHolding();
+    GameButton() : Object(), m_pBtnClick(nullptr), m_isHolding(false),
+        m_normalTexture(nullptr), m_pressedTexture(nullptr) {
+    };
+    GameButton(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader);
+    GameButton(std::shared_ptr<Model> model, std::shared_ptr<Texture> normalTexture,
+        std::shared_ptr<Texture> pressedTexture, std::shared_ptr<Shaders> shader);
+    ~GameButton();
 
+    void SetOnClick(void (*pBtnClick)());
+    bool HandleTouchEvents(GLint x, GLint y, bool bIsPressed);
+    bool IsHolding();
+
+    // Setter cho textures
+    void SetNormalTexture(std::shared_ptr<Texture> texture);
+    void SetPressedTexture(std::shared_ptr<Texture> texture);
 
 private:
-	void (*m_pBtnClick)();
-	bool m_isHolding;
+    void (*m_pBtnClick)();
+    bool m_isHolding;
+    std::shared_ptr<Texture> m_normalTexture;   // Texture khi button bình thường (nổi)
+    std::shared_ptr<Texture> m_pressedTexture;  // Texture khi button được ấn (chìm)
 };
-

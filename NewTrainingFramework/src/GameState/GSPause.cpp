@@ -22,11 +22,12 @@ void GSPause::Init()
 
 	// Pause menu background
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(16);
+	texture = ResourceManager::GetInstance()->GetTexture(20);
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	auto pauseBg = std::make_shared<Object>(model, texture, shader);
-	pauseBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 + 50));
-	pauseBg->SetSize(300.0f, 500.0f);
+	std::shared_ptr<Object> pauseBg = std::make_shared<Object>(model, texture, shader);
+	pauseBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 - 50));
+	pauseBg->SetSize(321.0f, 404.0f);
+
 
 	// Resume button
 	model = ResourceManager::GetInstance()->GetModel(0);
@@ -175,7 +176,7 @@ void GSPause::OnMainMenuButtonClick()
 	// Pop pause state and push menu state
 	GameStateMachine::GetInstance()->PopState(); // Remove pause
 	GameStateMachine::GetInstance()->PopState(); // Remove play
-	GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU);
+	//GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU);
 }
 
 GSPause::~GSPause()
