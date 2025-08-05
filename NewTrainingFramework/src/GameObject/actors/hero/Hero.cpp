@@ -101,7 +101,7 @@ void Hero::Draw()
 	//m_anim->Draw();
 	m_anim->CustomDraw();
 	if (m_gun->m_isActive) {
-		m_gun->m_projectile->Draw();
+		//m_gun->m_projectile->Draw();
 	}
 }
 
@@ -118,7 +118,7 @@ void Hero::Update2DPosition()
 {
 	m_anim->Set2DPosition(Vector2(m_anim->m_position.x, m_anim->m_position.y));
 	if (m_gun->m_isActive) {
-		m_gun->m_projectile->Set2DPosition(Vector2(m_gun->m_projectile->m_position.x, m_gun->m_projectile->m_position.y));
+		//m_gun->m_projectile->Set2DPosition(Vector2(m_gun->m_projectile->m_position.x, m_gun->m_projectile->m_position.y));
 	}
 }
 
