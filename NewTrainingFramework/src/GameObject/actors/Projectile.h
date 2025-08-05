@@ -11,10 +11,12 @@
 class Projectile : public Object
 {
 public:
-	
+	int m_id;
+
+	float m_moveSpeed = 50.0f;
+
 	Projectile();
 	~Projectile() {};
-	void Destroy();
 	// have projectile fly autonomously, but uses flyValue and isActive for texture display
 	void SetProjectile();
 	void Update(GLfloat deltaTime);

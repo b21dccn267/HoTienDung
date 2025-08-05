@@ -18,7 +18,7 @@ void GSGame::Init()
 	m_creature->LookLeft();
 
 	m_creatureSpawner = std::make_shared<CreatureSpawner>();
-	m_creatureSpawner->SpawnCreature();
+	//m_creatureSpawner->SpawnCreature();
 	
 	printf("game init\n");
 }
@@ -99,6 +99,12 @@ void GSGame::Update(float deltaTime)
 		m_creature->LookRight();
 	}
 
+	if (InputManager::GetInstance()->m_mouseIsPressed == true) {
+		printf("bang\n");
+		m_hero->FireGun();
+	}
+	 
+
 	m_hero->Update(deltaTime);
 	m_hero->Update2DPosition();
 	m_creature->Update(deltaTime);
@@ -110,15 +116,15 @@ void GSGame::Update(float deltaTime)
 
 void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
+	printf("0x%d\n", key);
 	InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 
 void GSGame::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
-	printf("gsGameMouseEvent\n");
-	if (bIsPressed) {
-		m_hero->FireGun();
-	}
+	InputManager::GetInstance()->m_mouseX = x;
+	InputManager::GetInstance()->m_mouseY = y;
+	InputManager::GetInstance()->m_mouseIsPressed = bIsPressed;
 }
 
 void GSGame::Cleanup()

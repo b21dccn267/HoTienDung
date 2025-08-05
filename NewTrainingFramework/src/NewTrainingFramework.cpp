@@ -28,7 +28,7 @@ int Init ( ESContext *esContext )
 	SoundManager::GetInstance()->Init();
 
 	// start with StateType::STATE_INTRO
-	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
+	GameStateMachine::GetInstance()->PushState(StateType::STATE_GAME);
 
 	return 0;
 }
@@ -56,7 +56,8 @@ void MouseClick(ESContext* esContext, GLint x, GLint y, bool bIsPressed)
 
 void OnMouseMove(ESContext* esContext, GLint x, GLint y)
 {
-	printf("MouseMove\n");
+	//printf("MouseMove\n");
+	GameStateMachine::GetInstance()->m_stack.top()->HandleMouseEvent(x, y, false);
 }
 
 void CleanUp()

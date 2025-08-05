@@ -5,6 +5,7 @@
 #include "GameObject/actors/hero/Hero.h"
 #include <memory>
 #include <vector>
+#include <stack>
 
 
 class Gun
@@ -15,13 +16,16 @@ public:
 	//std::shared_ptr<Animation> m_anim;
 	std::shared_ptr<Object> m_self;
 	std::vector<std::unique_ptr<Projectile>> m_projectilePool;
+	std::stack<int> m_freeProjectiles;
+	std::vector<std::unique_ptr<Projectile>> m_projectileUsed;
 	bool m_isActive;
 	// add active bullet here
 
 	Gun(std::weak_ptr<Hero> owner);
-	void Acquire();
+	std::unique_ptr<Projectile> AcquireProjectile();
+	void ReleaseProjectile(std::unique_ptr<Projectile> proj);
 	void Fire();
-	//void Draw();
-	void Update(GLfloat deltaTime);	
-	//void Update2DPosition();
+
+	void Draw();
+	void Update(GLfloat deltaTime);
 };

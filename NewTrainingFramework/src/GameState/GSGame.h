@@ -20,7 +20,7 @@ public:
 	std::shared_ptr<CreatureSpawner> m_creatureSpawner;
 
 	// test
-	std::shared_ptr<Projectile> m_proj;
+	//std::shared_ptr<Projectile> m_proj;
 	// gun is in m_hero
 	// if mouseclick, gun fires
 	// when gun fires, gun create a projectile (projectileManager might be here)

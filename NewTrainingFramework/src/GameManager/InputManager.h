@@ -1,5 +1,5 @@
 #pragma once
-//#include "../../../Utilities/esUtil_win.h"
+#include "../../Utilities/utilities.h"
 
 class InputManager
 {
@@ -19,6 +19,9 @@ public:
 	}
 
 	bool keys[256] = { false };
+	GLint m_mouseX;
+	GLint m_mouseY;
+	bool m_mouseIsPressed;
 
 private:
 	InputManager() {};
