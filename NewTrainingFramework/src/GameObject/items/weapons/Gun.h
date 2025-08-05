@@ -2,18 +2,16 @@
 #include "GameObject/core/Animation.h"
 #include "GameObject/core/Object.h"
 #include "GameObject/actors/Projectile.h"
-#include "GameObject/actors/hero/Hero.h"
 #include <memory>
 #include <vector>
 #include <stack>
 
-
-class Gun
+class Hero;
+class Gun : public std::enable_shared_from_this<Gun>
 {
 public:
 	std::weak_ptr<Hero> owner;
 
-	//std::shared_ptr<Animation> m_anim;
 	std::shared_ptr<Object> m_self;
 	std::vector<std::unique_ptr<Projectile>> m_projectilePool;
 	std::stack<int> m_freeProjectiles;

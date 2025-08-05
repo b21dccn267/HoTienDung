@@ -1,12 +1,9 @@
 
 #include "Object.h"
-#include "../../../Utilities/utilities.h"
-#include "../core/Vertex.h"
-#include "Shaders.h"
-#include "Texture.h"
-#include "Model.h"
-#include "Camera.h"
-#include "../../GameManager/SceneManager.h"
+#include "../Utilities/utilities.h"
+#include "GameObject/core/Vertex.h"
+
+#include "GameManager/SceneManager.h"
 
 
 Object::Object()

@@ -1,8 +1,9 @@
 ﻿#include "GameButton.h"
-#include "../GameObject/core/Model.h"
-#include "../GameObject/core/Texture.h"
-#include "../GameObject/core/Shaders.h"
-#include "../GameObject/core/Object.h"
+#include <GameObject/core/Model.h>
+#include <GameObject/core/Texture.h>
+#include <GameObject/core/Shaders.h>
+#include <GameObject/core/Object.h>
+
 
 GameButton::GameButton(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader)
     : Object(model, texture, shader), m_pBtnClick(nullptr), m_isHolding(false),

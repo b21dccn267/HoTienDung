@@ -2,13 +2,13 @@
 //
 
 #include "../../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
-#include "GameManager/InputManager.h"
-#include "GameManager/ResourceManager.h"
-#include "GameManager/SceneManager.h"
-#include "GameManager/SoundManager.h"
-#include "GameState/GameStateBase.h"
-#include "GameState/GameStateMachine.h"
-#include "Globals.h"
+#include <GameManager/InputManager.h>
+#include <GameManager/ResourceManager.h>
+#include <GameManager/SceneManager.h>
+#include <GameManager/SoundManager.h>
+#include <GameState/GameStateBase.h>
+#include <GameState/GameStateMachine.h>
+#include <Globals.h>
 #include <tchar.h>
 #include <conio.h>
 #include <memory>

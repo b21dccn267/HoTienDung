@@ -97,6 +97,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libEGL.lib;libGLESv2.lib;SDL2.lib;SDL2_mixer.lib;SDL2_ttf.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -174,7 +175,9 @@
     <ClCompile Include="src\GameObject\actors\CreatureSpawner.cpp" />
     <ClCompile Include="src\GameObject\actors\hero\Belongings.cpp" />
     <ClCompile Include="src\GameObject\items\weapons\Gun.cpp" />
-    <ClCompile Include="src\GameObject\actors\Projectile.cpp" />
+    <ClCompile Include="src\GameObject\actors\Projectile.cpp">
+      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">EditAndContinue</DebugInformationFormat>
+    </ClCompile>
     <ClCompile Include="src\GameObject\actors\Creature.cpp" />
     <ClCompile Include="src\GameObject\actors\hero\Hero.cpp" />
     <ClCompile Include="src\GameState\GSGame.cpp" />

@@ -1,9 +1,9 @@
 #pragma once
-#include "../GameObject/core/Model.h"
-#include "../GameObject/core/Texture.h"
-#include "../GameObject/core/Shaders.h"
-#include "../../../Utilities/utilities.h"
-#include "../GameObject/core/Vertex.h"
+#include <GameObject/core/Model.h>
+#include <GameObject/core/Texture.h>
+#include <GameObject/core/Shaders.h>
+#include <../../Utilities/utilities.h>
+#include <GameObject/core/Vertex.h>
 #include <vector>
 #include <memory>
 

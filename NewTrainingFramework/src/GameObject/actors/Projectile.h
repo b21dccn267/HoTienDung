@@ -1,9 +1,10 @@
 #pragma once
-#include "../core/Object.h"
-#include "../../GameManager/ResourceManager.h"
+#include "GameObject/core/Object.h"
+#include "GameManager/ResourceManager.h"
+
 #include <memory>
 
-
+class Gun;
 // an actor, spawns when gun is fired
 // delete self when reaching max range
 // add projectile hit creature
@@ -11,12 +12,13 @@
 class Projectile : public Object
 {
 public:
-	int m_id;
+	std::weak_ptr<Gun> owner;
 
 	float m_moveSpeed = 50.0f;
+	int m_id;
 
-	Projectile();
-	~Projectile() {};
+	Projectile(std::weak_ptr<Gun> owner);
+
 	// have projectile fly autonomously, but uses flyValue and isActive for texture display
 	void SetProjectile();
 	void Update(GLfloat deltaTime);

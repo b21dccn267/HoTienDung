@@ -1,10 +1,14 @@
 #include "Projectile.h"
-#include "../../Globals.h"
-#include "../../GameManager/ResourceManager.h"
+#include "Globals.h"
+#include "GameManager/ResourceManager.h"
+#include <memory>
 
+class Gun;
 
-Projectile::Projectile()
+Projectile::Projectile(std::weak_ptr<Gun> owner)
 {
+	this->owner = owner;
+
 	this->m_pModel = ResourceManager::GetInstance()->GetModel(0);
 	this->m_pTexture = ResourceManager::GetInstance()->GetTexture(6);
 	this->m_pShader = ResourceManager::GetInstance()->GetShader(0);
@@ -25,5 +29,6 @@ void Projectile::Update(GLfloat deltaTime)
 	printf("flying...\n");
 	m_fTimePassed += deltaTime;
 	m_position.x += 200.0f * deltaTime;
+	this->Set2DPosition(Vector2(m_position.x, m_position.y));
 	//m_position.y
 }

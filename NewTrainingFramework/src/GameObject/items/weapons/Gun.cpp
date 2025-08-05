@@ -1,7 +1,9 @@
 #include "Gun.h"
 #include "GameManager/ResourceManager.h"
-#include "Globals.h"
+#include <Globals.h>
 #include <memory>
+#include "GameObject/actors/hero/Hero.h"
+
 
 Gun::Gun(std::weak_ptr<Hero> owner)
 {
@@ -16,11 +18,10 @@ Gun::Gun(std::weak_ptr<Hero> owner)
 
 	m_projectilePool.reserve(50);
 	for (int i = 0; i < m_projectilePool.capacity(); i++) {
-		auto temp = std::make_unique<Projectile>();
+		auto temp = std::make_unique<Projectile>(weak_from_this());
 		temp->m_id = i;
 		temp->m_isActive = false;
 		m_projectilePool.emplace_back(std::move(temp));
-		//m_freeProjectiles.push(i);
 	}
 }
 
@@ -55,7 +56,7 @@ void Gun::Draw()
 void Gun::Update(GLfloat deltaTime)
 {
 	for (auto& x : m_projectileUsed)
-		if (x && x->m_position.x > Globals::screenWidth / 2 + 60000.0f)
+		if (x && x->m_position.x > Globals::screenWidth / 2 + 600.0f)
 			ReleaseProjectile(std::move(x));
 
 	m_projectileUsed.erase(

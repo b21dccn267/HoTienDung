@@ -1,9 +1,8 @@
-
 #include "Hero.h"
-#include "../../../Globals.h"
-#include "../../../GameManager/ResourceManager.h"
-#include "../../core/Animation.h"
-#include "../../items/weapons/Gun.h"
+#include <Globals.h>
+#include <GameManager/ResourceManager.h>
+#include <GameObject/core/Animation.h>
+#include <GameObject/items/weapons/Gun.h>
 #include <vector>
 
 Hero::Hero()
@@ -59,7 +58,7 @@ void Hero::LookTopLeft()
 {
 	m_anim->SetCustomFrames(std::vector<int>{16, 17, 18, 19});
 	m_anim->m_frameTime = 0.12f;
-	m_anim->SetRotation(Vector3(0, 3.14, 0));
+	m_anim->SetRotation(Vector3(0, 3.14f, 0));
 }
 
 void Hero::LookRight()
@@ -73,13 +72,13 @@ void Hero::LookLeft()
 {
 	m_anim->SetCustomFrames(std::vector<int>{8, 9, 10, 11});
 	m_anim->m_frameTime = 0.12f;
-	m_anim->SetRotation(Vector3(0, 3.14, 0));
+	m_anim->SetRotation(Vector3(0, 3.14f, 0));
 }
 
 void Hero::LookBottomRight()
 {
 	m_anim->SetCustomFrames(std::vector<int>{4, 5, 6, 7});
-	m_anim->SetRotation(Vector3(0, 180 *(3.14/180), 0));
+	m_anim->SetRotation(Vector3(0, 180 *(3.14f/180.0f), 0));
 	m_anim->m_frameTime = 0.12f;
 	m_anim->SetRotation(Vector3(0, 0, 0));
 }
@@ -88,7 +87,7 @@ void Hero::LookBottomLeft()
 {
 	m_anim->SetCustomFrames(std::vector<int>{4, 5, 6, 7});
 	m_anim->m_frameTime = 0.12f;
-	m_anim->SetRotation(Vector3(0, 3.14, 0));
+	m_anim->SetRotation(Vector3(0, 3.14f, 0));
 }
 
 void Hero::Draw()

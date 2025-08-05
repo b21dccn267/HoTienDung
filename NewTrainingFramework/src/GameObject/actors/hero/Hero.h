@@ -1,8 +1,10 @@
 #pragma once
 #include <memory>
-#include <../Include/GLES3/gl3.h>
-class Gun;
-class Animation;
+#include <../Utilities/utilities.h>
+#include <GameObject/core/Animation.h>
+#include <GameObject/items/weapons/Gun.h>
+
+
 class Hero : public std::enable_shared_from_this<Hero>
 {
 public:

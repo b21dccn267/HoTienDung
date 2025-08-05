@@ -1,11 +1,11 @@
 #include "GSGame.h"
-#include "Globals.h"
-#include "GameManager/InputManager.h"
-#include "GameManager/SceneManager.h"
-#include "GameManager/ResourceManager.h"
-#include "GameManager/SoundManager.h"
-#include "GameObject/core/TextRenderer.h"
-#include "GameObject/core/Animation.h"
+#include <Globals.h>
+#include <GameManager/InputManager.h>
+#include <GameManager/SceneManager.h>
+#include <GameManager/ResourceManager.h>
+#include <GameManager/SoundManager.h>
+#include <GameObject/core/TextRenderer.h>
+#include <GameObject/core/Animation.h>
 
 
 void GSGame::Init()
