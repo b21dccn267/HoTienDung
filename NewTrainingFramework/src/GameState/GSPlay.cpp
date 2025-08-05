@@ -23,7 +23,7 @@ void GSPlay::Init()
 	//SoundManager::GetInstance()->PlaySfx("../Resources/Sfx/vine-boom.wav");
 
 	m_gsPlayObjects.reserve(1);
-	m_gsPlayButtons.reserve(1);
+	m_gsPlayButtons.reserve(2);
 
 	//// character
 	//auto model = ResourceManager::GetInstance()->GetModel(0);
@@ -43,11 +43,12 @@ void GSPlay::Init()
 	
 	// pause
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(17);
+	auto normalTexture = ResourceManager::GetInstance()->GetTexture(27);   // Texture cho pause button nổi
+	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(28);  // Texture cho pause button chìm 
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	auto btnPause = std::make_shared<GameButton>(model, texture, shader);
+	auto btnPause = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
 	btnPause->Set2DPosition(Vector2(Globals::screenWidth -100, 100.0f));
-	btnPause->SetSize(100.0f, 100.0f);
+	btnPause->SetSize(60.0f, 60.0f);
 	btnPause->SetOnClick([]() {
 		GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE);
 		});

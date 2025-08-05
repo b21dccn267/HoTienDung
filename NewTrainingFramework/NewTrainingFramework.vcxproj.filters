@@ -180,6 +180,9 @@
     <ClCompile Include="src\GameObject\core\ObjectPool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameState\GSSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameManager\ResourceManager.h">
@@ -284,6 +287,9 @@
     <ClInclude Include="src\GameObject\core\ObjectPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameState\GSSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs">
@@ -292,7 +298,6 @@
     <None Include="..\Resources\Shaders\TriangleShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
-    <None Include="..\..\Readme.doc" />
     <None Include="..\Resources\Shaders\AnimationShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
@@ -302,14 +307,6 @@
     <None Include="..\Resources\Shaders\FlexAnimShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Resources\Textures\rock.tga">
-      <Filter>Resources\Textures</Filter>
-    </Image>
-    <Image Include="..\Resources\Textures\rock1.tga">
-      <Filter>Resources\Textures</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NewTrainingFramework.rc">

@@ -197,6 +197,7 @@
     <ClCompile Include="src\GameState\GSMenu.cpp" />
     <ClCompile Include="src\GameState\GSPause.cpp" />
     <ClCompile Include="src\GameState\GSPlay.cpp" />
+    <ClCompile Include="src\GameState\GSSettings.cpp" />
     <ClCompile Include="src\NewTrainingFramework.cpp" />
     <ClCompile Include="src\GameManager\ResourceManager.cpp" />
     <ClCompile Include="src\GameManager\SceneManager.cpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="src\GameState\GSMenu.h" />
     <ClInclude Include="src\GameState\GSPause.h" />
     <ClInclude Include="src\GameState\GSPlay.h" />
+    <ClInclude Include="src\GameState\GSSettings.h" />
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
@@ -238,7 +240,6 @@
     <ClInclude Include="src\GameObject\core\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Readme.doc" />
     <None Include="..\Resources\Shaders\AnimationShaderFS.fs" />
     <None Include="..\Resources\Shaders\AnimationShaderVS.vs" />
     <None Include="..\Resources\Shaders\FlexAnimShaderVS.vs" />
@@ -250,10 +251,6 @@
       <Project>{0d44529e-f7dd-4454-8ead-9afd857f53b4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Resources\Textures\rock.tga" />
-    <Image Include="..\Resources\Textures\rock1.tga" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NewTrainingFramework.rc" />
