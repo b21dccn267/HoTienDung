@@ -1,8 +1,6 @@
-
-#include "Object.h"
 #include "../Utilities/utilities.h"
-#include "GameObject/core/Vertex.h"
-
+#include "Vertex.h"
+#include "Object.h"
 #include "GameManager/SceneManager.h"
 
 

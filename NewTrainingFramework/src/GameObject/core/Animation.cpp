@@ -1,7 +1,7 @@
+#include "../Utilities/utilities.h"
 #include "Animation.h"
-#include "../../Globals.h"
-#include "../../GameManager/SceneManager.h"
-#include "../../../Utilities/utilities.h"
+#include "GameManager/SceneManager.h"
+#include "Globals.h"
 
 // to adapt to row order anim, swap numactions and numframes
 Animation::Animation(std::shared_ptr<Model> model, 

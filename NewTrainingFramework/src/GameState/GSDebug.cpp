@@ -1,7 +1,6 @@
-
 #include "GSDebug.h"
-#include "../GameManager/SceneManager.h"
-#include "../GameManager/ResourceManager.h"
+#include "GameManager/SceneManager.h"
+#include "GameManager/ResourceManager.h"
 #include <memory>
 
 void GSDebug::Init()

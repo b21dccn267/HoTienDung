@@ -1,11 +1,10 @@
-﻿
-#include "GSPause.h"
-#include "../GameObject/core/Texture.h"
-#include "../Globals.h"
-#include "../GameManager/SceneManager.h"
-#include "../GameManager/ResourceManager.h"
-#include "../GameObject/core/TextRenderer.h"
+﻿#include "GameManager/ResourceManager.h"
+#include "GameManager/SceneManager.h"
+#include "GameObject/core/TextRenderer.h"
+#include "GameObject/core/Texture.h"
 #include "GameStateMachine.h"
+#include "Globals.h"
+#include "GSPause.h"
 
 void GSPause::Init()
 {

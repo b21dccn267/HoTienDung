@@ -1,9 +1,9 @@
 ﻿#pragma once
-#include "GameStateBase.h"
-#include "../GameObject/core/Object.h"
-#include "../GameObject/core/Animation.h"
 #include "GameButton.h"
-#include "../GameManager/SoundManager.h"
+#include "GameManager/SoundManager.h"
+#include "GameObject/core/Animation.h"
+#include "GameObject/core/Object.h"
+#include "GameStateBase.h"
 #include <memory>
 #include <vector>
 

@@ -1,6 +1,6 @@
-#include "../../Globals.h"
-#include "../../../Utilities/utilities.h"
+#include "../Utilities/utilities.h"
 #include "Camera.h"
+#include "Globals.h"
 
 
 Camera::Camera()

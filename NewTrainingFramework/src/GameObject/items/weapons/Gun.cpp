@@ -1,8 +1,8 @@
-#include "Gun.h"
 #include "GameManager/ResourceManager.h"
+#include "GameObject/actors/hero/Hero.h"
+#include "Gun.h"
 #include <Globals.h>
 #include <memory>
-#include "GameObject/actors/hero/Hero.h"
 
 
 Gun::Gun(std::weak_ptr<Hero> owner)

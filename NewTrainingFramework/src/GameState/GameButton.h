@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "../GameObject/core/Object.h"
+#include "GameObject/core/Object.h"
 #include <memory>
 
 class GameButton : public Object

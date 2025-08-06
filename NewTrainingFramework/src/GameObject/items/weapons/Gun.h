@@ -1,10 +1,10 @@
 #pragma once
+#include "GameObject/actors/Projectile.h"
 #include "GameObject/core/Animation.h"
 #include "GameObject/core/Object.h"
-#include "GameObject/actors/Projectile.h"
 #include <memory>
-#include <vector>
 #include <stack>
+#include <vector>
 
 class Hero;
 class Gun : public std::enable_shared_from_this<Gun>

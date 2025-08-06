@@ -1,10 +1,11 @@
-﻿#include "GSMenu.h"
-#include "../GameObject/core/Object.h"
-#include "../GameManager/SceneManager.h"
-#include "../GameManager/ResourceManager.h"
-#include "../Globals.h"
+﻿#include "GameButton.h"
+#include "GameManager/ResourceManager.h"
+#include "GameManager/SceneManager.h"
+#include "GameObject/core/Object.h"
 #include "GameStateMachine.h"
-#include "GameButton.h"
+#include "Globals.h"
+#include "GSMenu.h"
+
 
 void GSMenu::Init()
 {

@@ -1,7 +1,8 @@
-﻿#include "TextRenderer.h"
-#include "../../../Include/SDL2/SDL.h"
-#include "../../../Include/SDL2/SDL_ttf.h"
-#include "../../../../Utilities/utilities.h"
+﻿#include "../Utilities/utilities.h"
+#include "TextRenderer.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+
 
 SDL_Surface* TextRenderer::FlipVertical(SDL_Surface* surface)
 {

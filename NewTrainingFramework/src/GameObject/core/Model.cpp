@@ -1,7 +1,8 @@
 #include "Model.h"
+#include "Vertex.h"
 #include <iostream>
-#include "../core/Vertex.h"
 #include <memory>
+
 
 Model::Model(const char* fileName)
 {

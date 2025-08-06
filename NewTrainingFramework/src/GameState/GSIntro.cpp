@@ -1,17 +1,16 @@
-
-#include "GSIntro.h"
-#include "../GameObject/core/Model.h"
-#include "../GameObject/core/Texture.h"
-#include "../GameObject/core/Shaders.h"
-#include "../GameObject/core/Object.h"
-#include "GameStateMachine.h"
+#include "GameButton.h"
+#include "GameManager/ResourceManager.h"
+#include "GameManager/SceneManager.h"
+#include "GameObject/core/Model.h"
+#include "GameObject/core/Object.h"
+#include "GameObject/core/Shaders.h"
+#include "GameObject/core/Texture.h"
 #include "GameStateBase.h"
+#include "GameStateMachine.h"
+#include "GSIntro.h"
 #include "GSMenu.h"
-#include "../GameManager/SceneManager.h"
-#include "../GameManager/ResourceManager.h"
 #include <memory>
 #include <Windows.h>
-#include "GameButton.h"
 
 
 void GSIntro::Init()
