@@ -1,6 +1,9 @@
 #include "Creature.h"
-#include "../../Globals.h"
-#include "../../GameManager/ResourceManager.h"
+#include "Globals.h"
+#include "GameManager/ResourceManager.h"
+#include "GameObject/utils/CreatureController.h"
+
+//class CreatureController;
 
 Creature::Creature()
 {
@@ -12,6 +15,11 @@ Creature::Creature()
 	anim->SetSize(100, 100);
 	anim->SetCustomFrames(std::vector<int>{20, 21, 22, 23});
 	m_anim = anim;
+}
+
+void Creature::Init()
+{
+	m_control = std::make_shared<CreatureController>(weak_from_this());
 }
 
 void Creature::Idle()

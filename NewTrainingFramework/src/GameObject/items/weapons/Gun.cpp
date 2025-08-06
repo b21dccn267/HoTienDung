@@ -15,14 +15,6 @@ Gun::Gun(std::weak_ptr<Hero> owner)
 	m_self = std::make_shared<Object>(model, texture, shader);
 
 	m_isActive = false;
-
-	//m_projectilePool.reserve(50);
-	//for (int i = 0; i < m_projectilePool.capacity(); i++) {
-	//	auto temp = std::make_unique<Projectile>(weak_from_this());
-	//	temp->m_id = i;
-	//	temp->m_isActive = false;
-	//	m_projectilePool.emplace_back(std::move(temp));
-	//}
 }
 
 void Gun::Init()
@@ -31,7 +23,6 @@ void Gun::Init()
 	for (int i = 0; i < m_projectilePool.capacity(); i++) {
 		auto temp = std::make_unique<Projectile>(weak_from_this());
 		temp->m_id = i;
-		temp->m_isActive = false;
 		m_projectilePool.emplace_back(std::move(temp));
 	}
 }
@@ -46,6 +37,7 @@ std::unique_ptr<Projectile> Gun::AcquireProjectile()
 		),
 		m_projectilePool.end()
 	);
+	//printf("%d\n", m_projectilePool.size());
 
 	auto owner = m_owner.lock();
 	for (auto& x : m_projectilePool) {
@@ -95,17 +87,9 @@ void Gun::Update(GLfloat deltaTime)
 		m_projectileUsed.end()
 	);
 	
-	//m_projectilePool.erase(
-	//	std::remove_if(
-	//		m_projectilePool.begin(),
-	//		m_projectilePool.end(),
-	//		[](const std::unique_ptr<Projectile>& ptr) { return ptr == nullptr; }
-	//	),
-	//	m_projectilePool.end()
-	//);
-
-	for (auto& x : m_projectileUsed)
+	for (auto& x : m_projectileUsed) {
 		if (x) {
 			x->Update(deltaTime, m_fMouseX, m_fMouseY);
 		}
+	}
 }

@@ -26,8 +26,11 @@ void Projectile::SetProjectile(Vector2 startPos)
 	//m_fTimePassed = 0.0f;
 }
 
-void Projectile::Update(GLfloat deltaTime, float x, float y) // x and y is const (stored in gun, which gets its values in event regis)
+void Projectile::Update(GLfloat deltaTime, float x, float y) 
 {
+	// this function should not take in any args other than deltaTime
+	// all coords should be given to each projectile in acquire()
+
 	// get access to Hero pos
 	auto owner = m_owner.lock();
 	auto ownerOwner = owner->m_owner.lock();
@@ -35,10 +38,8 @@ void Projectile::Update(GLfloat deltaTime, float x, float y) // x and y is const
 	float ratio = x / y;
 	float deltaMoveX = x - ownerOwner->m_anim->m_position.x;
 	float deltaMoveY = y - ownerOwner->m_anim->m_position.y;
-	printf("flying...\n");
+
 	//m_fTimePassed += deltaTime;
-	//m_position.x += 200.0f * deltaTime * ratio;
-	//m_position.y += 200.0f * deltaTime;
 	m_position.x += deltaMoveX * deltaTime;
 	m_position.y += deltaMoveY * deltaTime;
 

@@ -301,6 +301,7 @@
     <None Include="..\Resources\Shaders\FlexAnimShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NewTrainingFramework.rc">

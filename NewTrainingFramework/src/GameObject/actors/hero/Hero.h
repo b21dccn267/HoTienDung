@@ -16,6 +16,8 @@ public:
 	Hero();
 	void Init();
 
+	
+
 	//animation functions
 	void Idle();
 	void Jump(); // unused, exists as a demo; if used, there should be jump anims for all directions

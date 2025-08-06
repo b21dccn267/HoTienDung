@@ -9,6 +9,6 @@ public:
 	std::vector<std::shared_ptr<Creature>> m_creatures;
 
 	CreatureSpawner();
-	void SpawnCreature();
+	void SpawnCreature(Vector2 pos);
 };
 

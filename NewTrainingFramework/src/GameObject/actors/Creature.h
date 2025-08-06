@@ -1,13 +1,17 @@
 #pragma once
-#include "../core/Animation.h"
+#include "GameObject/core/Animation.h"
 #include <memory>
 
-class Creature
+class CreatureController;
+
+class Creature : public std::enable_shared_from_this<Creature>
 {
 public:
 	std::shared_ptr<Animation> m_anim;
+	std::shared_ptr<CreatureController> m_control;
 
 	Creature();
+	void Init();
 
 	//animation functions
 	void Idle();

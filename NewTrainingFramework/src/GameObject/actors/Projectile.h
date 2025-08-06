@@ -23,6 +23,6 @@ public:
 	void SetProjectile(Vector2 startPos);
 	void Update(GLfloat deltaTime, float x, float y);
 	float m_fTimePassed;
-	bool m_isActive;
+	float m_velocity = 10.0f;
 };
 

@@ -24,6 +24,10 @@ public:
 	GLint m_mouseY;
 	bool m_mouseIsPressed;
 
+	// prevent per frame event register
+	bool m_timerIsActive = false;
+	float m_timeSincePressed = 0.0f;
+
 private:
 	InputManager() {};
 };

@@ -6,6 +6,7 @@
 #include <GameManager/SoundManager.h>
 #include <GameObject/core/TextRenderer.h>
 #include <GameObject/core/Animation.h>
+#include <GameObject/utils/CreatureController.h>
 
 
 void GSGame::Init()
@@ -100,26 +101,42 @@ void GSGame::Update(float deltaTime)
 		m_creature->LookRight();
 	}
 
-	if (InputManager::GetInstance()->m_mouseIsPressed == true) {
+	if (InputManager::GetInstance()->keys[0x20]) {
+		m_creatureSpawner->SpawnCreature(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
+	}
+
+	if (InputManager::GetInstance()->m_mouseIsPressed == true 
+		//&& InputManager::GetInstance()->m_timerIsActive == false
+		) {
 		printf("bang\n");
+		InputManager::GetInstance()->m_timerIsActive = true;
 		m_hero->m_gun->m_fMouseX = InputManager::GetInstance()->m_mouseX;
 		m_hero->m_gun->m_fMouseY = InputManager::GetInstance()->m_mouseY;
 		m_hero->FireGun();
 	}
-	 
+
+	if (InputManager::GetInstance()->m_timerIsActive == true) {
+		InputManager::GetInstance()->m_timeSincePressed += deltaTime;
+		if (InputManager::GetInstance()->m_timeSincePressed >= deltaTime) {
+			InputManager::GetInstance()->m_timerIsActive == false;
+		}
+	}
+
 
 	m_hero->Update(deltaTime);
 	m_hero->Update2DPosition();
 	m_creature->Update(deltaTime);
 	m_creature->Update2DPosition();
 	for (auto& x : m_creatureSpawner->m_creatures) {
+		x->m_control->Move();
+		x->Update2DPosition();
 		x->Update(deltaTime);
 	}
 }
 
 void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-	printf("0x%d\n", key);
+	//printf("0x%02X\n", key);s
 	InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 
