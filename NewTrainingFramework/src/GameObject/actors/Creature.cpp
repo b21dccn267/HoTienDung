@@ -5,7 +5,7 @@
 Creature::Creature()
 {
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(11);
+	auto texture = ResourceManager::GetInstance()->GetTexture(2);
 	auto shader = ResourceManager::GetInstance()->GetShader(2);
 	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 1);
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));

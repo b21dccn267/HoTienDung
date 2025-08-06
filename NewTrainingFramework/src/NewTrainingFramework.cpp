@@ -28,7 +28,7 @@ int Init ( ESContext *esContext )
 	SoundManager::GetInstance()->Init();
 
 	// start with StateType::STATE_INTRO
-	GameStateMachine::GetInstance()->PushState(StateType::STATE_GAME);
+	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
 
 	return 0;
 }

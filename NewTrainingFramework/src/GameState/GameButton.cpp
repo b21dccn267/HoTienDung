@@ -4,7 +4,6 @@
 #include <GameObject/core/Shaders.h>
 #include <GameObject/core/Object.h>
 
-
 GameButton::GameButton(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader)
     : Object(model, texture, shader), m_pBtnClick(nullptr), m_isHolding(false),
     m_normalTexture(texture), m_pressedTexture(nullptr)
@@ -22,10 +21,10 @@ GameButton::~GameButton()
 {
 }
 
-// allows lambda binding
-void GameButton::SetOnClick(void(*pBtnClickFun)())
+// Thay đổi để nhận std::function
+void GameButton::SetOnClick(std::function<void()> btnClickFun)
 {
-    m_pBtnClick = pBtnClickFun;
+    m_pBtnClick = btnClickFun;
 }
 
 void GameButton::SetNormalTexture(std::shared_ptr<Texture> texture)
@@ -50,7 +49,7 @@ bool GameButton::HandleTouchEvents(GLint x, GLint y, bool bIsPressed)
             && (y > m_position.y - m_iHeight / 2) && (y < m_position.y + m_iHeight / 2))
         {
             m_isHolding = true;
-            // Chuyển sang texture pressed nếu có
+
             if (m_pressedTexture) {
                 m_pTexture = m_pressedTexture; // Sử dụng m_pTexture của Object class
             }

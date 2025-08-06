@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "GameObject/core/Object.h"
 #include <memory>
+#include <functional>
 
 class GameButton : public Object
 {
@@ -13,7 +14,7 @@ public:
         std::shared_ptr<Texture> pressedTexture, std::shared_ptr<Shaders> shader);
     ~GameButton();
 
-    void SetOnClick(void (*pBtnClick)());
+    void SetOnClick(std::function<void()> btnClickFun);
     bool HandleTouchEvents(GLint x, GLint y, bool bIsPressed);
     bool IsHolding();
 
@@ -22,7 +23,7 @@ public:
     void SetPressedTexture(std::shared_ptr<Texture> texture);
 
 private:
-    void (*m_pBtnClick)();
+    std::function<void()> m_pBtnClick; 
     bool m_isHolding;
     std::shared_ptr<Texture> m_normalTexture;   // Texture khi button bình thường (nổi)
     std::shared_ptr<Texture> m_pressedTexture;  // Texture khi button được ấn (chìm)

@@ -22,55 +22,107 @@ void GSSettings::Init()
 
 	// settings background
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(19); // Có thể thay bằng texture riêng cho settings
+	texture = ResourceManager::GetInstance()->GetTexture(10);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<Object> settingsBg = std::make_shared<Object>(model, texture, shader);
 	settingsBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 - 50));
 	settingsBg->SetSize(321.0f, 404.0f);
 	m_gsSettingsObjects.emplace_back(settingsBg);
 
-	// sound on/off button (ví dụ)
+	// sound on/off button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto normalTexture = ResourceManager::GetInstance()->GetTexture(22); // Thay bằng texture sound button
-	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(21); // Thay bằng texture sound button pressed
+	auto soundOnTexture = ResourceManager::GetInstance()->GetTexture(20);   // Sound ON texture
+	auto soundOffTexture = ResourceManager::GetInstance()->GetTexture(21);  // Sound OFF texture
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> soundButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
-	soundButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 200.0f));
-	soundButton->SetSize(150.0f, 45.0f);
-	soundButton->SetOnClick([]() {
-		printf("Sound toggle clicked\n");
-		// Thêm logic toggle sound ở đây
+	m_soundButton = std::make_shared<GameButton>(model, soundOnTexture, soundOnTexture, shader);
+	m_soundButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 200.0f));
+	m_soundButton->SetSize(150.0f, 45.0f);
+	m_soundButton->SetOnClick([this]() {
+		this->ToggleSound();
 		});
-	m_gsSettingsGameButtons.emplace_back(soundButton);
 
-	// music on/off button (ví dụ)
+	// Cập nhật texture để có cả sound on và sound off
+	m_soundButton->SetNormalTexture(soundOnTexture);
+	m_soundButton->SetPressedTexture(soundOnTexture); // Sử dụng cùng texture cho pressed state
+	m_gsSettingsGameButtons.emplace_back(m_soundButton);
+
+	// soundfx on/off button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	normalTexture = ResourceManager::GetInstance()->GetTexture(25); // Thay bằng texture music button
-	pressedTexture = ResourceManager::GetInstance()->GetTexture(26); // Thay bằng texture music button pressed
+	auto soundfxOnTexture = ResourceManager::GetInstance()->GetTexture(20);   // SoundFX ON texture (thay số texture phù hợp)
+	auto soundfxOffTexture = ResourceManager::GetInstance()->GetTexture(21);  // SoundFX OFF texture (thay số texture phù hợp)
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> musicButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
-	musicButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 265.0f));
-	musicButton->SetSize(150.0f, 45.0f);
-	musicButton->SetOnClick([]() {
-		printf("Music toggle clicked\n");
-		// Thêm logic toggle music ở đây
+	m_soundfxButton = std::make_shared<GameButton>(model, soundfxOnTexture, soundfxOnTexture, shader);
+	m_soundfxButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 265.0f));
+	m_soundfxButton->SetSize(150.0f, 45.0f);
+	m_soundfxButton->SetOnClick([this]() {
+		this->ToggleSoundfx();
 		});
-	m_gsSettingsGameButtons.emplace_back(musicButton);
+
+	// Cập nhật texture để có cả soundfx on và soundfx off
+	m_soundfxButton->SetNormalTexture(soundfxOnTexture);
+	m_soundfxButton->SetPressedTexture(soundfxOnTexture); // Sử dụng cùng texture cho pressed state
+	m_gsSettingsGameButtons.emplace_back(m_soundfxButton);
 
 	// back button để quay lại menu
 	model = ResourceManager::GetInstance()->GetModel(0);
-	normalTexture = ResourceManager::GetInstance()->GetTexture(23); // Thay bằng texture back button
-	pressedTexture = ResourceManager::GetInstance()->GetTexture(24); // Thay bằng texture back button pressed
+	auto normalTexture = ResourceManager::GetInstance()->GetTexture(22);
+	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(23);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<GameButton> backButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
 	backButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 395.0f));
 	backButton->SetSize(150.0f, 45.0f);
 	backButton->SetOnClick([]() {
-		GameStateMachine::GetInstance()->PopState(); // Quay lại state trước đó (menu)
+		GameStateMachine::GetInstance()->PopState();
 		});
 	m_gsSettingsGameButtons.emplace_back(backButton);
 
 	printf("Settings init\n");
+}
+
+void GSSettings::ToggleSound()
+{
+	m_soundEnabled = !m_soundEnabled;
+
+	if (m_soundEnabled) {
+		// Chuyển sang texture sound ON
+		auto soundOnTexture = ResourceManager::GetInstance()->GetTexture(20);
+		m_soundButton->SetNormalTexture(soundOnTexture);
+		m_soundButton->SetPressedTexture(soundOnTexture);
+		printf("Sound: ON\n");
+	}
+	else {
+		// Chuyển sang texture sound OFF
+		auto soundOffTexture = ResourceManager::GetInstance()->GetTexture(21);
+		m_soundButton->SetNormalTexture(soundOffTexture);
+		m_soundButton->SetPressedTexture(soundOffTexture);
+		printf("Sound: OFF\n");
+	}
+
+	// bật/tắt sound
+	// Ví dụ: AudioManager::GetInstance()->SetSoundEnabled(m_soundEnabled);
+}
+
+void GSSettings::ToggleSoundfx()
+{
+	m_soundfxEnabled = !m_soundfxEnabled;
+
+	if (m_soundfxEnabled) {
+		// Chuyển sang texture soundfx ON
+		auto soundfxOnTexture = ResourceManager::GetInstance()->GetTexture(20);
+		m_soundfxButton->SetNormalTexture(soundfxOnTexture);
+		m_soundfxButton->SetPressedTexture(soundfxOnTexture);
+		printf("SoundFX: ON\n");
+	}
+	else {
+		// Chuyển sang texture soundfx OFF
+		auto soundfxOffTexture = ResourceManager::GetInstance()->GetTexture(21);
+		m_soundfxButton->SetNormalTexture(soundfxOffTexture);
+		m_soundfxButton->SetPressedTexture(soundfxOffTexture);
+		printf("SoundFX: OFF\n");
+	}
+
+	// bật/tắt soundfx
+	// Ví dụ: AudioManager::GetInstance()->SetSoundfxEnabled(m_soundfxEnabled);
 }
 
 void GSSettings::Pause()
@@ -110,7 +162,6 @@ void GSSettings::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 	printf("gsSettingsKeyPressed: %c\n", key);
 
-	// Có thể thêm phím tắt để quay lại menu
 	if (key == 27 && bIsPressed) { // ESC key
 		GameStateMachine::GetInstance()->PopState();
 	}
