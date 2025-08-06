@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include <../Utilities/utilities.h>
+#include "../Utilities/utilities.h"
 #include <GameObject/core/Animation.h>
 #include <GameObject/items/weapons/Gun.h>
 
@@ -14,6 +14,7 @@ public:
 	//std::shared_ptr<Belongings> m_belongings;
 
 	Hero();
+	void Init();
 
 	//animation functions
 	void Idle();

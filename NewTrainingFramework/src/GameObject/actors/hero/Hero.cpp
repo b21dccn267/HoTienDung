@@ -15,6 +15,11 @@ Hero::Hero()
 	anim->SetSize(100, 100);
 
 	m_anim = anim;
+	//m_gun = std::make_shared<Gun>(weak_from_this());
+}
+
+void Hero::Init()
+{
 	m_gun = std::make_shared<Gun>(weak_from_this());
 }
 

@@ -168,7 +168,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\GameObject\core\ObjectPool.cpp" />
     <ClCompile Include="src\GameObject\utils\CreatureController.cpp" />
     <ClCompile Include="src\GameManager\InputManager.cpp" />
     <ClCompile Include="src\GameObject\actors\Skeleton.cpp" />
@@ -203,7 +202,6 @@
     <ClCompile Include="src\GameManager\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\GameObject\core\ObjectPool.h" />
     <ClInclude Include="src\GameObject\utils\CreatureController.h" />
     <ClInclude Include="src\GameManager\InputManager.h" />
     <ClInclude Include="src\GameObject\actors\Skeleton.h" />

@@ -21,7 +21,7 @@ public:
 
 	// have projectile fly autonomously, but uses flyValue and isActive for texture display
 	void SetProjectile();
-	void Update(GLfloat deltaTime);
+	void Update(GLfloat deltaTime, float x, float y);
 	float m_fTimePassed;
 	bool m_isActive;
 };

@@ -7,7 +7,7 @@
 
 Gun::Gun(std::weak_ptr<Hero> owner)
 {
-	this->owner = owner;
+	this->m_owner = owner;
 
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(6);
@@ -77,7 +77,9 @@ void Gun::Update(GLfloat deltaTime)
 	//	m_projectilePool.end()
 	//);
 
-	for(auto& x : m_projectileUsed)
-		if(x)
-			x->Update(deltaTime);
+	for (auto& x : m_projectileUsed)
+		if (x) {
+			auto owner = m_owner.lock();
+			x->Update(deltaTime, owner->m_anim->m_position.x, owner->m_anim->m_position.y);
+		}
 }

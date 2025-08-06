@@ -11,6 +11,31 @@
 
 void GSPlay::Init()
 {
+	// gsGame section
+
+	// gsGame section
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	// sound test
 	//SDL_Init(SDL_INIT_AUDIO);
 	//Mix_OpenAudio(44100, AUDIO_S16SYS, 1, 100);
@@ -84,6 +109,10 @@ void GSPlay::Resume()
 void GSPlay::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	// gsGame section
+
+	// gsGame section
+
 	for (auto& x : m_gsPlayObjects) {
 		x->Draw();
 	}
@@ -97,6 +126,10 @@ void GSPlay::Draw()
 
 void GSPlay::Update(float deltaTime)
 {
+	// gsGame section
+
+	// gsGame section
+
 	for (auto& x : m_gsPlayObjects) {
 		x->Update(deltaTime);
 	}
@@ -111,6 +144,10 @@ void GSPlay::Update(float deltaTime)
 
 void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
+	// gsGame section
+
+	// gsGame section
+
 	printf("gsPlayKeyPresed: %c\n", key);
 	//SoundManager::PlaySfx("../Resources/Sfx/vine-boom.wav");
 	if (bIsPressed) {
@@ -138,6 +175,10 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
 	printf("gsPlayMouseEvent\n");
+
+	// gsGame section
+
+	// gsGame section
 
 	for (auto& btn : m_gsPlayButtons) {
 		if (btn->HandleTouchEvents(x, y, bIsPressed)) {

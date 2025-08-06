@@ -10,7 +10,7 @@ class Hero;
 class Gun : public std::enable_shared_from_this<Gun>
 {
 public:
-	std::weak_ptr<Hero> owner;
+	std::weak_ptr<Hero> m_owner;
 
 	std::shared_ptr<Object> m_self;
 	std::vector<std::unique_ptr<Projectile>> m_projectilePool;

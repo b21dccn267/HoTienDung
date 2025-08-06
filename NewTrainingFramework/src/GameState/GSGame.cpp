@@ -12,6 +12,7 @@ void GSGame::Init()
 {
 	// should have actor postioning here instead of in class
 	m_hero = std::make_shared<Hero>();
+	m_hero->Init();
 	m_hero->LookBottomRight();
 
 	m_creature = std::make_shared<Creature>();
