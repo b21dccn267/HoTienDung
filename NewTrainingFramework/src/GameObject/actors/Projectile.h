@@ -12,15 +12,15 @@ class Gun;
 class Projectile : public Object
 {
 public:
-	std::weak_ptr<Gun> owner;
+	std::weak_ptr<Gun> m_owner;
 
-	float m_moveSpeed = 50.0f;
+	//float m_moveSpeed = 50.0f;
 	int m_id;
 
 	Projectile(std::weak_ptr<Gun> owner);
 
 	// have projectile fly autonomously, but uses flyValue and isActive for texture display
-	void SetProjectile();
+	void SetProjectile(Vector2 startPos);
 	void Update(GLfloat deltaTime, float x, float y);
 	float m_fTimePassed;
 	bool m_isActive;

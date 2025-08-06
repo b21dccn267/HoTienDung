@@ -102,6 +102,8 @@ void GSGame::Update(float deltaTime)
 
 	if (InputManager::GetInstance()->m_mouseIsPressed == true) {
 		printf("bang\n");
+		m_hero->m_gun->m_fMouseX = InputManager::GetInstance()->m_mouseX;
+		m_hero->m_gun->m_fMouseY = InputManager::GetInstance()->m_mouseY;
 		m_hero->FireGun();
 	}
 	 

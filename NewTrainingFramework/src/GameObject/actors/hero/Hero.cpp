@@ -21,6 +21,7 @@ Hero::Hero()
 void Hero::Init()
 {
 	m_gun = std::make_shared<Gun>(weak_from_this());
+	m_gun->Init();
 }
 
 void Hero::Idle()

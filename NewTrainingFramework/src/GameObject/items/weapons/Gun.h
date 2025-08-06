@@ -18,8 +18,11 @@ public:
 	std::vector<std::unique_ptr<Projectile>> m_projectileUsed;
 	bool m_isActive;
 	// add active bullet here
+	float m_fMouseX;
+	float m_fMouseY;
 
 	Gun(std::weak_ptr<Hero> owner);
+	void Init();
 	std::unique_ptr<Projectile> AcquireProjectile();
 	void ReleaseProjectile(std::unique_ptr<Projectile> proj);
 	void Fire();
