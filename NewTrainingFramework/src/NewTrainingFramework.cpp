@@ -1,7 +1,4 @@
-// NewTrainingFramework.cpp : Defines the entry point for the console application.
-//
-
-#include "../../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
+﻿#include "../../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
 #include <GameManager/InputManager.h>
 #include <GameManager/ResourceManager.h>
 #include <GameManager/SceneManager.h>
@@ -13,10 +10,9 @@
 #include <conio.h>
 #include <memory>
 
-
-int Init ( ESContext *esContext )
+int Init(ESContext* esContext)
 {
-	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -24,27 +20,27 @@ int Init ( ESContext *esContext )
 	ResourceManager::GetInstance()->LoadFileRM("../Resources/Config/ResourceManager.txt");
 	SceneManager::GetInstance()->InitCamera();
 
-	// soundmanager init
+	// soundmanager init - khởi tạo hệ thống âm thanh
 	SoundManager::GetInstance()->Init();
 
 	// start with StateType::STATE_INTRO
-	GameStateMachine::GetInstance()->PushState(StateType::STATE_GAME);
+	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
 
 	return 0;
 }
 
-void Draw ( ESContext *esContext ) 
+void Draw(ESContext* esContext)
 {
 	GameStateMachine::GetInstance()->m_stack.top()->Draw();
-	eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );
+	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
 
-void Update ( ESContext *esContext, float deltaTime )
+void Update(ESContext* esContext, float deltaTime)
 {
 	GameStateMachine::GetInstance()->m_stack.top()->Update(deltaTime);
 }
 
-void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
+void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 {
 	GameStateMachine::GetInstance()->m_stack.top()->HandleKeyEvent(key, bIsPressed);
 }
@@ -65,7 +61,10 @@ void CleanUp()
 	InputManager::GetInstance()->DestroyInstance();
 	ResourceManager::GetInstance()->DestroyInstance();
 	SceneManager::GetInstance()->DestroyInstance();
+
+	SoundManager::GetInstance()->Cleanup();
 	SoundManager::GetInstance()->DestroyInstance();
+
 	GameStateMachine::GetInstance()->DestroyInstance();
 }
 
@@ -73,21 +72,22 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	ESContext esContext;
 
-    esInitContext ( &esContext );
+	esInitContext(&esContext);
 
-	esCreateWindow ( &esContext, "Hello Triangle", Globals::screenWidth, Globals::screenHeight, ES_WINDOW_RGB | ES_WINDOW_DEPTH);
+	esCreateWindow(&esContext, "Hello Triangle", Globals::screenWidth, Globals::screenHeight, ES_WINDOW_RGB | ES_WINDOW_DEPTH);
 
-	if ( Init ( &esContext ) != 0 )
+	if (Init(&esContext) != 0)
 		return 0;
 
-	esRegisterDrawFunc ( &esContext, Draw );
-	esRegisterUpdateFunc ( &esContext, Update );
-	esRegisterKeyFunc ( &esContext, Key);
+	esRegisterDrawFunc(&esContext, Draw);
+	esRegisterUpdateFunc(&esContext, Update);
+	esRegisterKeyFunc(&esContext, Key);
 	esRegisterMouseFunc(&esContext, MouseClick);
 	esRegisterMouseMoveFunc(&esContext, OnMouseMove);
 
-	esMainLoop ( &esContext );
+	esMainLoop(&esContext);
 	printf("GL_VERSION: %s\n", glGetString(GL_VERSION));
+
 	//releasing OpenGL resources
 	CleanUp();
 

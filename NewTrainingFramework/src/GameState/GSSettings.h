@@ -11,7 +11,7 @@ public:
 	std::vector<std::shared_ptr<Object>> m_gsSettingsObjects;
 	std::vector<std::shared_ptr<GameButton>> m_gsSettingsGameButtons;
 
-	GSSettings() : GameStateBase(StateType::STATE_SETTINGS), m_soundEnabled(true), m_soundfxEnabled(true) {}
+	GSSettings() : GameStateBase(StateType::STATE_SETTINGS) {}
 	void Init() override;
 	void Pause() override;
 	void Exit() override;
@@ -25,10 +25,6 @@ public:
 	~GSSettings() override;
 
 private:
-	// Trạng thái sound settings
-	bool m_soundEnabled;
-	bool m_soundfxEnabled;
-
 	// Pointers để dễ dàng thay đổi texture
 	std::shared_ptr<GameButton> m_soundButton;
 	std::shared_ptr<GameButton> m_soundfxButton;
@@ -36,4 +32,7 @@ private:
 	// Toggle functions
 	void ToggleSound();
 	void ToggleSoundfx();
+
+	// Helper function để cập nhật texture của buttons
+	void UpdateButtonTextures();
 };
