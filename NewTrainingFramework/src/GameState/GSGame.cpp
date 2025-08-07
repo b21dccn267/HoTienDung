@@ -20,6 +20,9 @@ void GSGame::Init()
 	m_creature->LookLeft();
 
 	m_creatureSpawner = std::make_shared<CreatureSpawner>();
+
+	m_creatureSpawner->SpawnCreature();
+	//m_creatureSpawner->SpawnCreature();
 	//m_creatureSpawner->SpawnCreature();
 	
 	printf("game init\n");
@@ -101,9 +104,9 @@ void GSGame::Update(float deltaTime)
 		m_creature->LookRight();
 	}
 
-	if (InputManager::GetInstance()->keys[0x20]) {
-		m_creatureSpawner->SpawnCreature(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	}
+	//if (InputManager::GetInstance()->keys[0x20]) {
+	//	m_creatureSpawner->SpawnCreature(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
+	//}
 
 	if (InputManager::GetInstance()->m_mouseIsPressed == true 
 		//&& InputManager::GetInstance()->m_timerIsActive == false
@@ -128,7 +131,7 @@ void GSGame::Update(float deltaTime)
 	m_creature->Update(deltaTime);
 	m_creature->Update2DPosition();
 	for (auto& x : m_creatureSpawner->m_creatures) {
-		x->m_control->Move();
+		//x->m_control->Move();
 		x->Update2DPosition();
 		x->Update(deltaTime);
 	}
@@ -136,7 +139,7 @@ void GSGame::Update(float deltaTime)
 
 void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-	//printf("0x%02X\n", key);s
+	//printf("0x%02X\n", key);
 	InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 
