@@ -19,7 +19,7 @@ void GSPlay::Init()
 
     // pause
     auto model = ResourceManager::GetInstance()->GetModel(0);
-    auto normalTexture = ResourceManager::GetInstance()->GetTexture(18);   // Texture cho pause button nổi
+    auto normalTexture = ResourceManager::GetInstance()->GetTexture(25);   // Texture cho pause button nổi
     auto pressedTexture = ResourceManager::GetInstance()->GetTexture(19);  // Texture cho pause button chìm 
     auto shader = ResourceManager::GetInstance()->GetShader(0);
     auto btnPause = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);

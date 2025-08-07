@@ -21,7 +21,7 @@ void GSPause::Init()
 
 	// Pause menu background
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(10);
+	texture = ResourceManager::GetInstance()->GetTexture(18);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<Object> pauseBg = std::make_shared<Object>(model, texture, shader);
 	pauseBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 + 20));
@@ -30,8 +30,8 @@ void GSPause::Init()
 
 	// Resume button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto normalTexture = ResourceManager::GetInstance()->GetTexture(24);   // Texture cho resume button nổi
-	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(25);  // Texture cho resume button chìm 
+	auto normalTexture = ResourceManager::GetInstance()->GetTexture(15);   // Texture cho resume button nổi
+	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(16);  // Texture cho resume button chìm 
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnResume = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
 	btnResume->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 - 50));
@@ -40,8 +40,8 @@ void GSPause::Init()
 
 	// Home button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	normalTexture = ResourceManager::GetInstance()->GetTexture(22);
-	pressedTexture = ResourceManager::GetInstance()->GetTexture(23);
+	normalTexture = ResourceManager::GetInstance()->GetTexture(13);
+	pressedTexture = ResourceManager::GetInstance()->GetTexture(14);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnMainMenu = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
 	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 + 20));
