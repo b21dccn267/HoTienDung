@@ -1,7 +1,8 @@
 #pragma once
 #include "GameObject/core/Object.h"
 #include "GameManager/ResourceManager.h"
-
+//#include "utilities.h"
+#include "../../Utilities/utilities.h"
 #include <memory>
 
 class Gun;
@@ -14,15 +15,18 @@ class Projectile : public Object
 public:
 	std::weak_ptr<Gun> m_owner;
 
-	//float m_moveSpeed = 50.0f;
+	
 	int m_id;
+	Vector2 m_startPos;
+	Vector2 m_endPos;
+	float m_moveSpeed = 50.0f;
 
 	Projectile(std::weak_ptr<Gun> owner);
 
 	// have projectile fly autonomously, but uses flyValue and isActive for texture display
-	void SetProjectile(Vector2 startPos);
-	void Update(GLfloat deltaTime, float x, float y);
+	void SetProjectile(Vector2 startPos, Vector2 endPos);
+	void Update(GLfloat deltaTime);
 	float m_fTimePassed;
-	float m_velocity = 10.0f;
+	float m_velocity = 0.01f;
 };
 

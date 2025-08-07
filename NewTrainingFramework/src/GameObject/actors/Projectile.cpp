@@ -19,14 +19,16 @@ Projectile::Projectile(std::weak_ptr<Gun> owner)
 	m_fTimePassed = 0.0f;
 }
 
-void Projectile::SetProjectile(Vector2 startPos)
+void Projectile::SetProjectile(Vector2 startPos, Vector2 endPos)
 {
+	this->m_startPos = startPos;
+	this->m_endPos = endPos;
 	this->Set2DPosition(startPos);
 	//this->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	//m_fTimePassed = 0.0f;
 }
 
-void Projectile::Update(GLfloat deltaTime, float x, float y) 
+void Projectile::Update(GLfloat deltaTime) 
 {
 	// this function should not take in any args other than deltaTime
 	// all coords should be given to each projectile in acquire()
@@ -35,13 +37,14 @@ void Projectile::Update(GLfloat deltaTime, float x, float y)
 	auto owner = m_owner.lock();
 	auto ownerOwner = owner->m_owner.lock();
 
-	float ratio = x / y;
-	float deltaMoveX = x - ownerOwner->m_anim->m_position.x;
-	float deltaMoveY = y - ownerOwner->m_anim->m_position.y;
-
+	//float ratio = x / y;
+	//float deltaMoveX = x - ownerOwner->m_anim->m_position.x;
+	//float deltaMoveY = y - ownerOwner->m_anim->m_position.y;
+	float deltaMoveX = owner->m_fMouseX - ownerOwner->m_anim->m_position.x;
+	float deltaMoveY = owner->m_fMouseY - ownerOwner->m_anim->m_position.y;
 	//m_fTimePassed += deltaTime;
-	m_position.x += deltaMoveX * deltaTime;
-	m_position.y += deltaMoveY * deltaTime;
+	m_position.x += deltaMoveX * m_velocity;
+	m_position.y += deltaMoveY * m_velocity;
 
 	this->Set2DPosition(Vector2(m_position.x, m_position.y));
 }

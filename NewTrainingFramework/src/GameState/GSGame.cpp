@@ -109,7 +109,7 @@ void GSGame::Update(float deltaTime)
 	//}
 
 	if (InputManager::GetInstance()->m_mouseIsPressed == true 
-		//&& InputManager::GetInstance()->m_timerIsActive == false
+		&& InputManager::GetInstance()->m_timerIsActive == false
 		) {
 		printf("bang\n");
 		InputManager::GetInstance()->m_timerIsActive = true;
@@ -119,9 +119,12 @@ void GSGame::Update(float deltaTime)
 	}
 
 	if (InputManager::GetInstance()->m_timerIsActive == true) {
+		//printf("blocking further fires for %f sec\n", InputManager::GetInstance()->m_timeSincePressed);
 		InputManager::GetInstance()->m_timeSincePressed += deltaTime;
-		if (InputManager::GetInstance()->m_timeSincePressed >= deltaTime) {
-			InputManager::GetInstance()->m_timerIsActive == false;
+		if (InputManager::GetInstance()->m_timeSincePressed > 1.0f) {
+			InputManager::GetInstance()->m_timerIsActive = false;
+			InputManager::GetInstance()->m_timeSincePressed = 0.0f;
+			//printf("stopped blocking\n");
 		}
 	}
 
@@ -145,6 +148,8 @@ void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 
 void GSGame::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
+	//printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
+
 	InputManager::GetInstance()->m_mouseX = x;
 	InputManager::GetInstance()->m_mouseY = y;
 	InputManager::GetInstance()->m_mouseIsPressed = bIsPressed;

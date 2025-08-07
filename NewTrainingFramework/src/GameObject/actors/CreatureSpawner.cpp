@@ -11,6 +11,12 @@ CreatureSpawner::CreatureSpawner()
 	m_creatures.reserve(50);
 }
 
+// this function rolls a random number, then spawn a creature at fixed locations on the map
+// for testing, creatures spawnpoint are visible, but ideally should be just beyond the view area
+// what spd does:
+//		- computes a spawn budget (use this to manage waves)
+//		- choose a random monster (go make 2 types of mobs)
+//		
 void CreatureSpawner::SpawnCreature()
 {
 	auto creature = std::make_shared<Skeleton>();

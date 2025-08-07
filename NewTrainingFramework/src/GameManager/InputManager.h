@@ -22,7 +22,8 @@ public:
 	bool keys[256] = { false };
 	GLint m_mouseX;
 	GLint m_mouseY;
-	bool m_mouseIsPressed;
+	bool m_mouseIsPressed = false;
+	bool m_mouseDown;
 
 	// prevent per frame event register
 	bool m_timerIsActive = false;

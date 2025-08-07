@@ -42,7 +42,8 @@ std::unique_ptr<Projectile> Gun::AcquireProjectile()
 	auto owner = m_owner.lock();
 	for (auto& x : m_projectilePool) {
 		// set projectile to hero pos
-		x->SetProjectile(Vector2(owner->m_anim->m_position.x, owner->m_anim->m_position.y));
+		x->SetProjectile(Vector2(owner->m_anim->m_position.x, owner->m_anim->m_position.y)
+						,Vector2(m_fMouseX, m_fMouseY));
 		return std::move(x);
 	}
 	printf("ran out of projectiles\n");
@@ -75,7 +76,7 @@ void Gun::Update(GLfloat deltaTime)
 	// check condition for projectile removal
 	// default x->m_position.x > Globals::screenWidth / 2 + 600.0f
 	for (auto& x : m_projectileUsed)
-		if (x && x->m_position.x >= m_fMouseX)
+		if (x && (x->m_position.x > Globals::screenWidth || x->m_position.x < 0))
 			ReleaseProjectile(std::move(x));
 
 	m_projectileUsed.erase(
@@ -89,7 +90,7 @@ void Gun::Update(GLfloat deltaTime)
 	
 	for (auto& x : m_projectileUsed) {
 		if (x) {
-			x->Update(deltaTime, m_fMouseX, m_fMouseY);
+			x->Update(deltaTime);
 		}
 	}
 }
