@@ -23,7 +23,7 @@ void GSMenu::Init()
 
 // menu background
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(19);
+	texture = ResourceManager::GetInstance()->GetTexture(10);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<Object> MenuBg = std::make_shared<Object>(model, texture, shader);
 	MenuBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 - 50));
@@ -32,8 +32,8 @@ void GSMenu::Init()
 
 // play button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto normalTexture = ResourceManager::GetInstance()->GetTexture(22);   // Texture cho play button nổi
-	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(21);  // Texture cho play button chìm 
+	auto normalTexture = ResourceManager::GetInstance()->GetTexture(12);   // Texture cho play button nổi
+	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(13);  // Texture cho play button chìm 
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<GameButton> menuButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
 	menuButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 255.0f));
@@ -45,8 +45,8 @@ void GSMenu::Init()
 
 // settings button
     model = ResourceManager::GetInstance()->GetModel(0);
-    normalTexture = ResourceManager::GetInstance()->GetTexture(25);   // Texture cho settings button nổi
-    pressedTexture = ResourceManager::GetInstance()->GetTexture(26);  // Texture cho settings button chìm
+    normalTexture = ResourceManager::GetInstance()->GetTexture(16);   // Texture cho settings button nổi
+    pressedTexture = ResourceManager::GetInstance()->GetTexture(17);  // Texture cho settings button chìm
     shader = ResourceManager::GetInstance()->GetShader(0);
     std::shared_ptr<GameButton> settingsButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
     settingsButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 320.0f));
@@ -58,8 +58,8 @@ void GSMenu::Init()
 
 // quit button  
 	model = ResourceManager::GetInstance()->GetModel(0);
-	normalTexture = ResourceManager::GetInstance()->GetTexture(23);   // Texture cho close button nổi
-	pressedTexture = ResourceManager::GetInstance()->GetTexture(24);  // Texture cho close button chìm
+	normalTexture = ResourceManager::GetInstance()->GetTexture(14);   // Texture cho close button nổi
+	pressedTexture = ResourceManager::GetInstance()->GetTexture(15);  // Texture cho close button chìm
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<GameButton> closeButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
 	closeButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 386.0f));

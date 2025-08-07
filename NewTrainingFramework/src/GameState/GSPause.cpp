@@ -8,8 +8,8 @@
 
 void GSPause::Init()
 {
-	m_gsPauseObjects.reserve(6);
-	m_gsPauseButtons.reserve(3);
+	m_gsPauseObjects.reserve(2);
+	m_gsPauseButtons.reserve(2);
 
 	// background
 	auto model = ResourceManager::GetInstance()->GetModel(0);
@@ -21,7 +21,7 @@ void GSPause::Init()
 
 	// Pause menu background
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(19);
+	texture = ResourceManager::GetInstance()->GetTexture(10);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<Object> pauseBg = std::make_shared<Object>(model, texture, shader);
 	pauseBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 + 20));
@@ -30,18 +30,20 @@ void GSPause::Init()
 
 	// Resume button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(14);
+	auto normalTexture = ResourceManager::GetInstance()->GetTexture(24);   // Texture cho resume button nổi
+	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(25);  // Texture cho resume button chìm 
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	auto btnResume = std::make_shared<GameButton>(model, texture, shader);
+	auto btnResume = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
 	btnResume->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 - 50));
 	btnResume->SetSize(60.0f, 60.0f);
 	btnResume->SetOnClick(OnResumeButtonClick);
 
 	// Home button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(18);
+	normalTexture = ResourceManager::GetInstance()->GetTexture(22);
+	pressedTexture = ResourceManager::GetInstance()->GetTexture(23);
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	auto btnMainMenu = std::make_shared<GameButton>(model, texture, shader);
+	auto btnMainMenu = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
 	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 + 20));
 	btnMainMenu->SetSize(60.0f, 60.0f);
 	btnMainMenu->SetOnClick(OnMainMenuButtonClick);
