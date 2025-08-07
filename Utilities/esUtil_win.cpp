@@ -152,46 +152,34 @@ GLboolean WinCreate ( ESContext *esContext, const char *title )
 //      Start main windows loop
 void WinLoop ( ESContext *esContext )
 {
-   MSG msg = { 0 };
-   int done = 0;
-   DWORD lastTime = GetTickCount();
+    MSG msg = { 0 };
+    int done = 0;
+    DWORD lastTime = GetTickCount();
 
-   const DWORD FRAMECAP = DWORD(1000.0f / 60.0f);
-   
-   while (!done)
-   {
-      int gotMsg = (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0);
-      DWORD curTime = GetTickCount();
-      float deltaTime = (float)( curTime - lastTime ) / 1000.0f;
-      //lastTime = curTime;
+    while (!done)
+    {
+        int gotMsg = (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0);
+        DWORD curTime = GetTickCount();
+        float deltaTime = (float)(curTime - lastTime) / 1000.0f;
+        lastTime = curTime;
 
-      if ( gotMsg )
-      {
-         if (msg.message==WM_QUIT)
-         {
-             done=1; 
-         }
-         else
-         {
-             TranslateMessage(&msg); 
-             DispatchMessage(&msg); 
-         }
-      }
-      else
-         SendMessage( esContext->hWnd, WM_PAINT, 0, 0 );
+        if (gotMsg)
+        {
+            if (msg.message == WM_QUIT)
+            {
+                done = 1;
+            }
+            else
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else
+            SendMessage(esContext->hWnd, WM_PAINT, 0, 0);
 
-      // Start counting frame update time
-      //DWORD frameStart = GetTickCount(); // use curTime
-
-      // Call update function if registered
-      if ( esContext->updateFunc != NULL )
-         esContext->updateFunc ( esContext, deltaTime );
-
-      DWORD postFrameTime = DWORD(GetTickCount() - curTime);
-      // cause freezes
-      //if (postFrameTime < FRAMECAP)
-      //    Sleep(FRAMECAP - postFrameTime);
-
-      lastTime = curTime;
-   }
+        // Call update function if registered
+        if (esContext->updateFunc != NULL)
+            esContext->updateFunc(esContext, deltaTime);
+    }
 }

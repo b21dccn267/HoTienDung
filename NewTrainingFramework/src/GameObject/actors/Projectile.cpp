@@ -43,8 +43,11 @@ void Projectile::Update(GLfloat deltaTime)
 	float deltaMoveX = owner->m_fMouseX - ownerOwner->m_anim->m_position.x;
 	float deltaMoveY = owner->m_fMouseY - ownerOwner->m_anim->m_position.y;
 	//m_fTimePassed += deltaTime;
-	m_position.x += deltaMoveX * m_velocity;
-	m_position.y += deltaMoveY * m_velocity;
+	if (deltaTime < 0.016f) {
+		deltaTime = 0.016f;
+	}
+	m_position.x += deltaMoveX * m_velocity * deltaTime;
+	m_position.y += deltaMoveY * m_velocity * deltaTime;
 
 	this->Set2DPosition(Vector2(m_position.x, m_position.y));
 }

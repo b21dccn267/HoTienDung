@@ -27,6 +27,6 @@ public:
 	void SetProjectile(Vector2 startPos, Vector2 endPos);
 	void Update(GLfloat deltaTime);
 	float m_fTimePassed;
-	float m_velocity = 0.01f;
+	float m_velocity = 1.0f;
 };
 
