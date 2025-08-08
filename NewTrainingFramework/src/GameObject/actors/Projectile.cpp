@@ -24,8 +24,16 @@ void Projectile::SetProjectile(Vector2 startPos, Vector2 endPos)
 	this->m_startPos = startPos;
 	this->m_endPos = endPos;
 	this->Set2DPosition(startPos);
-	//this->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	//m_fTimePassed = 0.0f;
+	auto owner = m_owner.lock();
+	auto ownerOwner = owner->m_owner.lock();
+
+
+	// calculate direction of mouse and player.
+	Vector3 mousPos = Vector3(owner->m_fMouseX, owner->m_fMouseY, 0);
+	Vector3 playerPos = Vector3(ownerOwner->m_anim->m_position.x, ownerOwner->m_anim->m_position.y, 0);
+	printf("ownerOwner->m_anim->m_position.x = %f, ownerOwner->m_anim->m_position.y = %f", ownerOwner->m_anim->m_position.x, ownerOwner->m_anim->m_position.y);
+	direction = (mousPos - playerPos).Normalize();
+
 }
 
 void Projectile::Update(GLfloat deltaTime) 
@@ -34,20 +42,19 @@ void Projectile::Update(GLfloat deltaTime)
 	// all coords should be given to each projectile in acquire()
 
 	// get access to Hero pos
-	auto owner = m_owner.lock();
-	auto ownerOwner = owner->m_owner.lock();
+	
 
 	//float ratio = x / y;
 	//float deltaMoveX = x - ownerOwner->m_anim->m_position.x;
 	//float deltaMoveY = y - ownerOwner->m_anim->m_position.y;
-	float deltaMoveX = owner->m_fMouseX - ownerOwner->m_anim->m_position.x;
-	float deltaMoveY = owner->m_fMouseY - ownerOwner->m_anim->m_position.y;
-	//m_fTimePassed += deltaTime;
-	if (deltaTime < 0.016f) {
-		deltaTime = 0.016f;
-	}
-	m_position.x += deltaMoveX * m_velocity * deltaTime;
-	m_position.y += deltaMoveY * m_velocity * deltaTime;
+//	deltaMoveX = owner->m_fMouseX - ownerOwner->m_anim->m_position.x;
+   // deltaMoveY = owner->m_fMouseY - ownerOwner->m_anim->m_position.y;
+
+
+	m_position.x += direction.x * m_velocity * deltaTime;
+	m_position.y += direction.y *m_velocity * deltaTime;
 
 	this->Set2DPosition(Vector2(m_position.x, m_position.y));
 }
+
+

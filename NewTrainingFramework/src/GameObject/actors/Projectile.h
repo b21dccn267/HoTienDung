@@ -27,6 +27,9 @@ public:
 	void SetProjectile(Vector2 startPos, Vector2 endPos);
 	void Update(GLfloat deltaTime);
 	float m_fTimePassed;
-	float m_velocity = 1.0f;
+//	float deltaMoveX;
+	//float deltaMoveY;
+	float m_velocity = 300.0f;
+	Vector3 direction;
 };
 
