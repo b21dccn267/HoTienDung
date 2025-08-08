@@ -21,7 +21,7 @@ ID 5
 FILE "../Resources/2d/Textures/game/base_character.tga"
 TILING GL_REPEAT
 ID 6
-FILE "../Resources/2d/Textures/game/bullet.tga"
+FILE "../Resources/2d/Textures/game/bullet_new.tga"
 TILING GL_REPEAT
 ID 7
 FILE "../Resources/2d/Textures/game/deathFX.tga"

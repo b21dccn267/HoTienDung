@@ -6,6 +6,7 @@
 #include <memory>
 
 class Gun;
+class Animation;
 // an actor, spawns when gun is fired
 // delete self when reaching max range
 // add projectile hit creature
@@ -14,21 +15,20 @@ class Projectile : public Object
 {
 public:
 	std::weak_ptr<Gun> m_owner;
+	std::shared_ptr<Animation> m_anim;
 
-	
 	int m_id;
 	Vector2 m_startPos;
 	Vector2 m_endPos;
 	float m_moveSpeed = 50.0f;
 
 	Projectile(std::weak_ptr<Gun> owner);
-
-	// have projectile fly autonomously, but uses flyValue and isActive for texture display
+	void ProjLoop();
 	void SetProjectile(Vector2 startPos, Vector2 endPos);
 	void Update(GLfloat deltaTime);
 	float m_fTimePassed;
-//	float deltaMoveX;
-	//float deltaMoveY;
+
+
 	float m_velocity = 300.0f;
 	Vector3 direction;
 };

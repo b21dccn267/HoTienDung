@@ -44,6 +44,7 @@ std::unique_ptr<Projectile> Gun::AcquireProjectile()
 		// set projectile to hero pos
 		x->SetProjectile(Vector2(owner->m_anim->m_position.x, owner->m_anim->m_position.y)
 						,Vector2(m_fMouseX, m_fMouseY));
+		x->ProjLoop();
 		return std::move(x);
 	}
 	printf("ran out of projectiles\n");
@@ -64,7 +65,8 @@ void Gun::Fire()
 void Gun::Draw()
 {
 	for (auto& x : m_projectileUsed)
-		x->Draw();
+		//x->Draw();
+		x->m_anim->CustomDraw();
 }
 
 void Gun::Update(GLfloat deltaTime)
