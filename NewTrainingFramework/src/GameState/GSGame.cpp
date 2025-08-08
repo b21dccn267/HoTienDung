@@ -103,10 +103,62 @@ void GSGame::Update(float deltaTime)
 		m_creature->m_anim->m_position.x += 130.0f * deltaTime;
 		m_creature->LookRight();
 	}
+	if (InputManager::GetInstance()->keys[0x25] &&
+		InputManager::GetInstance()->keys[0x26]) {
+		m_creature->LookTopLeft();
+	}
+	if (InputManager::GetInstance()->keys[0x27] &&
+		InputManager::GetInstance()->keys[0x26]) {
+		m_creature->LookTopRight();
+	}
+	if (InputManager::GetInstance()->keys[0x25] &&
+		InputManager::GetInstance()->keys[0x28]) {
+		m_creature->LookBottomLeft();
+	}
+	if (InputManager::GetInstance()->keys[0x27] &&
+		InputManager::GetInstance()->keys[0x28]) {
+		m_creature->LookBottomRight();
+	}
 
-	//if (InputManager::GetInstance()->keys[0x20]) {
-	//	m_creatureSpawner->SpawnCreature(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
+	// test die anim
+	//if (InputManager::GetInstance()->keys[0x4A]) {
+	//	m_creature->Die();
 	//}
+
+	// test skeleton, remove creature keys b4 proceeding
+	//if (InputManager::GetInstance()->keys[0x26]) {
+	//	m_creatureSpawner->m_creatures[0]->m_anim->m_position.y -= 130.0f * deltaTime;
+	//	m_creatureSpawner->m_creatures[0]->LookUp();
+	//}
+	//if (InputManager::GetInstance()->keys[0x25]) {
+	//	m_creatureSpawner->m_creatures[0]->m_anim->m_position.x -= 130.0f * deltaTime;
+	//	m_creatureSpawner->m_creatures[0]->LookLeft();
+	//}
+	//if (InputManager::GetInstance()->keys[0x28]) {
+	//	m_creatureSpawner->m_creatures[0]->m_anim->m_position.y += 130.0f * deltaTime;
+	//	m_creatureSpawner->m_creatures[0]->LookDown();
+	//}
+	//if (InputManager::GetInstance()->keys[0x27]) {
+	//	m_creatureSpawner->m_creatures[0]->m_anim->m_position.x += 130.0f * deltaTime;
+	//	m_creatureSpawner->m_creatures[0]->LookRight();
+	//}
+	//if (InputManager::GetInstance()->keys[0x25] &&
+	//	InputManager::GetInstance()->keys[0x26]) {
+	//	m_creatureSpawner->m_creatures[0]->LookTopLeft();
+	//}
+	//if (InputManager::GetInstance()->keys[0x27] &&
+	//	InputManager::GetInstance()->keys[0x26]) {
+	//	m_creatureSpawner->m_creatures[0]->LookTopRight();
+	//}
+	//if (InputManager::GetInstance()->keys[0x25] &&
+	//	InputManager::GetInstance()->keys[0x28]) {
+	//	m_creatureSpawner->m_creatures[0]->LookBottomLeft();
+	//}
+	//if (InputManager::GetInstance()->keys[0x27] &&
+	//	InputManager::GetInstance()->keys[0x28]) {
+	//	m_creatureSpawner->m_creatures[0]->LookBottomRight();
+	//}
+
 
 	if (InputManager::GetInstance()->m_mouseIsPressed == true 
 		&& InputManager::GetInstance()->m_timerIsActive == false
@@ -142,7 +194,7 @@ void GSGame::Update(float deltaTime)
 
 void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-	//printf("0x%02X\n", key);
+	printf("0x%02X\n", key);
 	InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 

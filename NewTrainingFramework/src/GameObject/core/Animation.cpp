@@ -27,17 +27,12 @@ void Animation::FrameNumberToCoord(int number)
 {
 	m_frameX = 0;
 	m_frameY = 0;
-	while (number >= m_numFrames) {
-		number -= m_numFrames;
+	while (number >= m_numFramesPerRow) {
+		number -= m_numFramesPerRow;
 		m_frameY++;
 	}
-	m_frameY = m_numActions - m_frameY - 1;
+	m_frameY = m_numFramesPerColumn - m_frameY - 1;
 	m_frameX = number;
-}
-
-void Animation::FrameAt(int number)
-{
-	FrameNumberToCoord(m_frameOrder[number]);
 }
 
 void Animation::SetCustomFrames(std::vector<int> order)
@@ -84,7 +79,7 @@ void Animation::CustomDraw()
 	GLint iTempShaderVariableGLID = -1;
 	iTempShaderVariableGLID = glGetUniformLocation(m_pShader->program, "u_numFrames");
 	if (iTempShaderVariableGLID != -1) {
-		glUniform1f(iTempShaderVariableGLID, m_numFrames);
+		glUniform1f(iTempShaderVariableGLID, m_numFramesPerRow);
 	}
 	iTempShaderVariableGLID = -1;
 	iTempShaderVariableGLID = glGetUniformLocation(m_pShader->program, "u_frameX");
@@ -94,7 +89,7 @@ void Animation::CustomDraw()
 	iTempShaderVariableGLID = -1;
 	iTempShaderVariableGLID = glGetUniformLocation(m_pShader->program, "u_numActions");
 	if (iTempShaderVariableGLID != -1) {
-		glUniform1f(iTempShaderVariableGLID, m_numActions);
+		glUniform1f(iTempShaderVariableGLID, m_numFramesPerColumn);
 	}
 	iTempShaderVariableGLID = -1;
 	iTempShaderVariableGLID = glGetUniformLocation(m_pShader->program, "u_frameY");

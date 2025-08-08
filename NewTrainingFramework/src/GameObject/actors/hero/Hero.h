@@ -29,6 +29,7 @@ public:
 	void LookLeft();
 	void LookBottomRight();
 	void LookBottomLeft();
+	void Die();
 	
 	void Draw();
 	void Update(GLfloat deltaTime);

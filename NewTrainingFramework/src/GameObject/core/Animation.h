@@ -9,10 +9,10 @@ class Animation : public Object
 {
 public:
 	// flip both two values when changing format in shader
-	int m_numFrames = 9;		// row
-	int m_numActions = 7;		// column
+	int m_numFramesPerRow;
+	int m_numFramesPerColumn;
 	float m_frameTime;
-	float m_currentTime;
+	float m_currentTime;w
 
 	// custom frame anim variables
 	// the stuff is still divided by rows and columns
@@ -24,9 +24,8 @@ public:
 	
 	Animation() : Object(), m_currentTime(0.0f), m_frameTime(0.0f) {};
 	Animation(std::shared_ptr<Model> model, std::shared_ptr<Texture> texture, std::shared_ptr<Shaders> shader, int frameTime, int currentAction);
-	//	: Object(model, texture, shader) {};
+
 	void FrameNumberToCoord(int number);
-	void FrameAt(int number);
 	void SetCustomFrames(std::vector<int> order);
 	void SetCustomFrames(std::vector<int> order, bool isLooped);
 	void CustomUpdate(GLfloat deltaTime);
