@@ -5,10 +5,31 @@ CreatureController::CreatureController(std::weak_ptr<Creature> owner)
 	this->m_owner = owner;
 }
 
-void CreatureController::Move()
+void CreatureController::Move(float deltaTime, Vector2 heroPos)
 {
-	auto owner = m_owner.lock();
-	owner->m_anim->m_position.x += 10.0f;
-	owner->m_anim->m_position.y += 10.0f;
-	//owner->m_anim->Set2DPosition(Vector2(owner->m_anim->m_position.x+10.0f, owner->m_anim->m_position.y+10.0f));
+	if (m_cooldownIsActive) {
+		m_timeSinceSpawn += deltaTime;
+		if (m_timeSinceSpawn > 0.5f) {
+			m_cooldownIsActive = false;
+		}
+	}
+	else {
+		auto owner = m_owner.lock();
+
+		if (owner->m_anim->m_position.x <= heroPos.x) {
+			owner->m_anim->m_position.x += 5.0f;
+		}
+		else {
+			owner->m_anim->m_position.x -= 5.0f;
+		}
+		if (owner->m_anim->m_position.y <= heroPos.y) {
+			owner->m_anim->m_position.y += 5.0f;
+		}
+		else {
+			owner->m_anim->m_position.y -= 5.0f;
+		}
+
+		m_timeSinceSpawn = 0.0f;
+		m_cooldownIsActive = true;
+	}
 }

@@ -12,7 +12,7 @@ public:
 	int m_numFramesPerRow;
 	int m_numFramesPerColumn;
 	float m_frameTime;
-	float m_currentTime;w
+	float m_currentTime;
 
 	// custom frame anim variables
 	// the stuff is still divided by rows and columns

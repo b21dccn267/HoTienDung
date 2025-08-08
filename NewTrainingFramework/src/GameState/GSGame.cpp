@@ -173,7 +173,7 @@ void GSGame::Update(float deltaTime)
 	if (InputManager::GetInstance()->m_timerIsActive == true) {
 		//printf("blocking further fires for %f sec\n", InputManager::GetInstance()->m_timeSincePressed);
 		InputManager::GetInstance()->m_timeSincePressed += deltaTime;
-		if (InputManager::GetInstance()->m_timeSincePressed > 1.0f) {
+		if (InputManager::GetInstance()->m_timeSincePressed > 0.75f) {
 			InputManager::GetInstance()->m_timerIsActive = false;
 			InputManager::GetInstance()->m_timeSincePressed = 0.0f;
 			//printf("stopped blocking\n");
@@ -186,7 +186,7 @@ void GSGame::Update(float deltaTime)
 	m_creature->Update(deltaTime);
 	m_creature->Update2DPosition();
 	for (auto& x : m_creatureSpawner->m_creatures) {
-		//x->m_control->Move();
+		x->m_control->Move(deltaTime, Vector2(m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y));
 		x->Update2DPosition();
 		x->Update(deltaTime);
 	}

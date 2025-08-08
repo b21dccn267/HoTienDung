@@ -10,6 +10,9 @@ public:
 	std::shared_ptr<Animation> m_anim;
 	std::shared_ptr<CreatureController> m_control;
 
+	int health = 1;
+	int damage = 1;
+
 	Creature();
 	void Init();
 

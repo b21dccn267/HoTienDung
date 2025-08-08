@@ -52,8 +52,6 @@ std::unique_ptr<Projectile> Gun::AcquireProjectile()
 
 void Gun::ReleaseProjectile(std::unique_ptr<Projectile> proj)
 {
-	//auto owner = m_owner.lock();
-	//proj->SetProjectile(Vector2(owner->m_anim->m_position.x, owner->m_anim->m_position.y));
 	m_projectilePool[proj->m_id] = std::move(proj);
 }
 
@@ -74,7 +72,6 @@ void Gun::Update(GLfloat deltaTime)
 	auto owner = m_owner.lock();
 
 	// check condition for projectile removal
-	// default x->m_position.x > Globals::screenWidth / 2 + 600.0f
 	for (auto& x : m_projectileUsed)
 		if (x && (x->m_position.x > Globals::screenWidth || x->m_position.x < 0))
 			ReleaseProjectile(std::move(x));
