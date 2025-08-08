@@ -190,6 +190,7 @@ void GSGame::Update(float deltaTime)
 		x->Update2DPosition();
 		x->Update(deltaTime);
 	}
+	printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
 }
 
 void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
