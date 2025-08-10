@@ -1,9 +1,11 @@
 #include "Hero.h"
-#include <Globals.h>
-#include <GameManager/ResourceManager.h>
-#include <GameObject/core/Animation.h>
-#include <GameObject/items/weapons/Gun.h>
+#include "Globals.h"
+#include "GameManager/ResourceManager.h"
+#include "GameObject/core/Animation.h"
+#include "GameObject/items/weapons/Gun.h"
+#include "GameObject/utils/AABB.h"
 #include <vector>
+
 
 Hero::Hero()
 {
@@ -17,6 +19,9 @@ Hero::Hero()
 	anim->SetSize(100, 100);
 
 	m_anim = anim;
+
+	m_hitbox = std::make_shared<AABB>();
+	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 }
 
 void Hero::Init()
@@ -162,6 +167,7 @@ void Hero::Draw()
 void Hero::Update(GLfloat deltaTime)
 {
 	m_anim->CustomUpdate(deltaTime);
+	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 
 	m_gun->Update(deltaTime);
 }

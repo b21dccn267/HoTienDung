@@ -5,6 +5,9 @@
 class Skeleton : public Creature
 {
 public:
+	int m_id;
+	bool m_isDie;
+
 	Skeleton();
 	
 	// need override from creature, as creature spawner container is of type creature

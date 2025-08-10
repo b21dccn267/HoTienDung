@@ -1,6 +1,7 @@
 #include "GameManager/ResourceManager.h"
 #include "GameObject/items/weapons/Gun.h"
 #include "GameObject/actors/hero/Hero.h"
+#include "GameObject/utils/AABB.h"
 #include "Globals.h"
 #include "Projectile.h"
 #include <memory>
@@ -11,9 +12,6 @@ Projectile::Projectile(std::weak_ptr<Gun> owner)
 {
 	this->m_owner = owner;
 
-	//this->m_pModel = ResourceManager::GetInstance()->GetModel(0);
-	//this->m_pTexture = ResourceManager::GetInstance()->GetTexture(6);
-	//this->m_pShader = ResourceManager::GetInstance()->GetShader(0);
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(6);
 	auto shader = ResourceManager::GetInstance()->GetShader(2);
@@ -21,18 +19,19 @@ Projectile::Projectile(std::weak_ptr<Gun> owner)
 	anim->m_numFramesPerRow = 4;
 	anim->m_numFramesPerColumn = 1;
 	
-	//anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	anim->SetSize(40, 40);
 	m_fTimePassed = 0.0f;
 	
 	m_anim = anim;
+
+	m_hitbox = std::make_shared<AABB>();
+	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 }
 
 void Projectile::ProjLoop()
 {
 	m_anim->SetCustomFrames(std::vector<int>{0, 1, 2, 3});
 	m_anim->m_frameTime = 0.12f;
-	//m_anim->SetRotation(Vector3(0, 0, 0));
 }
 
 void Projectile::SetProjectile(Vector2 startPos, Vector2 endPos)
@@ -55,6 +54,7 @@ void Projectile::SetProjectile(Vector2 startPos, Vector2 endPos)
 void Projectile::Update(GLfloat deltaTime) 
 {
 	m_anim->CustomUpdate(deltaTime);
+	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 	// this function should not take in any args other than deltaTime
 	// all coords should be given to each projectile in acquire()
 

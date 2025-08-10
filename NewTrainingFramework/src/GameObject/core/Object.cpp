@@ -118,6 +118,11 @@ void Object::Draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
+void Object::DrawHitbox()
+{
+
+}
+
 void Object::Update()
 {
 	GLfloat deltaTime = 0.1f;

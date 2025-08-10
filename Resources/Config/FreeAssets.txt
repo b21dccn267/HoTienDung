@@ -11,14 +11,6 @@ remember to write your ideas on readme file
 
 !!! note: you can add pretty assets later, core game comes first
 
-what do: add
-	- text done
-	- animations done
-	- sound done
-what to refine
-	- fix mem leak done
-	- handle key event done
-	- clean code 
 
 books
 https://gameprogrammingpatterns.com/
@@ -121,3 +113,28 @@ what to add:
 			+have current object possess its own death anims
 			+have boom effect owned by game state
 	-add hero die logic (touched too much? collision? hp?)	
+
+2 weeks recap
+	core game:
+		-main character move wasd, shoot mouse1
+		-enemies spawn around in waves
+	whats missing:
+		-hp system, collision system
+		-coins/xp for leveling up
+			+items system
+				+in form of stats buff: hp, move speed, damage...
+			+item pick ui
+		-pvp system
+			+make friendly fire tag on
+	what should be fixed:
+		-obj pool for mobs
+		-one more mob type (either shoots back, or have a melee dash), one more weapon type (melee, make it auto attack)
+
+jon blow expert advices
+	when using a mental model for a game (which is good), be aware of:
+		hidden assumptions: you may forget if the main char should fire his gun automatically or manually
+		forgotten features: couldnt keep track of which feature is finnished, isnt done or is overdone
+		drift from vision: subtle game changes may have great impact
+	when transforming ideas into code, remember to:
+		do quick dirty code to see if it works, then refactor later
+		present your ideas, which reveals hidden assumptions and faults

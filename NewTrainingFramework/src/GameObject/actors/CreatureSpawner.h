@@ -14,9 +14,11 @@ enum class SpawnLocation
 class CreatureSpawner
 {
 public:
-	std::vector<std::shared_ptr<Creature>> m_creatures;
-
+	std::vector<std::unique_ptr<Creature>> m_creaturePool;
+	std::vector<std::unique_ptr<Creature>> m_creatureActive;
+	bool m_isActive; // or isDie
 	CreatureSpawner();
 	void SpawnCreature();
+	void DespawnCreature();
 };
 

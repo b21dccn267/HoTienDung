@@ -8,7 +8,15 @@
 
 CreatureSpawner::CreatureSpawner()
 {
-	m_creatures.reserve(50);
+	// may need to add more pools for different creatures, or use poly (is viable)
+	m_creaturePool.reserve(50);
+	m_creatureActive.reserve(50);
+	//fix cannot get base dtor due to no dtor inherit policy
+	//for (int i = 0; i < m_creaturePool.capacity(); i++) {
+	//	auto temp = std::make_unique<Skeleton>();
+	//	temp->m_id = i;
+	//	m_creaturePool.emplace_back(std::move(temp));
+	//}
 }
 
 // this function rolls a random number, then spawn a creature at fixed locations on the map
@@ -19,7 +27,17 @@ CreatureSpawner::CreatureSpawner()
 //		
 void CreatureSpawner::SpawnCreature()
 {
-	auto creature = std::make_shared<Skeleton>();
+	// clean empty slots
+	//m_creaturePool.erase(
+	//	std::remove_if(
+	//		m_creaturePool.begin(),
+	//		m_creaturePool.end(),
+	//		[](const std::unique_ptr<Skeleton>& ptr) { return ptr == nullptr; }
+	//	),
+	//	m_creaturePool.end()
+	//);
+
+	auto creature = std::make_unique<Skeleton>();
 	creature->Init();
 	creature->LookDown();
 	//creature->m_anim->Set2DPosition(pos);
@@ -44,5 +62,13 @@ void CreatureSpawner::SpawnCreature()
 	}
 
 	printf("spawned\n");
-	m_creatures.emplace_back(creature);
+	//m_creaturePool.emplace_back(creature);
+	m_creatureActive.emplace_back(creature);
+}
+
+// type should be Creature, current arg should be std::unique_ptr<Skeleton> creature
+void CreatureSpawner::DespawnCreature()
+{
+	//m_creatureActive.clear();
+	printf("killed creature\n");
 }

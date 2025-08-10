@@ -1,12 +1,12 @@
 #include "GSGame.h"
 #include <Globals.h>
-#include <GameManager/InputManager.h>
-#include <GameManager/SceneManager.h>
-#include <GameManager/ResourceManager.h>
-#include <GameManager/SoundManager.h>
-#include <GameObject/core/TextRenderer.h>
-#include <GameObject/core/Animation.h>
-#include <GameObject/utils/CreatureController.h>
+#include "GameManager/InputManager.h"
+#include "GameManager/SceneManager.h"
+#include "GameManager/ResourceManager.h"
+#include "GameManager/SoundManager.h"
+#include "GameObject/core/TextRenderer.h"
+#include "GameObject/core/Animation.h"
+#include "GameObject/utils/CreatureController.h"
 
 
 void GSGame::Init()
@@ -46,7 +46,7 @@ void GSGame::Draw()
 
 	m_hero->Draw();
 	m_creature->Draw();
-	for (auto& x : m_creatureSpawner->m_creatures) {
+	for (auto& x : m_creatureSpawner->m_creaturePool) {
 		x->Draw();
 	}
 }
@@ -185,7 +185,7 @@ void GSGame::Update(float deltaTime)
 	m_hero->Update2DPosition();
 	m_creature->Update(deltaTime);
 	m_creature->Update2DPosition();
-	for (auto& x : m_creatureSpawner->m_creatures) {
+	for (auto& x : m_creatureSpawner->m_creaturePool) {
 		x->m_control->Move(deltaTime, Vector2(m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y));
 		x->Update2DPosition();
 		x->Update(deltaTime);

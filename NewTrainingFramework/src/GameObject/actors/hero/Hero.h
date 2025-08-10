@@ -4,7 +4,7 @@
 #include <GameObject/core/Animation.h>
 #include <GameObject/items/weapons/Gun.h>
 
-
+class AABB;
 class Hero : public std::enable_shared_from_this<Hero>
 {
 public:
@@ -12,6 +12,7 @@ public:
 	std::shared_ptr<Gun> m_gun;
 
 	//std::shared_ptr<Belongings> m_belongings;
+	std::shared_ptr<AABB> m_hitbox;
 
 	Hero();
 	void Init();

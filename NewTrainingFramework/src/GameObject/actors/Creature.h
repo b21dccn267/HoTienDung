@@ -3,6 +3,7 @@
 #include <memory>
 
 class CreatureController;
+class AABB;
 
 class Creature : public std::enable_shared_from_this<Creature>
 {
@@ -10,10 +11,13 @@ public:
 	std::shared_ptr<Animation> m_anim;
 	std::shared_ptr<CreatureController> m_control;
 
+	std::shared_ptr<AABB> m_hitbox;
+
 	int health = 1;
 	int damage = 1;
 
 	Creature();
+	~Creature();
 	void Init();
 
 	//animation functions

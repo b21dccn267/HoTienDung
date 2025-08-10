@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "GameManager/ResourceManager.h"
 #include "GameObject/utils/CreatureController.h"
+#include "GameObject/utils/AABB.h"
 
 //class CreatureController;
 
@@ -15,6 +16,13 @@ Creature::Creature()
 	anim->SetSize(100, 100);
 	anim->SetCustomFrames(std::vector<int>{20, 21, 22, 23});
 	m_anim = anim;
+
+	m_hitbox = std::make_shared<AABB>();
+	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
+}
+
+Creature::~Creature()
+{
 }
 
 void Creature::Init()
@@ -157,6 +165,7 @@ void Creature::Draw()
 void Creature::Update(GLfloat deltaTime)
 {
 	m_anim->CustomUpdate(deltaTime);
+	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 }
 
 void Creature::Update2DPosition()

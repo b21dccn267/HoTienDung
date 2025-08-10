@@ -31,6 +31,7 @@ public:
 	void SetRotation(Vector3 rotate);
 	void Set2DPosition(Vector2 position);
 	void Draw();
+	void DrawHitbox(); // add this
 	void Update();
 	void Update(GLfloat deltaTime);
 };

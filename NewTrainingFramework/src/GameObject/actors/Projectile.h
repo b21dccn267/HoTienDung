@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject/core/Object.h"
 #include "GameManager/ResourceManager.h"
+#include "GameObject/utils/AABB.h"
 //#include "utilities.h"
 #include "../../Utilities/utilities.h"
 #include <memory>
@@ -21,6 +22,8 @@ public:
 	Vector2 m_startPos;
 	Vector2 m_endPos;
 	float m_moveSpeed = 50.0f;
+
+	std::shared_ptr<AABB> m_hitbox;
 
 	Projectile(std::weak_ptr<Gun> owner);
 	void ProjLoop();

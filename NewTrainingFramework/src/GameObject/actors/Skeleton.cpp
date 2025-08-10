@@ -1,10 +1,11 @@
 #include "Skeleton.h"
-#include "../../GameManager/ResourceManager.h"
+#include "GameManager/ResourceManager.h"
 #include <vector>
 
 Skeleton::Skeleton() : Creature()
 {
 	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(12);
+	m_isDie = false;
 }
 
 void Skeleton::Idle()
