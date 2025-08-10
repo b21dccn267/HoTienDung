@@ -34,24 +34,59 @@ SDL_Surface* TextRenderer::FlipVertical(SDL_Surface* surface)
 	return result;
 }
 
+//SDL_Surface* TextRenderer::RenderText(const char* text)
+//{
+//	if (TTF_Init() != 0) {
+//		return nullptr;
+//	}
+//
+//	// font options:
+//	// "../Resources/Fonts/Roboto-VariableFont_wdth,wght.ttf"
+//	// "../Resources/Fonts/Silver.ttf" is broken rn
+//	TTF_Font* font = TTF_OpenFont("../Resources/Fonts/LoveDays.ttf", 24);
+//	if (!font) {
+//		return nullptr;
+//	}
+//
+//	SDL_Color white = { 255, 255, 255, 255 };
+//
+//	// Use the text parameter instead of hardcoded message
+//	SDL_Surface* surface = TTF_RenderUTF8_Blended(font, text, white);
+//	if (!surface) {
+//		TTF_CloseFont(font);
+//		return nullptr;
+//	}
+//
+//	SDL_Surface* result = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA8888, 0);
+//	SDL_FreeSurface(surface);
+//
+//	if (!result) {
+//		TTF_CloseFont(font);
+//		return nullptr;
+//	}
+//
+//	SDL_Surface* flippedResult = FlipVertical(result);
+//	//SDL_FreeSurface(result);
+//
+//	TTF_CloseFont(font);
+//	return flippedResult;
+//}
+
 SDL_Surface* TextRenderer::RenderText(const char* text)
 {
 	if (TTF_Init() != 0) {
 		return nullptr;
 	}
 
-	// font options:
-	// "../Resources/Fonts/Roboto-VariableFont_wdth,wght.ttf"
-	// "../Resources/Fonts/Silver.ttf" is broken rn
-	TTF_Font* font = TTF_OpenFont("../Resources/Fonts/Roboto-VariableFont_wdth,wght.ttf", 24);
+	TTF_Font* font = TTF_OpenFont("../Resources/Fonts/LoveDays.ttf", 24);
 	if (!font) {
 		return nullptr;
 	}
 
-	SDL_Color white = { 255, 255, 255, 255 };
+	// redcolor
+	SDL_Color redColor = { 255, 0, 0, 255 };  
 
-	// Use the text parameter instead of hardcoded message
-	SDL_Surface* surface = TTF_RenderUTF8_Blended(font, text, white);
+	SDL_Surface* surface = TTF_RenderUTF8_Blended(font, text, redColor);
 	if (!surface) {
 		TTF_CloseFont(font);
 		return nullptr;
@@ -66,41 +101,6 @@ SDL_Surface* TextRenderer::RenderText(const char* text)
 	}
 
 	SDL_Surface* flippedResult = FlipVertical(result);
-	//SDL_FreeSurface(result);
-
-	TTF_CloseFont(font);
-	return flippedResult;
-}
-
-SDL_Surface* TextRenderer::RenderText(const char* text, const char* fontPath, int fontSize)
-{
-	if (TTF_Init() != 0) {
-		return nullptr;
-	}
-
-	TTF_Font* font = TTF_OpenFont(fontPath, fontSize);
-	if (!font) {
-		return nullptr;
-	}
-
-	SDL_Color white = { 255, 255, 255, 255 };
-
-	SDL_Surface* surface = TTF_RenderUTF8_Blended(font, text, white);
-	if (!surface) {
-		TTF_CloseFont(font);
-		return nullptr;
-	}
-
-	SDL_Surface* result = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA8888, 0);
-	SDL_FreeSurface(surface);
-
-	if (!result) {
-		TTF_CloseFont(font);
-		return nullptr;
-	}
-
-	SDL_Surface* flippedResult = FlipVertical(result);
-	SDL_FreeSurface(result);
 
 	TTF_CloseFont(font);
 	return flippedResult;
