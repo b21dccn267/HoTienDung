@@ -6,7 +6,6 @@
 #include "Projectile.h"
 #include <memory>
 
-//class Gun;
 
 Projectile::Projectile(std::weak_ptr<Gun> owner)
 {
@@ -55,23 +54,9 @@ void Projectile::Update(GLfloat deltaTime)
 {
 	m_anim->CustomUpdate(deltaTime);
 	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
-	// this function should not take in any args other than deltaTime
-	// all coords should be given to each projectile in acquire()
-
-	// get access to Hero pos
-	
-
-	//float ratio = x / y;
-	//float deltaMoveX = x - ownerOwner->m_anim->m_position.x;
-	//float deltaMoveY = y - ownerOwner->m_anim->m_position.y;
-//	deltaMoveX = owner->m_fMouseX - ownerOwner->m_anim->m_position.x;
-   // deltaMoveY = owner->m_fMouseY - ownerOwner->m_anim->m_position.y;
-
 
 	m_position.x += direction.x * m_velocity * deltaTime;
 	m_position.y += direction.y *m_velocity * deltaTime;
 
 	m_anim->Set2DPosition(Vector2(m_position.x, m_position.y));
 }
-
-

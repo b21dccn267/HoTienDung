@@ -11,28 +11,14 @@
 #include <vector>
 
 
-class GSGame : public GameStateBase
+class GSGame : public GameStateBase, public std::enable_shared_from_this<GSGame>
 {
 public:
 	//std::shared_ptr<Animation> m_gsGameObject;
 	std::shared_ptr<Hero> m_hero;
-	std::shared_ptr<Creature> m_creature;
+	std::shared_ptr<Creature> m_hero2;
 	std::shared_ptr<CreatureSpawner> m_creatureSpawner;
 
-	// test
-	//std::shared_ptr<Projectile> m_proj;
-	// gun is in m_hero
-	// if mouseclick, gun fires
-	// when gun fires, gun create a projectile (projectileManager might be here)
-	// projectile will fly to a direction, and then die (kill by dist, or by time passed)
-	//
-	// hierachy:
-	// gsGame owns hero, does mouse event
-	// hero owns gun, call fire()
-	// gun defines fire(), spawns projectile
-	// projectile manages its own lifecycle based on input
-	//
-	// proj needs deltatime from update
 
 	GSGame() : GameStateBase(StateType::STATE_MENU) {}
 	void Init() override;

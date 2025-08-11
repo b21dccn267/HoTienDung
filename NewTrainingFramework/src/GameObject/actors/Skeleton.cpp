@@ -1,12 +1,20 @@
 #include "Skeleton.h"
 #include "GameManager/ResourceManager.h"
+#include "GameObject/utils/CreatureController.h"
 #include <vector>
+
+//class CreatureController;
 
 Skeleton::Skeleton() : Creature()
 {
 	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(12);
 	m_isDie = false;
 }
+
+//void Skeleton::SkeletonInit()
+//{
+//	m_control = std::make_shared<CreatureController>(weak_from_this());
+//}
 
 void Skeleton::Idle()
 {

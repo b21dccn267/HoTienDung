@@ -1,6 +1,7 @@
 #pragma once
 #include "Creature.h"
 
+class CreatureController;
 
 class Skeleton : public Creature
 {
@@ -9,6 +10,7 @@ public:
 	bool m_isDie;
 
 	Skeleton();
+	//void SkeletonInit();
 	
 	// need override from creature, as creature spawner container is of type creature
 	void Idle();

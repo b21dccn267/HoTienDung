@@ -2,6 +2,10 @@
 #include "Creature.h"
 #include <memory>
 
+
+class GSGame;
+class Skeleton;
+
 enum class SpawnLocation
 {
 	SPAWN_UP,
@@ -14,11 +18,16 @@ enum class SpawnLocation
 class CreatureSpawner
 {
 public:
-	std::vector<std::unique_ptr<Creature>> m_creaturePool;
-	std::vector<std::unique_ptr<Creature>> m_creatureActive;
+	std::weak_ptr<GSGame> m_owner;
+
+	std::vector<std::unique_ptr<Skeleton>> m_creaturePool;
+	std::vector<std::unique_ptr<Skeleton>> m_creatureActive;
 	bool m_isActive; // or isDie
-	CreatureSpawner();
+
+	CreatureSpawner(std::weak_ptr<GSGame> owner);
+	void Init();
 	void SpawnCreature();
 	void DespawnCreature();
+	void Update(float deltaTime);
 };
 
