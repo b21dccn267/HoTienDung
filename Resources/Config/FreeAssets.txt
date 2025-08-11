@@ -37,8 +37,12 @@ https://essssam.itch.io/rocky-roads animals pack
 https://arcadeisland.itch.io/guns-asset-pack-v1 gun pack
 https://didigameboy.itch.io/jambo-jungle-free-sprites-asset-pack contra pack (mainly for the explosions)
 https://bdragon1727.itch.io/fire-pixel-bullet-16x16 effects pack (bullets, explosions etc)
+https://butterymilk.itch.io/tiny-wonder-rpg-icons items pack
+https://pixelfrog-assets.itch.io/pirate-bomb chars pack 2d no updown
+https://trevor-pupkin.itch.io/outer-buddies amongus like char pack (can be used for creatures)
 
 https://dillonbecker.itch.io/sdap sound pack
+https://jdsherbert.itch.io/ultimate-ui-sfx-pack sound pack
 
 https://cnc-comm.com/command-and-conquer/downloads/modding-tools/XCC-utilities assets rip tool
 
