@@ -63,7 +63,7 @@ void CreatureSpawner::SpawnCreature()
 
 	printf("spawned\n");
 	//m_creaturePool.emplace_back(creature);
-	m_creatureActive.emplace_back(creature);
+	m_creatureActive.emplace_back(std::move(creature));
 }
 
 // type should be Creature, current arg should be std::unique_ptr<Skeleton> creature

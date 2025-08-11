@@ -97,10 +97,10 @@ void Object::Draw()
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 	}
 	// texture
-	glActiveTexture(GL_TEXTURE0 + m_pTexture->textureId);
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_pTexture->textureId);
 	int iTextureLoc = glGetUniformLocation(m_pShader->program, "u_texture");
-	glUniform1i(iTextureLoc, 0 + m_pTexture->textureId);
+	glUniform1i(iTextureLoc, 0 );
 	{
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (char*)0 + sizeof(Vector3));
