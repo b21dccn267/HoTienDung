@@ -8,8 +8,8 @@
 
 void GSPause::Init()
 {
-	m_gsPauseObjects.reserve(6);
-	m_gsPauseButtons.reserve(4);
+	m_gsPauseObjects.reserve(8);
+	m_gsPauseButtons.reserve(8);
 
 	// background
 	auto model = ResourceManager::GetInstance()->GetModel(0);
@@ -34,8 +34,8 @@ void GSPause::Init()
 	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(16);  // Texture cho continue button chìm 
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnResume = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
-	btnResume->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 - 50));
-	btnResume->SetSize(60.0f, 60.0f);
+	btnResume->Set2DPosition(Vector2(Globals::screenWidth / 2 - 70, Globals::screenHeight / 2 - 50));
+	btnResume->SetSize(42.0f, 40.0f);
 	btnResume->SetOnClick(OnResumeButtonClick);
 
 	// Home button
@@ -44,17 +44,45 @@ void GSPause::Init()
 	pressedTexture = ResourceManager::GetInstance()->GetTexture(14);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnMainMenu = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
-	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 + 20));
-	btnMainMenu->SetSize(60.0f, 60.0f);
+	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2 - 70, Globals::screenHeight / 2 + 10));
+	btnMainMenu->SetSize(40.0f, 40.0f);
 	btnMainMenu->SetOnClick(OnMainMenuButtonClick);
 
-	//sound button
+	// soundup button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(17);
+	normalTexture = ResourceManager::GetInstance()->GetTexture(26);
+	pressedTexture = ResourceManager::GetInstance()->GetTexture(27);
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	auto btnSound = std::make_shared<GameButton>(model, texture, shader);
-	btnSound->Set2DPosition(Vector2(Globals::screenWidth / 2 - 80, Globals::screenHeight / 2 + 90));
-	btnSound->SetSize(60.0f, 60.0f);
+	auto btnSoundUp = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
+	btnSoundUp->Set2DPosition(Vector2(Globals::screenWidth / 2 - 70, Globals::screenHeight / 2 + 70));
+	btnSoundUp->SetSize(40.0f, 40.0f);
+
+	// soundfxup button
+	model = ResourceManager::GetInstance()->GetModel(0);
+	normalTexture = ResourceManager::GetInstance()->GetTexture(26);
+	pressedTexture = ResourceManager::GetInstance()->GetTexture(27);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	auto btnSoundFXUp = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
+	btnSoundFXUp->Set2DPosition(Vector2(Globals::screenWidth / 2 - 70, Globals::screenHeight / 2 + 130));
+	btnSoundFXUp->SetSize(40.0f, 40.0f);
+
+	// sounddown button
+	model = ResourceManager::GetInstance()->GetModel(0);
+	normalTexture = ResourceManager::GetInstance()->GetTexture(29);
+	pressedTexture = ResourceManager::GetInstance()->GetTexture(28);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	auto btnSoundDown = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
+	btnSoundDown->Set2DPosition(Vector2(Globals::screenWidth / 2 + 85, Globals::screenHeight / 2 + 70));
+	btnSoundDown->SetSize(40.0f, 40.0f);
+
+	// soundfxdown button
+	model = ResourceManager::GetInstance()->GetModel(0);
+	normalTexture = ResourceManager::GetInstance()->GetTexture(29);
+	pressedTexture = ResourceManager::GetInstance()->GetTexture(28);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	auto btnSoundFXDown = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
+	btnSoundFXDown->Set2DPosition(Vector2(Globals::screenWidth / 2 + 85, Globals::screenHeight / 2 + 130));
+	btnSoundFXDown->SetSize(40.0f, 40.0f);
 
 	// text - paused
 	auto textPaused = std::make_shared<Object>(
@@ -71,7 +99,7 @@ void GSPause::Init()
 		std::make_shared<Texture>(TextRenderer::RenderText("Continue")),
 		ResourceManager::GetInstance()->GetShader(0)
 	);
-	textContinue->Set2DPosition(Vector2(Globals::screenWidth / 2 + 20, Globals::screenHeight / 2 - 50));
+	textContinue->Set2DPosition(Vector2(Globals::screenWidth / 2 + 10, Globals::screenHeight / 2 - 50));
 	textContinue->SetSize(100.0f, 20.0f);
 
 	// text - home
@@ -80,7 +108,7 @@ void GSPause::Init()
 		std::make_shared<Texture>(TextRenderer::RenderText("Home")),
 		ResourceManager::GetInstance()->GetShader(0)
 	);
-	textHome->Set2DPosition(Vector2(Globals::screenWidth / 2 + 20, Globals::screenHeight / 2 + 20));
+	textHome->Set2DPosition(Vector2(Globals::screenWidth / 2 + 10, Globals::screenHeight / 2 + 10));
 	textHome->SetSize(100.0f, 20.0f);
 
 	// text - sound 
@@ -89,8 +117,17 @@ void GSPause::Init()
 		std::make_shared<Texture>(TextRenderer::RenderText("Sound")),
 		ResourceManager::GetInstance()->GetShader(0)
 	);
-	textSound->Set2DPosition(Vector2(Globals::screenWidth / 2 + 20, Globals::screenHeight / 2 + 90));
+	textSound->Set2DPosition(Vector2(Globals::screenWidth / 2 + 10, Globals::screenHeight / 2 + 70));
 	textSound->SetSize(100.0f, 20.0f);
+
+	// text - soundfx 
+	auto textSoundFX = std::make_shared<Object>(
+		ResourceManager::GetInstance()->GetModel(0),
+		std::make_shared<Texture>(TextRenderer::RenderText("SoundFX")),
+		ResourceManager::GetInstance()->GetShader(0)
+	);
+	textSoundFX->Set2DPosition(Vector2(Globals::screenWidth / 2 + 10, Globals::screenHeight / 2 + 130));
+	textSoundFX->SetSize(100.0f, 20.0f);
 
 	m_gsPauseObjects.emplace_back(overlay);
 	m_gsPauseObjects.emplace_back(pauseBg);
@@ -99,10 +136,14 @@ void GSPause::Init()
 	m_gsPauseObjects.emplace_back(textContinue);
 	m_gsPauseObjects.emplace_back(textHome);
 	m_gsPauseObjects.emplace_back(textSound);
+	m_gsPauseObjects.emplace_back(textSoundFX);
 
 	m_gsPauseButtons.emplace_back(btnResume);
 	m_gsPauseButtons.emplace_back(btnMainMenu);
-	m_gsPauseButtons.emplace_back(btnSound);
+	m_gsPauseButtons.emplace_back(btnSoundUp);
+	m_gsPauseButtons.emplace_back(btnSoundFXUp);
+	m_gsPauseButtons.emplace_back(btnSoundDown);
+	m_gsPauseButtons.emplace_back(btnSoundFXDown);
 
 	printf("pause init\n");
 }
