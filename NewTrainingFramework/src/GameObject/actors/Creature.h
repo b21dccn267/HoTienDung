@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "GameObject/core/Animation.h"
 #include <memory>
 
@@ -21,7 +21,7 @@ public:
 	int damage = 1;
 
 	Creature();
-	~Creature();
+	virtual ~Creature();
 	void Init();
 
 	//animation functions

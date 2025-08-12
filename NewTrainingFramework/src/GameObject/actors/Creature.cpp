@@ -1,4 +1,4 @@
-#include "Creature.h"
+﻿#include "Creature.h"
 #include "Globals.h"
 #include "GameManager/ResourceManager.h"
 #include "GameObject/utils/CreatureController.h"

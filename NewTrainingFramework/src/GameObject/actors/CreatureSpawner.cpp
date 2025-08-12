@@ -11,6 +11,10 @@
 
 CreatureSpawner::CreatureSpawner()
 {
+	m_isOnCooldown = false;
+	m_cooldownTimer = 0.0f;
+	m_cooldown = 5.0f;
+
 	//m_owner = owner;
 	// may need to add more pools for different creatures, or use poly (is viable)
 	m_creaturePool.reserve(50);
@@ -22,7 +26,6 @@ CreatureSpawner::CreatureSpawner()
 		m_creaturePool.emplace_back(std::move(temp));
 	}
 }
-
 
 // this function rolls a random number, then spawn a creature at fixed locations on the map
 // for testing, creatures spawnpoint are visible, but ideally should be just beyond the view area
@@ -37,7 +40,7 @@ void CreatureSpawner::SpawnCreature()
 		std::remove_if(
 			m_creaturePool.begin(),
 			m_creaturePool.end(),
-			[](const std::unique_ptr<Skeleton>& ptr) { return ptr == nullptr; }
+			[](const std::unique_ptr<Creature>& ptr) { return ptr == nullptr; }
 		),
 		m_creaturePool.end()
 	);
@@ -73,14 +76,14 @@ void CreatureSpawner::SpawnCreature()
 }
 
 // type should be Creature, current arg should be std::unique_ptr<Skeleton> creature
-void CreatureSpawner::DespawnCreature(std::unique_ptr<Skeleton> creature)
+void CreatureSpawner::DespawnCreature(std::unique_ptr<Creature> creature)
 {
 	//m_creatureActive.clear();
 	m_creaturePool.emplace_back(std::move(creature));
 	printf("killed creature\n");
 }
 
-void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> m_hero)
+void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero)
 {
 	//auto owner = m_owner.lock();
 
@@ -94,19 +97,36 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> m_hero)
 		std::remove_if(
 			m_creatureActive.begin(),
 			m_creatureActive.end(),
-			[](const std::unique_ptr<Skeleton>& ptr) { return ptr == nullptr; }
+			[](const std::unique_ptr<Creature>& ptr) { return ptr == nullptr; }
 		),
 		m_creatureActive.end()
 	);
 
 	for (auto& x : m_creatureActive) {
-		if (AABB::IsCollideRR(x->m_hitbox, m_hero->m_hitbox)) {
+		if (AABB::IsCollideRR(x->m_hitbox, hero->m_hitbox)) {
 			printf("isCollideWithHero\n");
 			//m_hero->m_health--;
 			x->health = 0;
 		}
-		x->Move(deltaTime, Vector2(m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y));
+		for (auto& projectile : hero->m_gun->m_projectileUsed) {
+			if (AABB::IsCollideRR(x->m_hitbox, projectile->m_hitbox)) {
+				printf("isCollideWithProjectile\n");
+				x->health = 0;
+				break;
+			}
+		}
+		
+		
+		x->Move(deltaTime, Vector2(hero->m_anim->m_position.x, hero->m_anim->m_position.y));
 		x->Update2DPosition();
 		x->Update(deltaTime);
+	}
+
+	if (m_isOnCooldown == true) {
+		m_cooldownTimer += deltaTime;
+		if (m_cooldownTimer > m_cooldown) {
+			m_isOnCooldown = false;
+			m_cooldownTimer = 0.0f;
+		}
 	}
 }

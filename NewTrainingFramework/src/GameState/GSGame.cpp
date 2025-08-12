@@ -119,8 +119,12 @@ void GSGame::Update(float deltaTime)
 		m_hero2->LookBottomRight();
 	}
 
-	if (InputManager::GetInstance()->keys[0x4B]) {
+	//if (InputManager::GetInstance()->keys[0x4B]) {
+	//	m_creatureSpawner->SpawnCreature();
+	//}
+	if (m_creatureSpawner->m_isOnCooldown == false) {
 		m_creatureSpawner->SpawnCreature();
+		m_creatureSpawner->m_isOnCooldown = true;
 	}
 
 
