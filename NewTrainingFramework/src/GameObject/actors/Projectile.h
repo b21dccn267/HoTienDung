@@ -15,7 +15,7 @@ class Animation;
 class Projectile : public Object
 {
 public:
-	std::weak_ptr<Gun> m_owner;
+	std::shared_ptr<Gun> m_owner;
 	std::shared_ptr<Animation> m_anim;
 
 	int m_id;
@@ -25,9 +25,9 @@ public:
 
 	std::shared_ptr<AABB> m_hitbox;
 
-	Projectile(std::weak_ptr<Gun> owner);
+	Projectile();
 	void ProjLoop();
-	void SetProjectile(Vector2 startPos, Vector2 endPos);
+	void SetProjectile(Vector3 startPos, Vector3 endPos);
 	void Update(GLfloat deltaTime);
 	float m_fTimePassed;
 

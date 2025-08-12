@@ -7,9 +7,9 @@
 #include <memory>
 
 
-Projectile::Projectile(std::weak_ptr<Gun> owner)
+Projectile::Projectile()
 {
-	this->m_owner = owner;
+	//this->m_owner = owner;
 
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(6);
@@ -33,20 +33,20 @@ void Projectile::ProjLoop()
 	m_anim->m_frameTime = 0.12f;
 }
 
-void Projectile::SetProjectile(Vector2 startPos, Vector2 endPos)
+void Projectile::SetProjectile(Vector3 startPos, Vector3 endPos)
 {
-	this->m_startPos = startPos;
-	this->m_endPos = endPos;
-	this->Set2DPosition(startPos);
-	auto owner = m_owner.lock();
-	auto ownerOwner = owner->m_owner.lock();
+	//this->m_startPos = startPos;
+	//this->m_endPos = endPos;
+	this->Set2DPosition(Vector2(startPos.x, startPos.y));
+	//auto owner = m_owner;
+	//auto ownerOwner = owner->m_owner;// .lock();
 
 
 	// calculate direction of mouse and player.
-	Vector3 mousPos = Vector3(owner->m_fMouseX, owner->m_fMouseY, 0);
-	Vector3 playerPos = Vector3(ownerOwner->m_anim->m_position.x, ownerOwner->m_anim->m_position.y, 0);
+	//Vector3 mousPos = Vector3(owner->m_fMouseX, owner->m_fMouseY, 0);
+//	Vector3 playerPos = Vector3(ownerOwner->m_anim->m_position.x, ownerOwner->m_anim->m_position.y, 0);
 	//printf("ownerOwner->m_anim->m_position.x = %f, ownerOwner->m_anim->m_position.y = %f", ownerOwner->m_anim->m_position.x, ownerOwner->m_anim->m_position.y);
-	direction = (mousPos - playerPos).Normalize();
+	direction = (endPos - startPos).Normalize();
 
 }
 

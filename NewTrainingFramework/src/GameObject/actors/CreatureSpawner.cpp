@@ -9,9 +9,9 @@
 #include <ctime>
 
 
-CreatureSpawner::CreatureSpawner(std::weak_ptr<GSGame> owner)
+CreatureSpawner::CreatureSpawner()
 {
-	m_owner = owner;
+	//m_owner = owner;
 	// may need to add more pools for different creatures, or use poly (is viable)
 	m_creaturePool.reserve(50);
 	//m_creatureActive.reserve(50);
@@ -80,15 +80,15 @@ void CreatureSpawner::DespawnCreature()
 	printf("killed creature\n");
 }
 
-void CreatureSpawner::Update(float deltaTime)
+void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> m_hero)
 {
-	auto owner = m_owner.lock();
+	//auto owner = m_owner.lock();
 
 	for (auto& x : m_creatureActive) {
-		if (AABB::IsCollideRR(x->m_hitbox, owner->m_hero->m_hitbox)) {
+		if (AABB::IsCollideRR(x->m_hitbox, m_hero->m_hitbox)) {
 			printf("isCollideWithHero\n");
 		}
-		x->m_control->Move(deltaTime, Vector2(owner->m_hero->m_anim->m_position.x, owner->m_hero->m_anim->m_position.y));
+		x->Move(deltaTime, Vector2(m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y));
 		x->Update2DPosition();
 	}
 }

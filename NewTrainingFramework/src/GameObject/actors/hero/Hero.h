@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <memory>
 #include "../Utilities/utilities.h"
 #include <GameObject/core/Animation.h>
@@ -16,7 +16,9 @@ public:
 
 	Hero();
 	void Init();
-
+	std::shared_ptr<Hero> getPtr() {
+		return shared_from_this(); 
+	}
 	
 
 	//animation functions

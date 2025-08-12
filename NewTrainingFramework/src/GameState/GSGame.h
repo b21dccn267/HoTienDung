@@ -11,7 +11,7 @@
 #include <vector>
 
 
-class GSGame : public GameStateBase, public std::enable_shared_from_this<GSGame>
+class GSGame : public GameStateBase
 {
 public:
 	//std::shared_ptr<Animation> m_gsGameObject;
