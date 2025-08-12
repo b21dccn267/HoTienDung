@@ -1,4 +1,4 @@
-#include "CreatureSpawner.h"
+﻿#include "CreatureSpawner.h"
 #include "Creature.h"
 #include "Skeleton.h"
 #include "GameObject/utils/AABB.h"
@@ -87,8 +87,10 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> m_hero)
 	for (auto& x : m_creatureActive) {
 		if (AABB::IsCollideRR(x->m_hitbox, m_hero->m_hitbox)) {
 			printf("isCollideWithHero\n");
+			m_hero->m_health--;
 		}
 		x->Move(deltaTime, Vector2(m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y));
 		x->Update2DPosition();
+		x->Update(deltaTime);
 	}
 }

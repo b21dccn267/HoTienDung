@@ -20,6 +20,7 @@ public:
 		return shared_from_this(); 
 	}
 	
+	int m_health;
 
 	//animation functions
 	void Idle();

@@ -1,4 +1,4 @@
-#include "Hero.h"
+﻿#include "Hero.h"
 #include "Globals.h"
 #include "GameManager/ResourceManager.h"
 #include "GameObject/core/Animation.h"
@@ -9,6 +9,8 @@
 
 Hero::Hero()
 {
+	m_health = 10;
+
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(9);
 	auto shader = ResourceManager::GetInstance()->GetShader(2);

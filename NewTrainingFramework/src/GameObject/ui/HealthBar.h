@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <memory>
 
 class Object;
@@ -13,6 +13,6 @@ public:
 	std::shared_ptr<Object> m_healthBarHealth;
 
 	// get Hero pos to put on top
-	void Layout(Vector2 pos)
+	void Layout(Vector2 pos);
 };
 
