@@ -13,7 +13,7 @@ CreatureSpawner::CreatureSpawner()
 {
 	m_isOnCooldown = false;
 	m_cooldownTimer = 0.0f;
-	m_cooldown = 5.0f;
+	m_cooldown = 2.0f;
 
 	//m_owner = owner;
 	// may need to add more pools for different creatures, or use poly (is viable)
@@ -55,18 +55,24 @@ void CreatureSpawner::SpawnCreature()
 	std::srand(static_cast<unsigned>(std::time(nullptr)));
 	int number = std::rand();
 
-	switch (number % 4) {
+	switch (number % 6) {
 	case 0:
-		creature->m_anim->Set2DPosition(Vector2(500.0f, 100.0f));
+		creature->m_anim->Set2DPosition(Vector2(10.0f, -10.0f));
 		break;
 	case 1:
-		creature->m_anim->Set2DPosition(Vector2(500.0f, 600.0f));
+		creature->m_anim->Set2DPosition(Vector2(800.0f, 800.0f));
 		break;
 	case 2:
-		creature->m_anim->Set2DPosition(Vector2(100.0f, 500.0f));
+		creature->m_anim->Set2DPosition(Vector2(-100.0f, 500.0f));
 		break;
 	case 3:
-		creature->m_anim->Set2DPosition(Vector2(100.0f, 100.0f));
+		creature->m_anim->Set2DPosition(Vector2(-500.0f, -100.0f));
+		break;
+	case 4:
+		creature->m_anim->Set2DPosition(Vector2(1100.0f, 800.0f));
+		break;
+	case 5:
+		creature->m_anim->Set2DPosition(Vector2(420.0f, 1100.0f));
 		break;
 	}
 
@@ -105,7 +111,7 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero)
 	for (auto& x : m_creatureActive) {
 		if (AABB::IsCollideRR(x->m_hitbox, hero->m_hitbox)) {
 			printf("isCollideWithHero\n");
-			//m_hero->m_health--;
+			hero->m_health--;
 			x->health = 0;
 		}
 		for (auto& projectile : hero->m_gun->m_projectileUsed) {

@@ -25,16 +25,16 @@ public:
 	void Init();
 
 	//animation functions
-	void Idle();
-	void Jump(); // unused, exists as a demo; if used, there should be jump anims for all directions
-	void LookUp();
-	void LookDown();
-	void LookTopRight();
-	void LookTopLeft();
-	void LookRight();
-	void LookLeft();
-	void LookBottomRight();
-	void LookBottomLeft();
+	virtual void Idle();
+	virtual void Jump(); // unused, exists as a demo; if used, there should be jump anims for all directions
+	virtual void LookUp();
+	virtual void LookDown();
+	virtual void LookTopRight();
+	virtual void LookTopLeft();
+	virtual void LookRight();
+	virtual void LookLeft();
+	virtual void LookBottomRight();
+	virtual void LookBottomLeft();
 	void Die();
 
 	void Draw();
