@@ -17,7 +17,9 @@ public:
 	Hero();
 	void Init();
 
-	
+	int health = 10; // should be buffed by armor stuff, which means for now theres no "armor" attribute
+	int attack = 2;  
+
 
 	//animation functions
 	void Idle();

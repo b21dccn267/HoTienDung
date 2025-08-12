@@ -64,7 +64,7 @@ void CreatureSpawner::SpawnCreature()
 		creature->m_anim->Set2DPosition(Vector2(100.0f, 500.0f));
 		break;
 	case 3:
-		creature->m_anim->Set2DPosition(Vector2(500.0f, 100.0f));
+		creature->m_anim->Set2DPosition(Vector2(100.0f, 100.0f));
 		break;
 	}
 
