@@ -22,8 +22,6 @@ void GSGame::Init()
 
 	m_creatureSpawner = std::make_shared<CreatureSpawner>();
 
-	m_creatureSpawner->SpawnCreature();
-	//m_creatureSpawner->SpawnCreature();
 	//m_creatureSpawner->SpawnCreature();
 	
 	printf("game init\n");
@@ -121,6 +119,10 @@ void GSGame::Update(float deltaTime)
 		m_hero2->LookBottomRight();
 	}
 
+	if (InputManager::GetInstance()->keys[0x4B]) {
+		m_creatureSpawner->SpawnCreature();
+	}
+
 
 	if (InputManager::GetInstance()->m_mouseIsPressed == true 
 		&& InputManager::GetInstance()->m_timerIsActive == false
@@ -133,12 +135,10 @@ void GSGame::Update(float deltaTime)
 	}
 
 	if (InputManager::GetInstance()->m_timerIsActive == true) {
-		//printf("blocking further fires for %f sec\n", InputManager::GetInstance()->m_timeSincePressed);
 		InputManager::GetInstance()->m_timeSincePressed += deltaTime;
 		if (InputManager::GetInstance()->m_timeSincePressed > 0.75f) {
 			InputManager::GetInstance()->m_timerIsActive = false;
 			InputManager::GetInstance()->m_timeSincePressed = 0.0f;
-			//printf("stopped blocking\n");
 		}
 	}
 

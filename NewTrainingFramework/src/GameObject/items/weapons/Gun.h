@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "GameObject/actors/Projectile.h"
 #include "GameObject/core/Animation.h"
 #include "GameObject/core/Object.h"
@@ -14,10 +14,8 @@ public:
 
 	std::shared_ptr<Object> m_self;
 	std::vector<std::unique_ptr<Projectile>> m_projectilePool;
-	std::stack<int> m_freeProjectiles;
 	std::vector<std::unique_ptr<Projectile>> m_projectileUsed;
-	bool m_isActive;
-	// add active bullet here
+	//bool m_isActive;
 	float m_fMouseX;
 	float m_fMouseY;
 

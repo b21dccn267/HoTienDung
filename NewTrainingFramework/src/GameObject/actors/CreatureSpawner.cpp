@@ -18,8 +18,7 @@ CreatureSpawner::CreatureSpawner()
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {
 		auto temp = std::make_unique<Skeleton>();
-		//temp->SkeletonInit();
-		temp->m_id = i;
+		//temp->m_id = i;
 		m_creaturePool.emplace_back(std::move(temp));
 	}
 }
@@ -34,17 +33,17 @@ CreatureSpawner::CreatureSpawner()
 void CreatureSpawner::SpawnCreature()
 {
 	// clean empty slots
-	//m_creaturePool.erase(
-	//	std::remove_if(
-	//		m_creaturePool.begin(),
-	//		m_creaturePool.end(),
-	//		[](const std::unique_ptr<Creature>& ptr) { return ptr == nullptr; }
-	//	),
-	//	m_creaturePool.end()
-	//);
+	m_creaturePool.erase(
+		std::remove_if(
+			m_creaturePool.begin(),
+			m_creaturePool.end(),
+			[](const std::unique_ptr<Skeleton>& ptr) { return ptr == nullptr; }
+		),
+		m_creaturePool.end()
+	);
 
-	auto creature = std::make_unique<Skeleton>();
-	// init complete, but m_control owner is empty (not the whole pointer
+	//auto creature = std::make_unique<Skeleton>();
+	auto creature = std::move(m_creaturePool[0]);
 	creature->Init();
 	creature->LookDown();
 	//creature->m_anim->Set2DPosition(pos);
@@ -74,9 +73,10 @@ void CreatureSpawner::SpawnCreature()
 }
 
 // type should be Creature, current arg should be std::unique_ptr<Skeleton> creature
-void CreatureSpawner::DespawnCreature()
+void CreatureSpawner::DespawnCreature(std::unique_ptr<Skeleton> creature)
 {
-	m_creatureActive.clear();
+	//m_creatureActive.clear();
+	m_creaturePool.emplace_back(std::move(creature));
 	printf("killed creature\n");
 }
 
@@ -85,9 +85,25 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> m_hero)
 	//auto owner = m_owner.lock();
 
 	for (auto& x : m_creatureActive) {
+		if (x->health == 0) {
+			DespawnCreature(std::move(x));
+		}
+	}
+
+	m_creatureActive.erase(
+		std::remove_if(
+			m_creatureActive.begin(),
+			m_creatureActive.end(),
+			[](const std::unique_ptr<Skeleton>& ptr) { return ptr == nullptr; }
+		),
+		m_creatureActive.end()
+	);
+
+	for (auto& x : m_creatureActive) {
 		if (AABB::IsCollideRR(x->m_hitbox, m_hero->m_hitbox)) {
 			printf("isCollideWithHero\n");
-			m_hero->m_health--;
+			//m_hero->m_health--;
+			x->health = 0;
 		}
 		x->Move(deltaTime, Vector2(m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y));
 		x->Update2DPosition();

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Creature.h"
 #include <memory>
 
@@ -27,7 +27,7 @@ public:
 	CreatureSpawner();
 	void Init();
 	void SpawnCreature();
-	void DespawnCreature();
+	void DespawnCreature(std::unique_ptr<Skeleton> creature);
 	void Update(float deltaTime, std::shared_ptr<Hero> hero);
 };
 
