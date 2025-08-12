@@ -30,7 +30,7 @@ void Hero::Init()
 
 	m_anim->m_numFramesPerRow = 9;
 	m_anim->m_numFramesPerColumn = 7;
-	m_gun = std::make_shared<Gun>(weak_from_this());
+	m_gun = std::make_shared<Gun>();
 	m_gun->Init();
 }
 
@@ -179,5 +179,5 @@ void Hero::Update2DPosition()
 
 void Hero::FireGun()
 {
-	m_gun->Fire();
+	m_gun->Fire(getPtr());
 }

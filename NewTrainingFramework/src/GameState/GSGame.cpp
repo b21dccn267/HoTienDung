@@ -20,7 +20,7 @@ void GSGame::Init()
 	m_hero2 = std::make_shared<Creature>();
 	m_hero2->LookLeft();
 
-	m_creatureSpawner = std::make_shared<CreatureSpawner>(weak_from_this());
+	m_creatureSpawner = std::make_shared<CreatureSpawner>();
 
 	m_creatureSpawner->SpawnCreature();
 	//m_creatureSpawner->SpawnCreature();
@@ -148,7 +148,7 @@ void GSGame::Update(float deltaTime)
 	m_hero2->Update(deltaTime);
 	m_hero2->Update2DPosition();
 
-	m_creatureSpawner->Update(deltaTime);
+	m_creatureSpawner->Update(deltaTime, m_hero);
 
 	//printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
 }

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <memory>
 #include "../Utilities/utilities.h"
 #include <GameObject/core/Animation.h>
@@ -16,10 +16,10 @@ public:
 
 	Hero();
 	void Init();
-
-	int health = 10; // should be buffed by armor stuff, which means for now theres no "armor" attribute
-	int attack = 2;  
-
+	std::shared_ptr<Hero> getPtr() {
+		return shared_from_this(); 
+	}
+	
 
 	//animation functions
 	void Idle();

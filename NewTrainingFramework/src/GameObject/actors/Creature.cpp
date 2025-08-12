@@ -31,7 +31,7 @@ void Creature::Init()
 
 	m_anim->m_numFramesPerRow = 9;
 	m_anim->m_numFramesPerColumn = 7;
-	m_control = std::make_shared<CreatureController>(weak_from_this());
+	
 }
 
 void Creature::Idle()
@@ -171,4 +171,33 @@ void Creature::Update(GLfloat deltaTime)
 void Creature::Update2DPosition()
 {
 	m_anim->Set2DPosition(Vector2(m_anim->m_position.x, m_anim->m_position.y));
+}
+
+void Creature::Move(float deltaTime, Vector2 heroPos)
+{
+	if (m_cooldownIsActive) {
+		m_timeSinceSpawn += deltaTime;
+		if (m_timeSinceSpawn > 0.5f) {
+			m_cooldownIsActive = false;
+		}
+	}
+	else {
+		//auto owner = m_owner.lock();
+
+		if (m_anim->m_position.x <= heroPos.x) {
+			m_anim->m_position.x += 5.0f;
+		}
+		else {
+			m_anim->m_position.x -= 5.0f;
+		}
+		if (m_anim->m_position.y <= heroPos.y) {
+			m_anim->m_position.y += 5.0f;
+		}
+		else {
+			m_anim->m_position.y -= 5.0f;
+		}
+
+		m_timeSinceSpawn = 0.0f;
+		m_cooldownIsActive = true;
+	}
 }

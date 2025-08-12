@@ -3,9 +3,9 @@
 #include <memory>
 
 
-class GSGame;
-class Skeleton;
 
+class Skeleton;
+class Hero;
 enum class SpawnLocation
 {
 	SPAWN_UP,
@@ -18,16 +18,16 @@ enum class SpawnLocation
 class CreatureSpawner
 {
 public:
-	std::weak_ptr<GSGame> m_owner;
+	//std::shared_ptr<GSGame> m_owner;
 
 	std::vector<std::unique_ptr<Skeleton>> m_creaturePool;
 	std::vector<std::unique_ptr<Skeleton>> m_creatureActive;
 	bool m_isActive; // or isDie
-
-	CreatureSpawner(std::weak_ptr<GSGame> owner);
+	
+	CreatureSpawner();
 	void Init();
 	void SpawnCreature();
 	void DespawnCreature();
-	void Update(float deltaTime);
+	void Update(float deltaTime, std::shared_ptr<Hero> hero);
 };
 

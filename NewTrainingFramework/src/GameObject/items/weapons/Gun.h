@@ -7,10 +7,10 @@
 #include <vector>
 
 class Hero;
-class Gun : public std::enable_shared_from_this<Gun>
+class Gun 
 {
 public:
-	std::weak_ptr<Hero> m_owner;
+	//std::shared_ptr<Hero> m_owner;
 
 	std::shared_ptr<Object> m_self;
 	std::vector<std::unique_ptr<Projectile>> m_projectilePool;
@@ -21,11 +21,11 @@ public:
 	float m_fMouseX;
 	float m_fMouseY;
 
-	Gun(std::weak_ptr<Hero> owner);
+	Gun();
 	void Init();
-	std::unique_ptr<Projectile> AcquireProjectile();
+	std::unique_ptr<Projectile> AcquireProjectile(std::shared_ptr<Hero> hero);
 	void ReleaseProjectile(std::unique_ptr<Projectile> proj);
-	void Fire();
+	void Fire(std::shared_ptr<Hero> hero);
 
 	void Draw();
 	void Update(GLfloat deltaTime);

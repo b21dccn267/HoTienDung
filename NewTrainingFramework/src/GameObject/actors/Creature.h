@@ -5,8 +5,12 @@
 class CreatureController;
 class AABB;
 
-class Creature : public std::enable_shared_from_this<Creature>
+class Creature 
 {
+protected:
+
+	bool m_cooldownIsActive = false;
+	float m_timeSinceSpawn = 0.0f;
 public:
 	std::shared_ptr<Animation> m_anim;
 	std::shared_ptr<CreatureController> m_control;
@@ -36,5 +40,6 @@ public:
 	void Draw();
 	void Update(GLfloat deltaTime);
 	void Update2DPosition();
+	void Move(float deltaTime, Vector2 heroPos);
 };
 
