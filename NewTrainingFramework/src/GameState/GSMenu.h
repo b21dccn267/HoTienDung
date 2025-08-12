@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "GameButton.h"
 #include "GameObject/core/Object.h"
 #include "GameStateBase.h"
@@ -12,7 +12,7 @@ public:
 	std::vector<std::shared_ptr<Object>> m_gsMenuObjects;
 	std::vector<std::shared_ptr<GameButton>> m_gsMenuGameButtons;
 
-	GSMenu() : GameStateBase(StateType::STATE_MENU) {}
+	GSMenu();
 	void Init() override;
 	void Pause() override;
 	void Exit() override;
@@ -24,5 +24,9 @@ public:
 	void Cleanup() override;
 
 	~GSMenu() override;
-};
 
+private:
+	bool m_isSoundOn;  // Trạng thái sound on/off
+	std::shared_ptr<Object> m_soundBg;  // Reference đến background object để có thể thay đổi texture
+	void ToggleSound();  // Method để toggle sound state
+};
