@@ -1,9 +1,9 @@
 #Model 1
 ID 0
 FILE "../Resources/2d/Models/Sprite2D.nfg"
-#2DTexture 30
+#2DTexture 33
 ID 0
-FILE "../Resources/2d/Textures/gui/bg_play1.tga"
+FILE "../Resources/2d/Textures/gui/menu-soundon.tga"
 TILING GL_REPEAT
 ID 1
 FILE "../Resources/2d/Textures/gui/quitnormal.tga"
@@ -91,6 +91,15 @@ FILE "../Resources/2d/Textures/gui/volumedownpressed.tga"
 TILING GL_REPEAT
 ID 29
 FILE "../Resources/2d/Textures/gui/volumedownnormal.tga"
+TILING GL_REPEAT
+ID 30
+FILE "../Resources/2d/Textures/gui/menu-soundoff.tga"
+TILING GL_REPEAT
+ID 31
+FILE "../Resources/2d/Textures/gui/empty.tga"
+TILING GL_REPEAT
+ID 32
+FILE "../Resources/2d/Textures/gui/Pause.tga"
 TILING GL_REPEAT
 #Shader 3
 ID 0
