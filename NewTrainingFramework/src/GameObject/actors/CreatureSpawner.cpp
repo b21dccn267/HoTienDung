@@ -17,7 +17,7 @@ CreatureSpawner::CreatureSpawner()
 
 	//m_owner = owner;
 	// may need to add more pools for different creatures, or use poly (is viable)
-	m_creaturePool.reserve(50);
+	m_creaturePool.reserve(100);
 	//m_creatureActive.reserve(50);
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {

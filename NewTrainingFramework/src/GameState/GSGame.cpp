@@ -22,8 +22,6 @@ void GSGame::Init()
 
 	m_creatureSpawner = std::make_shared<CreatureSpawner>();
 
-	//m_creatureSpawner->SpawnCreature();
-	
 	printf("game init\n");
 }
 

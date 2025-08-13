@@ -1,9 +1,10 @@
-#pragma once
+﻿#pragma once
 #include "GameObject/core/Object.h"
 #include "GameStateBase.h"
 #include <memory>
 #include <vector>
 
+class AmogusGunner;
 
 // class which loads models based on key event
 // for debugging texture
@@ -11,6 +12,7 @@ class GSDebug : public GameStateBase
 {
 public:
 	std::vector<std::shared_ptr<Object>> m_gsDebugObjects;
+	std::shared_ptr<AmogusGunner> m_test;
 
 	GSDebug() : GameStateBase(StateType::STATE_DEBUG) {}
 	void Init() override;

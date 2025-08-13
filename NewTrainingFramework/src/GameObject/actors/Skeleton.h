@@ -10,9 +10,7 @@ public:
 	bool m_isDie;
 
 	Skeleton();
-	//void SkeletonInit();
-	
-	// need override from creature, as creature spawner container is of type creature
+
 	void Idle() override;
 	void Jump() override; // unused, exists as a demo; if used, there should be jump anims for all directions
 	void LookUp() override;

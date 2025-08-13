@@ -192,6 +192,15 @@
     <ClCompile Include="src\GameObject\ui\HealthBar.cpp">
       <Filter>Source Files\Objects\UI</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\items\weapons\Sword.cpp">
+      <Filter>Source Files\Objects\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\items\weapons\CreatureGun.cpp">
+      <Filter>Source Files\Objects\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\actors\AmogusGunner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameManager\ResourceManager.h">
@@ -302,6 +311,15 @@
     <ClInclude Include="src\GameObject\ui\HealthBar.h">
       <Filter>Header Files\Objects\UI</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameObject\items\weapons\CreatureGun.h">
+      <Filter>Header Files\Objects\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\items\weapons\Sword.h">
+      <Filter>Header Files\Objects\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\actors\AmogusGunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs">
@@ -319,7 +337,6 @@
     <None Include="..\Resources\Shaders\FlexAnimShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NewTrainingFramework.rc">

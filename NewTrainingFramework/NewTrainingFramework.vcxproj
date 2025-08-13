@@ -168,6 +168,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\actors\AmogusGunner.cpp" />
+    <ClCompile Include="src\GameObject\items\weapons\CreatureGun.cpp" />
     <ClCompile Include="src\GameObject\ui\HealthBar.cpp" />
     <ClCompile Include="src\GameObject\utils\AABB.cpp" />
     <ClCompile Include="src\GameObject\utils\CreatureController.cpp" />
@@ -202,8 +204,11 @@
     <ClCompile Include="src\NewTrainingFramework.cpp" />
     <ClCompile Include="src\GameManager\ResourceManager.cpp" />
     <ClCompile Include="src\GameManager\SceneManager.cpp" />
+    <ClCompile Include="src\GameObject\items\weapons\Sword.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\actors\AmogusGunner.h" />
+    <ClInclude Include="src\GameObject\items\weapons\CreatureGun.h" />
     <ClInclude Include="src\GameObject\ui\HealthBar.h" />
     <ClInclude Include="src\GameObject\utils\AABB.h" />
     <ClInclude Include="src\GameObject\utils\CreatureController.h" />
@@ -240,6 +245,7 @@
     <ClInclude Include="src\GameManager\SceneManager.h" />
     <ClInclude Include="src\targetver.h" />
     <ClInclude Include="src\GameObject\core\Vertex.h" />
+    <ClInclude Include="src\GameObject\items\weapons\Sword.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\AnimationShaderFS.fs" />
@@ -247,7 +253,6 @@
     <None Include="..\Resources\Shaders\FlexAnimShaderVS.vs" />
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs" />
     <None Include="..\Resources\Shaders\TriangleShaderVS.vs" />
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utilities\Utilities.vcxproj">

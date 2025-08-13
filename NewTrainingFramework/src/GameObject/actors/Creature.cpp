@@ -175,26 +175,27 @@ void Creature::Update2DPosition()
 
 void Creature::Move(float deltaTime, Vector2 heroPos)
 {
-	if (m_cooldownIsActive) {
-		m_timeSinceSpawn += deltaTime;
-		if (m_timeSinceSpawn > 0.5f) {
-			m_cooldownIsActive = false;
-		}
-	}
+	if(false) {}
+	//if (m_cooldownIsActive) {
+	//	m_timeSinceSpawn += deltaTime;
+	//	if (m_timeSinceSpawn > 0.5f) {
+	//		m_cooldownIsActive = false;
+	//	}
+	//}
 	else {
 		//auto owner = m_owner.lock();
 
 		if (m_anim->m_position.x <= heroPos.x) {
-			m_anim->m_position.x += 5.0f;
+			m_anim->m_position.x += 5.0f * deltaTime * 5;
 		}
 		else {
-			m_anim->m_position.x -= 5.0f;
+			m_anim->m_position.x -= 5.0f * deltaTime * 5;
 		}
 		if (m_anim->m_position.y <= heroPos.y) {
-			m_anim->m_position.y += 5.0f;
+			m_anim->m_position.y += 5.0f * deltaTime * 5;
 		}
 		else {
-			m_anim->m_position.y -= 5.0f;
+			m_anim->m_position.y -= 5.0f * deltaTime * 5;
 		}
 
 		m_timeSinceSpawn = 0.0f;

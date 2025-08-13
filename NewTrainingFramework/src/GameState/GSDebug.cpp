@@ -1,6 +1,7 @@
-#include "GSDebug.h"
+﻿#include "GSDebug.h"
 #include "GameManager/SceneManager.h"
 #include "GameManager/ResourceManager.h"
+#include "GameObject/actors/AmogusGunner.h"
 #include <memory>
 
 void GSDebug::Init()
@@ -10,7 +11,8 @@ void GSDebug::Init()
 	//m_gsDebugObjects.emplace_back(SceneManager::GetInstance()->m_objects[3]);
 	//m_gsDebugObjects[0]->Set2DPosition(Vector2(100.0f, 100.0f));
 	//m_gsDebugObjects[0]->SetSize(200.0f, 200.0f);
-
+	m_test = std::make_shared<AmogusGunner>();
+	m_test->TestAllSprites();
 	printf("debug init\n");
 }
 
@@ -40,16 +42,18 @@ void GSDebug::Resume()
 void GSDebug::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	for (auto& x : m_gsDebugObjects) {
-		x->Draw();
-	}
+	//for (auto& x : m_gsDebugObjects) {
+	//	x->Draw();
+	//}
+	m_test->Draw();
 }
 
 void GSDebug::Update(float deltaTime)
 {
-	for (auto& x : m_gsDebugObjects) {
-		x->Update();
-	}
+	//for (auto& x : m_gsDebugObjects) {
+	//	x->Update();
+	//}
+	m_test->Update(deltaTime);
 }
 
 void GSDebug::HandleKeyEvent(unsigned char key, bool bIsPressed)
