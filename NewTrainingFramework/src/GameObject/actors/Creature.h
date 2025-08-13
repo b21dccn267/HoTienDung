@@ -20,6 +20,11 @@ public:
 	int health = 1;
 	int damage = 1;
 
+	bool m_isMoveLeft;
+	bool m_isMoveRight;
+	bool m_isMoveUp;
+	bool m_isMoveDown;
+
 	Creature();
 	virtual ~Creature();
 	void Init();
@@ -40,6 +45,6 @@ public:
 	void Draw();
 	void Update(GLfloat deltaTime);
 	void Update2DPosition();
-	void Move(float deltaTime, Vector2 heroPos);
+	virtual void Move(float deltaTime, Vector2 heroPos);
 };
 

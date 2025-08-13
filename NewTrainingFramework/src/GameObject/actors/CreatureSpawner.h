@@ -3,9 +3,9 @@
 #include <memory>
 
 
-
 class Skeleton;
 class Hero;
+
 enum class SpawnLocation
 {
 	SPAWN_UP,

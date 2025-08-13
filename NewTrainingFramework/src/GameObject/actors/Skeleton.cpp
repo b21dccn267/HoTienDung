@@ -74,3 +74,8 @@ void Skeleton::Die()
 {
 	Creature::Die();
 }
+
+void Skeleton::Move(float deltaTime, Vector2 heroPos)
+{
+	Creature::Move(deltaTime, heroPos);
+}

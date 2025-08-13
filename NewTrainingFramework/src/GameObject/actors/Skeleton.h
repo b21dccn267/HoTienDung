@@ -22,5 +22,6 @@ public:
 	void LookBottomRight() override;
 	void LookBottomLeft() override;
 	void Die();
+	void Move(float deltaTime, Vector2 heroPos) override;
 };
 

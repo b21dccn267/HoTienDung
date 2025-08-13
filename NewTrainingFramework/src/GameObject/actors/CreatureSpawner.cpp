@@ -1,6 +1,7 @@
 ﻿#include "CreatureSpawner.h"
 #include "Creature.h"
 #include "Skeleton.h"
+#include "AmogusGunner.h"
 #include "GameObject/utils/AABB.h"
 #include "GameState/GSGame.h"
 #include "GameObject/utils/CreatureController.h"
@@ -21,9 +22,14 @@ CreatureSpawner::CreatureSpawner()
 	//m_creatureActive.reserve(50);
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {
-		auto temp = std::make_unique<Skeleton>();
-		//temp->m_id = i;
-		m_creaturePool.emplace_back(std::move(temp));
+		if (i < m_creaturePool.capacity() / 2) {
+			auto temp = std::make_unique<Skeleton>();
+			m_creaturePool.emplace_back(std::move(temp));
+		}
+		else {
+			auto temp = std::make_unique<AmogusGunner>();
+			m_creaturePool.emplace_back(std::move(temp));
+		}
 	}
 }
 
@@ -35,6 +41,10 @@ CreatureSpawner::CreatureSpawner()
 //		
 void CreatureSpawner::SpawnCreature()
 {
+	// roll
+	std::srand(static_cast<unsigned>(std::time(nullptr)));
+	int number;
+
 	// clean empty slots
 	m_creaturePool.erase(
 		std::remove_if(
@@ -45,34 +55,36 @@ void CreatureSpawner::SpawnCreature()
 		m_creaturePool.end()
 	);
 
-	//auto creature = std::make_unique<Skeleton>();
-	auto creature = std::move(m_creaturePool[0]);
+	number = std::rand();
+	//auto creature = std::move(m_creaturePool[0]);
+	auto creature = std::move(m_creaturePool[number % m_creaturePool.size()]);
 	creature->Init();
 	creature->LookDown();
 	//creature->m_anim->Set2DPosition(pos);
 
-	// roll for spawn location
-	std::srand(static_cast<unsigned>(std::time(nullptr)));
-	int number = std::rand();
 
-	switch (number % 6) {
+
+	switch (number % 7) {
 	case 0:
 		creature->m_anim->Set2DPosition(Vector2(10.0f, -10.0f));
 		break;
 	case 1:
-		creature->m_anim->Set2DPosition(Vector2(800.0f, 800.0f));
+		creature->m_anim->Set2DPosition(Vector2(300.0f, -10.0f));
 		break;
 	case 2:
 		creature->m_anim->Set2DPosition(Vector2(-100.0f, 500.0f));
 		break;
 	case 3:
-		creature->m_anim->Set2DPosition(Vector2(-500.0f, -100.0f));
+		creature->m_anim->Set2DPosition(Vector2(150.0f, 750.0f));
 		break;
 	case 4:
-		creature->m_anim->Set2DPosition(Vector2(1100.0f, 800.0f));
+		creature->m_anim->Set2DPosition(Vector2(700.0f, 800.0f));
 		break;
 	case 5:
-		creature->m_anim->Set2DPosition(Vector2(420.0f, 1100.0f));
+		creature->m_anim->Set2DPosition(Vector2(420.0f, 800.0f));
+		break;
+	case 6:
+		creature->m_anim->Set2DPosition(Vector2(720.0f, -10.0f));
 		break;
 	}
 

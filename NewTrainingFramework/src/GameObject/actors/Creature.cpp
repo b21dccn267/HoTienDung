@@ -8,6 +8,11 @@
 
 Creature::Creature()
 {
+	m_isMoveLeft = false;
+	m_isMoveRight = false;
+	m_isMoveUp = false;
+	m_isMoveDown = false;
+
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(11);
 	auto shader = ResourceManager::GetInstance()->GetShader(2);
@@ -173,32 +178,31 @@ void Creature::Update2DPosition()
 	m_anim->Set2DPosition(Vector2(m_anim->m_position.x, m_anim->m_position.y));
 }
 
+// for ai use only
 void Creature::Move(float deltaTime, Vector2 heroPos)
 {
-	if(false) {}
-	//if (m_cooldownIsActive) {
-	//	m_timeSinceSpawn += deltaTime;
-	//	if (m_timeSinceSpawn > 0.5f) {
-	//		m_cooldownIsActive = false;
-	//	}
-	//}
-	else {
-		//auto owner = m_owner.lock();
-
-		if (m_anim->m_position.x <= heroPos.x) {
-			m_anim->m_position.x += 5.0f * deltaTime * 5;
-		}
-		else {
-			m_anim->m_position.x -= 5.0f * deltaTime * 5;
-		}
-		if (m_anim->m_position.y <= heroPos.y) {
-			m_anim->m_position.y += 5.0f * deltaTime * 5;
-		}
-		else {
-			m_anim->m_position.y -= 5.0f * deltaTime * 5;
-		}
-
-		m_timeSinceSpawn = 0.0f;
-		m_cooldownIsActive = true;
+	//doing this allows derived objs to do their own draw 
+	if (m_anim->m_position.x <= heroPos.x) {
+		m_anim->m_position.x += 5.0f * deltaTime * 5;
+		m_isMoveRight = true;
+		m_isMoveLeft = false;
 	}
+	else {
+		m_anim->m_position.x -= 5.0f * deltaTime * 5;
+		m_isMoveRight = false;
+		m_isMoveLeft = true;
+	}
+	if (m_anim->m_position.y <= heroPos.y) {
+		m_anim->m_position.y += 5.0f * deltaTime * 5;
+		m_isMoveUp = false;
+		m_isMoveDown = true;
+	}
+	else {
+		m_anim->m_position.y -= 5.0f * deltaTime * 5;
+		m_isMoveUp = true;
+		m_isMoveDown = false;
+	}
+
+	m_timeSinceSpawn = 0.0f;
+	m_cooldownIsActive = true;
 }

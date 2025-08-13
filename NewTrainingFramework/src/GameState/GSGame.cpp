@@ -161,7 +161,7 @@ void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 
 void GSGame::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
-	//printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
+	printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
 
 	InputManager::GetInstance()->m_mouseX = x;
 	InputManager::GetInstance()->m_mouseY = y;

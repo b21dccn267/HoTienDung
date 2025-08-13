@@ -11,11 +11,15 @@ public:
 
 	AmogusGunner();
 
+	void TestAllSprites();
 	void Idle() override;
 	void LookRight() override;
 	void LookLeft() override;
+	void LookDown() override;
 	void ShootAnimRight();
 	void ShootAnimLeft();
 	void Die();
-	void TestAllSprites();
+
+	
+	void Move(float deltaTime, Vector2 heroPos) override;
 };
