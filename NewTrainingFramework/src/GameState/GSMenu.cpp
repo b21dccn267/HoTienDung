@@ -12,17 +12,8 @@ GSMenu::GSMenu() : GameStateBase(StateType::STATE_MENU), m_isSoundOn(true)
 
 void GSMenu::Init()
 {
-	m_gsMenuObjects.reserve(5);  // Tăng lên để chứa sound background
+	m_gsMenuObjects.reserve(5);  
 	m_gsMenuGameButtons.reserve(5);
-
-	//// background
-	//auto model = ResourceManager::GetInstance()->GetModel(0);
-	//auto texture = ResourceManager::GetInstance()->GetTexture(0);
-	//auto shader = ResourceManager::GetInstance()->GetShader(0);
-	//std::shared_ptr<Object> background = std::make_shared<Object>(model, texture, shader);
-	//background->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	//background->SetSize(Globals::screenWidth, Globals::screenHeight);
-	//m_gsMenuObjects.emplace_back(background);
 
 	// menu background - sound on/off
 	auto model = ResourceManager::GetInstance()->GetModel(0);
@@ -36,7 +27,7 @@ void GSMenu::Init()
 
 	// play button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(31);   // Texture cho play button nổi
+	texture = ResourceManager::GetInstance()->GetTexture(31); 
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<GameButton> menuButton = std::make_shared<GameButton>(model, texture, shader);
 	menuButton->Set2DPosition(Vector2(Globals::screenWidth / 2 , 320.0f));
@@ -46,41 +37,23 @@ void GSMenu::Init()
 		});
 	m_gsMenuGameButtons.emplace_back(menuButton);
 
-	//// settings button
-	//model = ResourceManager::GetInstance()->GetModel(0);
-	//normalTexture = ResourceManager::GetInstance()->GetTexture(21);   // Texture cho settings button nổi
-	//pressedTexture = ResourceManager::GetInstance()->GetTexture(23);  // Texture cho settings button chìm
-	//shader = ResourceManager::GetInstance()->GetShader(0);
-	//std::shared_ptr<GameButton> settingsButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
-	//settingsButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 320.0f));
-	//settingsButton->SetSize(150.0f, 45.0f);
-	//settingsButton->SetOnClick([]() {
-	//	GameStateMachine::GetInstance()->PushState(StateType::STATE_SETTINGS);
-	//	});
-	//m_gsMenuGameButtons.emplace_back(settingsButton);
-
-	//// quit button  
-	//model = ResourceManager::GetInstance()->GetModel(0);
-	//normalTexture = ResourceManager::GetInstance()->GetTexture(1);   // Texture cho close button nổi
-	//pressedTexture = ResourceManager::GetInstance()->GetTexture(2);  // Texture cho close button chìm
-	//shader = ResourceManager::GetInstance()->GetShader(0);
-	//std::shared_ptr<GameButton> closeButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
-	//closeButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 5, 386.0f));
-	//closeButton->SetSize(150.0f, 45.0f);
-	//closeButton->SetOnClick([]() {
-	//	exit(0);
-	//	});
-	//m_gsMenuGameButtons.emplace_back(closeButton);
-
-	// invisible sound toggle button - tạo button vô hình ở vị trí sound icon
+	// settings button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	// Tạo texture transparent hoặc sử dụng texture rỗng
-	// Giả sử texture ID 999 là texture transparent/empty
+	texture = ResourceManager::GetInstance()->GetTexture(31);  
+	shader = ResourceManager::GetInstance()->GetShader(0);
+	std::shared_ptr<GameButton> settingsButton = std::make_shared<GameButton>(model, texture, shader);
+	settingsButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 420, 630.0f));
+	settingsButton->SetSize(60.0f, 80.0f);
+	settingsButton->SetOnClick([]() {
+		GameStateMachine::GetInstance()->PushState(StateType::STATE_SETTINGS);
+		});
+	m_gsMenuGameButtons.emplace_back(settingsButton);
+
+	// invisible sound toggle button 
+	model = ResourceManager::GetInstance()->GetModel(0);
 	auto emptyTexture = ResourceManager::GetInstance()->GetTexture(31);  // Empty/transparent texture
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> soundToggleButton = std::make_shared<GameButton>(model, emptyTexture, emptyTexture, shader);
-
-	// Đặt vị trí button ở góc trái (sound icon position)
+	std::shared_ptr<GameButton> soundToggleButton = std::make_shared<GameButton>(model, emptyTexture, shader);
 	soundToggleButton->Set2DPosition(Vector2(60.0f, 632.0f)); 
 	soundToggleButton->SetSize(60.0f, 75.0f); 
 
