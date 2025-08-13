@@ -32,6 +32,8 @@ private:
 	// Toggle functions
 	void ToggleSound();
 	void ToggleSoundfx();
+	void SoundUp();        // Thêm dòng này
+	void SoundfxUp();      // Thêm dòng này
 
 	// Helper function để cập nhật texture của buttons
 	void UpdateButtonTextures();

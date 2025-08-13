@@ -19,21 +19,12 @@ void GSSettings::Init()
 
 	// background
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(0);
+	auto texture = ResourceManager::GetInstance()->GetTexture(33);
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<Object> background = std::make_shared<Object>(model, texture, shader);
 	background->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
 	background->SetSize(Globals::screenWidth, Globals::screenHeight);
 	m_gsSettingsObjects.emplace_back(background);
-
-	// settings background
-	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(18);
-	shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<Object> settingsBg = std::make_shared<Object>(model, texture, shader);
-	settingsBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2 ));
-	settingsBg->SetSize(321.0f, 404.0f);
-	m_gsSettingsObjects.emplace_back(settingsBg);
 
 	// Title text - Settings
 	auto textSettings = std::make_shared<Object>(
@@ -47,7 +38,7 @@ void GSSettings::Init()
 
 	// sound on/off button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto soundOnTexture = ResourceManager::GetInstance()->GetTexture(3);   // Sound ON texture
+	auto soundOnTexture = ResourceManager::GetInstance()->GetTexture(35);   // Sound ON texture
 	auto soundOffTexture = ResourceManager::GetInstance()->GetTexture(17); // Sound OFF texture
 	shader = ResourceManager::GetInstance()->GetShader(0);
 
@@ -79,7 +70,7 @@ void GSSettings::Init()
 
 	// soundfx on/off button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto soundfxOnTexture = ResourceManager::GetInstance()->GetTexture(3);   // SoundFX ON texture
+	auto soundfxOnTexture = ResourceManager::GetInstance()->GetTexture(35);   // SoundFX ON texture
 	auto soundfxOffTexture = ResourceManager::GetInstance()->GetTexture(17); // SoundFX OFF texture
 	shader = ResourceManager::GetInstance()->GetShader(0);
 
@@ -133,6 +124,28 @@ void GSSettings::Init()
 	textBack->Set2DPosition(Vector2(Globals::screenWidth / 2 + 30, 440.0f));
 	textBack->SetSize(100.0f, 20.0f);
 	m_gsSettingsObjects.emplace_back(textBack);
+
+	// sound up button 
+	model = ResourceManager::GetInstance()->GetModel(0);
+	auto soundUpTexture = ResourceManager::GetInstance()->GetTexture(34);  
+	shader = ResourceManager::GetInstance()->GetShader(0);
+
+	std::shared_ptr<GameButton> soundUpButton = std::make_shared<GameButton>(model, soundUpTexture, soundUpTexture, shader);
+	soundUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 130, 300.0f)); 
+	soundUpButton->SetSize(40.0f, 40.0f); 
+
+	m_gsSettingsGameButtons.emplace_back(soundUpButton);
+
+	// soundfx up button 
+	model = ResourceManager::GetInstance()->GetModel(0);
+	auto soundfxUpTexture = ResourceManager::GetInstance()->GetTexture(34);  
+	shader = ResourceManager::GetInstance()->GetShader(0);
+
+	std::shared_ptr<GameButton> soundfxUpButton = std::make_shared<GameButton>(model, soundfxUpTexture, soundfxUpTexture, shader);
+	soundfxUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 130, 370.0f)); 
+	soundfxUpButton->SetSize(40.0f, 40.0f); 
+
+	m_gsSettingsGameButtons.emplace_back(soundfxUpButton);
 
 	printf("Settings init with current sound states loaded\n");
 }
