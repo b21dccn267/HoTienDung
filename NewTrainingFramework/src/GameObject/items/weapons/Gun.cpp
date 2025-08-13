@@ -1,33 +1,31 @@
-#include "GameManager/ResourceManager.h"
+﻿#include "GameManager/ResourceManager.h"
 #include "GameObject/actors/hero/Hero.h"
 #include "Gun.h"
 #include <Globals.h>
 #include <memory>
 
 
-Gun::Gun(std::weak_ptr<Hero> owner)
+Gun::Gun()
 {
-	this->m_owner = owner;
-
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(6);
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	m_self = std::make_shared<Object>(model, texture, shader);
 
-	m_isActive = false;
+	//m_isActive = false;
 }
 
 void Gun::Init()
 {
 	m_projectilePool.reserve(50);
 	for (int i = 0; i < m_projectilePool.capacity(); i++) {
-		auto temp = std::make_unique<Projectile>(weak_from_this());
+		auto temp = std::make_unique<Projectile>();
 		temp->m_id = i;
 		m_projectilePool.emplace_back(std::move(temp));
 	}
 }
 
-std::unique_ptr<Projectile> Gun::AcquireProjectile()
+std::unique_ptr<Projectile> Gun::AcquireProjectile(std::shared_ptr<Hero> hero)
 {
 	m_projectilePool.erase(
 		std::remove_if(
@@ -39,11 +37,11 @@ std::unique_ptr<Projectile> Gun::AcquireProjectile()
 	);
 	//printf("%d\n", m_projectilePool.size());
 
-	auto owner = m_owner.lock();
+	//auto owner = m_owner;
 	for (auto& x : m_projectilePool) {
 		// set projectile to hero pos
-		x->SetProjectile(Vector2(owner->m_anim->m_position.x, owner->m_anim->m_position.y)
-						,Vector2(m_fMouseX, m_fMouseY));
+		x->SetProjectile(Vector3(hero->m_anim->m_position.x, hero->m_anim->m_position.y,0)
+						,Vector3(m_fMouseX, m_fMouseY,0));
 		x->ProjLoop();
 		return std::move(x);
 	}
@@ -57,9 +55,9 @@ void Gun::ReleaseProjectile(std::unique_ptr<Projectile> proj)
 }
 
 // have this function grab a bullet here
-void Gun::Fire()
+void Gun::Fire(std::shared_ptr<Hero> hero)
 {
-	m_projectileUsed.emplace_back(AcquireProjectile());
+	m_projectileUsed.emplace_back(AcquireProjectile(hero));
 }
 
 void Gun::Draw()
@@ -71,8 +69,7 @@ void Gun::Draw()
 
 void Gun::Update(GLfloat deltaTime)
 {
-	auto owner = m_owner.lock();
-
+	
 	// check condition for projectile removal
 	for (auto& x : m_projectileUsed)
 		if (x && (x->m_position.x > Globals::screenWidth || x->m_position.x < 0))

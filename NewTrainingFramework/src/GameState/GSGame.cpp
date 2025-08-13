@@ -1,12 +1,13 @@
+﻿#include "GameManager/InputManager.h"
+#include "GameManager/ResourceManager.h"
+#include "GameManager/SceneManager.h"
+#include "GameManager/SoundManager.h"
+#include "GameObject/core/Animation.h"
+#include "GameObject/core/TextRenderer.h"
+#include "GameObject/utils/CreatureController.h"
+#include "GameObject/actors/Skeleton.h"
 #include "GSGame.h"
 #include <Globals.h>
-#include "GameManager/InputManager.h"
-#include "GameManager/SceneManager.h"
-#include "GameManager/ResourceManager.h"
-#include "GameManager/SoundManager.h"
-#include "GameObject/core/TextRenderer.h"
-#include "GameObject/core/Animation.h"
-#include "GameObject/utils/CreatureController.h"
 
 
 void GSGame::Init()
@@ -16,13 +17,11 @@ void GSGame::Init()
 	m_hero->Init();
 	m_hero->LookBottomRight();
 
-	m_creature = std::make_shared<Creature>();
-	m_creature->LookLeft();
+	m_hero2 = std::make_shared<Creature>();
+	m_hero2->LookLeft();
 
 	m_creatureSpawner = std::make_shared<CreatureSpawner>();
 
-	m_creatureSpawner->SpawnCreature();
-	//m_creatureSpawner->SpawnCreature();
 	//m_creatureSpawner->SpawnCreature();
 	
 	printf("game init\n");
@@ -45,8 +44,8 @@ void GSGame::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	m_hero->Draw();
-	m_creature->Draw();
-	for (auto& x : m_creatureSpawner->m_creaturePool) {
+	m_hero2->Draw();
+	for (auto& x : m_creatureSpawner->m_creatureActive) {
 		x->Draw();
 	}
 }
@@ -88,76 +87,43 @@ void GSGame::Update(float deltaTime)
 	}
 	// arrows
 	if (InputManager::GetInstance()->keys[0x26]) {
-		m_creature->m_anim->m_position.y -= 130.0f * deltaTime;
-		m_creature->LookUp();
+		m_hero2->m_anim->m_position.y -= 130.0f * deltaTime;
+		m_hero2->LookUp();
 	}
 	if (InputManager::GetInstance()->keys[0x25]) {
-		m_creature->m_anim->m_position.x -= 130.0f * deltaTime;
-		m_creature->LookLeft();
+		m_hero2->m_anim->m_position.x -= 130.0f * deltaTime;
+		m_hero2->LookLeft();
 	}
 	if (InputManager::GetInstance()->keys[0x28]) {
-		m_creature->m_anim->m_position.y += 130.0f * deltaTime;
-		m_creature->LookDown();
+		m_hero2->m_anim->m_position.y += 130.0f * deltaTime;
+		m_hero2->LookDown();
 	}
 	if (InputManager::GetInstance()->keys[0x27]) {
-		m_creature->m_anim->m_position.x += 130.0f * deltaTime;
-		m_creature->LookRight();
+		m_hero2->m_anim->m_position.x += 130.0f * deltaTime;
+		m_hero2->LookRight();
 	}
 	if (InputManager::GetInstance()->keys[0x25] &&
 		InputManager::GetInstance()->keys[0x26]) {
-		m_creature->LookTopLeft();
+		m_hero2->LookTopLeft();
 	}
 	if (InputManager::GetInstance()->keys[0x27] &&
 		InputManager::GetInstance()->keys[0x26]) {
-		m_creature->LookTopRight();
+		m_hero2->LookTopRight();
 	}
 	if (InputManager::GetInstance()->keys[0x25] &&
 		InputManager::GetInstance()->keys[0x28]) {
-		m_creature->LookBottomLeft();
+		m_hero2->LookBottomLeft();
 	}
 	if (InputManager::GetInstance()->keys[0x27] &&
 		InputManager::GetInstance()->keys[0x28]) {
-		m_creature->LookBottomRight();
+		m_hero2->LookBottomRight();
 	}
 
-	// test die anim
-	//if (InputManager::GetInstance()->keys[0x4A]) {
-	//	m_creature->Die();
-	//}
 
-	// test skeleton, remove creature keys b4 proceeding
-	//if (InputManager::GetInstance()->keys[0x26]) {
-	//	m_creatureSpawner->m_creatures[0]->m_anim->m_position.y -= 130.0f * deltaTime;
-	//	m_creatureSpawner->m_creatures[0]->LookUp();
-	//}
-	//if (InputManager::GetInstance()->keys[0x25]) {
-	//	m_creatureSpawner->m_creatures[0]->m_anim->m_position.x -= 130.0f * deltaTime;
-	//	m_creatureSpawner->m_creatures[0]->LookLeft();
-	//}
-	//if (InputManager::GetInstance()->keys[0x28]) {
-	//	m_creatureSpawner->m_creatures[0]->m_anim->m_position.y += 130.0f * deltaTime;
-	//	m_creatureSpawner->m_creatures[0]->LookDown();
-	//}
-	//if (InputManager::GetInstance()->keys[0x27]) {
-	//	m_creatureSpawner->m_creatures[0]->m_anim->m_position.x += 130.0f * deltaTime;
-	//	m_creatureSpawner->m_creatures[0]->LookRight();
-	//}
-	//if (InputManager::GetInstance()->keys[0x25] &&
-	//	InputManager::GetInstance()->keys[0x26]) {
-	//	m_creatureSpawner->m_creatures[0]->LookTopLeft();
-	//}
-	//if (InputManager::GetInstance()->keys[0x27] &&
-	//	InputManager::GetInstance()->keys[0x26]) {
-	//	m_creatureSpawner->m_creatures[0]->LookTopRight();
-	//}
-	//if (InputManager::GetInstance()->keys[0x25] &&
-	//	InputManager::GetInstance()->keys[0x28]) {
-	//	m_creatureSpawner->m_creatures[0]->LookBottomLeft();
-	//}
-	//if (InputManager::GetInstance()->keys[0x27] &&
-	//	InputManager::GetInstance()->keys[0x28]) {
-	//	m_creatureSpawner->m_creatures[0]->LookBottomRight();
-	//}
+	if (m_creatureSpawner->m_isOnCooldown == false) {
+		m_creatureSpawner->SpawnCreature();
+		m_creatureSpawner->m_isOnCooldown = true;
+	}
 
 
 	if (InputManager::GetInstance()->m_mouseIsPressed == true 
@@ -171,26 +137,22 @@ void GSGame::Update(float deltaTime)
 	}
 
 	if (InputManager::GetInstance()->m_timerIsActive == true) {
-		//printf("blocking further fires for %f sec\n", InputManager::GetInstance()->m_timeSincePressed);
 		InputManager::GetInstance()->m_timeSincePressed += deltaTime;
 		if (InputManager::GetInstance()->m_timeSincePressed > 0.75f) {
 			InputManager::GetInstance()->m_timerIsActive = false;
 			InputManager::GetInstance()->m_timeSincePressed = 0.0f;
-			//printf("stopped blocking\n");
 		}
 	}
 
 
 	m_hero->Update(deltaTime);
 	m_hero->Update2DPosition();
-	m_creature->Update(deltaTime);
-	m_creature->Update2DPosition();
-	for (auto& x : m_creatureSpawner->m_creaturePool) {
-		x->m_control->Move(deltaTime, Vector2(m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y));
-		x->Update2DPosition();
-		x->Update(deltaTime);
-	}
-	printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
+	m_hero2->Update(deltaTime);
+	m_hero2->Update2DPosition();
+
+	m_creatureSpawner->Update(deltaTime, m_hero);
+
+	//printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
 }
 
 void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)

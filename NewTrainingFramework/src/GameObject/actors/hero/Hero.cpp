@@ -1,4 +1,4 @@
-#include "Hero.h"
+﻿#include "Hero.h"
 #include "Globals.h"
 #include "GameManager/ResourceManager.h"
 #include "GameObject/core/Animation.h"
@@ -9,6 +9,8 @@
 
 Hero::Hero()
 {
+	m_health = 10;
+
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(9);
 	auto shader = ResourceManager::GetInstance()->GetShader(2);
@@ -30,7 +32,7 @@ void Hero::Init()
 
 	m_anim->m_numFramesPerRow = 9;
 	m_anim->m_numFramesPerColumn = 7;
-	m_gun = std::make_shared<Gun>(weak_from_this());
+	m_gun = std::make_shared<Gun>();
 	m_gun->Init();
 }
 
@@ -179,5 +181,5 @@ void Hero::Update2DPosition()
 
 void Hero::FireGun()
 {
-	m_gun->Fire();
+	m_gun->Fire(getPtr());
 }

@@ -1,12 +1,16 @@
-#pragma once
+﻿#pragma once
 #include "GameObject/core/Animation.h"
 #include <memory>
 
 class CreatureController;
 class AABB;
 
-class Creature : public std::enable_shared_from_this<Creature>
+class Creature 
 {
+protected:
+
+	bool m_cooldownIsActive = false;
+	float m_timeSinceSpawn = 0.0f;
 public:
 	std::shared_ptr<Animation> m_anim;
 	std::shared_ptr<CreatureController> m_control;
@@ -17,24 +21,25 @@ public:
 	int damage = 1;
 
 	Creature();
-	~Creature();
+	virtual ~Creature();
 	void Init();
 
 	//animation functions
-	void Idle();
-	void Jump(); // unused, exists as a demo; if used, there should be jump anims for all directions
-	void LookUp();
-	void LookDown();
-	void LookTopRight();
-	void LookTopLeft();
-	void LookRight();
-	void LookLeft();
-	void LookBottomRight();
-	void LookBottomLeft();
+	virtual void Idle();
+	virtual void Jump(); // unused, exists as a demo; if used, there should be jump anims for all directions
+	virtual void LookUp();
+	virtual void LookDown();
+	virtual void LookTopRight();
+	virtual void LookTopLeft();
+	virtual void LookRight();
+	virtual void LookLeft();
+	virtual void LookBottomRight();
+	virtual void LookBottomLeft();
 	void Die();
 
 	void Draw();
 	void Update(GLfloat deltaTime);
 	void Update2DPosition();
+	void Move(float deltaTime, Vector2 heroPos);
 };
 

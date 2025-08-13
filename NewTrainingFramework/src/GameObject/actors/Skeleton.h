@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 #include "Creature.h"
 
+class CreatureController;
 
 class Skeleton : public Creature
 {
@@ -9,18 +10,19 @@ public:
 	bool m_isDie;
 
 	Skeleton();
+	//void SkeletonInit();
 	
 	// need override from creature, as creature spawner container is of type creature
-	void Idle();
-	void Jump(); // unused, exists as a demo; if used, there should be jump anims for all directions
-	void LookUp();
-	void LookDown();
-	void LookTopRight();
-	void LookTopLeft();
-	void LookRight();
-	void LookLeft();
-	void LookBottomRight();
-	void LookBottomLeft();
+	void Idle() override;
+	void Jump() override; // unused, exists as a demo; if used, there should be jump anims for all directions
+	void LookUp() override;
+	void LookDown() override;
+	void LookTopRight() override;
+	void LookTopLeft() override;
+	void LookRight() override;
+	void LookLeft() override;
+	void LookBottomRight() override;
+	void LookBottomLeft() override;
 	void Die();
 };
 

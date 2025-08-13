@@ -88,6 +88,12 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{48b4d510-8e7b-4d4f-bba6-653156526735}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\UI">
+      <UniqueIdentifier>{c1a46f55-4726-4c24-a79d-950c118af73f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\UI">
+      <UniqueIdentifier>{c0a697a2-90d7-4b39-abfa-1786f753b7ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\NewTrainingFramework.cpp">
@@ -182,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="src\GameObject\utils\AABB.cpp">
       <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\ui\HealthBar.cpp">
+      <Filter>Source Files\Objects\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\utils\AABB.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\ui\HealthBar.h">
+      <Filter>Header Files\Objects\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

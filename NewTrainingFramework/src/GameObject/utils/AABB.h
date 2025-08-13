@@ -15,7 +15,7 @@ public:
 
 	void UpdateBox(Vector2 pos, Vector2 size);
 	// rectangle check
-	bool IsCollideRR(std::shared_ptr<AABB> self, std::shared_ptr<AABB> target);
+	static bool IsCollideRR(std::shared_ptr<AABB> self, std::shared_ptr<AABB> target);
 	// circle vs rectangle check
 	bool IsCollideCR(std::shared_ptr<AABB> self, std::shared_ptr<AABB> target);
 };
