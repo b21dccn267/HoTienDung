@@ -11,11 +11,11 @@
 
 void GSSettings::Init()
 {
-	m_gsSettingsObjects.reserve(10);
+	m_gsSettingsObjects.reserve(5);
 	m_gsSettingsGameButtons.reserve(5);
 
-	// Load button click sound effect nếu chưa có
-	SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/vine-boom.wav");
+	//// Load button click sound effect nếu chưa có
+	//SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/vine-boom.wav");
 
 	// background
 	auto model = ResourceManager::GetInstance()->GetModel(0);
@@ -36,78 +36,73 @@ void GSSettings::Init()
 	textSettings->SetSize(400.0f, 100.0f);
 	m_gsSettingsObjects.emplace_back(textSettings);
 
-	// sound on/off button
+	// sound up button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto soundOnTexture = ResourceManager::GetInstance()->GetTexture(35);   // Sound ON texture
-	auto soundOffTexture = ResourceManager::GetInstance()->GetTexture(17); // Sound OFF texture
+    texture = ResourceManager::GetInstance()->GetTexture(34);   
 	shader = ResourceManager::GetInstance()->GetShader(0);
-
-	// Khởi tạo button với trạng thái hiện tại từ SoundManager
-	bool currentSoundState = SoundManager::GetInstance()->IsSoundEnabled();
-	auto initialSoundTexture = currentSoundState ? soundOnTexture : soundOffTexture;
-
-	m_soundButton = std::make_shared<GameButton>(model, initialSoundTexture, initialSoundTexture, shader);
-	m_soundButton->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, 300.0f));
+	m_soundButton = std::make_shared<GameButton>(model, texture, shader);
+	m_soundButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 60, 300.0f));
 	m_soundButton->SetSize(40.0f, 40.0f);
-	m_soundButton->SetOnClick([this]() {
-		// Play button click sound (chỉ khi sound effects được bật)
-		if (SoundManager::GetInstance()->IsSfxEnabled()) {
-			SoundManager::GetInstance()->PlaySfx("button_click");
-		}
-		this->ToggleSound();
-		});
 	m_gsSettingsGameButtons.emplace_back(m_soundButton);
 
-	// text - Sound (cạnh sound button)
+	// text - Sound 
 	auto textSound = std::make_shared<Object>(
 		ResourceManager::GetInstance()->GetModel(0),
 		std::make_shared<Texture>(TextRenderer::RenderText("Music")),
 		ResourceManager::GetInstance()->GetShader(0)
 	);
-	textSound->Set2DPosition(Vector2(Globals::screenWidth / 2 + 30, 300.0f));
-	textSound->SetSize(100.0f, 20.0f);
+	textSound->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, 300.0f));
+	textSound->SetSize(100.0f, 50.0f);
 	m_gsSettingsObjects.emplace_back(textSound);
 
-	// soundfx on/off button
+	// soundfx up button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto soundfxOnTexture = ResourceManager::GetInstance()->GetTexture(35);   // SoundFX ON texture
-	auto soundfxOffTexture = ResourceManager::GetInstance()->GetTexture(17); // SoundFX OFF texture
+	texture = ResourceManager::GetInstance()->GetTexture(34);  
 	shader = ResourceManager::GetInstance()->GetShader(0);
-
-	// Khởi tạo button với trạng thái hiện tại từ SoundManager
-	bool currentSfxState = SoundManager::GetInstance()->IsSfxEnabled();
-	auto initialSfxTexture = currentSfxState ? soundfxOnTexture : soundfxOffTexture;
-
-	m_soundfxButton = std::make_shared<GameButton>(model, initialSfxTexture, initialSfxTexture, shader);
-	m_soundfxButton->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, 370.0f));
+	m_soundfxButton = std::make_shared<GameButton>(model, texture, shader);
+	m_soundfxButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 60, 370.0f));
 	m_soundfxButton->SetSize(40.0f, 40.0f);
-	m_soundfxButton->SetOnClick([this]() {
-		// Play button click sound trước khi toggle (chỉ khi còn được bật)
-		if (SoundManager::GetInstance()->IsSfxEnabled()) {
-			SoundManager::GetInstance()->PlaySfx("button_click");
-		}
-		this->ToggleSoundfx();
-		});
 	m_gsSettingsGameButtons.emplace_back(m_soundfxButton);
 
-	// text - Sound Effects (cạnh soundfx button)
+	// text - Soundfx 
 	auto textSoundFX = std::make_shared<Object>(
 		ResourceManager::GetInstance()->GetModel(0),
 		std::make_shared<Texture>(TextRenderer::RenderText("Sound FX")),
 		ResourceManager::GetInstance()->GetShader(0)
 	);
-	textSoundFX->Set2DPosition(Vector2(Globals::screenWidth / 2 + 30, 370.0f));
-	textSoundFX->SetSize(100.0f, 20.0f);
+	textSoundFX->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, 370.0f));
+	textSoundFX->SetSize(120.0f, 50.0f);
 	m_gsSettingsObjects.emplace_back(textSoundFX);
+
+	// sound down button 
+	model = ResourceManager::GetInstance()->GetModel(0);
+	auto soundUpTexture = ResourceManager::GetInstance()->GetTexture(35);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+
+	std::shared_ptr<GameButton> soundUpButton = std::make_shared<GameButton>(model, soundUpTexture, soundUpTexture, shader);
+	soundUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 110, 300.0f));
+	soundUpButton->SetSize(40.0f, 40.0f);
+
+	m_gsSettingsGameButtons.emplace_back(soundUpButton);
+
+	// soundfx down button 
+	model = ResourceManager::GetInstance()->GetModel(0);
+	auto soundfxUpTexture = ResourceManager::GetInstance()->GetTexture(35);
+	shader = ResourceManager::GetInstance()->GetShader(0);
+
+	std::shared_ptr<GameButton> soundfxUpButton = std::make_shared<GameButton>(model, soundfxUpTexture, soundfxUpTexture, shader);
+	soundfxUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 110, 370.0f));
+	soundfxUpButton->SetSize(40.0f, 40.0f);
+
+	m_gsSettingsGameButtons.emplace_back(soundfxUpButton);
 
 	// back button để quay lại menu
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto normalTexture = ResourceManager::GetInstance()->GetTexture(13);
-	auto pressedTexture = ResourceManager::GetInstance()->GetTexture(14);
+	texture = ResourceManager::GetInstance()->GetTexture(36);
 	shader = ResourceManager::GetInstance()->GetShader(0);
-	std::shared_ptr<GameButton> backButton = std::make_shared<GameButton>(model, normalTexture, pressedTexture, shader);
-	backButton->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, 440.0f));
-	backButton->SetSize(40.0f, 40.0f);
+	std::shared_ptr<GameButton> backButton = std::make_shared<GameButton>(model, texture, shader);
+	backButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 420, 70.0f));
+	backButton->SetSize(50.0f,50.0f);
 	backButton->SetOnClick([this]() {
 		// Play button click sound effect
 		SoundManager::GetInstance()->PlaySfx("button_click");
@@ -115,89 +110,7 @@ void GSSettings::Init()
 		});
 	m_gsSettingsGameButtons.emplace_back(backButton);
 
-	// text - Back (cạnh back button)
-	auto textBack = std::make_shared<Object>(
-		ResourceManager::GetInstance()->GetModel(0),
-		std::make_shared<Texture>(TextRenderer::RenderText("Home")),
-		ResourceManager::GetInstance()->GetShader(0)
-	);
-	textBack->Set2DPosition(Vector2(Globals::screenWidth / 2 + 30, 440.0f));
-	textBack->SetSize(100.0f, 20.0f);
-	m_gsSettingsObjects.emplace_back(textBack);
-
-	// sound up button 
-	model = ResourceManager::GetInstance()->GetModel(0);
-	auto soundUpTexture = ResourceManager::GetInstance()->GetTexture(34);  
-	shader = ResourceManager::GetInstance()->GetShader(0);
-
-	std::shared_ptr<GameButton> soundUpButton = std::make_shared<GameButton>(model, soundUpTexture, soundUpTexture, shader);
-	soundUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 130, 300.0f)); 
-	soundUpButton->SetSize(40.0f, 40.0f); 
-
-	m_gsSettingsGameButtons.emplace_back(soundUpButton);
-
-	// soundfx up button 
-	model = ResourceManager::GetInstance()->GetModel(0);
-	auto soundfxUpTexture = ResourceManager::GetInstance()->GetTexture(34);  
-	shader = ResourceManager::GetInstance()->GetShader(0);
-
-	std::shared_ptr<GameButton> soundfxUpButton = std::make_shared<GameButton>(model, soundfxUpTexture, soundfxUpTexture, shader);
-	soundfxUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 130, 370.0f)); 
-	soundfxUpButton->SetSize(40.0f, 40.0f); 
-
-	m_gsSettingsGameButtons.emplace_back(soundfxUpButton);
-
 	printf("Settings init with current sound states loaded\n");
-}
-
-void GSSettings::ToggleSound()
-{
-	// Lấy trạng thái hiện tại và đảo ngược nó
-	bool newSoundState = !SoundManager::GetInstance()->IsSoundEnabled();
-
-	// Cập nhật trạng thái trong SoundManager (điều này sẽ tự động pause/resume nhạc)
-	SoundManager::GetInstance()->SetSoundEnabled(newSoundState);
-
-	// Cập nhật texture của button để phản ánh trạng thái mới
-	if (newSoundState) {
-		// Chuyển sang texture sound ON
-		auto soundOnTexture = ResourceManager::GetInstance()->GetTexture(3);
-		m_soundButton->SetNormalTexture(soundOnTexture);
-		m_soundButton->SetPressedTexture(soundOnTexture);
-		printf("Sound: ON\n");
-	}
-	else {
-		// Chuyển sang texture sound OFF
-		auto soundOffTexture = ResourceManager::GetInstance()->GetTexture(17);
-		m_soundButton->SetNormalTexture(soundOffTexture);
-		m_soundButton->SetPressedTexture(soundOffTexture);
-		printf("Sound: OFF\n");
-	}
-}
-
-void GSSettings::ToggleSoundfx()
-{
-	// Lấy trạng thái hiện tại và đảo ngược nó
-	bool newSfxState = !SoundManager::GetInstance()->IsSfxEnabled();
-
-	// Cập nhật trạng thái trong SoundManager (điều này sẽ tự động stop các sound effects)
-	SoundManager::GetInstance()->SetSfxEnabled(newSfxState);
-
-	// Cập nhật texture của button để phản ánh trạng thái mới
-	if (newSfxState) {
-		// Chuyển sang texture soundfx ON
-		auto soundfxOnTexture = ResourceManager::GetInstance()->GetTexture(3);
-		m_soundfxButton->SetNormalTexture(soundfxOnTexture);
-		m_soundfxButton->SetPressedTexture(soundfxOnTexture);
-		printf("SoundFX: ON\n");
-	}
-	else {
-		// Chuyển sang texture soundfx OFF
-		auto soundfxOffTexture = ResourceManager::GetInstance()->GetTexture(17);
-		m_soundfxButton->SetNormalTexture(soundfxOffTexture);
-		m_soundfxButton->SetPressedTexture(soundfxOffTexture);
-		printf("SoundFX: OFF\n");
-	}
 }
 
 void GSSettings::Pause()

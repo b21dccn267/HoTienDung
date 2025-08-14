@@ -29,6 +29,7 @@ public:
 
 	// Play âm thanh bằng key
 	void PlayMusic(const std::string& key, int loops = -1); // -1 = loop vô hạn
+	void PlayMusicIfEnabled(const std::string& key, int loops = -1); // Play music only if sound enabled
 	void PlaySfx(const std::string& key);
 
 	// Điều khiển âm thanh
@@ -39,12 +40,19 @@ public:
 	// Điều khiển volume
 	void SetMusicVolume(int volume); // 0-128
 	void SetSfxVolume(int volume);   // 0-128
+	int GetMusicVolume() const { return m_musicVolume; }
+	int GetSfxVolume() const { return m_sfxVolume; }
 
 	// Điều khiển trạng thái bật/tắt
 	void SetSoundEnabled(bool enabled);
 	void SetSfxEnabled(bool enabled);
 	bool IsSoundEnabled() const { return m_soundEnabled; }
 	bool IsSfxEnabled() const { return m_sfxEnabled; }
+
+	// Save/Load settings
+	void SaveSettings();
+	void LoadSettings();
+	void ResetToDefault();  // Reset về trạng thái mặc định
 
 	// Cleanup
 	void Cleanup();

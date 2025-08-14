@@ -43,25 +43,31 @@ void GSPlay::Init()
     btnPause->Set2DPosition(Vector2(Globals::screenWidth - 100, 100.0f));
     btnPause->SetSize(60.0f, 60.0f);
     btnPause->SetOnClick([this]() {
-        // Play button click sound effect
-        SoundManager::GetInstance()->PlaySfx("button_click");
+        // Play button click sound effect chỉ khi sound được bật
+        if (SoundManager::GetInstance()->IsSoundEnabled()) {
+            SoundManager::GetInstance()->PlaySfx("button_click");
+        }
         GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE);
         });
     m_gsPlayButtons.emplace_back(btnPause);
 
     // Bắt đầu phát nhạc nền khi khởi tạo state play
-    // Chỉ phát nếu chưa có nhạc nào đang chạy hoặc không phải nhạc nền này
-    if (!Mix_PlayingMusic()) {
-        SoundManager::GetInstance()->PlayMusic("background_music", -1); // -1 = loop vô hạn
+    // CHỈ phát nếu sound được bật
+    if (SoundManager::GetInstance()->IsSoundEnabled()) {
+        if (!Mix_PlayingMusic()) {
+            SoundManager::GetInstance()->PlayMusic("background_music", -1); // -1 = loop vô hạn
+        }
     }
-    printf("Play state initialized with background music\n");
+    printf("Play state initialized\n");
 }
 
 void GSPlay::Pause()
 {
     m_isPaused = true;
-    // Pause nhạc nền khi game bị tạm dừng
-    SoundManager::GetInstance()->PauseMusic();
+    // Pause nhạc nền khi game bị tạm dừng (chỉ khi sound được bật)
+    if (SoundManager::GetInstance()->IsSoundEnabled()) {
+        SoundManager::GetInstance()->PauseMusic();
+    }
 }
 
 void GSPlay::Exit()
@@ -73,8 +79,17 @@ void GSPlay::Exit()
 void GSPlay::Resume()
 {
     m_isPaused = false;
-    // Resume nhạc nền khi quay lại game
-    SoundManager::GetInstance()->ResumeMusic();
+    // Resume nhạc nền khi quay lại game (chỉ khi sound được bật)
+    if (SoundManager::GetInstance()->IsSoundEnabled()) {
+        // Kiểm tra xem có nhạc nào đang bị pause không
+        if (Mix_PausedMusic()) {
+            SoundManager::GetInstance()->ResumeMusic();
+        }
+        // Nếu không có nhạc nào đang chạy và sound được bật, bắt đầu phát
+        else if (!Mix_PlayingMusic()) {
+            SoundManager::GetInstance()->PlayMusic("background_music", -1);
+        }
+    }
 }
 
 void GSPlay::Draw()
@@ -130,7 +145,10 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
             if (newY >= 50.0f) {  // Kiểm tra bounds
                 m_creature->m_anim->m_position.y = newY;
                 m_creature->LookUp();  // Đổi animation
-                SoundManager::GetInstance()->PlaySfx("move_sound");
+                // Chỉ phát sound khi sound được bật
+                if (SoundManager::GetInstance()->IsSfxEnabled()) {
+                    SoundManager::GetInstance()->PlaySfx("move_sound");
+                }
             }
             break;
         case 0x41: // A - Move Left
@@ -138,7 +156,9 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
             if (newX >= 50.0f) {  // Kiểm tra bounds
                 m_creature->m_anim->m_position.x = newX;
                 m_creature->LookLeft();  // Đổi animation
-                SoundManager::GetInstance()->PlaySfx("move_sound");
+                if (SoundManager::GetInstance()->IsSfxEnabled()) {
+                    SoundManager::GetInstance()->PlaySfx("move_sound");
+                }
             }
             break;
         case 0x53: // S - Move Down
@@ -146,7 +166,9 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
             if (newY <= Globals::screenHeight - 50.0f) {  // Kiểm tra bounds
                 m_creature->m_anim->m_position.y = newY;
                 m_creature->LookDown();  // Đổi animation
-                SoundManager::GetInstance()->PlaySfx("move_sound");
+                if (SoundManager::GetInstance()->IsSfxEnabled()) {
+                    SoundManager::GetInstance()->PlaySfx("move_sound");
+                }
             }
             break;
         case 0x44: // D - Move Right
@@ -154,12 +176,16 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
             if (newX <= Globals::screenWidth - 50.0f) {  // Kiểm tra bounds
                 m_creature->m_anim->m_position.x = newX;
                 m_creature->LookRight();  // Đổi animation
-                SoundManager::GetInstance()->PlaySfx("move_sound");
+                if (SoundManager::GetInstance()->IsSfxEnabled()) {
+                    SoundManager::GetInstance()->PlaySfx("move_sound");
+                }
             }
             break;
         case 0x20: // Space - Jump/Idle animation
             m_creature->Jump();
-            SoundManager::GetInstance()->PlaySfx("move_sound");
+            if (SoundManager::GetInstance()->IsSfxEnabled()) {
+                SoundManager::GetInstance()->PlaySfx("move_sound");
+            }
             break;
         }
     }
@@ -198,7 +224,10 @@ void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
             else m_creature->LookUp();
         }
 
-        SoundManager::GetInstance()->PlaySfx("move_sound");
+        // Chỉ phát sound khi sound được bật
+        if (SoundManager::GetInstance()->IsSfxEnabled()) {
+            SoundManager::GetInstance()->PlaySfx("move_sound");
+        }
     }
 }
 
