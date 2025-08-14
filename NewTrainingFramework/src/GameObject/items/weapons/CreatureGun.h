@@ -1,9 +1,10 @@
 ﻿#pragma once
+#include "GameObject/actors/Projectile.h"
 #include <memory>
 #include <vector>
 
 class AmogusGunner;
-class Projectile;
+//class Projectile;
 class Hero;
 class Vector2;
 

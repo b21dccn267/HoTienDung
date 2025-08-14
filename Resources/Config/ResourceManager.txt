@@ -111,7 +111,7 @@ ID 35
 FILE "../Resources/2d/Textures/gui/down.tga"
 TILING GL_REPEAT
 ID 36
-FILE "../Resources/2d/Textures/game/amogus.tga"
+FILE "../Resources/2d/Textures/game/amogus_test.tga"
 TILING GL_REPEAT
 #Shader 3
 ID 0

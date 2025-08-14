@@ -20,8 +20,8 @@ CreatureSpawner::CreatureSpawner()
 
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {
-		if (i < m_creaturePool.capacity() / 2) 
-		//if(false)
+		//if (i < m_creaturePool.capacity() / 2) 
+		if(false)
 		{
 			auto temp = std::make_unique<Skeleton>();
 			m_creaturePool.emplace_back(std::move(temp));
