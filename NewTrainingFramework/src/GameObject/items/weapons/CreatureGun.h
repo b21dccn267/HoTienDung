@@ -5,6 +5,7 @@
 class AmogusGunner;
 class Projectile;
 class Hero;
+class Vector2;
 
 class CreatureGun
 {
@@ -18,8 +19,7 @@ public:
 
 	CreatureGun();
 	void Init();
-	void SpawnProjectile(std::shared_ptr<Hero> hero);
+	void SpawnProjectile(Vector2 startPos, Vector2 endPos);
 	void DespawnProjectile(std::unique_ptr<Projectile> projectile);
 	void Update(float deltaTime, std::shared_ptr<Hero> hero);
 };
-

@@ -8,7 +8,6 @@ class AABB;
 class Creature 
 {
 protected:
-
 	bool m_cooldownIsActive = false;
 	float m_timeSinceSpawn = 0.0f;
 public:
@@ -16,6 +15,8 @@ public:
 	std::shared_ptr<CreatureController> m_control;
 
 	std::shared_ptr<AABB> m_hitbox;
+
+	int m_creatureType;
 
 	int health = 1;
 	int damage = 1;
@@ -30,7 +31,6 @@ public:
 	void Init();
 
 	//animation functions
-	virtual void Idle();
 	virtual void Jump(); // unused, exists as a demo; if used, there should be jump anims for all directions
 	virtual void LookUp();
 	virtual void LookDown();
@@ -40,6 +40,7 @@ public:
 	virtual void LookLeft();
 	virtual void LookBottomRight();
 	virtual void LookBottomLeft();
+	virtual void Idle();
 	void Die();
 
 	void Draw();

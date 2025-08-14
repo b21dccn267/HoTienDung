@@ -9,8 +9,6 @@
 
 Projectile::Projectile()
 {
-	//this->m_owner = owner;
-
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(6);
 	auto shader = ResourceManager::GetInstance()->GetShader(2);
@@ -35,19 +33,10 @@ void Projectile::ProjLoop()
 
 void Projectile::SetProjectile(Vector3 startPos, Vector3 endPos)
 {
-	//this->m_startPos = startPos;
-	//this->m_endPos = endPos;
 	this->Set2DPosition(Vector2(startPos.x, startPos.y));
-	//auto owner = m_owner;
-	//auto ownerOwner = owner->m_owner;// .lock();
-
 
 	// calculate direction of mouse and player.
-	//Vector3 mousPos = Vector3(owner->m_fMouseX, owner->m_fMouseY, 0);
-//	Vector3 playerPos = Vector3(ownerOwner->m_anim->m_position.x, ownerOwner->m_anim->m_position.y, 0);
-	//printf("ownerOwner->m_anim->m_position.x = %f, ownerOwner->m_anim->m_position.y = %f", ownerOwner->m_anim->m_position.x, ownerOwner->m_anim->m_position.y);
 	direction = (endPos - startPos).Normalize();
-
 }
 
 void Projectile::Update(GLfloat deltaTime) 

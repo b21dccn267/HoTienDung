@@ -16,18 +16,19 @@ CreatureSpawner::CreatureSpawner()
 	m_cooldownTimer = 0.0f;
 	m_cooldown = 2.0f;
 
-	//m_owner = owner;
-	// may need to add more pools for different creatures, or use poly (is viable)
 	m_creaturePool.reserve(100);
-	//m_creatureActive.reserve(50);
+
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {
-		if (i < m_creaturePool.capacity() / 2) {
+		if (i < m_creaturePool.capacity() / 2) 
+		//if(false)
+		{
 			auto temp = std::make_unique<Skeleton>();
 			m_creaturePool.emplace_back(std::move(temp));
 		}
 		else {
 			auto temp = std::make_unique<AmogusGunner>();
+			temp->LookRight();
 			m_creaturePool.emplace_back(std::move(temp));
 		}
 	}
@@ -59,8 +60,8 @@ void CreatureSpawner::SpawnCreature()
 	//auto creature = std::move(m_creaturePool[0]);
 	auto creature = std::move(m_creaturePool[number % m_creaturePool.size()]);
 	creature->Init();
-	creature->LookDown();
-	//creature->m_anim->Set2DPosition(pos);
+	//creature->LookDown();	// danger: not all creatures have this function
+	creature->Idle();
 
 
 
@@ -88,7 +89,7 @@ void CreatureSpawner::SpawnCreature()
 		break;
 	}
 
-	printf("spawned\n");
+	printf("spawned creature %d\n", creature->m_creatureType);
 	//m_creaturePool.emplace_back(creature);
 	m_creatureActive.emplace_back(std::move(creature));
 }
@@ -103,14 +104,13 @@ void CreatureSpawner::DespawnCreature(std::unique_ptr<Creature> creature)
 
 void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero)
 {
-	//auto owner = m_owner.lock();
-
+	// check conditions for removal
 	for (auto& x : m_creatureActive) {
 		if (x->health == 0) {
 			DespawnCreature(std::move(x));
 		}
 	}
-
+	// remove empty slots
 	m_creatureActive.erase(
 		std::remove_if(
 			m_creatureActive.begin(),
@@ -119,13 +119,15 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero)
 		),
 		m_creatureActive.end()
 	);
-
+	// check all active creature events
 	for (auto& x : m_creatureActive) {
+		// if collide with hero
 		if (AABB::IsCollideRR(x->m_hitbox, hero->m_hitbox)) {
 			printf("isCollideWithHero\n");
 			hero->m_health--;
 			x->health = 0;
 		}
+		// if collide with hero projectile
 		for (auto& projectile : hero->m_gun->m_projectileUsed) {
 			if (AABB::IsCollideRR(x->m_hitbox, projectile->m_hitbox)) {
 				printf("isCollideWithProjectile\n");
@@ -133,13 +135,17 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero)
 				break;
 			}
 		}
+
+		// there should be a creature projectile check here
 		
 		
+		// creature updates
 		x->Move(deltaTime, Vector2(hero->m_anim->m_position.x, hero->m_anim->m_position.y));
 		x->Update2DPosition();
 		x->Update(deltaTime);
 	}
 
+	// spawn cooldown
 	if (m_isOnCooldown == true) {
 		m_cooldownTimer += deltaTime;
 		if (m_cooldownTimer > m_cooldown) {

@@ -6,14 +6,10 @@
 
 Skeleton::Skeleton() : Creature()
 {
+	m_creatureType = 0;
+
 	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(12);
 	m_isDie = false;
-}
-
-void Skeleton::Idle()
-{
-	Creature::Idle();
-	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(12);
 }
 
 void Skeleton::Jump()
@@ -67,6 +63,12 @@ void Skeleton::LookBottomRight()
 void Skeleton::LookBottomLeft()
 {
 	Creature::LookBottomLeft();
+	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(12);
+}
+
+void Skeleton::Idle()
+{
+	Creature::Idle();
 	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(12);
 }
 

@@ -39,17 +39,6 @@ void Creature::Init()
 	
 }
 
-void Creature::Idle()
-{
-	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(11);
-
-	m_anim->m_numFramesPerRow = 9;
-	m_anim->m_numFramesPerColumn = 7;
-	m_anim->SetCustomFrames(std::vector<int>{0, 1, 2, 3});
-	m_anim->m_frameTime = 0.12f;
-	m_anim->SetRotation(Vector3(0, 0, 0));
-}
-
 void Creature::Jump()
 {
 	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(11);
@@ -149,6 +138,17 @@ void Creature::LookBottomLeft()
 	m_anim->SetCustomFrames(std::vector<int>{4, 5, 6, 7});
 	m_anim->m_frameTime = 0.12f;
 	m_anim->SetRotation(Vector3(0, 3.14, 0));
+}
+
+void Creature::Idle()
+{
+	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(11);
+
+	m_anim->m_numFramesPerRow = 9;
+	m_anim->m_numFramesPerColumn = 7;
+	m_anim->SetCustomFrames(std::vector<int>{0, 1, 2, 3});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->SetRotation(Vector3(0, 0, 0));
 }
 
 void Creature::Die()
