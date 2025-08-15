@@ -11,15 +11,15 @@ class HealthBar
 public:
 	// create cap value here (min, max);
 	// impl it in code logic
-	int health;
-	std::shared_ptr<Object> m_healthBarBackground;
-	std::shared_ptr<Object> m_healthBarHealth;
+	int m_health;
+	int m_currHealth;
+	std::shared_ptr<Object> m_healthBarFrame;
+	std::shared_ptr<Object> m_healthBarFill;
 
+	float m_barPosX;
+	float m_barPosY;
 
-	// get Hero pos to put on top
-	void Layout(Vector2 pos);
-	// 
-	void UpdateHealth(std::shared_ptr<Hero> hero); // alternatively add in param instead of object
-	
+	HealthBar(float barPosX, float barPosY);
+	void Draw();
+	void UpdateHealth(int heroHealth);
 };
-

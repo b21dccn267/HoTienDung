@@ -18,8 +18,8 @@ public:
 
 	int m_creatureType;
 
-	int health = 1;
-	int damage = 1;
+	int m_health = 10;
+	int m_damage = 1;
 
 	bool m_isMoveLeft;
 	bool m_isMoveRight;

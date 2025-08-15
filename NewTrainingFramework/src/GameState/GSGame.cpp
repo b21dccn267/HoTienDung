@@ -22,6 +22,13 @@ void GSGame::Init()
 
 	m_creatureSpawner = std::make_shared<CreatureSpawner>();
 
+	// hud
+	m_healthBar1 = std::make_shared<HealthBar>(200, 50);
+	m_healthBar2 = std::make_shared<HealthBar>(700, 50);
+
+	m_healthBar1->m_health = m_hero->m_health;
+	m_healthBar2->m_health = m_hero2->m_health;
+
 	printf("game init\n");
 }
 
@@ -46,6 +53,10 @@ void GSGame::Draw()
 	for (auto& x : m_creatureSpawner->m_creatureActive) {
 		x->Draw();
 	}
+
+	// hud
+	m_healthBar1->Draw();
+	m_healthBar2->Draw();
 }
 
 void GSGame::Update(float deltaTime)
@@ -151,17 +162,20 @@ void GSGame::Update(float deltaTime)
 	m_creatureSpawner->Update(deltaTime, m_hero);
 
 	//printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
+
+	m_healthBar1->UpdateHealth(m_hero->m_health);
+	m_healthBar2->UpdateHealth(m_hero2->m_health);
 }
 
 void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-	printf("0x%02X\n", key);
+	//printf("0x%02X\n", key);
 	InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 
 void GSGame::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
-	printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
+	//printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
 
 	InputManager::GetInstance()->m_mouseX = x;
 	InputManager::GetInstance()->m_mouseY = y;

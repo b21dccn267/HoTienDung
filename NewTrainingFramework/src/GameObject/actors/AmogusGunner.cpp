@@ -15,8 +15,8 @@ AmogusGunner::AmogusGunner() : Creature()
 	m_anim->m_numFramesPerColumn = 6;
 	m_isDie = false;
 
-	m_crGun = std::make_shared<CreatureGun>();
-	m_crGun->Init();
+	//m_crGun = std::make_shared<CreatureGun>();
+	//m_crGun->Init();
 }
 
 void AmogusGunner::TestAllSprites()
@@ -99,6 +99,6 @@ void AmogusGunner::Move(float deltaTime, Vector2 heroPos)
 		// fire gun
 		// this means the gunner moves until a certain distance, stops and then open fire
 		// gunner should not move later/should only move when too far
-		m_crGun->SpawnProjectile(Vector2(m_anim->m_position.x, m_anim->m_position.y), heroPos);
+		//m_crGun->SpawnProjectile(Vector2(m_anim->m_position.x, m_anim->m_position.y), heroPos);
 	}
 }

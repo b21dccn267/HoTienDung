@@ -21,7 +21,8 @@ CreatureSpawner::CreatureSpawner()
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {
 		//if (i < m_creaturePool.capacity() / 2) 
-		if(false)
+		//if(false)
+		if(true)
 		{
 			auto temp = std::make_unique<Skeleton>();
 			m_creaturePool.emplace_back(std::move(temp));
@@ -106,7 +107,7 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero)
 {
 	// check conditions for removal
 	for (auto& x : m_creatureActive) {
-		if (x->health == 0) {
+		if (x->m_health == 0) {
 			DespawnCreature(std::move(x));
 		}
 	}
@@ -125,13 +126,13 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero)
 		if (AABB::IsCollideRR(x->m_hitbox, hero->m_hitbox)) {
 			printf("isCollideWithHero\n");
 			hero->m_health--;
-			x->health = 0;
+			x->m_health = 0;
 		}
 		// if collide with hero projectile
 		for (auto& projectile : hero->m_gun->m_projectileUsed) {
 			if (AABB::IsCollideRR(x->m_hitbox, projectile->m_hitbox)) {
 				printf("isCollideWithProjectile\n");
-				x->health = 0;
+				x->m_health = 0;
 				break;
 			}
 		}
