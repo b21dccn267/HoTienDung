@@ -159,7 +159,7 @@ void GSGame::Update(float deltaTime)
 	m_hero2->Update(deltaTime);
 	m_hero2->Update2DPosition();
 
-	m_creatureSpawner->Update(deltaTime, m_hero);
+	m_creatureSpawner->Update(deltaTime, m_hero, m_hero2);
 
 	//printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
 

@@ -19,7 +19,7 @@ HealthBar::HealthBar(float barPosX, float barPosY)
 	texture = ResourceManager::GetInstance()->GetTexture(39);
 	m_healthBarFill = std::make_shared<Object>(model, texture, shader);
 	m_healthBarFill->Set2DPosition(Vector2(barPosX, barPosY));
-	m_healthBarFill->SetSize(300, 40); // 300, 40
+	m_healthBarFill->SetSize(320, 40); // 300, 40
 }
 
 void HealthBar::Draw()
@@ -31,9 +31,10 @@ void HealthBar::Draw()
 void HealthBar::UpdateHealth(int heroHealth)
 {
 	m_currHealth = heroHealth;
-	// freeze this when hp reach 0 so it wont get 'flipped'
+
 	if (m_currHealth) {
 		m_healthBarFill->SetSize(300 * ((float)m_currHealth / m_health), 40);
-		m_healthBarFill->Set2DPosition(Vector2(m_barPosX * ((float)m_currHealth / m_health), m_barPosY));
+		//m_healthBarFill->Set2DPosition(Vector2(m_barPosX * ((float)m_currHealth / m_health), m_barPosY)); 
+		// fix this, the value demultiplier should be incread a bit
 	}
 }

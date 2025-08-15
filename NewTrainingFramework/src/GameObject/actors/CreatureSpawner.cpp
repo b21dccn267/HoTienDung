@@ -103,7 +103,7 @@ void CreatureSpawner::DespawnCreature(std::unique_ptr<Creature> creature)
 	printf("killed creature\n");
 }
 
-void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero)
+void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::shared_ptr<Creature> hero2)
 {
 	// check conditions for removal
 	for (auto& x : m_creatureActive) {
@@ -126,6 +126,12 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero)
 		if (AABB::IsCollideRR(x->m_hitbox, hero->m_hitbox)) {
 			printf("isCollideWithHero\n");
 			hero->m_health--;
+			x->m_health = 0;
+		}
+		// if collide with hero2
+		if (AABB::IsCollideRR(x->m_hitbox, hero2->m_hitbox)) {
+			printf("isCollideWithHero2\n");
+			hero2->m_health--;
 			x->m_health = 0;
 		}
 		// if collide with hero projectile

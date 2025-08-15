@@ -1,4 +1,4 @@
-remember to write your ideas on readme file
+﻿remember to write your ideas on readme file
 
 ===requirements===
 - must be 2d pixel top down
@@ -142,3 +142,11 @@ jon blow expert advices
 	when transforming ideas into code, remember to:
 		do quick dirty code to see if it works, then refactor later
 		present your ideas, which reveals hidden assumptions and faults
+
+
+final recap
+	when converting to tga, ensure its in rgba + correct bit (eg 32bit)
+		in paintnet, set bit from autodetect to 32
+		compress ok
+	merge gs game and gs play, remove gsdebug, gs game after merging
+

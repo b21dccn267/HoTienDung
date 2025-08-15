@@ -5,6 +5,7 @@
 
 class Skeleton;
 class Hero;
+class Creature;
 
 enum class SpawnLocation
 {
@@ -28,6 +29,6 @@ public:
 	void Init();
 	void SpawnCreature();
 	void DespawnCreature(std::unique_ptr<Creature> creature);
-	void Update(float deltaTime, std::shared_ptr<Hero> hero);
+	void Update(float deltaTime, std::shared_ptr<Hero> hero, std::shared_ptr<Creature> hero2);
 };
 
