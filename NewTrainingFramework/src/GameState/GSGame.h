@@ -8,6 +8,7 @@
 #include "GameObject/actors/CreatureSpawner.h"
 #include "GameObject/actors/Projectile.h"
 #include "GameObject/ui/HealthBar.h"
+#include "GameObject/utils/Timer.h"
 #include <memory>
 #include <vector>
 
@@ -15,12 +16,15 @@
 class GSGame : public GameStateBase
 {
 public:
-	//std::shared_ptr<Animation> m_gsGameObject;
+	// game actors 
 	std::shared_ptr<Hero> m_hero;
 	std::shared_ptr<Creature> m_hero2;
 	std::shared_ptr<CreatureSpawner> m_creatureSpawner;
+
+	// game hud objects
 	std::shared_ptr<HealthBar> m_healthBar1;
 	std::shared_ptr<HealthBar> m_healthBar2;
+	std::shared_ptr<Timer> m_timer;
 
 	GSGame() : GameStateBase(StateType::STATE_MENU) {}
 	void Init() override;

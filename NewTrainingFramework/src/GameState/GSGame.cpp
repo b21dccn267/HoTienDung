@@ -6,6 +6,7 @@
 #include "GameObject/core/TextRenderer.h"
 #include "GameObject/utils/CreatureController.h"
 #include "GameObject/actors/Skeleton.h"
+#include "GameObject/utils/Timer.h"
 #include "GSGame.h"
 #include <Globals.h>
 
@@ -28,6 +29,9 @@ void GSGame::Init()
 
 	m_healthBar1->m_health = m_hero->m_health;
 	m_healthBar2->m_health = m_hero2->m_health;
+
+	m_timer = std::make_shared<Timer>();
+	m_timer->StartTimer(60);
 
 	printf("game init\n");
 }
@@ -57,6 +61,7 @@ void GSGame::Draw()
 	// hud
 	m_healthBar1->Draw();
 	m_healthBar2->Draw();
+	m_timer->m_displayText->Draw();
 }
 
 void GSGame::Update(float deltaTime)
@@ -165,6 +170,8 @@ void GSGame::Update(float deltaTime)
 
 	m_healthBar1->UpdateHealth(m_hero->m_health);
 	m_healthBar2->UpdateHealth(m_hero2->m_health);
+
+	m_timer->UpdateTimer(deltaTime);
 }
 
 void GSGame::HandleKeyEvent(unsigned char key, bool bIsPressed)

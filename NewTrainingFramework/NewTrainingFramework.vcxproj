@@ -205,7 +205,7 @@
     <ClCompile Include="src\GameManager\ResourceManager.cpp" />
     <ClCompile Include="src\GameManager\SceneManager.cpp" />
     <ClCompile Include="src\GameObject\items\weapons\Sword.cpp" />
-    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="src\GameObject\utils\Timer.cpp" />
     <ClCompile Include="src\GameObject\ui\WndUpgrade.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -248,7 +248,7 @@
     <ClInclude Include="src\targetver.h" />
     <ClInclude Include="src\GameObject\core\Vertex.h" />
     <ClInclude Include="src\GameObject\items\weapons\Sword.h" />
-    <ClInclude Include="Timer.h" />
+    <ClInclude Include="src\GameObject\utils\Timer.h" />
     <ClInclude Include="src\GameObject\ui\WndUpgrade.h" />
   </ItemGroup>
   <ItemGroup>

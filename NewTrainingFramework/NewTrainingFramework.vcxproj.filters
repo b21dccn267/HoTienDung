@@ -201,7 +201,7 @@
     <ClCompile Include="src\GameObject\actors\AmogusGunner.cpp">
       <Filter>Source Files\Objects\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp">
+    <ClCompile Include="src\GameObject\utils\Timer.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="src\GameObject\ui\WndUpgrade.cpp">
@@ -329,7 +329,7 @@
     <ClInclude Include="src\GameObject\ui\WndUpgrade.h">
       <Filter>Header Files\Objects\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
+    <ClInclude Include="src\GameObject\utils\Timer.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
