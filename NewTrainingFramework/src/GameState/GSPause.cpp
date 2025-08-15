@@ -13,16 +13,26 @@ void GSPause::Init()
 
 	// background
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(32);
+	auto texture = ResourceManager::GetInstance()->GetTexture(33);
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	auto overlay = std::make_shared<Object>(model, texture, shader);
 	overlay->Set2DPosition(Vector2(Globals::screenWidth /2, Globals::screenHeight /2));
 	overlay->SetSize(Globals::screenWidth, Globals::screenHeight);
 
+	// Title text - Settings
+	auto textPause = std::make_shared<Object>(
+		ResourceManager::GetInstance()->GetModel(0),
+		std::make_shared<Texture>(TextRenderer::RenderText("PAUSED", "../Resources/Fonts/ChangaOne-Regular.ttf", 58)),
+		ResourceManager::GetInstance()->GetShader(0)
+	);
+	textPause->Set2DPosition(Vector2(Globals::screenWidth / 2, 100.0f));
+	textPause->SetSize(400.0f, 120.0f);
+
+
 	// continue button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(31);  
-	shader = ResourceManager::GetInstance()->GetShader(0);
+	texture = ResourceManager::GetInstance()->GetTexture(22);  
+	shader = ResourceManager::GetInstance()->GetShader(0); 
 	auto btnResume = std::make_shared<GameButton>(model, texture, shader);
 	btnResume->Set2DPosition(Vector2(Globals::screenWidth / 2 + 50, Globals::screenHeight / 2 + 45));
 	btnResume->SetSize(65.0f, 65.0f);
@@ -30,15 +40,15 @@ void GSPause::Init()
 
 	// Home button
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(31);
+	texture = ResourceManager::GetInstance()->GetTexture(36);
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnMainMenu = std::make_shared<GameButton>(model, texture, shader);
-	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2 - 42, Globals::screenHeight / 2 + 43));
-	btnMainMenu->SetSize(60.0f, 60.0f);
+	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, Globals::screenHeight / 2 + 45));
+	btnMainMenu->SetSize(66.0f, 68.0f);
 	btnMainMenu->SetOnClick(OnMainMenuButtonClick);
 
 	m_gsPauseObjects.emplace_back(overlay);
-
+	m_gsPauseObjects.emplace_back(textPause);
 	m_gsPauseButtons.emplace_back(btnResume);
 	m_gsPauseButtons.emplace_back(btnMainMenu);
 
@@ -113,7 +123,8 @@ void GSPause::OnResumeButtonClick()
 void GSPause::OnMainMenuButtonClick()
 {
 	// Pop pause state and push menu state
-	GameStateMachine::GetInstance()->PopState(); // Remove pause
+	GameStateMachine::GetInstance()->PopState();
+	GameStateMachine::GetInstance()->PopState();
 }
 
 GSPause::~GSPause()

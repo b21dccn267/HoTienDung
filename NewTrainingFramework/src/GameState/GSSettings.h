@@ -25,16 +25,16 @@ public:
 	~GSSettings() override;
 
 private:
-	// Pointers để dễ dàng thay đổi texture
-	std::shared_ptr<GameButton> m_soundButton;
-	std::shared_ptr<GameButton> m_soundfxButton;
+	// Text objects để hiển thị volume numbers
+	std::shared_ptr<Object> m_musicVolumeText;
+	std::shared_ptr<Object> m_sfxVolumeText;
 
-	// Toggle functions
-	void ToggleSound();
-	void ToggleSoundfx();
-	void SoundUp();        // Thêm dòng này
-	void SoundfxUp();      // Thêm dòng này
+	// Volume control functions
+	void IncreaseMusicVolume();
+	void DecreaseMusicVolume();
+	void IncreaseSfxVolume();
+	void DecreaseSfxVolume();
 
-	// Helper function để cập nhật texture của buttons
-	void UpdateButtonTextures();
+	// Helper function để cập nhật hiển thị volume
+	void UpdateVolumeDisplays();
 };
