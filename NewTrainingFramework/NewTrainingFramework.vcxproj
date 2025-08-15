@@ -183,7 +183,6 @@
     </ClCompile>
     <ClCompile Include="src\GameObject\actors\Creature.cpp" />
     <ClCompile Include="src\GameObject\actors\hero\Hero.cpp" />
-    <ClCompile Include="src\GameState\GSGame.cpp" />
     <ClCompile Include="src\GameManager\SoundManager.cpp" />
     <ClCompile Include="src\GameObject\core\Animation.cpp" />
     <ClCompile Include="src\GameObject\core\Camera.cpp" />
@@ -195,7 +194,6 @@
     <ClCompile Include="src\GameState\GameButton.cpp" />
     <ClCompile Include="src\GameState\GameStateBase.cpp" />
     <ClCompile Include="src\GameState\GameStateMachine.cpp" />
-    <ClCompile Include="src\GameState\GSDebug.cpp" />
     <ClCompile Include="src\GameState\GSIntro.cpp" />
     <ClCompile Include="src\GameState\GSMenu.cpp" />
     <ClCompile Include="src\GameState\GSPause.cpp" />
@@ -222,7 +220,6 @@
     <ClInclude Include="src\GameObject\actors\Projectile.h" />
     <ClInclude Include="src\GameObject\actors\Creature.h" />
     <ClInclude Include="src\GameObject\actors\hero\Hero.h" />
-    <ClInclude Include="src\GameState\GSGame.h" />
     <ClInclude Include="src\GameManager\SoundManager.h" />
     <ClInclude Include="src\GameObject\core\Animation.h" />
     <ClInclude Include="src\GameObject\core\Camera.h" />
@@ -231,7 +228,6 @@
     <ClInclude Include="src\GameObject\core\Shaders.h" />
     <ClInclude Include="src\GameObject\core\TextRenderer.h" />
     <ClInclude Include="src\GameObject\core\Texture.h" />
-    <ClInclude Include="src\GameState\GSDebug.h" />
     <ClInclude Include="src\GameState\GameButton.h" />
     <ClInclude Include="src\GameState\GameStateBase.h" />
     <ClInclude Include="src\GameState\GameStateMachine.h" />

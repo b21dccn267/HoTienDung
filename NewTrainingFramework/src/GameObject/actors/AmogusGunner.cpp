@@ -54,8 +54,6 @@ void AmogusGunner::LookLeft()
 	m_anim->SetRotation(Vector3(0, 3.14, 0));
 }
 
-
-
 void AmogusGunner::ShootAnimRight()
 {
 	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(36);

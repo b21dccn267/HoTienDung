@@ -1,9 +1,14 @@
-﻿#include "GameManager/ResourceManager.h"
+﻿#include "GameManager/InputManager.h"
+#include "GameManager/ResourceManager.h"
 #include "GameManager/SceneManager.h"
 #include "GameManager/SoundManager.h"
+#include "GameObject/actors/Skeleton.h"
 #include "GameObject/core/Animation.h"
 #include "GameObject/core/TextRenderer.h"
 #include "GameObject/core/Texture.h"
+#include "GameObject/utils/CreatureController.h"
+#include "GameObject/utils/Timer.h"
+#include "GameState/GameButton.h"
 #include "GameStateMachine.h"
 #include "Globals.h"
 #include "GSPlay.h"
@@ -11,24 +16,11 @@
 
 void GSPlay::Init()
 {
-    m_gsPlayObjects.reserve(3);
-    m_gsPlayButtons.reserve(3);
-
-    SoundManager::GetInstance()->Init();
-
-    // Khởi tạo Creature và Init nó
-    m_creature = std::make_shared<Creature>();
-    m_creature->Init();  
-    m_creature->Idle();  
-
-    // Load nhạc nền cho state play nếu chưa được load
     SoundManager::GetInstance()->LoadMusic("background_music", "../Resources/Sfx/Stalemate.wav");
-
-    // Load sound effects cho các action trong game
     SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/vine-boom.wav");
     SoundManager::GetInstance()->LoadSfx("move_sound", "../Resources/Sfx/vine-boom.wav");
 
-    //background
+    // background
     auto model = ResourceManager::GetInstance()->GetModel(0);
     auto texture = ResourceManager::GetInstance()->GetTexture(33);  
     auto shader = ResourceManager::GetInstance()->GetShader(0);
@@ -36,6 +28,28 @@ void GSPlay::Init()
     playBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
     playBg->SetSize(Globals::screenWidth, Globals::screenHeight);
     m_gsPlayObjects.emplace_back(playBg);
+
+    // actors
+    m_hero = std::make_shared<Hero>();
+    m_hero->Init();
+    m_hero->LookBottomRight();
+
+    m_hero2 = std::make_shared<Creature>();
+    m_hero2->LookLeft();
+
+    m_creatureSpawner = std::make_shared<CreatureSpawner>();
+
+    // hud
+    m_healthBar1 = std::make_shared<HealthBar>(200, 50);
+    m_healthBar2 = std::make_shared<HealthBar>(700, 50);
+
+    m_healthBar1->m_health = m_hero->m_health;
+    m_healthBar2->m_health = m_hero2->m_health;
+
+    m_timer = std::make_shared<Timer>();
+    m_timer->StartTimer(60);
+
+
 
     // pause button
     model = ResourceManager::GetInstance()->GetModel(0);
@@ -62,7 +76,6 @@ void GSPlay::Init()
 void GSPlay::Pause()
 {
     m_isPaused = true;
-    // Pause nhạc nền khi game bị tạm dừng (chỉ khi sound được bật)
     if (SoundManager::GetInstance()->IsSoundEnabled()) {
         SoundManager::GetInstance()->PauseMusic();
     }
@@ -70,7 +83,6 @@ void GSPlay::Pause()
 
 void GSPlay::Exit()
 {
-    // Stop nhạc nền khi thoát khỏi state play
     SoundManager::GetInstance()->StopMusic();
 }
 
@@ -93,14 +105,22 @@ void GSPlay::Resume()
 void GSPlay::Draw()
 {
     glClear(GL_COLOR_BUFFER_BIT);
+
     for (auto& x : m_gsPlayObjects) {
         x->Draw();
     }
 
-    // Vẽ creature trước khi vẽ UI (buttons)
-    if (m_creature) {
-        m_creature->Draw();
+    // actors
+    m_hero->Draw();
+    m_hero2->Draw();
+    for (auto& x : m_creatureSpawner->m_creatureActive) {
+        x->Draw();
     }
+
+    // hud
+    m_healthBar1->Draw();
+    m_healthBar2->Draw();
+    m_timer->m_displayText->Draw();
 
     for (auto& x : m_gsPlayButtons) {
         x->Draw();
@@ -110,17 +130,119 @@ void GSPlay::Draw()
 void GSPlay::Update(float deltaTime)
 {
     if (m_isPaused) {
-        return; // Không cập nhật khi game bị tạm dừng
+        return;
     }
 
     for (auto& x : m_gsPlayObjects) {
         x->Update(deltaTime);
     }
 
-    if (m_creature) {
-        m_creature->Update(deltaTime); // Cập nhật animation và hitbox
-        m_creature->Update2DPosition(); // Cập nhật vị trí
+    // wasd
+    if (InputManager::GetInstance()->keys[0x57]) {
+        m_hero->m_anim->m_position.y -= 130.0f * deltaTime;
+        m_hero->LookUp();
     }
+    if (InputManager::GetInstance()->keys[0x41]) {
+        m_hero->m_anim->m_position.x -= 130.0f * deltaTime;
+        m_hero->LookLeft();
+    }
+    if (InputManager::GetInstance()->keys[0x53]) {
+        m_hero->m_anim->m_position.y += 130.0f * deltaTime;
+        m_hero->LookDown();
+    }
+    if (InputManager::GetInstance()->keys[0x44]) {
+        m_hero->m_anim->m_position.x += 130.0f * deltaTime;
+        m_hero->LookRight();
+    }
+    if (InputManager::GetInstance()->keys[0x41] &&
+        InputManager::GetInstance()->keys[0x57]) {
+        m_hero->LookTopLeft();
+    }
+    if (InputManager::GetInstance()->keys[0x44] &&
+        InputManager::GetInstance()->keys[0x57]) {
+        m_hero->LookTopRight();
+    }
+    if (InputManager::GetInstance()->keys[0x41] &&
+        InputManager::GetInstance()->keys[0x53]) {
+        m_hero->LookBottomLeft();
+    }
+    if (InputManager::GetInstance()->keys[0x44] &&
+        InputManager::GetInstance()->keys[0x53]) {
+        m_hero->LookBottomRight();
+    }
+    // arrows
+    if (InputManager::GetInstance()->keys[0x26]) {
+        m_hero2->m_anim->m_position.y -= 130.0f * deltaTime;
+        m_hero2->LookUp();
+    }
+    if (InputManager::GetInstance()->keys[0x25]) {
+        m_hero2->m_anim->m_position.x -= 130.0f * deltaTime;
+        m_hero2->LookLeft();
+    }
+    if (InputManager::GetInstance()->keys[0x28]) {
+        m_hero2->m_anim->m_position.y += 130.0f * deltaTime;
+        m_hero2->LookDown();
+    }
+    if (InputManager::GetInstance()->keys[0x27]) {
+        m_hero2->m_anim->m_position.x += 130.0f * deltaTime;
+        m_hero2->LookRight();
+    }
+    if (InputManager::GetInstance()->keys[0x25] &&
+        InputManager::GetInstance()->keys[0x26]) {
+        m_hero2->LookTopLeft();
+    }
+    if (InputManager::GetInstance()->keys[0x27] &&
+        InputManager::GetInstance()->keys[0x26]) {
+        m_hero2->LookTopRight();
+    }
+    if (InputManager::GetInstance()->keys[0x25] &&
+        InputManager::GetInstance()->keys[0x28]) {
+        m_hero2->LookBottomLeft();
+    }
+    if (InputManager::GetInstance()->keys[0x27] &&
+        InputManager::GetInstance()->keys[0x28]) {
+        m_hero2->LookBottomRight();
+    }
+
+
+    if (m_creatureSpawner->m_isOnCooldown == false) {
+        m_creatureSpawner->SpawnCreature();
+        m_creatureSpawner->m_isOnCooldown = true;
+    }
+
+
+    if (InputManager::GetInstance()->m_mouseIsPressed == true
+        && InputManager::GetInstance()->m_timerIsActive == false
+        ) {
+        printf("bang\n");
+        InputManager::GetInstance()->m_timerIsActive = true;
+        m_hero->m_gun->m_fMouseX = InputManager::GetInstance()->m_mouseX;
+        m_hero->m_gun->m_fMouseY = InputManager::GetInstance()->m_mouseY;
+        m_hero->FireGun();
+    }
+
+    if (InputManager::GetInstance()->m_timerIsActive == true) {
+        InputManager::GetInstance()->m_timeSincePressed += deltaTime;
+        if (InputManager::GetInstance()->m_timeSincePressed > 0.75f) {
+            InputManager::GetInstance()->m_timerIsActive = false;
+            InputManager::GetInstance()->m_timeSincePressed = 0.0f;
+        }
+    }
+
+
+    m_hero->Update(deltaTime);
+    m_hero->Update2DPosition();
+    m_hero2->Update(deltaTime);
+    m_hero2->Update2DPosition();
+
+    m_creatureSpawner->Update(deltaTime, m_hero, m_hero2);
+
+    //printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
+
+    m_healthBar1->UpdateHealth(m_hero->m_health);
+    m_healthBar2->UpdateHealth(m_hero2->m_health);
+
+    m_timer->UpdateTimer(deltaTime);
 
     for (auto& x : m_gsPlayButtons) {
         x->Update(deltaTime);
@@ -129,74 +251,21 @@ void GSPlay::Update(float deltaTime)
 
 void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-    printf("gsPlayKeyPressed: %c\n", key);
-    if (bIsPressed && m_creature) {
-        // Lưu vị trí hiện tại để kiểm tra bounds
-        float currentX = m_creature->m_anim->m_position.x;
-        float currentY = m_creature->m_anim->m_position.y;
-        float newX = currentX;
-        float newY = currentY;
-
-        switch (key) {
-        case 0x57: // W - Move Up
-            newY = currentY - 50.0f;  // Tăng bước di chuyển
-            if (newY >= 50.0f) {  // Kiểm tra bounds
-                m_creature->m_anim->m_position.y = newY;
-                m_creature->LookUp();  // Đổi animation
-                // Chỉ phát sound khi sound được bật
-                if (SoundManager::GetInstance()->IsSfxEnabled()) {
-                    SoundManager::GetInstance()->PlaySfx("move_sound");
-                }
-            }
-            break;
-        case 0x41: // A - Move Left
-            newX = currentX - 50.0f;
-            if (newX >= 50.0f) {  // Kiểm tra bounds
-                m_creature->m_anim->m_position.x = newX;
-                m_creature->LookLeft();  // Đổi animation
-                if (SoundManager::GetInstance()->IsSfxEnabled()) {
-                    SoundManager::GetInstance()->PlaySfx("move_sound");
-                }
-            }
-            break;
-        case 0x53: // S - Move Down
-            newY = currentY + 50.0f;
-            if (newY <= Globals::screenHeight - 50.0f) {  // Kiểm tra bounds
-                m_creature->m_anim->m_position.y = newY;
-                m_creature->LookDown();  // Đổi animation
-                if (SoundManager::GetInstance()->IsSfxEnabled()) {
-                    SoundManager::GetInstance()->PlaySfx("move_sound");
-                }
-            }
-            break;
-        case 0x44: // D - Move Right
-            newX = currentX + 50.0f;
-            if (newX <= Globals::screenWidth - 50.0f) {  // Kiểm tra bounds
-                m_creature->m_anim->m_position.x = newX;
-                m_creature->LookRight();  // Đổi animation
-                if (SoundManager::GetInstance()->IsSfxEnabled()) {
-                    SoundManager::GetInstance()->PlaySfx("move_sound");
-                }
-            }
-            break;
-        case 0x20: // Space - Jump/Idle animation
-            m_creature->Jump();
-            if (SoundManager::GetInstance()->IsSfxEnabled()) {
-                SoundManager::GetInstance()->PlaySfx("move_sound");
-            }
-            break;
-        }
-    }
-
-    // Trở về idle animation sau 1 khoảng thời gian (có thể implement timer)
-    // Hoặc có thể để cho CreatureController xử lý
+    //printf("0x%02X\n", key);
+    InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 
 void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
     printf("gsPlayMouseEvent\n");
 
-    // Xử lý button clicks trước
+    //printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
+
+    InputManager::GetInstance()->m_mouseX = x;
+    InputManager::GetInstance()->m_mouseY = y;
+    InputManager::GetInstance()->m_mouseIsPressed = bIsPressed;
+
+    // fix this to use InputManager
     for (auto& btn : m_gsPlayButtons) {
         if (btn->HandleTouchEvents(x, y, bIsPressed)) {
             return;
@@ -207,10 +276,6 @@ void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 void GSPlay::Cleanup()
 {
     SoundManager::GetInstance()->StopMusic();
-    // Cleanup creature if needed
-    if (m_creature) {
-        m_creature.reset();
-    }
 }
 
 GSPlay::~GSPlay()

@@ -3,8 +3,8 @@
 #include "Skeleton.h"
 #include "AmogusGunner.h"
 #include "GameObject/utils/AABB.h"
-#include "GameState/GSGame.h"
 #include "GameObject/utils/CreatureController.h"
+#include "GameObject/actors/hero/Hero.h"
 #include <memory>
 #include <cstdlib> 
 #include <ctime>

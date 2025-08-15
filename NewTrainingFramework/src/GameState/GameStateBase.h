@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "../Utilities/utilities.h"
 #include <memory>
 
@@ -8,9 +8,7 @@ enum class StateType
 	STATE_MENU,
 	STATE_PLAY,
 	STATE_SETTINGS,
-	STATE_GAME,
 	STATE_PAUSE, 
-	STATE_DEBUG
 };
 
 class GameStateBase
