@@ -114,13 +114,13 @@ ID 36
 FILE "../Resources/2d/Textures/gui/home.tga"
 TILING GL_REPEAT
 ID 37
-FILE "../Resources/2d/Textures/game/amogus_test.tga"
+FILE "../Resources/2d/Textures/game/1.tga"
 TILING GL_REPEAT
 ID 38
 FILE "../Resources/2d/Textures/hud/hp_frame.tga"
 TILING GL_REPEAT
 ID 39
-FILE "../Resources/2d/Textures/hud/hp_fill.tga"
+FILE "../Resources/2d/Textures/hud/hp_fill_trick.tga"
 TILING GL_REPEAT
 #Shader 3
 ID 0

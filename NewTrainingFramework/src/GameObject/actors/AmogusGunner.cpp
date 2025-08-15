@@ -11,6 +11,7 @@ AmogusGunner::AmogusGunner() : Creature()
 	m_creatureType = 1;
 
 	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(36);
+
 	m_anim->m_numFramesPerRow = 8;
 	m_anim->m_numFramesPerColumn = 6;
 	m_isDie = false;
@@ -74,13 +75,14 @@ void AmogusGunner::ShootAnimLeft()
 
 void AmogusGunner::Idle()
 {
-	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(36);
-
-	m_anim->m_numFramesPerRow = 8;
-	m_anim->m_numFramesPerColumn = 6;
-	m_anim->SetCustomFrames(std::vector<int>{24, 25, 26, 27});
+	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(37);
+	m_anim->SetSize(50, 50);
+	m_anim->m_numFramesPerRow = 4;
+	m_anim->m_numFramesPerColumn = 1;
+	m_anim->SetCustomFrames(std::vector<int>{0, 1, 2, 3});
 	m_anim->m_frameTime = 0.12f;
 	m_anim->SetRotation(Vector3(0, 0, 0));
+	//AmogusGunner::TestAllSprites();
 }
 
 void AmogusGunner::Die()

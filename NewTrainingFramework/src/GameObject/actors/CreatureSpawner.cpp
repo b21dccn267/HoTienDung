@@ -20,27 +20,22 @@ CreatureSpawner::CreatureSpawner()
 
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {
-		//if (i < m_creaturePool.capacity() / 2) 
-		//if(false)
-		if(true)
+		if (i < m_creaturePool.capacity() / 2)
 		{
 			auto temp = std::make_unique<Skeleton>();
+			temp->m_hitbox->UpdateBox(Vector2(0, 0), Vector2(0, 0));
 			m_creaturePool.emplace_back(std::move(temp));
 		}
 		else {
 			auto temp = std::make_unique<AmogusGunner>();
+			temp->m_anim->Set2DPosition(Vector2(0, 0));
+			temp->m_hitbox->UpdateBox(Vector2(0, 0), Vector2(0, 0));
 			temp->LookRight();
 			m_creaturePool.emplace_back(std::move(temp));
 		}
 	}
 }
-
-// this function rolls a random number, then spawn a creature at fixed locations on the map
-// for testing, creatures spawnpoint are visible, but ideally should be just beyond the view area
-// what spd does:
-//		- computes a spawn budget (use this to manage waves)
-//		- choose a random monster (go make 2 types of mobs)
-//		
+	
 void CreatureSpawner::SpawnCreature()
 {
 	// roll
@@ -60,7 +55,7 @@ void CreatureSpawner::SpawnCreature()
 	number = std::rand();
 	//auto creature = std::move(m_creaturePool[0]);
 	auto creature = std::move(m_creaturePool[number % m_creaturePool.size()]);
-	creature->Init();
+	//creature->Init();
 	//creature->LookDown();	// danger: not all creatures have this function
 	creature->Idle();
 
