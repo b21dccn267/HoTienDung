@@ -11,13 +11,15 @@
 
 void GSPlay::Init()
 {
-    m_gsPlayObjects.reserve(1);
-    m_gsPlayButtons.reserve(2);
+    m_gsPlayObjects.reserve(3);
+    m_gsPlayButtons.reserve(3);
+
+    SoundManager::GetInstance()->Init();
 
     // Khởi tạo Creature và Init nó
     m_creature = std::make_shared<Creature>();
-    m_creature->Init();  // QUAN TRỌNG: Phải gọi Init() để setup texture và animation
-    m_creature->Idle();  // Bắt đầu với animation idle
+    m_creature->Init();  
+    m_creature->Idle();  
 
     // Load nhạc nền cho state play nếu chưa được load
     SoundManager::GetInstance()->LoadMusic("background_music", "../Resources/Sfx/Stalemate.wav");
@@ -28,7 +30,7 @@ void GSPlay::Init()
 
     //background
     auto model = ResourceManager::GetInstance()->GetModel(0);
-    auto texture = ResourceManager::GetInstance()->GetTexture(0);  // Sound on background texture ID
+    auto texture = ResourceManager::GetInstance()->GetTexture(33);  
     auto shader = ResourceManager::GetInstance()->GetShader(0);
     auto playBg = std::make_shared<Object>(model, texture, shader);
     playBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
@@ -53,11 +55,7 @@ void GSPlay::Init()
 
     // Bắt đầu phát nhạc nền khi khởi tạo state play
     // CHỈ phát nếu sound được bật
-    if (SoundManager::GetInstance()->IsSoundEnabled()) {
-        if (!Mix_PlayingMusic()) {
-            SoundManager::GetInstance()->PlayMusic("background_music", -1); // -1 = loop vô hạn
-        }
-    }
+    SoundManager::GetInstance()->PlayMusicIfEnabled("background_music", -1);
     printf("Play state initialized\n");
 }
 
@@ -202,31 +200,6 @@ void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
     for (auto& btn : m_gsPlayButtons) {
         if (btn->HandleTouchEvents(x, y, bIsPressed)) {
             return;
-        }
-    }
-
-    // Nếu không click vào button nào, có thể di chuyển creature đến vị trí click
-    if (bIsPressed && m_creature) {
-        // Di chuyển creature đến vị trí click (tùy chọn)
-        m_creature->m_anim->m_position.x = (float)x;
-        m_creature->m_anim->m_position.y = (float)y;
-
-        // Determine direction and set appropriate animation
-        float deltaX = x - m_creature->m_anim->m_position.x;
-        float deltaY = y - m_creature->m_anim->m_position.y;
-
-        if (abs(deltaX) > abs(deltaY)) {
-            if (deltaX > 0) m_creature->LookRight();
-            else m_creature->LookLeft();
-        }
-        else {
-            if (deltaY > 0) m_creature->LookDown();
-            else m_creature->LookUp();
-        }
-
-        // Chỉ phát sound khi sound được bật
-        if (SoundManager::GetInstance()->IsSfxEnabled()) {
-            SoundManager::GetInstance()->PlaySfx("move_sound");
         }
     }
 }

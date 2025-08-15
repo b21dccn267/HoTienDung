@@ -3,7 +3,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-
 SDL_Surface* TextRenderer::FlipVertical(SDL_Surface* surface)
 {
 	if (!surface || surface->format->BitsPerPixel != 32) {
@@ -34,59 +33,21 @@ SDL_Surface* TextRenderer::FlipVertical(SDL_Surface* surface)
 	return result;
 }
 
-//SDL_Surface* TextRenderer::RenderText(const char* text)
-//{
-//	if (TTF_Init() != 0) {
-//		return nullptr;
-//	}
-//
-//	// font options:
-//	// "../Resources/Fonts/Roboto-VariableFont_wdth,wght.ttf"
-//	// "../Resources/Fonts/Silver.ttf" is broken rn
-//	TTF_Font* font = TTF_OpenFont("../Resources/Fonts/LoveDays.ttf", 24);
-//	if (!font) {
-//		return nullptr;
-//	}
-//
-//	SDL_Color white = { 255, 255, 255, 255 };
-//
-//	// Use the text parameter instead of hardcoded message
-//	SDL_Surface* surface = TTF_RenderUTF8_Blended(font, text, white);
-//	if (!surface) {
-//		TTF_CloseFont(font);
-//		return nullptr;
-//	}
-//
-//	SDL_Surface* result = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA8888, 0);
-//	SDL_FreeSurface(surface);
-//
-//	if (!result) {
-//		TTF_CloseFont(font);
-//		return nullptr;
-//	}
-//
-//	SDL_Surface* flippedResult = FlipVertical(result);
-//	//SDL_FreeSurface(result);
-//
-//	TTF_CloseFont(font);
-//	return flippedResult;
-//}
-
+// Basic text rendering với default font và color
 SDL_Surface* TextRenderer::RenderText(const char* text)
 {
 	if (TTF_Init() != 0) {
 		return nullptr;
 	}
 
-	TTF_Font* font = TTF_OpenFont("../Resources/Fonts/LoveDays.ttf", 24);
+	TTF_Font* font = TTF_OpenFont("../Resources/Fonts/ChangaOne-Regular.ttf", 24);
 	if (!font) {
 		return nullptr;
 	}
 
-	// redcolor
-	SDL_Color redColor = { 255, 0, 0, 255 };  
+	SDL_Color whiteColor = { 255, 255, 255, 255 };
 
-	SDL_Surface* surface = TTF_RenderUTF8_Blended(font, text, redColor);
+	SDL_Surface* surface = TTF_RenderUTF8_Blended(font, text, whiteColor);
 	if (!surface) {
 		TTF_CloseFont(font);
 		return nullptr;
@@ -106,6 +67,48 @@ SDL_Surface* TextRenderer::RenderText(const char* text)
 	return flippedResult;
 }
 
+// Text rendering với custom font size
+SDL_Surface* TextRenderer::RenderText(const char* text, int fontSize)
+{
+	if (TTF_Init() != 0) {
+		return nullptr;
+	}
+
+	TTF_Font* font = TTF_OpenFont("../Resources/Fonts/ChangaOne-Regular.ttf", fontSize);
+	if (!font) {
+		return nullptr;
+	}
+
+	SDL_Color whiteColor = { 255, 255, 255, 255 };
+
+	SDL_Surface* surface = TTF_RenderUTF8_Blended(font, text, whiteColor);
+	if (!surface) {
+		TTF_CloseFont(font);
+		return nullptr;
+	}
+
+	SDL_Surface* result = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA8888, 0);
+	SDL_FreeSurface(surface);
+
+	if (!result) {
+		TTF_CloseFont(font);
+		return nullptr;
+	}
+
+	SDL_Surface* flippedResult = FlipVertical(result);
+
+	TTF_CloseFont(font);
+	return flippedResult;
+}
+
+// Text rendering với custom font path và size (không có color)
+SDL_Surface* TextRenderer::RenderText(const char* text, const char* fontPath, int fontSize)
+{
+	SDL_Color whiteColor = { 255, 255, 255, 255 };
+	return RenderText(text, fontPath, fontSize, whiteColor);
+}
+
+// Text rendering với custom font, size, và color
 SDL_Surface* TextRenderer::RenderText(const char* text, const char* fontPath, int fontSize, SDL_Color color)
 {
 	if (TTF_Init() != 0) {
@@ -132,7 +135,6 @@ SDL_Surface* TextRenderer::RenderText(const char* text, const char* fontPath, in
 	}
 
 	SDL_Surface* flippedResult = FlipVertical(result);
-	SDL_FreeSurface(result);
 
 	TTF_CloseFont(font);
 	return flippedResult;

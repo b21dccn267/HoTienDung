@@ -31,10 +31,6 @@ void SoundManager::Init()
 	Mix_VolumeMusic(m_musicVolume);
 	Mix_Volume(-1, m_sfxVolume); // -1 = all channels
 
-	printf("SoundManager initialized successfully\n");
-	printf("Sound enabled: %s, SFX enabled: %s\n",
-		m_soundEnabled ? "YES" : "NO",
-		m_sfxEnabled ? "YES" : "NO");
 }
 
 void SoundManager::LoadMusic(const std::string& key, const char* fileName)
@@ -194,7 +190,6 @@ void SoundManager::SetSoundEnabled(bool enabled)
 	}
 
 	SaveSettings(); // Tự động lưu settings khi thay đổi
-	printf("Sound %s (Music and SFX)\n", enabled ? "ENABLED" : "DISABLED");
 }
 
 // Thêm method để dễ dàng switch music giữa các state
@@ -206,7 +201,6 @@ void SoundManager::PlayMusicIfEnabled(const std::string& key, int loops)
 	else {
 		// Chỉ lưu key để có thể phát lại khi bật sound
 		m_currentMusicKey = key;
-		printf("Sound disabled, saved music key: %s\n", key.c_str());
 	}
 }
 
@@ -219,7 +213,6 @@ void SoundManager::SetSfxEnabled(bool enabled)
 		Mix_HaltChannel(-1); // Stop all channels
 	}
 
-	printf("SFX %s (follows main sound setting)\n", m_sfxEnabled ? "ENABLED" : "DISABLED");
 }
 
 void SoundManager::SaveSettings()
@@ -259,10 +252,6 @@ void SoundManager::LoadSettings()
 			m_musicVolume = (tempMusicVol < 0) ? 0 : (tempMusicVol > 128) ? 128 : tempMusicVol;
 			m_sfxVolume = (tempSfxVol < 0) ? 0 : (tempSfxVol > 128) ? 128 : tempSfxVol;
 
-			printf("Sound settings loaded from file: Sound=%s, SFX=%s, MusicVol=%d, SFXVol=%d\n",
-				m_soundEnabled ? "ON" : "OFF",
-				m_sfxEnabled ? "ON" : "OFF",
-				m_musicVolume, m_sfxVolume);
 		}
 		else {
 			printf("Invalid sound settings file, using defaults (SOUND ON)\n");
@@ -325,5 +314,4 @@ void SoundManager::Cleanup()
 	// Cleanup SDL
 	SDL_Quit();
 
-	printf("SoundManager cleaned up\n");
 }
