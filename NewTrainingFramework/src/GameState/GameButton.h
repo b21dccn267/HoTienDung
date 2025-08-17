@@ -25,6 +25,6 @@ public:
 private:
     std::function<void()> m_pBtnClick; 
     bool m_isHolding;
-    std::shared_ptr<Texture> m_normalTexture;   // Texture khi button bình thường (nổi)
-    std::shared_ptr<Texture> m_pressedTexture;  // Texture khi button được ấn (chìm)
+    std::shared_ptr<Texture> m_normalTexture;
+    std::shared_ptr<Texture> m_pressedTexture;
 };

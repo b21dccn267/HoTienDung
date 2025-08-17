@@ -23,7 +23,7 @@ public:
 	void Init();
 	std::unique_ptr<Projectile> AcquireProjectile(std::shared_ptr<Hero> hero);
 	void ReleaseProjectile(std::unique_ptr<Projectile> proj);
-	void Fire(std::shared_ptr<Hero> hero);
+	void Fire	(std::shared_ptr<Hero> hero);
 
 	void Draw();
 	void Update(GLfloat deltaTime);

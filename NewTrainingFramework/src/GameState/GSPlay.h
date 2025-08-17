@@ -7,6 +7,7 @@
 #include "GameObject/core/Animation.h"
 #include "GameObject/core/Object.h"
 #include "GameObject/ui/HealthBar.h"
+#include "GameObject/ui/WndUpgrade.h"
 #include "GameObject/utils/Timer.h"
 #include "GameStateBase.h"
 #include <memory>
@@ -20,6 +21,10 @@ public:
     std::vector<std::shared_ptr<GameButton>> m_gsPlayButtons;
     //std::shared_ptr<Creature> m_creature; 
     bool m_isPaused;
+    bool m_isInGladiatorMode; // special event
+    // store last hero hp state here after glad mode on
+    int m_hero1Health;
+    int m_hero2Health;
 
     // game actors 
     std::shared_ptr<Hero> m_hero;
@@ -30,6 +35,7 @@ public:
     std::shared_ptr<HealthBar> m_healthBar1;
     std::shared_ptr<HealthBar> m_healthBar2;
     std::shared_ptr<Timer> m_timer;
+    std::shared_ptr <WndUpgrade> m_upgradeMenu;
 
     GSPlay() : GameStateBase(StateType::STATE_PLAY), m_isPaused(false) {}
     void Init() override;

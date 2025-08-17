@@ -1,7 +1,7 @@
 ﻿#Model 1
 ID 0
 FILE "../Resources/2d/Models/Sprite2D.nfg"
-#2DTexture 40
+#2DTexture 42
 ID 0
 FILE "../Resources/2d/Textures/gui/menu-soundon.tga"
 TILING GL_REPEAT
@@ -121,6 +121,12 @@ FILE "../Resources/2d/Textures/hud/hp_frame.tga"
 TILING GL_REPEAT
 ID 39
 FILE "../Resources/2d/Textures/hud/hp_fill_trick.tga"
+TILING GL_REPEAT
+ID 40
+FILE "../Resources/2d/Textures/hud/upgrade_frame.tga"
+TILING GL_REPEAT
+ID 41
+FILE "../Resources/2d/Textures/hud/upgrade_button.tga"
 TILING GL_REPEAT
 #Shader 3
 ID 0

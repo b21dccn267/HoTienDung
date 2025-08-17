@@ -1,4 +1,5 @@
-﻿#include "GameManager/InputManager.h"
+﻿#include "../../Utilities/utilities.h"
+#include "GameManager/InputManager.h"
 #include "GameManager/ResourceManager.h"
 #include "GameManager/SceneManager.h"
 #include "GameManager/SoundManager.h"
@@ -6,6 +7,7 @@
 #include "GameObject/core/Animation.h"
 #include "GameObject/core/TextRenderer.h"
 #include "GameObject/core/Texture.h"
+#include "GameObject/ui/WndUpgrade.h"
 #include "GameObject/utils/CreatureController.h"
 #include "GameObject/utils/Timer.h"
 #include "GameState/GameButton.h"
@@ -48,6 +50,7 @@ void GSPlay::Init()
 
     m_timer = std::make_shared<Timer>();
     m_timer->StartTimer(60);
+    m_upgradeMenu = std::make_shared<WndUpgrade>();
 
 
 
@@ -121,6 +124,10 @@ void GSPlay::Draw()
     m_healthBar1->Draw();
     m_healthBar2->Draw();
     m_timer->m_displayText->Draw();
+    if (m_upgradeMenu->m_isActive) {
+        m_upgradeMenu->Draw();
+    }
+   
 
     for (auto& x : m_gsPlayButtons) {
         x->Draw();
@@ -241,11 +248,35 @@ void GSPlay::Update(float deltaTime)
 
     m_healthBar1->UpdateHealth(m_hero->m_health);
     m_healthBar2->UpdateHealth(m_hero2->m_health);
-
     m_timer->UpdateTimer(deltaTime);
+    m_upgradeMenu->Update(InputManager::GetInstance()->m_mouseX,
+                          InputManager::GetInstance()->m_mouseY,
+                          InputManager::GetInstance()->m_mouseIsPressed
+    );
+
 
     for (auto& x : m_gsPlayButtons) {
         x->Update(deltaTime);
+    }
+
+
+    // checking special event triggers, upgrade menu appear flags and stuff
+
+    // display WndUpgrade based on timer
+    if (m_timer->m_time % 15) {
+        //m_upgradeMenu->m_isActive = false;
+
+    }
+    else {
+        //m_upgradeMenu->m_isActive = true;
+        //m_isInGladiatorMode = true;
+    }
+
+    if (m_isInGladiatorMode) {
+        printf("battle\n");
+        // do stuff here, such as:
+        // no spawning creatures
+        // friendly fire on
     }
 }
 
@@ -257,7 +288,7 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 
 void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
-    printf("gsPlayMouseEvent\n");
+    //printf("gsPlayMouseEvent\n");
 
     //printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
 
