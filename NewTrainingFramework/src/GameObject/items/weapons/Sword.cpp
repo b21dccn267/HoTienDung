@@ -9,7 +9,7 @@ Sword::Sword()
 	auto texture = ResourceManager::GetInstance()->GetTexture(30);
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	m_self = std::make_shared<Object>(model, texture, shader);
-	m_self->Set2DPosition(0, 0); // bind to hero pos later
+	m_self->Set2DPosition(Vector2(0, 0)); // bind to hero pos later
 	m_self->SetSize(100, 100);
 }
 

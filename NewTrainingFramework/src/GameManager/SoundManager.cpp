@@ -1,6 +1,6 @@
 ﻿#include "SoundManager.h"
-#include "../../../Include/SDL2/SDL.h"
-#include "../../../Include/SDL2/SDL_mixer.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
@@ -212,7 +212,6 @@ void SoundManager::SetSfxEnabled(bool enabled)
 	if (!m_sfxEnabled) {
 		Mix_HaltChannel(-1); // Stop all channels
 	}
-
 }
 
 void SoundManager::SaveSettings()
@@ -313,5 +312,4 @@ void SoundManager::Cleanup()
 
 	// Cleanup SDL
 	SDL_Quit();
-
 }

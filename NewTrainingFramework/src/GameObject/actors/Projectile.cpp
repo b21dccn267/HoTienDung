@@ -45,7 +45,7 @@ void Projectile::Update(GLfloat deltaTime)
 	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 
 	m_position.x += direction.x * m_velocity * deltaTime;
-	m_position.y += direction.y *m_velocity * deltaTime;
+	m_position.y += direction.y * m_velocity * deltaTime;
 
 	m_anim->Set2DPosition(Vector2(m_position.x, m_position.y));
 }

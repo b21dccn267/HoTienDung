@@ -15,6 +15,7 @@
 #include "Globals.h"
 #include "GSPlay.h"
 #include <SDL2/SDL_mixer.h>
+#include "GameObject/actors/AmogusGunner.h"
 
 void GSPlay::Init()
 {
@@ -62,7 +63,7 @@ void GSPlay::Init()
     btnPause->Set2DPosition(Vector2(Globals::screenWidth - 100, 100.0f));
     btnPause->SetSize(60.0f, 60.0f);
     btnPause->SetOnClick([this]() {
-        // Play button click sound effect chỉ khi sound được bật
+
         if (SoundManager::GetInstance()->IsSoundEnabled()) {
             SoundManager::GetInstance()->PlaySfx("button_click");
         }
@@ -70,8 +71,7 @@ void GSPlay::Init()
         });
     m_gsPlayButtons.emplace_back(btnPause);
 
-    // Bắt đầu phát nhạc nền khi khởi tạo state play
-    // CHỈ phát nếu sound được bật
+
     SoundManager::GetInstance()->PlayMusicIfEnabled("background_music", -1);
     printf("Play state initialized\n");
 }
@@ -136,6 +136,9 @@ void GSPlay::Draw()
 
 void GSPlay::Update(float deltaTime)
 {
+    // remove this later
+    m_upgradeMenu->m_isActive = false;
+    //
     if (m_isPaused) {
         return;
     }
@@ -273,7 +276,7 @@ void GSPlay::Update(float deltaTime)
     }
 
     if (m_isInGladiatorMode) {
-        printf("battle\n");
+        //printf("battle\n");
         // do stuff here, such as:
         // no spawning creatures
         // friendly fire on

@@ -168,6 +168,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\actors\CrProjectile.cpp" />
     <ClCompile Include="src\GameObject\actors\AmogusGunner.cpp" />
     <ClCompile Include="src\GameObject\items\weapons\CreatureGun.cpp" />
     <ClCompile Include="src\GameObject\ui\HealthBar.cpp" />
@@ -205,8 +206,10 @@
     <ClCompile Include="src\GameObject\items\weapons\Sword.cpp" />
     <ClCompile Include="src\GameObject\utils\Timer.cpp" />
     <ClCompile Include="src\GameObject\ui\WndUpgrade.cpp" />
+    <ClCompile Include="src\GameObject\ui\WndGameOver.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\actors\CrProjectile.h" />
     <ClInclude Include="src\GameObject\actors\AmogusGunner.h" />
     <ClInclude Include="src\GameObject\items\weapons\CreatureGun.h" />
     <ClInclude Include="src\GameObject\ui\HealthBar.h" />
@@ -246,6 +249,7 @@
     <ClInclude Include="src\GameObject\items\weapons\Sword.h" />
     <ClInclude Include="src\GameObject\utils\Timer.h" />
     <ClInclude Include="src\GameObject\ui\WndUpgrade.h" />
+    <ClInclude Include="src\GameObject\ui\WndGameOver.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\AnimationShaderFS.fs" />

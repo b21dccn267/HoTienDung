@@ -16,7 +16,7 @@ CreatureSpawner::CreatureSpawner()
 	m_cooldownTimer = 0.0f;
 	m_cooldown = 2.0f;
 
-	m_creaturePool.reserve(100);
+	m_creaturePool.reserve(50);
 
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {
@@ -28,6 +28,7 @@ CreatureSpawner::CreatureSpawner()
 		}
 		else {
 			auto temp = std::make_unique<AmogusGunner>();
+			temp->Init();
 			temp->m_anim->Set2DPosition(Vector2(0, 0));
 			temp->m_hitbox->UpdateBox(Vector2(0, 0), Vector2(0, 0));
 			temp->LookRight();
@@ -102,7 +103,7 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::s
 {
 	// check conditions for removal
 	for (auto& x : m_creatureActive) {
-		if (x->m_health == 0) {
+		if (x->m_health == 0 && x->m_anim->m_frameCount == 5) {
 			DespawnCreature(std::move(x));
 		}
 	}
@@ -117,28 +118,36 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::s
 	);
 	// check all active creature events
 	for (auto& x : m_creatureActive) {
-		// if collide with hero
-		if (AABB::IsCollideRR(x->m_hitbox, hero->m_hitbox)) {
-			printf("isCollideWithHero\n");
-			hero->m_health--;
-			x->m_health = 0;
-		}
-		// if collide with hero2
-		if (AABB::IsCollideRR(x->m_hitbox, hero2->m_hitbox)) {
-			printf("isCollideWithHero2\n");
-			hero2->m_health--;
-			x->m_health = 0;
-		}
-		// if collide with hero projectile
-		for (auto& projectile : hero->m_gun->m_projectileUsed) {
-			if (AABB::IsCollideRR(x->m_hitbox, projectile->m_hitbox)) {
-				printf("isCollideWithProjectile\n");
+		if (x->m_health > 0) {
+			// if collide with hero
+			if (AABB::IsCollideRR(x->m_hitbox, hero->m_hitbox)) {
+				printf("isCollideWithHero\n");
+				hero->m_health--;
 				x->m_health = 0;
-				break;
-			}
-		}
+				x->Die();
 
-		// there should be a creature projectile check here
+			}
+			// if collide with hero2
+			if (AABB::IsCollideRR(x->m_hitbox, hero2->m_hitbox)) {
+				printf("isCollideWithHero2\n");
+				hero2->m_health--;
+				x->m_health = 0;
+				x->Die();
+			}
+			// if collide with hero projectile
+			for (auto& projectile : hero->m_gun->m_projectileUsed) {
+				if (AABB::IsCollideRR(x->m_hitbox, projectile->m_hitbox)) {
+					printf("isCollideWithProjectile\n");
+					x->m_health = 0;
+					break;
+				}
+			}
+			// if collide with hero2 projectile
+			// add 
+
+
+			// there should be a creature projectile check here
+		}
 		
 		
 		// creature updates

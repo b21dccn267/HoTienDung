@@ -150,3 +150,18 @@ final recap
 		compress ok
 	merge gs game and gs play, remove gsdebug, gs game after merging
 
+
+
+assets used
+	textures
+		https://rgsdev.itch.io/hand-drawn-square-characters-animated-8-directions-top-down-free-cc0 playermodel, skeleton
+		https://trevor-pupkin.itch.io/outer-buddies amogusgunner
+		https://bdragon1727.itch.io/fire-pixel-bullet-16x16 hero projectile
+	ui
+		https://toffeecraft.itch.io/ui-user-interface-mega-pack healthbar
+	sfx
+		bgm 
+			fots stalemate
+		sfx
+			https://jdsherbert.itch.io/ultimate-ui-sfx-pack button click sounds
+			michealgames-itchio-2d-action-adventure-rpg-assets hit sounds

@@ -69,7 +69,6 @@ void Gun::Draw()
 
 void Gun::Update(GLfloat deltaTime)
 {
-	
 	// check condition for projectile removal
 	for (auto& x : m_projectileUsed)
 		if (x && (x->m_position.x > Globals::screenWidth || x->m_position.x < 0))
