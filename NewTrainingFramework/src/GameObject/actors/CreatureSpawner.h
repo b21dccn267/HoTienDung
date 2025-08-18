@@ -8,14 +8,6 @@ class Hero;
 class CrHero;
 class Creature;
 
-enum class SpawnLocation
-{
-	SPAWN_UP,
-	SPAWN_DOWN,
-	SPAWN_LEFT,
-	SPAWN_RIGHT
-};
-
 // use object pooling for this
 class CreatureSpawner
 {
@@ -30,6 +22,6 @@ public:
 	void Init();
 	void SpawnCreature();
 	void DespawnCreature(std::unique_ptr<Creature> creature);
-	void Update(float deltaTime, std::shared_ptr<Hero> hero, std::shared_ptr<CrHero> hero2);
+	void Update(float deltaTime, std::shared_ptr<Hero> hero, std::shared_ptr<CrHero> hero2, bool isGladiatorModeOn);
 };
 

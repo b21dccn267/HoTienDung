@@ -23,5 +23,8 @@ public:
 	void Idle() override;
 	void Die();
 	void Move(float deltaTime, Vector2 heroPos) override;
+
+	void Draw() override;
+	void Update(float deltaTime) override;
 };
 

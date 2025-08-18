@@ -97,7 +97,7 @@ void CreatureSpawner::DespawnCreature(std::unique_ptr<Creature> creature)
 	printf("killed creature\n");
 }
 
-void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::shared_ptr<CrHero> hero2)
+void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::shared_ptr<CrHero> hero2, bool isGladiatorModeOn)
 {
 	// check conditions for removal
 	for (auto& x : m_creatureActive) {
@@ -114,6 +114,26 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::s
 		),
 		m_creatureActive.end()
 	);
+
+	// pvp events only check
+	// fix: has to have a way to turn pvp mode off after a hit
+	if (isGladiatorModeOn) {
+		// if hero 2 hits hero1
+		if (AABB::IsCollideRR(hero->m_hitbox, hero2->m_sword->m_hitbox)) {
+			hero->m_health--;
+			//isGladiatorModeOn = std::make_shared<bool>(false);
+		}
+		// if hero1 hits hero2
+		for (auto& projectile : hero->m_gun->m_projectileUsed) {
+			if (AABB::IsCollideRR(hero2->m_hitbox, projectile->m_hitbox)) {
+				printf("isCollideWithProjectile\n");
+				hero2->m_health--;
+				//isGladiatorModeOn = std::make_shared<bool>(false);
+				break;
+			}
+		}
+	}
+
 	// check all active creature events
 	for (auto& x : m_creatureActive) {
 		if (x->m_health > 0) {

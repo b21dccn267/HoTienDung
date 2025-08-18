@@ -21,6 +21,8 @@
 
 void GSPlay::Init()
 {
+    m_isInGladiatorMode = false;
+
     SoundManager::GetInstance()->LoadMusic("background_music", "../Resources/Sfx/Stalemate.wav");
     SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/button_click.wav");
     SoundManager::GetInstance()->LoadSfx("move_sound", "../Resources/Sfx/vine-boom.wav");
@@ -256,7 +258,7 @@ void GSPlay::Update(float deltaTime)
     m_hero2->Update(deltaTime);
     m_hero2->Update2DPosition();
 
-    m_creatureSpawner->Update(deltaTime, m_hero, m_hero2);
+    m_creatureSpawner->Update(deltaTime, m_hero, m_hero2, m_isInGladiatorMode);
 
     //printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
 
@@ -275,34 +277,31 @@ void GSPlay::Update(float deltaTime)
 
 
     // checking special event triggers, upgrade menu appear flags and stuff
-
-    // display WndUpgrade based on timer
-    if (m_timer->m_time % 15) {
-        //m_upgradeMenu->m_isActive = false;
-
+    if (m_timer->m_time % 15 == 0 && m_timer->m_time < 60) {
+        m_isInGladiatorMode = true;
     }
     else {
         //m_upgradeMenu->m_isActive = true;
         //m_isInGladiatorMode = true;
     }
 
-    if (m_isInGladiatorMode) {
-        //printf("battle\n");
-        // do stuff here, such as:
-        // no spawning creatures
-        // friendly fire on
-    }
+    //if (m_isInGladiatorMode) {
+    //    printf("battle\n");
+    //}
+    //else {
+    //    printf("nah\n");
+    //}
 }
 
 void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-    printf("0x%02X\n", key);
+    //printf("0x%02X\n", key);
     InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 
 void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
-    printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
+    //printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
 
     InputManager::GetInstance()->m_mouseX = x;
     InputManager::GetInstance()->m_mouseY = y;

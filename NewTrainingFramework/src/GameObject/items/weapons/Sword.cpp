@@ -24,7 +24,7 @@ Sword::Sword()
 	m_anim->m_frameTime = 0.12f;
 
 	m_hitbox = std::make_shared<AABB>();
-	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
+	//m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 }
 
 void Sword::UseSword(Vector2 pos, bool isLookingLeft)
@@ -35,12 +35,12 @@ void Sword::UseSword(Vector2 pos, bool isLookingLeft)
 	if (isLookingLeft) {
 		m_anim->Set2DPosition(Vector2(pos.x - 90.0f, pos.y));
 		m_anim->SetRotation(Vector3(0, 3.14f, 0));
-		m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
+		m_hitbox->UpdateBox(Vector2(m_anim->m_position.x - 60, m_anim->m_position.y), Vector2(m_anim->m_iWidth - 60, m_anim->m_iHeight));
 	}
 	else {
 		m_anim->Set2DPosition(Vector2(pos.x + 90.0f, pos.y));
 		m_anim->SetRotation(Vector3(0, 0, 0));
-		m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
+		m_hitbox->UpdateBox(Vector2(m_anim->m_position.x + 60, m_anim->m_position.y), Vector2(m_anim->m_iWidth + 60, m_anim->m_iHeight));
 	}
 }
 

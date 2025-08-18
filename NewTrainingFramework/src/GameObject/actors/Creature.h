@@ -44,7 +44,7 @@ public:
 	void Die();
 
 	virtual void Draw();
-	void Update(GLfloat deltaTime);
+	virtual void Update(GLfloat deltaTime);
 	void Update2DPosition();
 	virtual void Move(float deltaTime, Vector2 heroPos);
 };

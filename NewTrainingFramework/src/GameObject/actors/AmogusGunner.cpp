@@ -93,6 +93,7 @@ void AmogusGunner::Die()
 // for gunner this function also decides firing behavior
 void AmogusGunner::Move(float deltaTime, Vector2 heroPos)
 {
+	// fix this to stop upon reaching a certain spot on the map
 	if ((std::abs(heroPos.x - this->m_anim->m_position.x) > 50.0f 
 		//&& std::abs(heroPos.y - this->m_anim->m_position.x) > 100.0f
 		)

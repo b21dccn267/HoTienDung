@@ -28,8 +28,8 @@ public:
 	void Idle() override;
 	void Die();
 	void Move(float deltaTime, Vector2 heroPos) override;
-	void Draw();
-	void Update(float deltaTime);
+	void Draw() override;
+	void Update(float deltaTime) override;
 
 private: // ensures unused functions cannot be called
 	void Jump() override {};

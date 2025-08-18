@@ -103,3 +103,13 @@ void Skeleton::Move(float deltaTime, Vector2 heroPos)
 {
 	Creature::Move(deltaTime, heroPos);
 }
+
+void Skeleton::Draw()
+{
+	Creature::Draw();
+}
+
+void Skeleton::Update(float deltaTime)
+{
+	Creature::Update(deltaTime);
+}
