@@ -1,7 +1,7 @@
 ﻿#Model 1
 ID 0
 FILE "../Resources/2d/Models/Sprite2D.nfg"
-#2DTexture 44
+#2DTexture 45
 ID 0
 FILE "../Resources/2d/Textures/gui/menu-soundon.tga"
 TILING GL_REPEAT
@@ -133,6 +133,9 @@ FILE "../Resources/2d/Textures/game/2.tga"
 TILING GL_REPEAT
 ID 43
 FILE "../Resources/2d/Textures/game/3.tga"
+TILING GL_REPEAT
+ID 44
+FILE "../Resources/2d/Textures/gui/Restart.tga"
 TILING GL_REPEAT
 #Shader 3
 ID 0

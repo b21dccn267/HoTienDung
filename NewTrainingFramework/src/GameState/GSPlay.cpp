@@ -15,6 +15,7 @@
 #include "GameStateMachine.h"
 #include "Globals.h"
 #include "GSPlay.h"
+#include "GameOver.h"
 #include <SDL2/SDL_mixer.h>
 
 void GSPlay::Init()
@@ -51,9 +52,9 @@ void GSPlay::Init()
     m_healthBar2->m_health = m_hero2->m_health;
 
     m_timer = std::make_shared<Timer>();
-    m_timer->StartTimer(60);
+    m_timer->StartTimer(10);
     m_upgradeMenu = std::make_shared<WndUpgrade>();
-
+    m_upgradeMenu->m_isActive = true;
 
 
     // pause button
@@ -106,6 +107,7 @@ void GSPlay::Resume()
     }
 }
 
+
 void GSPlay::Draw()
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -137,8 +139,8 @@ void GSPlay::Draw()
 
 void GSPlay::Update(float deltaTime)
 {
-    // remove this later
-    m_upgradeMenu->m_isActive = false;
+    //// remove this later
+    //m_upgradeMenu->m_isActive = false;
     //
     if (m_isPaused) {
         return;
@@ -281,6 +283,12 @@ void GSPlay::Update(float deltaTime)
         // do stuff here, such as:
         // no spawning creatures
         // friendly fire on
+    }
+
+    if (m_timer->m_time <= 0.0f) {
+        GameOver::s_pendingCustomText = "Time's Up!"; // Set text trước
+        GameStateMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
+        return;
     }
 }
 

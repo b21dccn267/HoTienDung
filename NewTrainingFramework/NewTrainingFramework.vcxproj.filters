@@ -201,11 +201,11 @@
     <ClCompile Include="src\GameObject\ui\WndUpgrade.cpp">
       <Filter>Source Files\Objects\UI</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\ui\WndGameOver.cpp">
-      <Filter>Source Files\Objects\UI</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameObject\actors\CrProjectile.cpp">
       <Filter>Source Files\Objects\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameState\GameOver.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,11 +326,14 @@
     <ClInclude Include="src\GameObject\utils\Timer.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\ui\WndGameOver.h">
-      <Filter>Header Files\Objects\UI</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameObject\actors\CrProjectile.h">
       <Filter>Header Files\Objects\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameState\GameOver.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
