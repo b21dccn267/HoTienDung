@@ -159,6 +159,7 @@ assets used
 		https://bdragon1727.itch.io/fire-pixel-bullet-16x16 hero projectile
 	ui
 		https://toffeecraft.itch.io/ui-user-interface-mega-pack healthbar
+		https://clockworkraven.itch.io/raven-fantasy-icons upgrade icon (not used rn)
 	sfx
 		bgm 
 			fots stalemate
