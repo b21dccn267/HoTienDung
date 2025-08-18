@@ -1,28 +1,41 @@
 ﻿#include "AmogusGunner.h"
 #include "GameManager/ResourceManager.h"
-#include "GameObject/utils/CreatureController.h"
 #include "GameObject/items/weapons/CreatureGun.h"
-#include <vector>
+#include "GameObject/utils/CreatureController.h"
+#include "Globals.h"
 #include <memory>
-
+#include <vector>
 
 AmogusGunner::AmogusGunner() : Creature()
 {
-	m_creatureType = 1;
 
-	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(42);
-	m_anim->SetSize(200, 200);
-
-	m_anim->m_numFramesPerRow = 4;
-	m_anim->m_numFramesPerColumn = 1;
-	m_isDie = false;
-
-	m_isOnCooldown = false;
-	m_canMove = true;
 }
 
 void AmogusGunner::Init()
 {
+	m_creatureType = 1;
+	m_isMoveLeft = false;
+	m_isMoveRight = false;
+	m_isMoveUp = false;
+	m_isMoveDown = false;
+
+	auto model = ResourceManager::GetInstance()->GetModel(0);
+	auto texture = ResourceManager::GetInstance()->GetTexture(42);
+	auto shader = ResourceManager::GetInstance()->GetShader(2);
+	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 1);
+	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
+	anim->SetSize(200, 200);
+	anim->m_numFramesPerRow = 4;
+	anim->m_numFramesPerColumn = 1;
+	m_anim = anim;
+
+	m_hitbox = std::make_shared<AABB>();
+	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
+
+	m_isDie = false;
+	m_isOnCooldown = false;
+	m_canMove = true;
+
 	m_crGun = std::make_shared<CreatureGun>();
 	m_crGun->Init();
 }

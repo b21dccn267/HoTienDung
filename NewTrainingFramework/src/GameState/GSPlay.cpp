@@ -3,6 +3,7 @@
 #include "GameManager/ResourceManager.h"
 #include "GameManager/SceneManager.h"
 #include "GameManager/SoundManager.h"
+#include "GameObject/actors/AmogusGunner.h"
 #include "GameObject/actors/Skeleton.h"
 #include "GameObject/core/Animation.h"
 #include "GameObject/core/TextRenderer.h"
@@ -10,17 +11,16 @@
 #include "GameObject/ui/WndUpgrade.h"
 #include "GameObject/utils/CreatureController.h"
 #include "GameObject/utils/Timer.h"
-#include "GameState/GameButton.h"
+#include "GameState/GameButton.h" 
 #include "GameStateMachine.h"
 #include "Globals.h"
 #include "GSPlay.h"
 #include <SDL2/SDL_mixer.h>
-#include "GameObject/actors/AmogusGunner.h"
 
 void GSPlay::Init()
 {
     SoundManager::GetInstance()->LoadMusic("background_music", "../Resources/Sfx/Stalemate.wav");
-    SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/vine-boom.wav");
+    SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/button_click.wav");
     SoundManager::GetInstance()->LoadSfx("move_sound", "../Resources/Sfx/vine-boom.wav");
 
     // background
@@ -38,6 +38,7 @@ void GSPlay::Init()
     m_hero->LookBottomRight();
 
     m_hero2 = std::make_shared<Creature>();
+    m_hero2->Init();
     m_hero2->LookLeft();
 
     m_creatureSpawner = std::make_shared<CreatureSpawner>();
@@ -291,9 +292,7 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 
 void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
-    //printf("gsPlayMouseEvent\n");
-
-    //printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
+    printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
 
     InputManager::GetInstance()->m_mouseX = x;
     InputManager::GetInstance()->m_mouseY = y;

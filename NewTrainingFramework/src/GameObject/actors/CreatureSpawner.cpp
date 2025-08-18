@@ -21,6 +21,7 @@ CreatureSpawner::CreatureSpawner()
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {
 		if (i < m_creaturePool.capacity() / 2)
+		//if(false)
 		{
 			auto temp = std::make_unique<Skeleton>();
 			temp->m_hitbox->UpdateBox(Vector2(0, 0), Vector2(0, 0));
@@ -58,13 +59,14 @@ void CreatureSpawner::SpawnCreature()
 	auto creature = std::move(m_creaturePool[number % m_creaturePool.size()]);
 	//creature->Init();
 	//creature->LookDown();	// danger: not all creatures have this function
+	creature->m_health = 10;
 	creature->Idle();
 
 
 
 	switch (number % 7) {
 	case 0:
-		creature->m_anim->Set2DPosition(Vector2(10.0f, -10.0f));
+		creature->m_anim->Set2DPosition(Vector2(110.0f, 150.0f));
 		break;
 	case 1:
 		creature->m_anim->Set2DPosition(Vector2(300.0f, -10.0f));
@@ -76,7 +78,7 @@ void CreatureSpawner::SpawnCreature()
 		creature->m_anim->Set2DPosition(Vector2(150.0f, 750.0f));
 		break;
 	case 4:
-		creature->m_anim->Set2DPosition(Vector2(700.0f, 800.0f));
+		creature->m_anim->Set2DPosition(Vector2(1000.0f, 600.0f));
 		break;
 	case 5:
 		creature->m_anim->Set2DPosition(Vector2(420.0f, 800.0f));
@@ -139,6 +141,7 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::s
 				if (AABB::IsCollideRR(x->m_hitbox, projectile->m_hitbox)) {
 					printf("isCollideWithProjectile\n");
 					x->m_health = 0;
+					x->Die();
 					break;
 				}
 			}

@@ -6,7 +6,7 @@
 class CreatureController;
 class CreatureGun;
 
-class AmogusGunner : public Creature, public std::enable_shared_from_this<AmogusGunner>
+class AmogusGunner : public Creature
 {
 public:
 	int m_id;
@@ -20,9 +20,6 @@ public:
 
 	AmogusGunner();
 	void Init();
-	std::shared_ptr<AmogusGunner> getPtr() {
-		return shared_from_this();
-	}
 
 	void LookRight() override;
 	void LookLeft() override;
