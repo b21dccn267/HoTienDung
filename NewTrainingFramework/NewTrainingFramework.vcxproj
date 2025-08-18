@@ -199,6 +199,7 @@
     <ClCompile Include="src\GameState\GameButton.cpp" />
     <ClCompile Include="src\GameState\GameStateBase.cpp" />
     <ClCompile Include="src\GameState\GameStateMachine.cpp" />
+    <ClCompile Include="src\GameState\GSGameOver.cpp" />
     <ClCompile Include="src\GameState\GSIntro.cpp" />
     <ClCompile Include="src\GameState\GSMenu.cpp" />
     <ClCompile Include="src\GameState\GSPause.cpp" />
@@ -210,7 +211,6 @@
     <ClCompile Include="src\GameObject\items\weapons\Sword.cpp" />
     <ClCompile Include="src\GameObject\utils\Timer.cpp" />
     <ClCompile Include="src\GameObject\ui\WndUpgrade.cpp" />
-    <ClCompile Include="src\GameObject\ui\WndGameOver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\actors\hero\CrHero.h" />
@@ -238,6 +238,7 @@
     <ClInclude Include="src\GameState\GameButton.h" />
     <ClInclude Include="src\GameState\GameStateBase.h" />
     <ClInclude Include="src\GameState\GameStateMachine.h" />
+    <ClInclude Include="src\GameState\GSGameOver.h" />
     <ClInclude Include="src\GameState\GSIntro.h" />
     <ClInclude Include="src\GameState\GSMenu.h" />
     <ClInclude Include="src\GameState\GSPause.h" />
@@ -253,7 +254,6 @@
     <ClInclude Include="src\GameObject\items\weapons\Sword.h" />
     <ClInclude Include="src\GameObject\utils\Timer.h" />
     <ClInclude Include="src\GameObject\ui\WndUpgrade.h" />
-    <ClInclude Include="src\GameObject\ui\WndGameOver.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\AnimationShaderFS.fs" />

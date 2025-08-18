@@ -201,11 +201,11 @@
     <ClCompile Include="src\GameObject\actors\CrProjectile.cpp">
       <Filter>Source Files\Objects\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\actors\hero\CrHero.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\GameState\GSGameOver.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameState\GameOver.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\GameObject\actors\hero\CrHero.cpp">
+      <Filter>Source Files\Objects\Actors\Hero</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,14 +326,11 @@
     <ClInclude Include="src\GameObject\actors\CrProjectile.h">
       <Filter>Header Files\Objects\Actors</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameState\GSGameOver.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
     <ClInclude Include="src\GameObject\actors\hero\CrHero.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameState\GameOver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Objects\Actors\Hero</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

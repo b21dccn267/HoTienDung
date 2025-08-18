@@ -3,7 +3,7 @@
 #include "GSMenu.h"
 #include "GSPause.h"
 #include "GSSettings.h"
-#include "GameOver.h"
+#include "GSGameOver.h"
 #include "GSPlay.h"
 #include <memory>
 
@@ -32,6 +32,6 @@ std::shared_ptr<GameStateBase> GameStateBase::CreateState(StateType type)
 	case StateType::STATE_PAUSE: 
 		return std::make_shared<GSPause>();
 	case StateType::STATE_GAMEOVER:
-		return std::make_shared<GameOver>();
+		return std::make_shared<GSGameOver>();
 	}
 }

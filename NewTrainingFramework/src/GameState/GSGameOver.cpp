@@ -4,11 +4,11 @@
 #include "GameObject/core/Texture.h"
 #include "GameStateMachine.h"
 #include "Globals.h"
-#include "GameOver.h"
+#include "GSGameOver.h"
 
-std::string GameOver::s_pendingCustomText = "";
+std::string GSGameOver::s_pendingCustomText = "";
 
-void GameOver::Init()
+void GSGameOver::Init()
 {
 	m_gameOverObjects.reserve(8);
 	m_gameOverButtons.reserve(8);
@@ -75,19 +75,19 @@ void GameOver::Init()
 	printf("Game Over init\n");
 }
 
-void GameOver::Pause()
+void GSGameOver::Pause()
 {
 }
 
-void GameOver::Exit()
+void GSGameOver::Exit()
 {
 }
 
-void GameOver::Resume()
+void GSGameOver::Resume()
 {
 }
 
-void GameOver::Draw()
+void GSGameOver::Draw()
 {
 	for (auto& obj : m_gameOverObjects) {
 		obj->Draw();
@@ -97,7 +97,7 @@ void GameOver::Draw()
 	}
 }
 
-void GameOver::Update(float deltaTime)
+void GSGameOver::Update(float deltaTime)
 {
 	for (auto& obj : m_gameOverObjects) {
 		obj->Update(deltaTime);
@@ -107,7 +107,7 @@ void GameOver::Update(float deltaTime)
 	}
 }
 
-void GameOver::HandleKeyEvent(unsigned char key, bool bIsPressed)
+void GSGameOver::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 	if (bIsPressed) {
 		switch (key) {
@@ -122,7 +122,7 @@ void GameOver::HandleKeyEvent(unsigned char key, bool bIsPressed)
 	}
 }
 
-void GameOver::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
+void GSGameOver::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
 	for (auto& btn : m_gameOverButtons) {
 		if (btn->HandleTouchEvents(x, y, bIsPressed)) {
@@ -131,13 +131,13 @@ void GameOver::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 	}
 }
 
-void GameOver::Cleanup()
+void GSGameOver::Cleanup()
 {
 	m_gameOverObjects.clear();
 	m_gameOverButtons.clear();
 }
 
-void GameOver::OnRestartButtonClick()
+void GSGameOver::OnRestartButtonClick()
 {
 	// Pop game over state and restart the game
 	GameStateMachine::GetInstance()->PopState();
@@ -145,7 +145,7 @@ void GameOver::OnRestartButtonClick()
 	// GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY);
 }
 
-void GameOver::OnMainMenuButtonClick()
+void GSGameOver::OnMainMenuButtonClick()
 {
 	// Pop game over state and go to main menu
 	GameStateMachine::GetInstance()->PopState();
@@ -153,6 +153,6 @@ void GameOver::OnMainMenuButtonClick()
 	// GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU);
 }
 
-GameOver::~GameOver()
+GSGameOver::~GSGameOver()
 {
 }

@@ -6,15 +6,15 @@
 #include <vector>
 #include <string>
 
-class GameOver : public GameStateBase
+class GSGameOver : public GameStateBase
 {
 public:
 	std::vector<std::shared_ptr<Object>> m_gameOverObjects;
 	std::vector<std::shared_ptr<GameButton>> m_gameOverButtons;
 	static std::string s_pendingCustomText;
 
-	GameOver() : GameStateBase(StateType::STATE_GAMEOVER) {}
-	GameOver(const std::string& customText) : GameStateBase(StateType::STATE_GAMEOVER), m_customText(customText) {}
+	GSGameOver() : GameStateBase(StateType::STATE_GAMEOVER) {}
+	GSGameOver(const std::string& customText) : GameStateBase(StateType::STATE_GAMEOVER), m_customText(customText) {}
 	void Init() override;
 	void Pause() override;
 	void Exit() override;
@@ -25,7 +25,7 @@ public:
 	void HandleMouseEvent(GLint x, GLint y, bool bIsPressed) override;
 	void Cleanup() override;
 
-	~GameOver() override;
+	~GSGameOver() override;
 
 private:
 	std::string m_customText; 
