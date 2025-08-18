@@ -1,4 +1,4 @@
-#include "CrProjectile.h"
+﻿#include "CrProjectile.h"
 #include "GameManager/ResourceManager.h"
 #include "GameObject/actors/hero/Hero.h"
 #include "GameObject/items/weapons/Gun.h"
@@ -35,7 +35,7 @@ void CrProjectile::ProjLoop()
 
 void CrProjectile::SetProjectile(Vector3 startPos, Vector3 endPos)
 {
-	this->Set2DPosition(Vector2(startPos.x, startPos.y));
+	m_anim->Set2DPosition(Vector2(startPos.x, startPos.y));
 
 	// calculate direction of mouse and player.
 	direction = (endPos - startPos).Normalize();
@@ -46,8 +46,8 @@ void CrProjectile::Update(GLfloat deltaTime)
 	m_anim->CustomUpdate(deltaTime);
 	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 
-	m_position.x += direction.x * m_velocity * deltaTime;
-	m_position.y += direction.y * m_velocity * deltaTime;
+	m_anim->m_position.x += direction.x * m_velocity * deltaTime;
+	m_anim->m_position.y += direction.y * m_velocity * deltaTime;
 
-	m_anim->Set2DPosition(Vector2(m_position.x, m_position.y));
+	m_anim->Set2DPosition(Vector2(m_anim->m_position.x, m_anim->m_position.y));
 }

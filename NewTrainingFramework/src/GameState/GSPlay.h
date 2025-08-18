@@ -13,6 +13,7 @@
 #include <memory>
 #include <vector>
 
+class CrHero;
 
 class GSPlay : public GameStateBase
 {
@@ -28,7 +29,8 @@ public:
 
     // game actors 
     std::shared_ptr<Hero> m_hero;
-    std::shared_ptr<Creature> m_hero2;
+    //std::shared_ptr<Creature> m_hero2;
+    std::shared_ptr<CrHero> m_hero2;
     std::shared_ptr<CreatureSpawner> m_creatureSpawner;
 
     // game hud objects

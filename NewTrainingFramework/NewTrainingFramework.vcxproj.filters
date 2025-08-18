@@ -162,9 +162,6 @@
     <ClCompile Include="src\GameObject\actors\hero\Hero.cpp">
       <Filter>Source Files\Objects\Actors\Hero</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\actors\hero\Belongings.cpp">
-      <Filter>Source Files\Objects\Actors\Hero</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameObject\actors\CreatureSpawner.cpp">
       <Filter>Source Files\Objects\Actors</Filter>
     </ClCompile>
@@ -206,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="src\GameObject\actors\CrProjectile.cpp">
       <Filter>Source Files\Objects\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\actors\hero\CrHero.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -272,9 +272,6 @@
     <ClInclude Include="src\GameObject\actors\hero\Hero.h">
       <Filter>Header Files\Objects\Actors\Hero</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\actors\hero\Belongings.h">
-      <Filter>Header Files\Objects\Actors\Hero</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameObject\actors\Creature.h">
       <Filter>Header Files\Objects\Actors</Filter>
     </ClInclude>
@@ -331,6 +328,9 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\actors\CrProjectile.h">
       <Filter>Header Files\Objects\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\actors\hero\CrHero.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

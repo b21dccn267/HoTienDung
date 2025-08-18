@@ -10,15 +10,11 @@ class Vector2;
 class CreatureGun
 {
 public:
-	//std::shared_ptr<AmogusGunner> m_owner;
-	//std::vector<std::unique_ptr<CrProjectile>> m_projectilePool;
+	std::vector<std::unique_ptr<CrProjectile>> m_projectilePool;
 	std::vector<std::unique_ptr<CrProjectile>> m_projectileUsed;
 	bool m_isOnCooldown;
 	float m_cooldownTimer;
 	float m_cooldown;
-
-	// no obj pool 
-	int m_projectileCount;
 
 	CreatureGun();
 	void Init();

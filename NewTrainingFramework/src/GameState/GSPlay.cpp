@@ -16,6 +16,7 @@
 #include "Globals.h"
 #include "GSPlay.h"
 #include <SDL2/SDL_mixer.h>
+#include "GameObject/actors/hero/CrHero.h"
 
 void GSPlay::Init()
 {
@@ -35,11 +36,11 @@ void GSPlay::Init()
     // actors
     m_hero = std::make_shared<Hero>();
     m_hero->Init();
-    m_hero->LookBottomRight();
+    m_hero->LookDown();
 
-    m_hero2 = std::make_shared<Creature>();
+    m_hero2 = std::make_shared<CrHero>();
     m_hero2->Init();
-    m_hero2->LookLeft();
+    m_hero2->LookDown();
 
     m_creatureSpawner = std::make_shared<CreatureSpawner>();
 

@@ -168,6 +168,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject\actors\hero\CrHero.cpp" />
     <ClCompile Include="src\GameObject\actors\CrProjectile.cpp" />
     <ClCompile Include="src\GameObject\actors\AmogusGunner.cpp" />
     <ClCompile Include="src\GameObject\items\weapons\CreatureGun.cpp" />
@@ -177,7 +178,6 @@
     <ClCompile Include="src\GameManager\InputManager.cpp" />
     <ClCompile Include="src\GameObject\actors\Skeleton.cpp" />
     <ClCompile Include="src\GameObject\actors\CreatureSpawner.cpp" />
-    <ClCompile Include="src\GameObject\actors\hero\Belongings.cpp" />
     <ClCompile Include="src\GameObject\items\weapons\Gun.cpp" />
     <ClCompile Include="src\GameObject\actors\Projectile.cpp">
       <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">EditAndContinue</DebugInformationFormat>
@@ -209,6 +209,7 @@
     <ClCompile Include="src\GameObject\ui\WndGameOver.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject\actors\hero\CrHero.h" />
     <ClInclude Include="src\GameObject\actors\CrProjectile.h" />
     <ClInclude Include="src\GameObject\actors\AmogusGunner.h" />
     <ClInclude Include="src\GameObject\items\weapons\CreatureGun.h" />
@@ -218,7 +219,6 @@
     <ClInclude Include="src\GameManager\InputManager.h" />
     <ClInclude Include="src\GameObject\actors\Skeleton.h" />
     <ClInclude Include="src\GameObject\actors\CreatureSpawner.h" />
-    <ClInclude Include="src\GameObject\actors\hero\Belongings.h" />
     <ClInclude Include="src\GameObject\items\weapons\Gun.h" />
     <ClInclude Include="src\GameObject\actors\Projectile.h" />
     <ClInclude Include="src\GameObject\actors\Creature.h" />

@@ -8,7 +8,7 @@
 #include <memory>
 #include <cstdlib> 
 #include <ctime>
-
+#include "GameObject/actors/hero/CrHero.h"
 
 CreatureSpawner::CreatureSpawner()
 {
@@ -30,7 +30,6 @@ CreatureSpawner::CreatureSpawner()
 		else {
 			auto temp = std::make_unique<AmogusGunner>();
 			temp->Init();
-			temp->m_anim->Set2DPosition(Vector2(0, 0));
 			temp->m_hitbox->UpdateBox(Vector2(0, 0), Vector2(0, 0));
 			temp->LookRight();
 			m_creaturePool.emplace_back(std::move(temp));
@@ -98,7 +97,7 @@ void CreatureSpawner::DespawnCreature(std::unique_ptr<Creature> creature)
 	printf("killed creature\n");
 }
 
-void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::shared_ptr<Creature> hero2)
+void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::shared_ptr<CrHero> hero2)
 {
 	// check conditions for removal
 	for (auto& x : m_creatureActive) {
@@ -152,7 +151,9 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::s
 		
 		// creature updates
 		x->Move(deltaTime, Vector2(hero->m_anim->m_position.x, hero->m_anim->m_position.y));
-		x->Update2DPosition();
+		if (x->m_health > 0) {
+			x->Update2DPosition();
+		}
 		x->Update(deltaTime);
 	}
 

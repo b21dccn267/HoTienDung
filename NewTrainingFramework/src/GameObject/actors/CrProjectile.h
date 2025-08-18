@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "GameObject/core/Object.h"
 #include "GameManager/ResourceManager.h"
 #include "GameObject/utils/AABB.h"
@@ -7,10 +7,9 @@
 class CreatureGun;
 class Animation;
 
-class CrProjectile : public Object
+class CrProjectile
 {
 public:
-	std::shared_ptr<CreatureGun> m_owner;
 	std::shared_ptr<Animation> m_anim;
 
 	bool m_isActive;
