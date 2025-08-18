@@ -2,6 +2,7 @@
 #include "GameManager/ResourceManager.h"
 #include "GameObject/core/Animation.h"
 #include "GameObject/items/weapons/Gun.h"
+#include "GameObject/items/weapons/Sword.h"
 #include "GameObject/utils/AABB.h"
 #include "Globals.h"
 
@@ -9,6 +10,7 @@ CrHero::CrHero()
 {
 	m_health = 10;
 	m_attack = 1;
+	m_isLookingLeft = true;
 
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(11);
@@ -23,6 +25,8 @@ CrHero::CrHero()
 
 	m_hitbox = std::make_shared<AABB>();
 	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
+
+	m_sword = std::make_shared<Sword>();
 }
 
 void CrHero::Init()
@@ -156,12 +160,14 @@ void CrHero::Die()
 void CrHero::Draw()
 {
 	m_anim->CustomDraw();
+	m_sword->Draw();
 }
 
 void CrHero::Update(GLfloat deltaTime)
 {
 	m_anim->CustomUpdate(deltaTime);
 	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
+	m_sword->Update(deltaTime);
 }
 
 void CrHero::Update2DPosition()

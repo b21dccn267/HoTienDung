@@ -17,7 +17,8 @@ public:
 
 	int m_health;
 	int m_attack;
-
+	// for sword thing
+	bool m_isLookingLeft;
 
 
 	CrHero();

@@ -4,10 +4,12 @@
 #include "GameManager/SceneManager.h"
 #include "GameManager/SoundManager.h"
 #include "GameObject/actors/AmogusGunner.h"
+#include "GameObject/actors/hero/CrHero.h"
 #include "GameObject/actors/Skeleton.h"
 #include "GameObject/core/Animation.h"
 #include "GameObject/core/TextRenderer.h"
 #include "GameObject/core/Texture.h"
+#include "GameObject/items/weapons/Sword.h"
 #include "GameObject/ui/WndUpgrade.h"
 #include "GameObject/utils/CreatureController.h"
 #include "GameObject/utils/Timer.h"
@@ -16,7 +18,6 @@
 #include "Globals.h"
 #include "GSPlay.h"
 #include <SDL2/SDL_mixer.h>
-#include "GameObject/actors/hero/CrHero.h"
 
 void GSPlay::Init()
 {
@@ -190,6 +191,7 @@ void GSPlay::Update(float deltaTime)
     if (InputManager::GetInstance()->keys[0x25]) {
         m_hero2->m_anim->m_position.x -= 130.0f * deltaTime;
         m_hero2->LookLeft();
+        m_hero2->m_isLookingLeft = true;
     }
     if (InputManager::GetInstance()->keys[0x28]) {
         m_hero2->m_anim->m_position.y += 130.0f * deltaTime;
@@ -198,6 +200,7 @@ void GSPlay::Update(float deltaTime)
     if (InputManager::GetInstance()->keys[0x27]) {
         m_hero2->m_anim->m_position.x += 130.0f * deltaTime;
         m_hero2->LookRight();
+        m_hero2->m_isLookingLeft = false;
     }
     if (InputManager::GetInstance()->keys[0x25] &&
         InputManager::GetInstance()->keys[0x26]) {
@@ -214,6 +217,12 @@ void GSPlay::Update(float deltaTime)
     if (InputManager::GetInstance()->keys[0x27] &&
         InputManager::GetInstance()->keys[0x28]) {
         m_hero2->LookBottomRight();
+    }
+    // sword attack
+    if (InputManager::GetInstance()->keys[0x20]) {
+        if (m_hero2->m_sword->m_isOnCooldown == false) {
+            m_hero2->m_sword->UseSword(Vector2(m_hero2->m_anim->m_position.x, m_hero2->m_anim->m_position.y), m_hero2->m_isLookingLeft);
+        }
     }
 
 
@@ -287,7 +296,7 @@ void GSPlay::Update(float deltaTime)
 
 void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-    //printf("0x%02X\n", key);
+    printf("0x%02X\n", key);
     InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 

@@ -142,7 +142,11 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::s
 				}
 			}
 			// if collide with hero2 projectile
-			// add 
+			if (AABB::IsCollideRR(x->m_hitbox, hero2->m_sword->m_hitbox)) {
+				printf("isCollideWithSword\n");
+				x->m_health = 0;
+				x->Die();
+			}
 
 
 			// there should be a creature projectile check here
