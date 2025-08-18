@@ -92,7 +92,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	CleanUp();
 
 	//identifying memory leaks
-	MemoryDump();
+	//MemoryDump();
 	printf("Press any key...\n");
 	_getch();
 

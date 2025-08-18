@@ -43,7 +43,7 @@ public:
 	virtual void Idle();
 	void Die();
 
-	void Draw();
+	virtual void Draw();
 	void Update(GLfloat deltaTime);
 	void Update2DPosition();
 	virtual void Move(float deltaTime, Vector2 heroPos);

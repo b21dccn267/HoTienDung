@@ -55,10 +55,7 @@ void CreatureSpawner::SpawnCreature()
 	);
 
 	number = std::rand();
-	//auto creature = std::move(m_creaturePool[0]);
 	auto creature = std::move(m_creaturePool[number % m_creaturePool.size()]);
-	//creature->Init();
-	//creature->LookDown();	// danger: not all creatures have this function
 	creature->m_health = 10;
 	creature->Idle();
 
@@ -66,7 +63,7 @@ void CreatureSpawner::SpawnCreature()
 
 	switch (number % 7) {
 	case 0:
-		creature->m_anim->Set2DPosition(Vector2(110.0f, 150.0f));
+		creature->m_anim->Set2DPosition(Vector2(-10.0f, 150.0f));
 		break;
 	case 1:
 		creature->m_anim->Set2DPosition(Vector2(300.0f, -10.0f));
@@ -84,7 +81,7 @@ void CreatureSpawner::SpawnCreature()
 		creature->m_anim->Set2DPosition(Vector2(420.0f, 800.0f));
 		break;
 	case 6:
-		creature->m_anim->Set2DPosition(Vector2(720.0f, -10.0f));
+		creature->m_anim->Set2DPosition(Vector2(960.0f, 150.0f));
 		break;
 	}
 

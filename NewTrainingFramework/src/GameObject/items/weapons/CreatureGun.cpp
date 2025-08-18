@@ -27,6 +27,7 @@ void CreatureGun::Init()
 	m_projectileUsed.reserve(3);
 	for (int i = 0; i < m_projectileUsed.capacity(); i++) {
 		auto temp = std::make_unique<CrProjectile>();
+		temp->ProjLoop();
 		m_projectileUsed.emplace_back(std::move(temp));
 	}
 	m_projectileCount = 3;
