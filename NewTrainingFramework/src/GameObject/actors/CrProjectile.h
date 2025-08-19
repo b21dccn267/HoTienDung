@@ -15,7 +15,6 @@ public:
 	bool m_isActive;
 	Vector2 m_startPos;
 	Vector2 m_endPos;
-	float m_moveSpeed = 50.0f;
 
 	std::shared_ptr<AABB> m_hitbox;
 
@@ -24,7 +23,7 @@ public:
 	void SetProjectile(Vector3 startPos, Vector3 endPos);
 	void Update(GLfloat deltaTime);
 	float m_fTimePassed;
-	float m_velocity = 300.0f;
+	float m_velocity = 150.0f;
 	Vector3 direction;
 };
 

@@ -22,7 +22,6 @@ CreatureSpawner::CreatureSpawner()
 
 	for (int i = 0; i < m_creaturePool.capacity(); i++) {
 		if (i < m_creaturePool.capacity() / 2)
-		//if(false)
 		{
 			auto temp = std::make_unique<Skeleton>();
 			temp->m_hitbox->UpdateBox(Vector2(0, 0), Vector2(0, 0));
@@ -59,8 +58,7 @@ void CreatureSpawner::SpawnCreature()
 	creature->m_health = 10;
 	creature->Idle();
 
-
-
+	// should seperate left and right hand side spawns
 	switch (number % 7) {
 	case 0:
 		creature->m_anim->Set2DPosition(Vector2(-10.0f, 150.0f));
@@ -165,7 +163,16 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::s
 				x->Die();
 			}
 
-
+			if (x->m_creatureType == 1) {
+				if (x->DoDerived(hero->m_hitbox))
+				{
+					hero->m_health--;
+				}
+				if (x->DoDerived(hero2->m_hitbox))
+				{
+					hero2->m_health--;
+				}
+			}
 			// there should be a creature projectile check here
 		}
 		

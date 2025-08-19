@@ -18,8 +18,9 @@ public:
 
 	CreatureGun();
 	void Init();
-	void SpawnProjectile(Vector2 startPos, Vector2 endPos);
+	std::unique_ptr<CrProjectile> SpawnProjectile(Vector2 startPos, Vector2 endPos);
 	void DespawnProjectile(std::unique_ptr<CrProjectile> projectile);
 	void Draw();
 	void Update(float deltaTime);
+	void CrFire(Vector2 startPos, Vector2 endPos);
 };

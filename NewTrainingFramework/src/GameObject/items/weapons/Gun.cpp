@@ -35,12 +35,11 @@ std::unique_ptr<Projectile> Gun::AcquireProjectile(std::shared_ptr<Hero> hero)
 		),
 		m_projectilePool.end()
 	);
-	//printf("%d\n", m_projectilePool.size());
 
-	//auto owner = m_owner;
 	for (auto& x : m_projectilePool) {
 		// set projectile to hero pos
-		x->SetProjectile(Vector3(hero->m_anim->m_position.x, hero->m_anim->m_position.y,0)
+		x->SetProjectile(Vector3(hero->m_anim->m_position.x, 
+								 hero->m_anim->m_position.y,0)
 						,Vector3(m_fMouseX, m_fMouseY,0));
 		x->ProjLoop();
 		return std::move(x);
@@ -63,7 +62,6 @@ void Gun::Fire(std::shared_ptr<Hero> hero)
 void Gun::Draw()
 {
 	for (auto& x : m_projectileUsed)
-		//x->Draw();
 		x->m_anim->CustomDraw();
 }
 

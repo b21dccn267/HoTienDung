@@ -1,6 +1,6 @@
 ﻿#include "GameManager/ResourceManager.h"
-#include "GameObject/items/weapons/Gun.h"
 #include "GameObject/actors/hero/Hero.h"
+#include "GameObject/items/weapons/Gun.h"
 #include "GameObject/utils/AABB.h"
 #include "Globals.h"
 #include "Projectile.h"

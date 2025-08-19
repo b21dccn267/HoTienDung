@@ -9,16 +9,14 @@
 
 CrProjectile::CrProjectile()
 {
-	m_isActive = false;
-
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(43);
+	auto texture = ResourceManager::GetInstance()->GetTexture(46);
 	auto shader = ResourceManager::GetInstance()->GetShader(2);
 	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 0);
-	anim->m_numFramesPerRow = 4;
+	anim->m_numFramesPerRow = 5;
 	anim->m_numFramesPerColumn = 1;
 
-	anim->SetSize(40, 40);
+	anim->SetSize(20, 20);
 	m_fTimePassed = 0.0f;
 
 	m_anim = anim;
@@ -30,7 +28,7 @@ CrProjectile::CrProjectile()
 void CrProjectile::ProjLoop()
 {
 	m_anim->SetCustomFrames(std::vector<int>{0, 1, 2, 3});
-	m_anim->m_frameTime = 0.12f;
+	m_anim->m_frameTime = 0.1f;
 }
 
 void CrProjectile::SetProjectile(Vector3 startPos, Vector3 endPos)

@@ -10,9 +10,10 @@ class AmogusGunner : public Creature
 {
 public:
 	int m_id;
-	bool m_isDie;
 
 	bool m_isOnCooldown;
+	float m_cooldownTimer;
+	float m_cooldown;
 	bool m_canMove;
 
 
@@ -30,6 +31,8 @@ public:
 	void Move(float deltaTime, Vector2 heroPos) override;
 	void Draw() override;
 	void Update(float deltaTime) override;
+
+	bool DoDerived(std::shared_ptr<AABB> hitbox) override;
 
 private: // ensures unused functions cannot be called
 	void Jump() override {};

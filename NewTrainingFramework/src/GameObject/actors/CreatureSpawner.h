@@ -12,7 +12,7 @@ class Creature;
 class CreatureSpawner
 {
 public:
-	std::vector<std::unique_ptr<Creature>> m_creaturePool;
+	std::vector<std::unique_ptr<Creature>> m_creaturePool; 
 	std::vector<std::unique_ptr<Creature>> m_creatureActive;
 	bool m_isOnCooldown;
 	float m_cooldownTimer;

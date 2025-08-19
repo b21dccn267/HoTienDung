@@ -1,6 +1,7 @@
 ﻿#include "AmogusGunner.h"
 #include "GameManager/ResourceManager.h"
 #include "GameObject/items/weapons/CreatureGun.h"
+#include "GameObject/utils/AABB.h"
 #include "GameObject/utils/CreatureController.h"
 #include "Globals.h"
 #include <memory>
@@ -24,7 +25,7 @@ void AmogusGunner::Init()
 	auto shader = ResourceManager::GetInstance()->GetShader(2);
 	auto anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 1);
 	anim->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
-	anim->SetSize(200, 200);
+	anim->SetSize(100, 100);
 	anim->m_numFramesPerRow = 4;
 	anim->m_numFramesPerColumn = 1;
 	m_anim = anim;
@@ -32,8 +33,9 @@ void AmogusGunner::Init()
 	m_hitbox = std::make_shared<AABB>();
 	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 
-	m_isDie = false;
 	m_isOnCooldown = false;
+	m_cooldownTimer = 0.0f;
+	m_cooldown = 3.0f;
 	m_canMove = true;
 
 	m_crGun = std::make_shared<CreatureGun>();
@@ -77,7 +79,6 @@ void AmogusGunner::ShootAnimLeft()
 void AmogusGunner::Idle()
 {
 	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(42);
-	m_anim->SetSize(50, 50);
 	m_anim->m_numFramesPerRow = 4;
 	m_anim->m_numFramesPerColumn = 1;
 	m_anim->SetCustomFrames(std::vector<int>{0, 1, 2, 3});
@@ -103,8 +104,7 @@ void AmogusGunner::Move(float deltaTime, Vector2 heroPos)
 	else {
 		m_canMove = false;
 		if (!m_isOnCooldown) {
-			m_crGun->SpawnProjectile(Vector2(m_anim->m_position.x, m_anim->m_position.y), heroPos);
-			printf("baaaaaang\n");
+			m_crGun->CrFire(Vector2(m_anim->m_position.x, m_anim->m_position.y), heroPos);
 			m_isOnCooldown = true;
 		}
 	}
@@ -118,8 +118,25 @@ void AmogusGunner::Draw()
 
 void AmogusGunner::Update(float deltaTime)
 {
-	m_anim->CustomUpdate(deltaTime);
-	m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
-
+	Creature::Update(deltaTime);
 	m_crGun->Update(deltaTime);
+
+	if (m_isOnCooldown == true) {
+		m_cooldownTimer += deltaTime;
+		if (m_cooldownTimer > m_cooldown) {
+			m_isOnCooldown = false;
+			m_cooldownTimer = 0.0f;
+		}
+	}
+}
+
+bool AmogusGunner::DoDerived(std::shared_ptr<AABB> hitbox)
+{
+	for (auto& x : m_crGun->m_projectileUsed) {
+		if (AABB::IsCollideRR(x->m_hitbox, hitbox)) {
+			x->m_anim->Set2DPosition(Vector2(-1000, -1000)); // ensures its removed
+			return true;
+		}
+	}
+	return false;
 }

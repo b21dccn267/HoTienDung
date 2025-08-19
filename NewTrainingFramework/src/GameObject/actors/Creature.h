@@ -47,5 +47,8 @@ public:
 	virtual void Update(GLfloat deltaTime);
 	void Update2DPosition();
 	virtual void Move(float deltaTime, Vector2 heroPos);
+
+	// quick fix for AmogusGunner derived call
+	virtual bool DoDerived(std::shared_ptr<AABB> hitbox) {};
 };
 

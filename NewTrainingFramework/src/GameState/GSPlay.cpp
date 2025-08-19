@@ -20,6 +20,7 @@
 #include "GSGameOver.h"
 #include <SDL2/SDL_mixer.h>
 
+
 void GSPlay::Init()
 {
     InputManager::GetInstance()->m_isInGladiatorMode = false;
@@ -155,15 +156,22 @@ void GSPlay::Update(float deltaTime)
     }
 
     // wasd
-    if (InputManager::GetInstance()->keys[0x57]) {
+    // x 960 y 720
+    if (InputManager::GetInstance()->keys[0x57]
+        && m_hero->m_anim->m_position.y > 0
+        ) {
         m_hero->m_anim->m_position.y -= 130.0f * deltaTime;
         m_hero->LookUp();
     }
-    if (InputManager::GetInstance()->keys[0x41]) {
+    if (InputManager::GetInstance()->keys[0x41]
+        && m_hero->m_anim->m_position.y > 0
+        ) {
         m_hero->m_anim->m_position.x -= 130.0f * deltaTime;
         m_hero->LookLeft();
     }
-    if (InputManager::GetInstance()->keys[0x53]) {
+    if (InputManager::GetInstance()->keys[0x53]
+        && m_hero->m_anim->m_position.y < 720
+        ) {
         m_hero->m_anim->m_position.y += 130.0f * deltaTime;
         m_hero->LookDown();
     }
@@ -314,7 +322,7 @@ void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 
 void GSPlay::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
-    //printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
+    printf("%d %d\n", InputManager::GetInstance()->m_mouseX, InputManager::GetInstance()->m_mouseY);
 
     InputManager::GetInstance()->m_mouseX = x;
     InputManager::GetInstance()->m_mouseY = y;

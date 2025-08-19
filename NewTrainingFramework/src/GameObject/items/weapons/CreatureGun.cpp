@@ -23,7 +23,7 @@ void CreatureGun::Init()
 	}
 }
 
-void CreatureGun::SpawnProjectile(Vector2 startPos, Vector2 endPos)
+std::unique_ptr<CrProjectile> CreatureGun::SpawnProjectile(Vector2 startPos, Vector2 endPos)
 {
 	m_projectilePool.erase(
 		std::remove_if(
@@ -34,11 +34,15 @@ void CreatureGun::SpawnProjectile(Vector2 startPos, Vector2 endPos)
 		m_projectilePool.end()
 	);
 
-	auto& projectile = std::move(m_projectilePool[0]);
-	projectile->SetProjectile(Vector3(startPos.x, startPos.y, 0)
-							, Vector3(endPos.x, endPos.y, 0));
-	projectile->ProjLoop();
-	m_projectileUsed.emplace_back(std::move(projectile));
+	for (auto& x : m_projectilePool) {
+		// set projectile to hero pos
+		x->SetProjectile(Vector3(startPos.x, startPos.y, 0)
+					   , Vector3(endPos.x, endPos.y, 0));
+		x->ProjLoop();
+		return std::move(x);
+	}
+	printf("ran out of creature projectiles\n");
+	return nullptr;
 }
 
 void CreatureGun::DespawnProjectile(std::unique_ptr<CrProjectile> projectile)
@@ -49,8 +53,7 @@ void CreatureGun::DespawnProjectile(std::unique_ptr<CrProjectile> projectile)
 void CreatureGun::Draw()
 {
 	for (auto& x : m_projectileUsed) {
-		if(x->m_isActive)
-			x->m_anim->CustomDraw();
+		x->m_anim->CustomDraw();
 	}
 }
 
@@ -60,7 +63,6 @@ void CreatureGun::Update(float deltaTime)
 	for (auto& x : m_projectileUsed) {
 		if (x && (x->m_anim->m_position.x > Globals::screenWidth || x->m_anim->m_position.x < 0)) {
 			DespawnProjectile(std::move(x));
-			x->m_isActive = false;
 		}
 	}
 
@@ -74,8 +76,12 @@ void CreatureGun::Update(float deltaTime)
 	);
 
 	for (auto& x : m_projectileUsed) {
-		if (x->m_isActive) {
+		if (x) {
 			x->Update(deltaTime);
 		}
 	}
+}
+void CreatureGun::CrFire(Vector2 startPos, Vector2 endPos)
+{
+	m_projectileUsed.emplace_back(SpawnProjectile(startPos, endPos));
 }
