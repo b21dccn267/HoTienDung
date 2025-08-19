@@ -22,12 +22,10 @@ void GSMenu::Init()
 	// Lấy trạng thái sound hiện tại từ SoundManager
 	m_isSoundOn = SoundManager::GetInstance()->IsSoundEnabled();
 
-	// menu background - sound on/off
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	// Chọn texture dựa trên trạng thái sound hiện tại
 	auto texture = m_isSoundOn ?
-		ResourceManager::GetInstance()->GetTexture(0) :   // Sound on background
-		ResourceManager::GetInstance()->GetTexture(30);   // Sound off background
+		ResourceManager::GetInstance()->GetTexture(0) :   
+		ResourceManager::GetInstance()->GetTexture(30);   
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	m_soundBg = std::make_shared<Object>(model, texture, shader);
 	m_soundBg->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
@@ -68,7 +66,7 @@ void GSMenu::Init()
 
 	// invisible sound toggle button 
 	model = ResourceManager::GetInstance()->GetModel(0);
-	auto emptyTexture = ResourceManager::GetInstance()->GetTexture(31);  // Empty/transparent texture
+	auto emptyTexture = ResourceManager::GetInstance()->GetTexture(31); 
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	std::shared_ptr<GameButton> soundToggleButton = std::make_shared<GameButton>(model, emptyTexture, shader);
 	soundToggleButton->Set2DPosition(Vector2(60.0f, 632.0f));
@@ -85,10 +83,8 @@ void GSMenu::Init()
 
 	// Bắt đầu phát nhạc nền menu nếu sound được bật
 	if (SoundManager::GetInstance()->IsSoundEnabled()) {
-		SoundManager::GetInstance()->PlayMusic("menu_music", -1); // -1 = loop vô hạn
+		SoundManager::GetInstance()->PlayMusic("menu_music", -1);
 	}
-
-	printf("Menu init - Sound is %s\n", m_isSoundOn ? "ON" : "OFF");
 }
 
 void GSMenu::ToggleSound()
@@ -96,7 +92,6 @@ void GSMenu::ToggleSound()
 	m_isSoundOn = !m_isSoundOn;
 
 	// Cập nhật SoundManager với trạng thái mới - chỉ cần gọi SetSoundEnabled
-	// vì nó sẽ tự động set cả music và sfx
 	SoundManager::GetInstance()->SetSoundEnabled(m_isSoundOn);
 
 	// Nếu bật lại sound và chưa có nhạc nào chạy, phát nhạc menu
@@ -115,8 +110,6 @@ void GSMenu::ToggleSound()
 		auto soundOffTexture = ResourceManager::GetInstance()->GetTexture(30);
 		m_soundBg->m_pTexture = soundOffTexture;
 	}
-
-	printf("Sound toggled: %s (affects both Music and SFX)\n", m_isSoundOn ? "ON" : "OFF");
 }
 
 void GSMenu::Pause()

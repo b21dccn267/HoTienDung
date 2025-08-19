@@ -150,20 +150,28 @@ void SoundManager::ResumeMusic()
 
 void SoundManager::SetMusicVolume(int volume)
 {
-	// Đảm bảo volume trong khoảng 0-128
-	m_musicVolume = (volume < 0) ? 0 : (volume > 128) ? 128 : volume;
-	Mix_VolumeMusic(m_musicVolume);
-	SaveSettings(); // Tự động lưu settings khi thay đổi
-	printf("Music volume set to: %d\n", m_musicVolume);
+	// Volume range: 0-100, nhưng SDL_mixer cần 0-128
+	m_musicVolume = (volume < 0) ? 0 : (volume > 100) ? 100 : volume;
+
+	// Convert 0-100 to 0-128 for SDL_mixer
+	int sdlVolume = (m_musicVolume * 128) / 100;
+	Mix_VolumeMusic(sdlVolume);
+
+	SaveSettings();
+	printf("Music volume set to: %d (SDL: %d)\n", m_musicVolume, sdlVolume);
 }
 
 void SoundManager::SetSfxVolume(int volume)
 {
-	// Đảm bảo volume trong khoảng 0-128
-	m_sfxVolume = (volume < 0) ? 0 : (volume > 128) ? 128 : volume;
-	Mix_Volume(-1, m_sfxVolume); // Áp dụng cho tất cả channels
-	SaveSettings(); // Tự động lưu settings khi thay đổi
-	printf("SFX volume set to: %d\n", m_sfxVolume);
+	// Volume range: 0-100, nhưng SDL_mixer cần 0-128
+	m_sfxVolume = (volume < 0) ? 0 : (volume > 100) ? 100 : volume;
+
+	// Convert 0-100 to 0-128 for SDL_mixer
+	int sdlVolume = (m_sfxVolume * 128) / 100;
+	Mix_Volume(-1, sdlVolume); // Áp dụng cho tất cả channels
+
+	SaveSettings();
+	printf("SFX volume set to: %d (SDL: %d)\n", m_sfxVolume, sdlVolume);
 }
 
 void SoundManager::SetSoundEnabled(bool enabled)
