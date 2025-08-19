@@ -14,6 +14,10 @@ AmogusGunner::AmogusGunner() : Creature()
 
 void AmogusGunner::Init()
 {
+	m_isFacingLeft = false;
+	m_isFacingRight = false;
+	m_isStationary = false;
+
 	m_creatureType = 1;
 	m_isMoveLeft = false;
 	m_isMoveRight = false;
@@ -76,6 +80,17 @@ void AmogusGunner::ShootAnimLeft()
 	m_anim->SetRotation(Vector3(0, 3.14, 0));
 }
 
+void AmogusGunner::Ready()
+{
+	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(37);
+
+	m_anim->m_numFramesPerRow = 4;
+	m_anim->m_numFramesPerColumn = 1;
+	m_anim->SetCustomFrames(std::vector<int>{3});
+	m_anim->m_frameTime = 0.12f;
+	m_anim->SetRotation(Vector3(0, 0, 0));
+}
+
 void AmogusGunner::Idle()
 {
 	m_anim->m_pTexture = ResourceManager::GetInstance()->GetTexture(42);
@@ -106,6 +121,7 @@ void AmogusGunner::Move(float deltaTime, Vector2 heroPos)
 		if (!m_isOnCooldown) {
 			m_crGun->CrFire(Vector2(m_anim->m_position.x, m_anim->m_position.y), heroPos);
 			m_isOnCooldown = true;
+			ShootAnimLeft();
 		}
 	}
 }
@@ -120,6 +136,21 @@ void AmogusGunner::Update(float deltaTime)
 {
 	Creature::Update(deltaTime);
 	m_crGun->Update(deltaTime);
+
+	if (m_isMoveLeft == true && m_isFacingLeft == false) {
+		LookLeft();
+		m_isFacingLeft = true;
+	}
+	if (m_isMoveRight == true && m_isFacingRight == false) {
+		LookRight();
+		m_isFacingRight = true;
+	}
+	if (m_canMove == false) {
+		if (m_cooldownTimer >= m_anim->m_frameTime * 4) {
+			Ready();
+		}
+	}
+	
 
 	if (m_isOnCooldown == true) {
 		m_cooldownTimer += deltaTime;

@@ -16,6 +16,10 @@ public:
 	float m_cooldown;
 	bool m_canMove;
 
+	// to prevent anim reset every update
+	bool m_isFacingLeft;
+	bool m_isFacingRight;
+	bool m_isStationary;
 
 	std::shared_ptr<CreatureGun> m_crGun;
 
@@ -26,6 +30,7 @@ public:
 	void LookLeft() override;
 	void ShootAnimRight();
 	void ShootAnimLeft();
+	void Ready();
 	void Idle() override;
 	void Die();
 	void Move(float deltaTime, Vector2 heroPos) override;

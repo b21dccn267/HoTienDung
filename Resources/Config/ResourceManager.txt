@@ -114,7 +114,7 @@ ID 36
 FILE "../Resources/2d/Textures/gui/home.tga"
 TILING GL_REPEAT
 ID 37
-FILE "../Resources/2d/Textures/game/1.tga"
+FILE "../Resources/2d/Textures/game/1_real.tga"
 TILING GL_REPEAT
 ID 38
 FILE "../Resources/2d/Textures/hud/hp_frame.tga"
@@ -129,7 +129,7 @@ ID 41
 FILE "../Resources/2d/Textures/hud/upgrade_button.tga"
 TILING GL_REPEAT
 ID 42
-FILE "../Resources/2d/Textures/game/2.tga"
+FILE "../Resources/2d/Textures/game/2_real.tga"
 TILING GL_REPEAT
 ID 43
 FILE "../Resources/2d/Textures/game/3.tga"
