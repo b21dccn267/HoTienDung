@@ -13,7 +13,7 @@ Sword::Sword()
 	m_cooldown = 1.0f;
 
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(44);
+	auto texture = ResourceManager::GetInstance()->GetTexture(45);
 	auto shader = ResourceManager::GetInstance()->GetShader(2);
 	m_anim = std::make_shared<Animation>(model, texture, shader, 1.0f, 0);
 	m_anim->Set2DPosition(Vector2(0, 0)); // bind to hero pos later
@@ -35,12 +35,12 @@ void Sword::UseSword(Vector2 pos, bool isLookingLeft)
 	if (isLookingLeft) {
 		m_anim->Set2DPosition(Vector2(pos.x - 90.0f, pos.y));
 		m_anim->SetRotation(Vector3(0, 3.14f, 0));
-		m_hitbox->UpdateBox(Vector2(m_anim->m_position.x - 60, m_anim->m_position.y), Vector2(m_anim->m_iWidth - 60, m_anim->m_iHeight));
+		m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 	}
 	else {
 		m_anim->Set2DPosition(Vector2(pos.x + 90.0f, pos.y));
 		m_anim->SetRotation(Vector3(0, 0, 0));
-		m_hitbox->UpdateBox(Vector2(m_anim->m_position.x + 60, m_anim->m_position.y), Vector2(m_anim->m_iWidth + 60, m_anim->m_iHeight));
+		m_hitbox->UpdateBox(Vector2(m_anim->m_position.x, m_anim->m_position.y), Vector2(m_anim->m_iWidth, m_anim->m_iHeight));
 	}
 }
 

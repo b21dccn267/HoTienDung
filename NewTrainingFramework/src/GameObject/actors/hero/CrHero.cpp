@@ -9,7 +9,7 @@
 CrHero::CrHero()
 {
 	m_health = 10;
-	m_attack = 1;
+	m_attack = 5;
 	m_isLookingLeft = true;
 
 	auto model = ResourceManager::GetInstance()->GetModel(0);

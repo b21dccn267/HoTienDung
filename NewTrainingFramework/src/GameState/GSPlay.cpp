@@ -22,7 +22,7 @@
 
 void GSPlay::Init()
 {
-    m_isInGladiatorMode = false;
+    InputManager::GetInstance()->m_isInGladiatorMode = false;
 
     SoundManager::GetInstance()->LoadMusic("background_music", "../Resources/Sfx/Stalemate.wav");
     SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/button_click.wav");
@@ -260,7 +260,7 @@ void GSPlay::Update(float deltaTime)
     m_hero2->Update(deltaTime);
     m_hero2->Update2DPosition();
 
-    m_creatureSpawner->Update(deltaTime, m_hero, m_hero2, m_isInGladiatorMode);
+    m_creatureSpawner->Update(deltaTime, m_hero, m_hero2, InputManager::GetInstance()->m_isInGladiatorMode);
 
     //printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
 
@@ -279,19 +279,24 @@ void GSPlay::Update(float deltaTime)
 
 
     // checking special event triggers, upgrade menu appear flags and stuff
-    if (m_timer->m_time % 15 == 0 && m_timer->m_time < 60) {
-        m_isInGladiatorMode = true;
+    if (m_timer->m_time % 15 == 0 && m_timer->m_time < 60 && m_timer->m_time != InputManager::GetInstance()->m_lastGladiatorModeEventTime) {
+        InputManager::GetInstance()->m_isInGladiatorMode = true;
+        InputManager::GetInstance()->m_lastGladiatorModeEventTime = m_timer->m_time;
     }
     else {
         //m_upgradeMenu->m_isActive = true;
         //m_isInGladiatorMode = true;
     }
 
-    if (m_isInGladiatorMode) {
+    if (InputManager::GetInstance()->m_isInGladiatorMode) {
         //printf("battle\n");
         // do stuff here, such as:
         // no spawning creatures
         // friendly fire on
+        m_timer->m_isActive = false;
+    }
+    else {
+        m_timer->m_isActive = true;
     }
 
     if (m_timer->m_time <= 0.0f) {

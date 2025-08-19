@@ -10,6 +10,7 @@
 Hero::Hero()
 {
 	m_health = 10;
+	m_attack = 3;
 
 	auto model = ResourceManager::GetInstance()->GetModel(0);
 	auto texture = ResourceManager::GetInstance()->GetTexture(9);

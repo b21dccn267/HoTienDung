@@ -22,7 +22,7 @@ public:
     std::vector<std::shared_ptr<GameButton>> m_gsPlayButtons;
     //std::shared_ptr<Creature> m_creature; 
     bool m_isPaused;
-    bool m_isInGladiatorMode; // special event
+    //bool m_isInGladiatorMode; // special event, stored in InputManager
     // store last hero hp state here after glad mode on
     int m_hero1Health;
     int m_hero2Health;

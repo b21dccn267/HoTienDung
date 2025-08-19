@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "../Utilities/utilities.h"
 
 
@@ -28,6 +28,9 @@ public:
 	// prevent per frame event register
 	bool m_timerIsActive = false;
 	float m_timeSincePressed = 0.0f;
+	// way to store global variables
+	bool m_isInGladiatorMode;
+	int m_lastGladiatorModeEventTime;
 
 private:
 	InputManager() {};

@@ -9,6 +9,7 @@
 #include <cstdlib> 
 #include <ctime>
 #include "GameObject/actors/hero/CrHero.h"
+#include "GameManager/InputManager.h"
 
 CreatureSpawner::CreatureSpawner()
 {
@@ -85,14 +86,11 @@ void CreatureSpawner::SpawnCreature()
 	}
 
 	printf("spawned creature %d\n", creature->m_creatureType);
-	//m_creaturePool.emplace_back(creature);
 	m_creatureActive.emplace_back(std::move(creature));
 }
 
-// type should be Creature, current arg should be std::unique_ptr<Skeleton> creature
 void CreatureSpawner::DespawnCreature(std::unique_ptr<Creature> creature)
 {
-	//m_creatureActive.clear();
 	m_creaturePool.emplace_back(std::move(creature));
 	printf("killed creature\n");
 }
@@ -120,15 +118,14 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::s
 	if (isGladiatorModeOn) {
 		// if hero 2 hits hero1
 		if (AABB::IsCollideRR(hero->m_hitbox, hero2->m_sword->m_hitbox)) {
-			hero->m_health--;
-			//isGladiatorModeOn = std::make_shared<bool>(false);
+			hero->m_health -= hero2->m_attack;
+			InputManager::GetInstance()->m_isInGladiatorMode = false;
 		}
 		// if hero1 hits hero2
 		for (auto& projectile : hero->m_gun->m_projectileUsed) {
 			if (AABB::IsCollideRR(hero2->m_hitbox, projectile->m_hitbox)) {
-				printf("isCollideWithProjectile\n");
-				hero2->m_health--;
-				//isGladiatorModeOn = std::make_shared<bool>(false);
+				hero2->m_health -= hero->m_attack;
+				InputManager::GetInstance()->m_isInGladiatorMode = false;
 				break;
 			}
 		}
