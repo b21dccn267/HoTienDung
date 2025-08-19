@@ -164,7 +164,7 @@ void GSPlay::Update(float deltaTime)
         m_hero->LookUp();
     }
     if (InputManager::GetInstance()->keys[0x41]
-        && m_hero->m_anim->m_position.y > 0
+        && m_hero->m_anim->m_position.x > 0
         ) {
         m_hero->m_anim->m_position.x -= 130.0f * deltaTime;
         m_hero->LookLeft();
@@ -175,7 +175,9 @@ void GSPlay::Update(float deltaTime)
         m_hero->m_anim->m_position.y += 130.0f * deltaTime;
         m_hero->LookDown();
     }
-    if (InputManager::GetInstance()->keys[0x44]) {
+    if (InputManager::GetInstance()->keys[0x44]
+        && m_hero->m_anim->m_position.x < 960
+        ) {
         m_hero->m_anim->m_position.x += 130.0f * deltaTime;
         m_hero->LookRight();
     }
@@ -196,20 +198,28 @@ void GSPlay::Update(float deltaTime)
         m_hero->LookBottomRight();
     }
     // arrows
-    if (InputManager::GetInstance()->keys[0x26]) {
+    if (InputManager::GetInstance()->keys[0x26]
+        && m_hero2->m_anim->m_position.y > 0
+        ) {
         m_hero2->m_anim->m_position.y -= 130.0f * deltaTime;
         m_hero2->LookUp();
     }
-    if (InputManager::GetInstance()->keys[0x25]) {
+    if (InputManager::GetInstance()->keys[0x25]
+        && m_hero2->m_anim->m_position.x > 0
+        ) {
         m_hero2->m_anim->m_position.x -= 130.0f * deltaTime;
         m_hero2->LookLeft();
         m_hero2->m_isLookingLeft = true;
     }
-    if (InputManager::GetInstance()->keys[0x28]) {
+    if (InputManager::GetInstance()->keys[0x28]
+        && m_hero2->m_anim->m_position.y < 720
+        ) {
         m_hero2->m_anim->m_position.y += 130.0f * deltaTime;
         m_hero2->LookDown();
     }
-    if (InputManager::GetInstance()->keys[0x27]) {
+    if (InputManager::GetInstance()->keys[0x27]
+        && m_hero2->m_anim->m_position.x < 960
+        ) {
         m_hero2->m_anim->m_position.x += 130.0f * deltaTime;
         m_hero2->LookRight();
         m_hero2->m_isLookingLeft = false;
@@ -230,6 +240,7 @@ void GSPlay::Update(float deltaTime)
         InputManager::GetInstance()->keys[0x28]) {
         m_hero2->LookBottomRight();
     }
+
     // sword attack
     if (InputManager::GetInstance()->keys[0x20]) {
         if (m_hero2->m_sword->m_isOnCooldown == false) {
@@ -237,7 +248,7 @@ void GSPlay::Update(float deltaTime)
         }
     }
 
-
+    // spawn creature
     if (m_creatureSpawner->m_isOnCooldown == false) {
         m_creatureSpawner->SpawnCreature();
         m_creatureSpawner->m_isOnCooldown = true;
@@ -247,7 +258,7 @@ void GSPlay::Update(float deltaTime)
     if (InputManager::GetInstance()->m_mouseIsPressed == true
         && InputManager::GetInstance()->m_timerIsActive == false
         ) {
-        printf("bang\n");
+        //printf("bang\n");
         InputManager::GetInstance()->m_timerIsActive = true;
         m_hero->m_gun->m_fMouseX = InputManager::GetInstance()->m_mouseX;
         m_hero->m_gun->m_fMouseY = InputManager::GetInstance()->m_mouseY;
