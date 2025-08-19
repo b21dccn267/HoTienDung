@@ -39,7 +39,7 @@ void GSSettings::Init()
 		std::make_shared<Texture>(TextRenderer::RenderText("Music")),
 		ResourceManager::GetInstance()->GetShader(0)
 	);
-	textSound->Set2DPosition(Vector2(Globals::screenWidth / 2 - 150, 300.0f));
+	textSound->Set2DPosition(Vector2(Globals::screenWidth / 2 - 90, 320.0f));
 	textSound->SetSize(100.0f, 50.0f);
 	m_gsSettingsObjects.emplace_back(textSound);
 
@@ -48,7 +48,7 @@ void GSSettings::Init()
 	texture = ResourceManager::GetInstance()->GetTexture(35);  
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto musicDownButton = std::make_shared<GameButton>(model, texture, shader);
-	musicDownButton->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, 300.0f));
+	musicDownButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 10, 320.0f));
 	musicDownButton->SetSize(40.0f, 40.0f);
 	musicDownButton->SetOnClick([this]() {
 		DecreaseMusicVolume();
@@ -61,8 +61,8 @@ void GSSettings::Init()
 		std::make_shared<Texture>(TextRenderer::RenderText("10")), // Placeholder
 		ResourceManager::GetInstance()->GetShader(0)
 	);
-	m_musicVolumeText->Set2DPosition(Vector2(Globals::screenWidth / 2, 300.0f));
-	m_musicVolumeText->SetSize(40.0f, 30.0f);
+	m_musicVolumeText->Set2DPosition(Vector2(Globals::screenWidth / 2 + 60, 320.0f));
+	m_musicVolumeText->SetSize(30.0f, 35.0f);
 	m_gsSettingsObjects.emplace_back(m_musicVolumeText);
 
 	// Music increase button (+)
@@ -70,7 +70,7 @@ void GSSettings::Init()
 	texture = ResourceManager::GetInstance()->GetTexture(34);  
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto musicUpButton = std::make_shared<GameButton>(model, texture, shader);
-	musicUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 50, 300.0f));
+	musicUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 110, 320.0f));
 	musicUpButton->SetSize(40.0f, 40.0f);
 	musicUpButton->SetOnClick([this]() {
 		IncreaseMusicVolume();
@@ -84,8 +84,8 @@ void GSSettings::Init()
 		std::make_shared<Texture>(TextRenderer::RenderText("Sound FX")),
 		ResourceManager::GetInstance()->GetShader(0)
 	);
-	textSoundFX->Set2DPosition(Vector2(Globals::screenWidth / 2 - 150, 370.0f));
-	textSoundFX->SetSize(120.0f, 50.0f);
+	textSoundFX->Set2DPosition(Vector2(Globals::screenWidth / 2 - 90, 390.0f));
+	textSoundFX->SetSize(130.0f, 50.0f);
 	m_gsSettingsObjects.emplace_back(textSoundFX);
 
 	// SFX decrease button (-)
@@ -93,7 +93,7 @@ void GSSettings::Init()
 	texture = ResourceManager::GetInstance()->GetTexture(35); 
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto sfxDownButton = std::make_shared<GameButton>(model, texture, shader);
-	sfxDownButton->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, 370.0f));
+	sfxDownButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 10, 390.0f));
 	sfxDownButton->SetSize(40.0f, 40.0f);
 	sfxDownButton->SetOnClick([this]() {
 		DecreaseSfxVolume();
@@ -106,8 +106,8 @@ void GSSettings::Init()
 		std::make_shared<Texture>(TextRenderer::RenderText("10")), // Placeholder
 		ResourceManager::GetInstance()->GetShader(0)
 	);
-	m_sfxVolumeText->Set2DPosition(Vector2(Globals::screenWidth / 2, 370.0f));
-	m_sfxVolumeText->SetSize(40.0f, 30.0f);
+	m_sfxVolumeText->Set2DPosition(Vector2(Globals::screenWidth / 2 + 60, 390.0f));
+	m_sfxVolumeText->SetSize(30.0f, 35.0f);
 	m_gsSettingsObjects.emplace_back(m_sfxVolumeText);
 
 	// SFX increase button (+)
@@ -115,7 +115,7 @@ void GSSettings::Init()
 	texture = ResourceManager::GetInstance()->GetTexture(34);  
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto sfxUpButton = std::make_shared<GameButton>(model, texture, shader);
-	sfxUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 50, 370.0f));
+	sfxUpButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 110, 390.0f));
 	sfxUpButton->SetSize(40.0f, 40.0f);
 	sfxUpButton->SetOnClick([this]() {
 		IncreaseSfxVolume();
@@ -136,91 +136,85 @@ void GSSettings::Init()
 		});
 	m_gsSettingsGameButtons.emplace_back(backButton);
 
-	// Cập nhật hiển thị volume ban đầu
 	UpdateVolumeDisplays();
-
-	printf("Settings init with volume controls\n");
 }
 
 void GSSettings::IncreaseMusicVolume()
 {
 	int currentVolume = SoundManager::GetInstance()->GetMusicVolume();
-	int newVolume = currentVolume + 10; // Tăng 10 đơn vị mỗi lần
-	if (newVolume > 128) newVolume = 128; // Max volume là 128
+	int newVolume = currentVolume + 10; 
+	if (newVolume > 100) newVolume = 100; 
 
 	SoundManager::GetInstance()->SetMusicVolume(newVolume);
 	UpdateVolumeDisplays();
 
 	// Play sound effect để test volume
 	SoundManager::GetInstance()->PlaySfx("button_click");
-
-	printf("Music volume increased to: %d\n", newVolume);
 }
 
 void GSSettings::DecreaseMusicVolume()
 {
 	int currentVolume = SoundManager::GetInstance()->GetMusicVolume();
-	int newVolume = currentVolume - 10; // Giảm 10 đơn vị mỗi lần
-	if (newVolume < 0) newVolume = 0; // Min volume là 0
+	int newVolume = currentVolume - 10; 
+	if (newVolume < 0) newVolume = 0; 
 
 	SoundManager::GetInstance()->SetMusicVolume(newVolume);
 	UpdateVolumeDisplays();
 
 	// Play sound effect để test volume
 	SoundManager::GetInstance()->PlaySfx("button_click");
-
-	printf("Music volume decreased to: %d\n", newVolume);
 }
 
 void GSSettings::IncreaseSfxVolume()
 {
 	int currentVolume = SoundManager::GetInstance()->GetSfxVolume();
-	int newVolume = currentVolume + 10; // Tăng 10 đơn vị mỗi lần
-	if (newVolume > 128) newVolume = 128; // Max volume là 128
+	int newVolume = currentVolume + 10; 
+	if (newVolume > 100) newVolume = 100; 
 
 	SoundManager::GetInstance()->SetSfxVolume(newVolume);
 	UpdateVolumeDisplays();
 
 	// Play sound effect để test volume mới
 	SoundManager::GetInstance()->PlaySfx("button_click");
-
-	printf("SFX volume increased to: %d\n", newVolume);
 }
 
 void GSSettings::DecreaseSfxVolume()
 {
 	int currentVolume = SoundManager::GetInstance()->GetSfxVolume();
-	int newVolume = currentVolume - 10; // Giảm 10 đơn vị mỗi lần
-	if (newVolume < 0) newVolume = 0; // Min volume là 0
+	int newVolume = currentVolume - 10;
+	if (newVolume < 0) newVolume = 0; 
 
 	SoundManager::GetInstance()->SetSfxVolume(newVolume);
 	UpdateVolumeDisplays();
 
 	// Play sound effect để test volume mới
 	SoundManager::GetInstance()->PlaySfx("button_click");
-
-	printf("SFX volume decreased to: %d\n", newVolume);
 }
 
 void GSSettings::UpdateVolumeDisplays()
 {
-	// Cập nhật hiển thị music volume (chuyển từ 0-128 về 0-10 cho dễ nhìn)
+	// Music volume: 0-100 -> hiển thị 0-10
 	int musicVolume = SoundManager::GetInstance()->GetMusicVolume();
-	int displayMusicVolume = musicVolume / 12; // 128/12 ≈ 10
+	int displayMusicVolume = musicVolume / 10;
 	if (displayMusicVolume > 10) displayMusicVolume = 10;
+	if (displayMusicVolume < 0) displayMusicVolume = 0;
 
 	std::string musicVolumeStr = std::to_string(displayMusicVolume);
 	auto musicTexture = std::make_shared<Texture>(TextRenderer::RenderText(musicVolumeStr.c_str()));
 	m_musicVolumeText->m_pTexture = musicTexture;
 
-	// Cập nhật hiển thị SFX volume
+	// SFX volume: 0-100 -> hiển thị 0-10
 	int sfxVolume = SoundManager::GetInstance()->GetSfxVolume();
-	int displaySfxVolume = sfxVolume / 12; // 128/12 ≈ 10
+	int displaySfxVolume = sfxVolume / 10; 
 	if (displaySfxVolume > 10) displaySfxVolume = 10;
+	if (displaySfxVolume < 0) displaySfxVolume = 0;
 
 	std::string sfxVolumeStr = std::to_string(displaySfxVolume);
 	auto sfxTexture = std::make_shared<Texture>(TextRenderer::RenderText(sfxVolumeStr.c_str()));
 	m_sfxVolumeText->m_pTexture = sfxTexture;
+
+	printf("Music Volume: %d (Display: %d), SFX Volume: %d (Display: %d)\n",
+		musicVolume, displayMusicVolume, sfxVolume, displaySfxVolume);
 }
 
 void GSSettings::Pause()
@@ -260,7 +254,6 @@ void GSSettings::Update(float deltaTime)
 
 void GSSettings::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-	printf("gsSettingsKeyPressed: %c\n", key);
 
 	if (key == 27 && bIsPressed) { // ESC key
 		SoundManager::GetInstance()->PlaySfx("button_click");

@@ -6,6 +6,7 @@
 #include "Globals.h"
 #include "GSGameOver.h"
 
+
 std::string GSGameOver::s_pendingCustomText = "";
 
 void GSGameOver::Init()
@@ -15,7 +16,7 @@ void GSGameOver::Init()
 
 	// Background
 	auto model = ResourceManager::GetInstance()->GetModel(0);
-	auto texture = ResourceManager::GetInstance()->GetTexture(33); // Same background as pause
+	auto texture = ResourceManager::GetInstance()->GetTexture(33); 
 	auto shader = ResourceManager::GetInstance()->GetShader(0);
 	auto overlay = std::make_shared<Object>(model, texture, shader);
 	overlay->Set2DPosition(Vector2(Globals::screenWidth / 2, Globals::screenHeight / 2));
@@ -48,7 +49,7 @@ void GSGameOver::Init()
 
 	// Restart button (left button)
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(22); // Restart button texture - thay đổi ID theo texture của bạn
+	texture = ResourceManager::GetInstance()->GetTexture(44); 
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnRestart = std::make_shared<GameButton>(model, texture, shader);
 	btnRestart->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, Globals::screenHeight / 2 + 45));
@@ -57,7 +58,7 @@ void GSGameOver::Init()
 
 	// Home button (right button)
 	model = ResourceManager::GetInstance()->GetModel(0);
-	texture = ResourceManager::GetInstance()->GetTexture(36); // Home button texture
+	texture = ResourceManager::GetInstance()->GetTexture(36); 
 	shader = ResourceManager::GetInstance()->GetShader(0);
 	auto btnMainMenu = std::make_shared<GameButton>(model, texture, shader);
 	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2 + 50, Globals::screenHeight / 2 + 45));
@@ -141,16 +142,17 @@ void GSGameOver::OnRestartButtonClick()
 {
 	// Pop game over state and restart the game
 	GameStateMachine::GetInstance()->PopState();
-	// Assuming you have a game state to push - adjust according to your game structure
-	// GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY);
+
+	 GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY);
 }
 
 void GSGameOver::OnMainMenuButtonClick()
 {
-	// Pop game over state and go to main menu
+
 	GameStateMachine::GetInstance()->PopState();
-	// Pop any remaining game states to get to main menu
-	// GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU);
+
+	GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU);
+
 }
 
 GSGameOver::~GSGameOver()

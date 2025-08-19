@@ -25,7 +25,9 @@ void GSPlay::Init()
     InputManager::GetInstance()->m_isInGladiatorMode = false;
 
     SoundManager::GetInstance()->LoadMusic("background_music", "../Resources/Sfx/Stalemate.wav");
-    SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/button_click.wav");
+    SoundManager::GetInstance()->LoadSfx("button_click_new", "../Resources/Sfx/button_click.wav");
+    SoundManager::GetInstance()->LoadSfx("hero_hit", "../Resources/Sfx/hit_00.wav");
+    SoundManager::GetInstance()->LoadSfx("hero2_hit", "../Resources/Sfx/hit_01.wav");
     SoundManager::GetInstance()->LoadSfx("move_sound", "../Resources/Sfx/vine-boom.wav");
 
     // background
@@ -56,7 +58,7 @@ void GSPlay::Init()
     m_healthBar2->m_health = m_hero2->m_health;
 
     m_timer = std::make_shared<Timer>();
-    m_timer->StartTimer(60);
+    m_timer->StartTimer(10);
     m_upgradeMenu = std::make_shared<WndUpgrade>();
     m_upgradeMenu->m_isActive = true;
 
@@ -66,12 +68,12 @@ void GSPlay::Init()
     texture = ResourceManager::GetInstance()->GetTexture(25);
     shader = ResourceManager::GetInstance()->GetShader(0);
     auto btnPause = std::make_shared<GameButton>(model, texture, shader);
-    btnPause->Set2DPosition(Vector2(Globals::screenWidth - 100, 100.0f));
-    btnPause->SetSize(60.0f, 60.0f);
+    btnPause->Set2DPosition(Vector2(Globals::screenWidth - 30, 50.0f));
+    btnPause->SetSize(50.0f, 50.0f);
     btnPause->SetOnClick([this]() {
 
         if (SoundManager::GetInstance()->IsSoundEnabled()) {
-            SoundManager::GetInstance()->PlaySfx("button_click");
+            SoundManager::GetInstance()->PlaySfx("button_click_new");
         }
         GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE);
         });
@@ -225,6 +227,7 @@ void GSPlay::Update(float deltaTime)
     // sword attack
     if (InputManager::GetInstance()->keys[0x20]) {
         if (m_hero2->m_sword->m_isOnCooldown == false) {
+            SoundManager::GetInstance()->PlaySfx("hero2_hit");
             m_hero2->m_sword->UseSword(Vector2(m_hero2->m_anim->m_position.x, m_hero2->m_anim->m_position.y), m_hero2->m_isLookingLeft);
         }
     }
@@ -240,6 +243,7 @@ void GSPlay::Update(float deltaTime)
         && InputManager::GetInstance()->m_timerIsActive == false
         ) {
         printf("bang\n");
+        SoundManager::GetInstance()->PlaySfx("hero_hit");
         InputManager::GetInstance()->m_timerIsActive = true;
         m_hero->m_gun->m_fMouseX = InputManager::GetInstance()->m_mouseX;
         m_hero->m_gun->m_fMouseY = InputManager::GetInstance()->m_mouseY;
@@ -261,8 +265,6 @@ void GSPlay::Update(float deltaTime)
     m_hero2->Update2DPosition();
 
     m_creatureSpawner->Update(deltaTime, m_hero, m_hero2, InputManager::GetInstance()->m_isInGladiatorMode);
-
-    //printf("%f %f\n", m_hero->m_anim->m_position.x, m_hero->m_anim->m_position.y);
 
     m_healthBar1->UpdateHealth(m_hero->m_health);
     m_healthBar2->UpdateHealth(m_hero2->m_health);
@@ -300,7 +302,7 @@ void GSPlay::Update(float deltaTime)
     }
 
     if (m_timer->m_time <= 0.0f) {
-        GSGameOver::s_pendingCustomText = "Time's Up!"; // Set text trước
+        GSGameOver::s_pendingCustomText = "Time's Up!"; 
         GameStateMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
         return;
     }
