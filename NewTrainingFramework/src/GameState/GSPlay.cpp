@@ -325,13 +325,13 @@ void GSPlay::Update(float deltaTime)
     }
 
     if (m_hero->m_health <= 0 && m_hero2->m_health > 0) {
-        GSGameOver::s_pendingCustomText = "Blue player wins";
+        GSGameOver::s_pendingCustomText = "Red player wins";
         GameStateMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
         return;
     }
 
     if (m_hero2->m_health <= 0 && m_hero->m_health > 0) {
-        GSGameOver::s_pendingCustomText = "Red player wins";
+        GSGameOver::s_pendingCustomText = "Blue player wins";
         GameStateMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
         return;
     }

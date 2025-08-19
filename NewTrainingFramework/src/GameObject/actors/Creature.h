@@ -49,6 +49,6 @@ public:
 	virtual void Move(float deltaTime, Vector2 heroPos);
 
 	// quick fix for AmogusGunner derived call
-	virtual bool DoDerived(std::shared_ptr<AABB> hitbox) {};
+	virtual bool DoDerived(std::shared_ptr<AABB> hitbox) { return false; };
 };
 
