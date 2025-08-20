@@ -26,6 +26,8 @@ public:
 	bool m_isMoveUp;
 	bool m_isMoveDown;
 
+	int m_target;
+
 	Creature();
 	virtual ~Creature();
 	void Init();

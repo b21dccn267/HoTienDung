@@ -83,6 +83,10 @@ void CreatureSpawner::SpawnCreature()
 		break;
 	}
 
+	// roll for target
+	number = std::rand();
+	creature->m_target = number % 2;
+
 	printf("spawned creature %d\n", creature->m_creatureType);
 	m_creatureActive.emplace_back(std::move(creature));
 }
@@ -178,7 +182,13 @@ void CreatureSpawner::Update(float deltaTime, std::shared_ptr<Hero> hero, std::s
 		
 		
 		// creature updates
-		x->Move(deltaTime, Vector2(hero->m_anim->m_position.x, hero->m_anim->m_position.y));
+		//x->Move(deltaTime, Vector2(hero->m_anim->m_position.x, hero->m_anim->m_position.y));
+		if (x->m_target) {
+			x->Move(deltaTime, Vector2(hero->m_anim->m_position.x, hero->m_anim->m_position.y));
+		}
+		else {
+			x->Move(deltaTime, Vector2(hero2->m_anim->m_position.x, hero2->m_anim->m_position.y));
+		}
 		if (x->m_health > 0) {
 			x->Update2DPosition();
 		}

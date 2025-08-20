@@ -159,26 +159,27 @@ void GSPlay::Update(float deltaTime)
 
     // wasd
     // x 960 y 720
+    // fix hero edge here
     if (InputManager::GetInstance()->keys[0x57]
-        && m_hero->m_anim->m_position.y > 0
+        && m_hero->m_anim->m_position.y - m_hero->m_anim->m_iHeight / 6 > 0
         ) {
         m_hero->m_anim->m_position.y -= 130.0f * deltaTime;
         m_hero->LookUp();
     }
     if (InputManager::GetInstance()->keys[0x41]
-        && m_hero->m_anim->m_position.x > 0
+        && m_hero->m_anim->m_position.x - m_hero->m_anim->m_iWidth / 6 > 0
         ) {
         m_hero->m_anim->m_position.x -= 130.0f * deltaTime;
         m_hero->LookLeft();
     }
     if (InputManager::GetInstance()->keys[0x53]
-        && m_hero->m_anim->m_position.y < 720
+        && m_hero->m_anim->m_position.y + m_hero->m_anim->m_iHeight / 6 < 720
         ) {
         m_hero->m_anim->m_position.y += 130.0f * deltaTime;
         m_hero->LookDown();
     }
     if (InputManager::GetInstance()->keys[0x44]
-        && m_hero->m_anim->m_position.x < 960
+        && m_hero->m_anim->m_position.x + m_hero->m_anim->m_iWidth / 6 < 960
         ) {
         m_hero->m_anim->m_position.x += 130.0f * deltaTime;
         m_hero->LookRight();
@@ -201,26 +202,26 @@ void GSPlay::Update(float deltaTime)
     }
     // arrows
     if (InputManager::GetInstance()->keys[0x26]
-        && m_hero2->m_anim->m_position.y > 0
+        && m_hero2->m_anim->m_position.y - m_hero2->m_anim->m_iHeight / 6 > 0
         ) {
         m_hero2->m_anim->m_position.y -= 130.0f * deltaTime;
         m_hero2->LookUp();
     }
     if (InputManager::GetInstance()->keys[0x25]
-        && m_hero2->m_anim->m_position.x > 0
+        && m_hero2->m_anim->m_position.x - m_hero2->m_anim->m_iWidth / 6 > 0
         ) {
         m_hero2->m_anim->m_position.x -= 130.0f * deltaTime;
         m_hero2->LookLeft();
         m_hero2->m_isLookingLeft = true;
     }
     if (InputManager::GetInstance()->keys[0x28]
-        && m_hero2->m_anim->m_position.y < 720
+        && m_hero2->m_anim->m_position.y + m_hero2->m_anim->m_iHeight / 6 < 720
         ) {
         m_hero2->m_anim->m_position.y += 130.0f * deltaTime;
         m_hero2->LookDown();
     }
     if (InputManager::GetInstance()->keys[0x27]
-        && m_hero2->m_anim->m_position.x < 960
+        && m_hero2->m_anim->m_position.x + m_hero2->m_anim->m_iWidth / 6 < 960
         ) {
         m_hero2->m_anim->m_position.x += 130.0f * deltaTime;
         m_hero2->LookRight();
