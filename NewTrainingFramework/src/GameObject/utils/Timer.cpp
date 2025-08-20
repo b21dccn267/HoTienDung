@@ -40,6 +40,9 @@ void Timer::UpdateTimer(float deltaTime)
 		if (m_updateCount >= 1.0f) {
 			m_time--;
 			std::string s = std::to_string(m_time);
+			if (m_time < 10) {
+				s = "0" + s;
+			}
 			m_displayText->m_pTexture = std::make_shared<Texture>(TextRenderer::RenderText(s.c_str()));
 			m_updateCount = 0.0f;
 		}

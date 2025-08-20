@@ -1,1 +1,16 @@
-﻿
+﻿  stdafx.cpp
+  esShader.cpp
+  esUtil.cpp
+  esUtil_win.cpp
+  Math.cpp
+C:\Users\GLSchool01\HoTienDung\Utilities\Math.cpp(9,13): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file '/Math.cpp')
+  
+C:\Users\GLSchool01\HoTienDung\Utilities\Math.cpp(103,13): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file '/Math.cpp')
+  
+C:\Users\GLSchool01\HoTienDung\Utilities\Math.cpp(207,13): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file '/Math.cpp')
+  
+  TGA.cpp
+  Utilities.vcxproj -> C:\Users\GLSchool01\HoTienDung\Release\Utilities.lib
