@@ -110,7 +110,7 @@ void AmogusGunner::Die()
 void AmogusGunner::Move(float deltaTime, Vector2 heroPos)
 {
 	// fix this to stop upon reaching a certain spot on the map
-	if (!(m_anim->m_position.x >= 100 && m_anim->m_position.x <=600 
+	if (!(m_anim->m_position.x >= 50 && m_anim->m_position.x <= 900 
 		&& m_anim->m_position.y >= 100 && m_anim->m_position.y <= 600)
 		&& m_canMove == true) {
 		Creature::Move(deltaTime, heroPos);
@@ -136,19 +136,19 @@ void AmogusGunner::Update(float deltaTime)
 	Creature::Update(deltaTime);
 	m_crGun->Update(deltaTime);
 
-	if (m_isMoveLeft == true && m_isFacingLeft == false) {
-		LookLeft();
-		m_isFacingLeft = true;
-	}
-	if (m_isMoveRight == true && m_isFacingRight == false) {
-		LookRight();
-		m_isFacingRight = true;
-	}
-	if (m_canMove == false) {
-		if (m_cooldownTimer >= m_anim->m_frameTime * 4) {
-			Ready();
-		}
-	}
+	//if (m_isMoveLeft == true && m_isFacingLeft == false) {
+	//	LookLeft();
+	//	m_isFacingLeft = true;
+	//}
+	//if (m_isMoveRight == true && m_isFacingRight == false) {
+	//	LookRight();
+	//	m_isFacingRight = true;
+	//}
+	//if (m_canMove == false) {
+	//	if (m_cooldownTimer >= m_anim->m_frameTime * 4) {
+	//		Ready();
+	//	}
+	//}
 	
 
 	if (m_isOnCooldown == true) {

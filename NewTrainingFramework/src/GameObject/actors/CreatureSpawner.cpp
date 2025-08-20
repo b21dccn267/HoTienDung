@@ -62,24 +62,42 @@ void CreatureSpawner::SpawnCreature()
 	switch (number % 7) {
 	case 0:
 		creature->m_anim->Set2DPosition(Vector2(3, 149));
+		if (creature->m_creatureType == 1) {
+			creature->LookRight();
+		}
 		break;
 	case 1:
 		creature->m_anim->Set2DPosition(Vector2(6, 346));
+		if (creature->m_creatureType == 1) {
+			creature->LookRight();
+		}
 		break;
 	case 2:
 		creature->m_anim->Set2DPosition(Vector2(5, 611));
+		if (creature->m_creatureType == 1) {
+			creature->LookRight();
+		}
 		break;
 	case 3:
 		creature->m_anim->Set2DPosition(Vector2(146, 716));
 		break;
 	case 4:
 		creature->m_anim->Set2DPosition(Vector2(957, 158));
+		if (creature->m_creatureType == 1) {
+			creature->LookLeft();
+		}
 		break;
 	case 5:
 		creature->m_anim->Set2DPosition(Vector2(957, 311));
+		if (creature->m_creatureType == 1) {
+			creature->LookLeft();
+		}
 		break;
 	case 6:
 		creature->m_anim->Set2DPosition(Vector2(948, 544));
+		if (creature->m_creatureType == 1) {
+			creature->LookLeft();
+		}
 		break;
 	}
 
