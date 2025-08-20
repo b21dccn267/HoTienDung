@@ -227,7 +227,6 @@ void GSSettings::Exit()
 
 void GSSettings::Resume()
 {
-	// Khi resume settings, cập nhật lại hiển thị volume
 	UpdateVolumeDisplays();
 }
 
@@ -255,7 +254,7 @@ void GSSettings::Update(float deltaTime)
 void GSSettings::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 
-	if (key == 27 && bIsPressed) { // ESC key
+	if (key == 27 && bIsPressed) { 
 		SoundManager::GetInstance()->PlaySfx("button_click");
 		GameStateMachine::GetInstance()->PopState();
 	}

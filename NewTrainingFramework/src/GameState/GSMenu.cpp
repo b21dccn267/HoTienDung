@@ -40,7 +40,7 @@ void GSMenu::Init()
 	menuButton->Set2DPosition(Vector2(Globals::screenWidth / 2, 320.0f));
 	menuButton->SetSize(150.0f, 85.0f);
 	menuButton->SetOnClick([]() {
-		// Play button click sound nếu sound được bật
+
 		if (SoundManager::GetInstance()->IsSoundEnabled()) {
 			SoundManager::GetInstance()->PlaySfx("button_click");
 		}
@@ -56,7 +56,7 @@ void GSMenu::Init()
 	settingsButton->Set2DPosition(Vector2(Globals::screenWidth / 2 + 420, 630.0f));
 	settingsButton->SetSize(60.0f, 80.0f);
 	settingsButton->SetOnClick([]() {
-		// Play button click sound nếu sound được bật
+
 		if (SoundManager::GetInstance()->IsSoundEnabled()) {
 			SoundManager::GetInstance()->PlaySfx("button_click");
 		}
@@ -64,7 +64,7 @@ void GSMenu::Init()
 		});
 	m_gsMenuGameButtons.emplace_back(settingsButton);
 
-	// invisible sound toggle button 
+	//sound toggle button 
 	model = ResourceManager::GetInstance()->GetModel(0);
 	auto emptyTexture = ResourceManager::GetInstance()->GetTexture(31); 
 	shader = ResourceManager::GetInstance()->GetShader(0);
@@ -78,8 +78,8 @@ void GSMenu::Init()
 	m_gsMenuGameButtons.emplace_back(soundToggleButton);
 
 	// Load sound effects và music cho menu
-	SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/vine-boom.wav");
-	SoundManager::GetInstance()->LoadMusic("menu_music", "../Resources/Sfx/Stalemate.wav");
+	SoundManager::GetInstance()->LoadSfx("button_click", "../Resources/Sfx/click-sound.wav");
+	SoundManager::GetInstance()->LoadMusic("menu_music", "../Resources/Sfx/menu-music.wav");
 
 	// Bắt đầu phát nhạc nền menu nếu sound được bật
 	if (SoundManager::GetInstance()->IsSoundEnabled()) {
@@ -91,17 +91,14 @@ void GSMenu::ToggleSound()
 {
 	m_isSoundOn = !m_isSoundOn;
 
-	// Cập nhật SoundManager với trạng thái mới - chỉ cần gọi SetSoundEnabled
 	SoundManager::GetInstance()->SetSoundEnabled(m_isSoundOn);
 
-	// Nếu bật lại sound và chưa có nhạc nào chạy, phát nhạc menu
 	if (m_isSoundOn) {
 		if (!Mix_PlayingMusic()) {
 			SoundManager::GetInstance()->PlayMusic("menu_music", -1);
 		}
 	}
 
-	// Thay đổi texture của background dựa trên trạng thái sound
 	if (m_isSoundOn) {
 		auto soundOnTexture = ResourceManager::GetInstance()->GetTexture(0);
 		m_soundBg->m_pTexture = soundOnTexture;
@@ -122,7 +119,6 @@ void GSMenu::Pause()
 
 void GSMenu::Exit()
 {
-	// Stop nhạc nền khi thoát khỏi menu
 	SoundManager::GetInstance()->StopMusic();
 }
 
@@ -133,17 +129,14 @@ void GSMenu::Resume()
 
 	// Resume nhạc nền nếu sound được bật
 	if (m_isSoundOn) {
-		// Kiểm tra xem có nhạc nào đang bị pause không
 		if (Mix_PausedMusic()) {
 			SoundManager::GetInstance()->ResumeMusic();
 		}
-		// Nếu không có nhạc nào đang chạy và sound được bật, bắt đầu phát nhạc menu
 		else if (!Mix_PlayingMusic()) {
 			SoundManager::GetInstance()->PlayMusic("menu_music", -1);
 		}
 	}
 
-	// Cập nhật texture background cho phù hợp
 	if (m_isSoundOn) {
 		auto soundOnTexture = ResourceManager::GetInstance()->GetTexture(0);
 		m_soundBg->m_pTexture = soundOnTexture;
@@ -189,7 +182,6 @@ void GSMenu::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 
 void GSMenu::Cleanup()
 {
-	// Stop nhạc nền khi cleanup
 	SoundManager::GetInstance()->StopMusic();
 }
 

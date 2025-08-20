@@ -28,8 +28,8 @@ public:
 	void LoadSfx(const std::string& key, const char* fileName);
 
 	// Play âm thanh bằng key
-	void PlayMusic(const std::string& key, int loops = -1); // -1 = loop vô hạn
-	void PlayMusicIfEnabled(const std::string& key, int loops = -1); // Play music only if sound enabled
+	void PlayMusic(const std::string& key, int loops = -1); 
+	void PlayMusicIfEnabled(const std::string& key, int loops = -1);
 	void PlaySfx(const std::string& key);
 
 	// Điều khiển âm thanh
@@ -38,8 +38,8 @@ public:
 	void ResumeMusic();
 
 	// Điều khiển volume
-	void SetMusicVolume(int volume); // 0-128
-	void SetSfxVolume(int volume);   // 0-128
+	void SetMusicVolume(int volume);
+	void SetSfxVolume(int volume);   
 	int GetMusicVolume() const { return m_musicVolume; }
 	int GetSfxVolume() const { return m_sfxVolume; }
 
