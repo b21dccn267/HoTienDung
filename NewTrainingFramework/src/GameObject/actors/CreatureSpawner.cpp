@@ -61,25 +61,25 @@ void CreatureSpawner::SpawnCreature()
 	// should seperate left and right hand side spawns
 	switch (number % 7) {
 	case 0:
-		creature->m_anim->Set2DPosition(Vector2(-10.0f, 150.0f));
+		creature->m_anim->Set2DPosition(Vector2(3, 149));
 		break;
 	case 1:
-		creature->m_anim->Set2DPosition(Vector2(300.0f, -10.0f));
+		creature->m_anim->Set2DPosition(Vector2(6, 346));
 		break;
 	case 2:
-		creature->m_anim->Set2DPosition(Vector2(-100.0f, 500.0f));
+		creature->m_anim->Set2DPosition(Vector2(5, 611));
 		break;
 	case 3:
-		creature->m_anim->Set2DPosition(Vector2(150.0f, 750.0f));
+		creature->m_anim->Set2DPosition(Vector2(146, 716));
 		break;
 	case 4:
-		creature->m_anim->Set2DPosition(Vector2(1000.0f, 600.0f));
+		creature->m_anim->Set2DPosition(Vector2(957, 158));
 		break;
 	case 5:
-		creature->m_anim->Set2DPosition(Vector2(420.0f, 800.0f));
+		creature->m_anim->Set2DPosition(Vector2(957, 311));
 		break;
 	case 6:
-		creature->m_anim->Set2DPosition(Vector2(960.0f, 150.0f));
+		creature->m_anim->Set2DPosition(Vector2(948, 544));
 		break;
 	}
 

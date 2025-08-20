@@ -110,9 +110,8 @@ void AmogusGunner::Die()
 void AmogusGunner::Move(float deltaTime, Vector2 heroPos)
 {
 	// fix this to stop upon reaching a certain spot on the map
-	if ((std::abs(heroPos.x - this->m_anim->m_position.x) > 50.0f 
-		//&& std::abs(heroPos.y - this->m_anim->m_position.x) > 100.0f
-		)
+	if (!(m_anim->m_position.x >= 100 && m_anim->m_position.x <=600 
+		&& m_anim->m_position.y >= 100 && m_anim->m_position.y <= 600)
 		&& m_canMove == true) {
 		Creature::Move(deltaTime, heroPos);
 	}
@@ -121,7 +120,7 @@ void AmogusGunner::Move(float deltaTime, Vector2 heroPos)
 		if (!m_isOnCooldown) {
 			m_crGun->CrFire(Vector2(m_anim->m_position.x, m_anim->m_position.y), heroPos);
 			m_isOnCooldown = true;
-			ShootAnimLeft();
+			//ShootAnimLeft();
 		}
 	}
 }

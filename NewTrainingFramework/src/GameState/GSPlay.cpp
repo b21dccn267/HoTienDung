@@ -158,90 +158,88 @@ void GSPlay::Update(float deltaTime)
     }
 
     // wasd
-    // x 960 y 720
-    // fix hero edge here
     if (InputManager::GetInstance()->keys[0x57]
-        && m_hero->m_anim->m_position.y - m_hero->m_anim->m_iHeight / 6 > 0
-        ) {
-        m_hero->m_anim->m_position.y -= 130.0f * deltaTime;
-        m_hero->LookUp();
-    }
-    if (InputManager::GetInstance()->keys[0x41]
-        && m_hero->m_anim->m_position.x - m_hero->m_anim->m_iWidth / 6 > 0
-        ) {
-        m_hero->m_anim->m_position.x -= 130.0f * deltaTime;
-        m_hero->LookLeft();
-    }
-    if (InputManager::GetInstance()->keys[0x53]
-        && m_hero->m_anim->m_position.y + m_hero->m_anim->m_iHeight / 6 < 720
-        ) {
-        m_hero->m_anim->m_position.y += 130.0f * deltaTime;
-        m_hero->LookDown();
-    }
-    if (InputManager::GetInstance()->keys[0x44]
-        && m_hero->m_anim->m_position.x + m_hero->m_anim->m_iWidth / 6 < 960
-        ) {
-        m_hero->m_anim->m_position.x += 130.0f * deltaTime;
-        m_hero->LookRight();
-    }
-    if (InputManager::GetInstance()->keys[0x41] &&
-        InputManager::GetInstance()->keys[0x57]) {
-        m_hero->LookTopLeft();
-    }
-    if (InputManager::GetInstance()->keys[0x44] &&
-        InputManager::GetInstance()->keys[0x57]) {
-        m_hero->LookTopRight();
-    }
-    if (InputManager::GetInstance()->keys[0x41] &&
-        InputManager::GetInstance()->keys[0x53]) {
-        m_hero->LookBottomLeft();
-    }
-    if (InputManager::GetInstance()->keys[0x44] &&
-        InputManager::GetInstance()->keys[0x53]) {
-        m_hero->LookBottomRight();
-    }
-    // arrows
-    if (InputManager::GetInstance()->keys[0x26]
         && m_hero2->m_anim->m_position.y - m_hero2->m_anim->m_iHeight / 6 > 0
         ) {
         m_hero2->m_anim->m_position.y -= 130.0f * deltaTime;
         m_hero2->LookUp();
     }
-    if (InputManager::GetInstance()->keys[0x25]
+    if (InputManager::GetInstance()->keys[0x41]
         && m_hero2->m_anim->m_position.x - m_hero2->m_anim->m_iWidth / 6 > 0
         ) {
         m_hero2->m_anim->m_position.x -= 130.0f * deltaTime;
         m_hero2->LookLeft();
         m_hero2->m_isLookingLeft = true;
     }
-    if (InputManager::GetInstance()->keys[0x28]
+    if (InputManager::GetInstance()->keys[0x53]
         && m_hero2->m_anim->m_position.y + m_hero2->m_anim->m_iHeight / 6 < 720
         ) {
         m_hero2->m_anim->m_position.y += 130.0f * deltaTime;
         m_hero2->LookDown();
     }
-    if (InputManager::GetInstance()->keys[0x27]
+    if (InputManager::GetInstance()->keys[0x44]
         && m_hero2->m_anim->m_position.x + m_hero2->m_anim->m_iWidth / 6 < 960
         ) {
         m_hero2->m_anim->m_position.x += 130.0f * deltaTime;
         m_hero2->LookRight();
         m_hero2->m_isLookingLeft = false;
     }
-    if (InputManager::GetInstance()->keys[0x25] &&
-        InputManager::GetInstance()->keys[0x26]) {
+    if (InputManager::GetInstance()->keys[0x41] &&
+        InputManager::GetInstance()->keys[0x57]) {
         m_hero2->LookTopLeft();
     }
+    if (InputManager::GetInstance()->keys[0x44] &&
+        InputManager::GetInstance()->keys[0x57]) {
+        m_hero2->LookTopRight();
+    }
+    if (InputManager::GetInstance()->keys[0x41] &&
+        InputManager::GetInstance()->keys[0x53]) {
+        m_hero2->LookBottomLeft();
+    }
+    if (InputManager::GetInstance()->keys[0x44] &&
+        InputManager::GetInstance()->keys[0x53]) {
+        m_hero2->LookBottomRight();
+    }
+    // arrows
+    if (InputManager::GetInstance()->keys[0x26]
+        && m_hero->m_anim->m_position.y - m_hero->m_anim->m_iHeight / 6 > 0
+        ) {
+        m_hero->m_anim->m_position.y -= 130.0f * deltaTime;
+        m_hero->LookUp();
+    }
+    if (InputManager::GetInstance()->keys[0x25]
+        && m_hero->m_anim->m_position.x - m_hero->m_anim->m_iWidth / 6 > 0
+        ) {
+        m_hero->m_anim->m_position.x -= 130.0f * deltaTime;
+        m_hero->LookLeft();
+    }
+    if (InputManager::GetInstance()->keys[0x28]
+        && m_hero->m_anim->m_position.y + m_hero->m_anim->m_iHeight / 6 < 720
+        ) {
+        m_hero->m_anim->m_position.y += 130.0f * deltaTime;
+        m_hero->LookDown();
+    }
+    if (InputManager::GetInstance()->keys[0x27]
+        && m_hero->m_anim->m_position.x + m_hero->m_anim->m_iWidth / 6 < 960
+        ) {
+        m_hero->m_anim->m_position.x += 130.0f * deltaTime;
+        m_hero->LookRight();
+    }
+    if (InputManager::GetInstance()->keys[0x25] &&
+        InputManager::GetInstance()->keys[0x26]) {
+        m_hero->LookTopLeft();
+    }
     if (InputManager::GetInstance()->keys[0x27] &&
         InputManager::GetInstance()->keys[0x26]) {
-        m_hero2->LookTopRight();
+        m_hero->LookTopRight();
     }
     if (InputManager::GetInstance()->keys[0x25] &&
         InputManager::GetInstance()->keys[0x28]) {
-        m_hero2->LookBottomLeft();
+        m_hero->LookBottomLeft();
     }
     if (InputManager::GetInstance()->keys[0x27] &&
         InputManager::GetInstance()->keys[0x28]) {
-        m_hero2->LookBottomRight();
+        m_hero->LookBottomRight();
     }
 
     // sword attack
@@ -258,7 +256,7 @@ void GSPlay::Update(float deltaTime)
         m_creatureSpawner->m_isOnCooldown = true;
     }
 
-
+    // hero blue attack
     if (InputManager::GetInstance()->m_mouseIsPressed == true
         && InputManager::GetInstance()->m_timerIsActive == false
         ) {
