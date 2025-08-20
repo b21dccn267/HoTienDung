@@ -193,7 +193,6 @@ void GSSettings::DecreaseSfxVolume()
 
 void GSSettings::UpdateVolumeDisplays()
 {
-	// Music volume: 0-100 -> hiển thị 0-10
 	int musicVolume = SoundManager::GetInstance()->GetMusicVolume();
 	int displayMusicVolume = musicVolume / 10;
 	if (displayMusicVolume > 10) displayMusicVolume = 10;
@@ -203,15 +202,32 @@ void GSSettings::UpdateVolumeDisplays()
 	auto musicTexture = std::make_shared<Texture>(TextRenderer::RenderText(musicVolumeStr.c_str()));
 	m_musicVolumeText->m_pTexture = musicTexture;
 
-	// SFX volume: 0-100 -> hiển thị 0-10
+	if (displayMusicVolume < 10) {
+		m_musicVolumeText->SetSize(15.0f, 35.0f);
+		m_musicVolumeText->Set2DPosition(Vector2(Globals::screenWidth / 2 + 60, 320.0f));
+	}
+	else {
+		m_musicVolumeText->SetSize(30.0f, 35.0f);
+		m_musicVolumeText->Set2DPosition(Vector2(Globals::screenWidth / 2 + 60, 320.0f));
+	}
+
 	int sfxVolume = SoundManager::GetInstance()->GetSfxVolume();
-	int displaySfxVolume = sfxVolume / 10; 
+	int displaySfxVolume = sfxVolume / 10;
 	if (displaySfxVolume > 10) displaySfxVolume = 10;
 	if (displaySfxVolume < 0) displaySfxVolume = 0;
 
 	std::string sfxVolumeStr = std::to_string(displaySfxVolume);
 	auto sfxTexture = std::make_shared<Texture>(TextRenderer::RenderText(sfxVolumeStr.c_str()));
 	m_sfxVolumeText->m_pTexture = sfxTexture;
+
+	if (displaySfxVolume < 10) {
+		m_sfxVolumeText->SetSize(15.0f, 35.0f);
+		m_sfxVolumeText->Set2DPosition(Vector2(Globals::screenWidth / 2 + 60, 390.0f));
+	}
+	else {
+		m_sfxVolumeText->SetSize(30.0f, 35.0f);
+		m_sfxVolumeText->Set2DPosition(Vector2(Globals::screenWidth / 2 + 60, 390.0f));
+	}
 
 	printf("Music Volume: %d (Display: %d), SFX Volume: %d (Display: %d)\n",
 		musicVolume, displayMusicVolume, sfxVolume, displaySfxVolume);
