@@ -1,6 +1,7 @@
 ﻿#include "GameManager/ResourceManager.h"
 #include "GameManager/SceneManager.h"
 #include "GameObject/core/TextRenderer.h"
+#include "GameManager/SoundManager.h"
 #include "GameObject/core/Texture.h"
 #include "GameStateMachine.h"
 #include "Globals.h"
@@ -10,6 +11,9 @@ void GSPause::Init()
 {
 	m_gsPauseObjects.reserve(8);
 	m_gsPauseButtons.reserve(8);
+
+	SoundManager::GetInstance()->LoadMusic("menu_music", "../Resources/Sfx/menu-music.wav");
+	SoundManager::GetInstance()->LoadSfx("button_click_new", "../Resources/Sfx/click-sound.wav");
 
 	// background
 	auto model = ResourceManager::GetInstance()->GetModel(0);
@@ -36,7 +40,13 @@ void GSPause::Init()
 	auto btnResume = std::make_shared<GameButton>(model, texture, shader);
 	btnResume->Set2DPosition(Vector2(Globals::screenWidth / 2 + 50, Globals::screenHeight / 2 + 45));
 	btnResume->SetSize(65.0f, 65.0f);
-	btnResume->SetOnClick(OnResumeButtonClick);
+	btnResume->SetOnClick([this]() {
+
+		if (SoundManager::GetInstance()->IsSoundEnabled()) {
+			SoundManager::GetInstance()->PlaySfx("button_click_new");
+		}
+		GameStateMachine::GetInstance()->PopState();
+		});
 
 	// Home button
 	model = ResourceManager::GetInstance()->GetModel(0);
@@ -45,14 +55,23 @@ void GSPause::Init()
 	auto btnMainMenu = std::make_shared<GameButton>(model, texture, shader);
 	btnMainMenu->Set2DPosition(Vector2(Globals::screenWidth / 2 - 50, Globals::screenHeight / 2 + 45));
 	btnMainMenu->SetSize(66.0f, 68.0f);
-	btnMainMenu->SetOnClick(OnMainMenuButtonClick);
+	btnMainMenu->SetOnClick([this]() {
+
+		if (SoundManager::GetInstance()->IsSoundEnabled()) {
+			SoundManager::GetInstance()->PlaySfx("button_click_new");
+		}
+		GameStateMachine::GetInstance()->PopState();
+		GameStateMachine::GetInstance()->PopState();
+		});
 
 	m_gsPauseObjects.emplace_back(overlay);
 	m_gsPauseObjects.emplace_back(textPause);
 	m_gsPauseButtons.emplace_back(btnResume);
 	m_gsPauseButtons.emplace_back(btnMainMenu);
 
-	printf("pause init\n");
+	SoundManager::GetInstance()->PlayMusicIfEnabled("menu_music", -1);
+
+	printf("Pause init\n");
 }
 
 void GSPause::Pause()
@@ -69,7 +88,6 @@ void GSPause::Resume()
 
 void GSPause::Draw()
 {
-	// Don't clear color buffer to show the game behind
 	for (auto& obj : m_gsPauseObjects) {
 		obj->Draw();
 	}
@@ -92,7 +110,7 @@ void GSPause::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
 	if (bIsPressed) {
 		switch (key) {
-		case 27: // ESC key
+		case 27: 
 			GameStateMachine::GetInstance()->PopState(); // Resume game
 			break;
 		}
@@ -103,7 +121,7 @@ void GSPause::HandleMouseEvent(GLint x, GLint y, bool bIsPressed)
 {
 	for (auto& btn : m_gsPauseButtons) {
 		if (btn->HandleTouchEvents(x, y, bIsPressed)) {
-			break; // Stop processing if a button handled the event
+			break; 
 		}
 	}
 }
@@ -112,19 +130,6 @@ void GSPause::Cleanup()
 {
 	m_gsPauseObjects.clear();
 	m_gsPauseButtons.clear();
-}
-
-void GSPause::OnResumeButtonClick()
-{
-	// Pop the pause state to return to game
-	GameStateMachine::GetInstance()->PopState();
-}
-
-void GSPause::OnMainMenuButtonClick()
-{
-	// Pop pause state and push menu state
-	GameStateMachine::GetInstance()->PopState();
-	GameStateMachine::GetInstance()->PopState();
 }
 
 GSPause::~GSPause()

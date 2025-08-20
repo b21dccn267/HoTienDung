@@ -11,10 +11,16 @@ class GSGameOver : public GameStateBase
 public:
 	std::vector<std::shared_ptr<Object>> m_gameOverObjects;
 	std::vector<std::shared_ptr<GameButton>> m_gameOverButtons;
-	static std::string s_pendingCustomText;
+
+	// Static members for setting text from other states
+	static std::string s_pendingMainText;
+	static std::string s_pendingSubText;
 
 	GSGameOver() : GameStateBase(StateType::STATE_GAMEOVER) {}
-	GSGameOver(const std::string& customText) : GameStateBase(StateType::STATE_GAMEOVER), m_customText(customText) {}
+	GSGameOver(const std::string& mainText, const std::string& subText = "") :
+		GameStateBase(StateType::STATE_GAMEOVER), m_mainText(mainText), m_subText(subText) {
+	}
+
 	void Init() override;
 	void Pause() override;
 	void Exit() override;
@@ -27,8 +33,14 @@ public:
 
 	~GSGameOver() override;
 
+	// Helper methods to set text
+	void SetMainText(const std::string& text) { m_mainText = text; }
+	void SetSubText(const std::string& text) { m_subText = text; }
+	static void SetPendingText(const std::string& mainText, const std::string& subText = "");
+
 private:
-	std::string m_customText; 
+	std::string m_mainText = "GAME OVER";  // Default main text
+	std::string m_subText = "";            // Optional subtitle
 
 	// Callback functions for buttons
 	static void OnRestartButtonClick();

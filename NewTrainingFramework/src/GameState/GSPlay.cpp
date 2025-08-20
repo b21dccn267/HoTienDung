@@ -25,11 +25,10 @@ void GSPlay::Init()
 {
     InputManager::GetInstance()->m_isInGladiatorMode = false;
 
-    SoundManager::GetInstance()->LoadMusic("background_music", "../Resources/Sfx/Stalemate.wav");
-    SoundManager::GetInstance()->LoadSfx("button_click_new", "../Resources/Sfx/button_click.wav");
+    SoundManager::GetInstance()->LoadMusic("background_music", "../Resources/Sfx/play-mussic.wav");
+    SoundManager::GetInstance()->LoadSfx("button_click_new", "../Resources/Sfx/click-sound.wav");
     SoundManager::GetInstance()->LoadSfx("hero_hit", "../Resources/Sfx/hit_00.wav");
     SoundManager::GetInstance()->LoadSfx("hero2_hit", "../Resources/Sfx/hit_01.wav");
-    SoundManager::GetInstance()->LoadSfx("move_sound", "../Resources/Sfx/vine-boom.wav");
 
     // background
     auto model = ResourceManager::GetInstance()->GetModel(0);
@@ -102,6 +101,7 @@ void GSPlay::Resume()
 {
     m_isPaused = false;
     // Resume nhạc nền khi quay lại game (chỉ khi sound được bật)
+
     if (SoundManager::GetInstance()->IsSoundEnabled()) {
         // Kiểm tra xem có nhạc nào đang bị pause không
         if (Mix_PausedMusic()) {
@@ -146,9 +146,9 @@ void GSPlay::Draw()
 
 void GSPlay::Update(float deltaTime)
 {
-    //// remove this later
+
     m_upgradeMenu->m_isActive = false;
-    //
+
     if (m_isPaused) {
         return;
     }
@@ -157,8 +157,6 @@ void GSPlay::Update(float deltaTime)
         x->Update(deltaTime);
     }
 
-    // wasd
-    // x 960 y 720
     if (InputManager::GetInstance()->keys[0x57]
         && m_hero->m_anim->m_position.y > 0
         ) {
@@ -298,8 +296,6 @@ void GSPlay::Update(float deltaTime)
         x->Update(deltaTime);
     }
 
-
-    // checking special event triggers, upgrade menu appear flags and stuff
     if (m_timer->m_time % 15 == 0 && m_timer->m_time < 60 && m_timer->m_time != InputManager::GetInstance()->m_lastGladiatorModeEventTime) {
         InputManager::GetInstance()->m_isInGladiatorMode = true;
         InputManager::GetInstance()->m_lastGladiatorModeEventTime = m_timer->m_time;
@@ -321,25 +317,25 @@ void GSPlay::Update(float deltaTime)
     }
 
     if (m_timer->m_time <= 0.0f) {
-        GSGameOver::s_pendingCustomText = "Time's Up!"; 
+        GSGameOver::SetPendingText("TIME'S UP!", "No one survived the arena");
         GameStateMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
         return;
     }
 
     if (m_hero->m_health <= 0 && m_hero2->m_health > 0) {
-        GSGameOver::s_pendingCustomText = "Red player wins";
+        GSGameOver::SetPendingText("VICTORY!", "Red Player Wins");
         GameStateMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
         return;
     }
 
     if (m_hero2->m_health <= 0 && m_hero->m_health > 0) {
-        GSGameOver::s_pendingCustomText = "Blue player wins";
+        GSGameOver::SetPendingText("VICTORY!", "Blue Player Wins");
         GameStateMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
         return;
     }
 
     if (m_hero->m_health == 0 && m_hero2->m_health == 0) {
-        GSGameOver::s_pendingCustomText = "Draw";
+        GSGameOver::SetPendingText("STALEMATE", "Both players eliminated");
         GameStateMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
         return;
     }
@@ -347,7 +343,6 @@ void GSPlay::Update(float deltaTime)
 
 void GSPlay::HandleKeyEvent(unsigned char key, bool bIsPressed)
 {
-    //printf("0x%02X\n", key);
     InputManager::GetInstance()->keys[key] = bIsPressed;
 }
 

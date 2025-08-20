@@ -21,7 +21,6 @@ GameButton::~GameButton()
 {
 }
 
-// Thay đổi để nhận std::function
 void GameButton::SetOnClick(std::function<void()> btnClickFun)
 {
     m_pBtnClick = btnClickFun;
@@ -67,11 +66,7 @@ bool GameButton::HandleTouchEvents(GLint x, GLint y, bool bIsPressed)
             isHandled = true;
         }
 
-        // Reset về texture normal khi thả chuột
         m_isHolding = false;
-        if (m_normalTexture) {
-            m_pTexture = m_normalTexture; // Sử dụng m_pTexture của Object class
-        }
     }
     return isHandled;
 }
